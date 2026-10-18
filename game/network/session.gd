@@ -2,7 +2,7 @@ extends Node
 # Todos los RPC usan esta ruta estable; ningún cliente puede transmitir daño o posiciones.
 signal changed
 signal message(text: String)
-const PROTOCOL := "punchline-district-confinement-2"
+var PROTOCOL: String = "punchline-"+BuildInfo.version+"-multistorey"
 const DEFAULT_PORT := 7777
 const MAX_PLAYERS := 3
 const PLAYER = preload("res://network/player.gd")

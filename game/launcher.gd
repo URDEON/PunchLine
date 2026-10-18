@@ -55,7 +55,7 @@ func page(id: String) -> void:
         choice("MULTIJUGADOR",func()->void:enter("res://network/online.tscn"))
         choice("AJUSTES",func()->void:page("settings"))
         choice("EXTRAS",func()->void:page("extras"))
-        status.text="0.9.24 / THE PROYECTED Y ACERO VIVO"
+        status.text=BuildInfo.version+" / THE PROYECTED Y ACERO VIVO"
     elif id=="world":
         var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.custom_minimum_size.y=maxf(100,get_viewport_rect().size.y-300);content.add_child(scroll)
         world_setup=preload("res://scripts/world_setup.gd").new();world_setup.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(world_setup)

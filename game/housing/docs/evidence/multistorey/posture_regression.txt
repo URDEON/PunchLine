@@ -1,0 +1,44 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_05/Building_02/FacadeDetails/@StaticBody3D@1016/@MeshInstance3D@1018" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS cápsula se agacha: Leela
+PASS agachado conserva ancho: Leela
+PASS base no se hunde: Leela
+PASS postura procedural finita y replicable: Leela
+PASS no se levanta bajo techo: Leela
+PASS recupera postura: Leela
+PASS nueva cápsula tras respawn: Leela
+PASS cápsula se agacha: Stan
+PASS agachado conserva ancho: Stan
+PASS base no se hunde: Stan
+PASS postura procedural finita y replicable: Stan
+PASS no se levanta bajo techo: Stan
+PASS recupera postura: Stan
+PASS nueva cápsula tras respawn: Stan
+PASS cápsula se agacha: George
+PASS agachado conserva ancho: George
+PASS base no se hunde: George
+PASS postura procedural finita y replicable: George
+PASS no se levanta bajo techo: George
+PASS recupera postura: George
+PASS nueva cápsula tras respawn: George
+PASS cápsula se agacha: Mike
+PASS agachado conserva ancho: Mike
+PASS base no se hunde: Mike
+PASS postura procedural finita y replicable: Mike
+PASS no se levanta bajo techo: Mike
+PASS recupera postura: Mike
+PASS nueva cápsula tras respawn: Mike
+PASS repetir Q no reinicia el dash activo
+PASS dash termina y mantiene cooldown
+PunchLine · módulos de fusión cargados: 112
+PASS fusión real comienza
+FUSED_CLEARANCE { "position": (400.0, 0.000163, 0.0), "height": 2.8498375254916, "target": 2.8498375254916, "available": 2.8498375254916, "blend": 0.88474036500646, "floor": true, "head": (400.076, 2.268168, -0.041353), "before": 3.43305397033691, "ragdoll": false, "paused": false }
+PASS mecha reduce su volumen físico bajo techo
+PASS agachado baja cabeza y torso del mecha
+PASS pies del mecha permanecen al alcance de la IK
+PASS volumen de daño acompaña postura
+PASS mecha detenido no se levanta bajo cubierta
+PASS mecha se incorpora al salir
+RESULTADO 37/37

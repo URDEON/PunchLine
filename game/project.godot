@@ -1,8 +1,11 @@
 config_version=5
 [application]
-config/name="PunchLine - Laboratorio de combate 0.9.24"
+config/name="PunchLine"
+config/version="0.9.25"
 run/main_scene="res://launcher.tscn"
 config/features=PackedStringArray("4.4", "GL Compatibility")
+[autoload]
+BuildInfo="*res://scripts/build_info.gd"
 [display]
 window/size/viewport_width=1280
 window/size/viewport_height=720
@@ -14,6 +17,8 @@ window/stretch/mode="disabled"
 [physics]
 3d/physics_engine="Jolt Physics"
 common/physics_interpolation=true
+[layer_names]
+3d_physics/layer_10="Escalones para apoyo de pies"
 [rendering]
 renderer/rendering_method="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.09,0.12,0.18,1)

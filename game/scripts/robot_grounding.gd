@@ -44,7 +44,7 @@ func _physics_process(delta:float)->void:
  timer=fmod(timer,.05)
  for foot in feet.values():
   var point:=foot_point(foot);var origin:Vector3=game.player.global_position
-  var query:=PhysicsRayQueryParameters3D.create(Vector3(point.x,origin.y+.6,point.z),Vector3(point.x,origin.y-.5,point.z),1);query.exclude=[game.player.get_rid()]
+  var query:=PhysicsRayQueryParameters3D.create(Vector3(point.x,origin.y+.6,point.z),Vector3(point.x,origin.y-.5,point.z),1|512);query.exclude=[game.player.get_rid()]
   var hit:=game.get_world_3d().direct_space_state.intersect_ray(query);queries_frame+=1
   foot.valid=not hit.is_empty() and hit.normal.y>.65
   if foot.valid:

@@ -94,7 +94,7 @@ func tick(delta:float,body:CharacterBody3D,normal:Vector3,moving:bool,unfold:=1.
 
 func contact(index:int,body:CharacterBody3D,normal:Vector3)->Vector3:
 	var ideal:Vector3=to_global(FEET[index])
-	var query:=PhysicsRayQueryParameters3D.create(ideal+normal*.65,ideal-normal*.8,1);query.exclude=[body.get_rid()]
+	var query:=PhysicsRayQueryParameters3D.create(ideal+normal*.65,ideal-normal*.8,1|512);query.exclude=[body.get_rid()]
 	var hit:Dictionary=body.get_world_3d().direct_space_state.intersect_ray(query)
 	return hit.position+hit.normal*.075 if not hit.is_empty() else ideal
 

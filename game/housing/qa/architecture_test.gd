@@ -30,7 +30,7 @@ func run()->void:
 	var map:Node3D=load("res://housing/scenes/District500.tscn").instantiate();world.add_child(map)
 	var housing:Node3D=load("res://housing/scenes/GeneratedHousing.tscn").instantiate();world.add_child(housing)
 	for i in range(3):await physics_frame
-	var data:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/generated_plan.json"))
+	var data:Dictionary=housing.load_plan("res://housing/data/generated_plan.json")
 	var space:PhysicsDirectSpaceState3D=world.get_world_3d().direct_space_state
 	var bad_winding:Array=[];var bad_texture:Array=[]
 	for layer in ["Roads","Parking","Lots","Sidewalks"]:
@@ -51,9 +51,9 @@ func run()->void:
 			if geometry.visibility_range_end!=320 or geometry.visibility_range_end_margin!=20:mismatched_visibility.append(id+"/"+geometry.name)
 		if building.get_meta("access")=="inaccessible":closed.append(id)
 		var capsule:=CapsuleShape3D.new();capsule.radius=.38;capsule.height=1.9
-		if b.access.begins_with("mecha"):
+		if b.access.begins_with("mecha") or int(b.get("storeys",1))>1:
 			capsule.radius=data.profile.collider_width/2
-			capsule.height=data.profile.crouched_height if b.access=="mecha_crouch" else data.profile.standing_height
+			capsule.height=data.profile.standing_height if b.access=="mecha_standing" else data.profile.crouched_height
 		var threshold:StaticBody3D=building.get_node("Doors/Threshold")
 		var front:float=threshold.position.z+.06
 		var query:=PhysicsShapeQueryParameters3D.new();query.shape=capsule;query.collision_mask=1
@@ -64,10 +64,12 @@ func run()->void:
 			if space.intersect_shape(query,1).is_empty():workshop_standing.append(id)
 		# Sweep the measured cylinder down the entire centre route (width + side margins already in the plan).
 		var cast:=ShapeCast3D.new();var cylinder:=CylinderShape3D.new()
-		cylinder.radius=data.profile.width/2 if b.access.begins_with("mecha") else .38
-		cylinder.height=data.profile.crouched_height if b.access=="mecha_crouch" else (data.profile.standing_height if b.access=="mecha_standing" else 1.9)
+		cylinder.radius=data.profile.width/2 if b.access.begins_with("mecha") or int(b.get("storeys",1))>1 else .38
+		cylinder.height=data.profile.crouched_height if b.access=="mecha_crouch" or int(b.get("storeys",1))>1 else (data.profile.standing_height if b.access=="mecha_standing" else 1.9)
 		cast.shape=cylinder;world.add_child(cast);cast.global_position=building.to_global(Vector3(0,cylinder.height/2+.025,b.depth/2+1.25))
-		cast.target_position=-building.global_basis.z*(b.depth/2+2.5);cast.collision_mask=1;cast.force_shapecast_update()
+		# Towers have a front lobby and a U stair route, checked by multistorey_test.
+		var travel:float=b.depth/2+1.25-3.0 if int(b.get("storeys",1))>1 else b.depth/2+2.5
+		cast.target_position=-building.global_basis.z*travel;cast.collision_mask=1;cast.force_shapecast_update()
 		if cast.is_colliding():narrow_routes.append(id)
 		cast.queue_free()
 		var count:=0

@@ -12,7 +12,7 @@ func choose_emote(index: int) -> void:
 	close_emotes(); game.session.local_action("emote:"+str(index))
 func tick(delta: float) -> void:
 	super.tick(delta)
-	metric.text = "PUNCHLINE · 0.9.24 · ONLINE %d/3" % game.session.roster.size()
-	if menu_context != null: menu_context.text = "ONLINE / %s · %s · PARTIDA EN CURSO" % [game.metadata.nickname,("ESTABILIDAD %.0f%%" % (100*game.hp/maxf(1,game.max_hp))) if game.fusion.fused else ("%d HP" % int(game.hp))]
+	metric.text = "PUNCHLINE · %s · ONLINE %d/3" % [BuildInfo.version,game.session.roster.size()]
+	if menu_context != null: menu_context.text = "ONLINE / %s · %s · %s · PARTIDA EN CURSO" % [BuildInfo.version,game.metadata.nickname,("ESTABILIDAD %.0f%%" % (100*game.hp/maxf(1,game.max_hp))) if game.fusion.fused else ("%d HP" % int(game.hp))]
 	var nearest := nearest_enemy()
 	target_label.text = "" if nearest.is_empty() else "%s / %d HP" % [game.session.roster[int(nearest.peer)].nickname,int(nearest.hp)]

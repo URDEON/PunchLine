@@ -20,7 +20,7 @@ func save() -> void:
 	if samples.is_empty(): return
 	last_path = "user://rendimiento_"+str(Time.get_unix_time_from_system()).replace(".","_")+".json"
 	var file := FileAccess.open(last_path,FileAccess.WRITE)
-	if file != null: file.store_string(JSON.stringify({"version":"0.9.24","renderer":RenderingServer.get_current_rendering_method(),"samples":samples},"\t"))
+	if file != null: file.store_string(JSON.stringify({"version":BuildInfo.version,"renderer":RenderingServer.get_current_rendering_method(),"samples":samples},"\t"))
 	print("PERFORMANCE_CAPTURE ",ProjectSettings.globalize_path(last_path))
 	samples.clear()
 func _exit_tree() -> void: save()

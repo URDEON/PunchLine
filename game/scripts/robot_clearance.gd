@@ -128,6 +128,10 @@ func available_height(include_ahead: bool = true) -> float:
 	if side.length() < .01: side = Vector3.RIGHT*capsule.radius*.75
 	var result := full_height
 	var offsets: Array[Vector3] = [Vector3.ZERO,side,-side]
+	# Keep the back of the capsule compressed until it clears a stairwell lip.
+	# Only probing the approach lets the head expand into the slab behind it.
+	var back:Vector3=-direction*capsule.radius*.85
+	offsets.append_array([back,back+side*.7,back-side*.7])
 	if include_ahead:
 		# Probe the swept approach, not only its endpoint: a thin lintel can
 		# lie between the feet and the old single look-ahead ray.

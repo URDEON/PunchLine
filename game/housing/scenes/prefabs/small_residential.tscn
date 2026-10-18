@@ -480,7 +480,7 @@ metadata/robot_passage = {
 "width": 3.91825
 }
 metadata/window_count = 8
-metadata/architecture_revision = "architecture-2.2-confinement"
+metadata/architecture_revision = "architecture-2.3-multistorey"
 metadata/style = {
 "chimney": false,
 "furniture_side": 0.0,

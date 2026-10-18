@@ -1,0 +1,44 @@
+{
+  "version": "0.9.25",
+  "created_utc": "2026-10-18T21:38:28.420079+00:00",
+  "godot": "4.4.1-stable",
+  "original_houses": 71,
+  "additional_three_storey": 3,
+  "additional_four_storey": 3,
+  "total_buildings": 77,
+  "windows": 799,
+  "features": "18/18",
+  "frontend": "15/15",
+  "network": "13/13",
+  "network_exits": [
+    0,
+    0
+  ],
+  "architecture": "11/11",
+  "confinement_regression": "20/20",
+  "pilot_regression": "14/14",
+  "posture_regression": "37/37",
+  "spider_regression": "28/28",
+  "cold_import_final_exit": 0,
+  "cold_features_exit": 0,
+  "cold_frontend_exit": 0,
+  "geographical_sources_preserved": [
+    "district_housing/data/generated_plan.json",
+    "district_housing/data/district_lots.json",
+    "district_housing/tools/layout_vector.geojson",
+    "game/housing/data/generated_plan.json",
+    "game/housing/data/district_lots.json"
+  ],
+  "critical_cold_source_matches": [
+    "game/project.godot",
+    "game/scripts/build_info.gd",
+    "game/housing/scripts/MultiStoreyBuilding.gd",
+    "game/housing/scripts/DistrictHousingGenerator.gd",
+    "game/scripts/robot_clearance.gd",
+    "game/scripts/world_config.gd",
+    "game/network/session.gd",
+    "game/network/interface.gd"
+  ],
+  "graphics": "OpenGL 4.5 Mesa llvmpipe, five actual screenshots",
+  "desktop_gpu_fps_measured": false
+}

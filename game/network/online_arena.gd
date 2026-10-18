@@ -135,7 +135,7 @@ func build_ui() -> void:
 	var column := VBoxContainer.new(); panel_scroll.add_child(column); column.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 	column.add_theme_constant_override("separation",9)
 	column.add_child(label("PUNCHLINE / CONEXIÓN",29))
-	column.add_child(label("0.9.24 · ANFITRIÓN + DOS AMIGOS",13))
+	column.add_child(label(BuildInfo.version+" · ANFITRIÓN + DOS AMIGOS",13))
 	status_label = label(message_text,14); column.add_child(status_label)
 	column.add_child(label("Tu nombre",13)); name_field = LineEdit.new(); name_field.text = load_nickname(); name_field.max_length = 20; name_field.placeholder_text = "Escribe tu nombre"; column.add_child(name_field)
 	name_field.text_changed.connect(func(value: String) -> void: save_nickname(value))

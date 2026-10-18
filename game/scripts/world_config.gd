@@ -18,18 +18,19 @@ static func select(settings:Dictionary)->void:
 	for key in result:file.set_value("world",key,result[key])
 	file.save("user://world.cfg")
 static func make_plan(settings:Dictionary)->Dictionary:
-	var plan:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/generated_plan.json"))
+	var plan:Dictionary=preload("res://housing/scripts/DistrictHousingGenerator.gd").load_plan("res://housing/data/generated_plan.json")
 	var text:String=String(settings.get("seed","923"));var density:int=clampi(int(settings.get("density",2)),0,2)
 	var rng:=RandomNumberGenerator.new();rng.seed=text.sha256_text().substr(0,15).hex_to_int()
 	var selected:Array=[]
 	for original in plan.buildings:
 		var b:Dictionary=original.duplicate(true)
 		var mecha:bool=String(b.access).begins_with("mecha")
-		if not mecha and rng.randf()>[.45,.72,1.0][density]:continue
+		var structural:bool=mecha or int(b.get("storeys",1))>1
+		if not structural and rng.randf()>[.45,.72,1.0][density]:continue
 		if text!="923":
 			# Smaller envelopes inside the already validated original rectangle.
 			# The six measured mecha routes retain their dimensions and positions.
-			if not mecha:
+			if not structural:
 				var old_width:float=b.width;var old_depth:float=b.depth
 				b.width=maxf(b.door_width+3,old_width*rng.randf_range(.89,1.0))
 				b.depth=maxf(b.door_width+3,old_depth*rng.randf_range(.89,1.0))

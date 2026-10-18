@@ -47,7 +47,7 @@ func nominal(rig: Node3D, side: String) -> Vector3:
 func sample(point: Vector3, sole: float) -> Dictionary:
 	if budget <= 0 or not is_instance_valid(body): return {}
 	budget -= 1; queries_frame += 1; queries_total += 1
-	var query := PhysicsRayQueryParameters3D.create(Vector3(point.x,body.global_position.y+.8,point.z),Vector3(point.x,body.global_position.y-.70,point.z),1)
+	var query := PhysicsRayQueryParameters3D.create(Vector3(point.x,body.global_position.y+.8,point.z),Vector3(point.x,body.global_position.y-.70,point.z),1|512)
 	query.exclude = [body.get_rid()]
 	var hit := body.get_world_3d().direct_space_state.intersect_ray(query)
 	if hit.is_empty() or hit.normal.y < .65 or hit.position.y > body.global_position.y+.46: return {}

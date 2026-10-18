@@ -2,7 +2,8 @@
 
 La ciudad anterior fue retirada de la copia editable por indicación del usuario.
 El juego individual y el multijugador cargan el mismo District500 y los mismos edificios.
-El `project.godot` original se conserva byte por byte. No se exportó ni modificó un ejecutable.
+La configuración original del juego conserva sus controles y render, con versión y arranque
+actualizados en 0.9.25. No se exportó ni modificó un ejecutable.
 
 ## Abrir y jugar
 
@@ -25,14 +26,17 @@ sin dependencias de los personajes: cámara libre WASD/QE; botón derecho y rat�
   generador anterior ahora se resuelven como viviendas accesibles; el JSON fuente se conserva.
   Dos lotes quedan vacíos porque la búsqueda actual no encuentra un acceso/huella válido;
   no es una prueba de imposibilidad geométrica. Véase `docs/lots.md`.
+- **Seis edificios adicionales**, tres de tres plantas y tres de cuatro, conservan las
+  construcciones anteriores: **77 edificios en total**. Escaleras, forjados con huecos,
+  balcones y plantas transitables admiten personajes y mecha. Véase [0.9.25](docs/multistorey.md).
 - Retiro mínimo 2,5 m y separación mínima 3 m. Las huellas físicas, incluidas las rampas
   inclinadas, no invaden calles, veredas, estacionamiento ni otros lotes. Parking_00 permanece libre.
 - Cada interior accesible tiene piso, techo y paredes con grosor, entrada permanentemente
   abierta y dos habitaciones conectadas. Rampas de 12 cm de desnivel dentro de la propiedad.
-  Los 71 senderos de acceso se recortan dentro del lote y fuera de las capas protegidas.
+  Los 77 senderos de acceso se recortan dentro del lote y fuera de las capas protegidas.
 - Arquitectura procedural reproducible: ocho paletas, dos tipos de tejado inclinado,
   tejas, chimeneas, zócalos, marcos, contraventanas, porches, jardineras y mobiliario interior.
-  Los comercios tienen toldos y carteles. **568 ventanas transparentes** ocupan huecos reales
+  Los comercios tienen toldos y carteles. **799 ventanas transparentes** ocupan huecos reales
   en los muros: permiten ver hacia fuera y hacia dentro, conservando su barrera física.
 - Escena editable `housing/scenes/GeneratedHousing.tscn`, con jerarquía
   `GeneratedBuildings/lot_ID/Building_ID`. Pisos, paredes, puertas, ventanas, techo,
@@ -115,14 +119,16 @@ Evidencia en `docs/evidence/`, generada en esta sesión, no tomada de informes a
 | --- | --- |
 | Pruebas Python del planificador | 6/6 |
 | Validación del distrito guardado y repetición con 923 | 71 edificios y senderos, 0 invasiones; 5 talleres y 1 almacén requeridos |
-| Arquitectura y física de toda la escena guardada | 11/11: texturas, caras, 71 puertas y rutas, 568 huecos, vidrio, envolventes y culling |
+| Arquitectura y física de toda la escena guardada | 11/11: texturas, caras, 77 puertas y rutas, 799 huecos, vidrio, envolventes y culling |
 | Taller con mecha real y juego completo | 14/14: entrada, interior, techo, IK, habilidad, bloqueo, boost y salida |
 | Jugador real y comprobaciones de arquetipos | 8/8; almacén por consultas físicas, estrechez por ShapeCast |
 | Regresión existente de postura de los cuatro chasis y fusión | 37/37 |
 | Dos procesos host/cliente ENet reales | 10/10; ambos procesos finalizan con código 0 |
 | Casas amarillas/azules con mecha real y 71 pasos medidos | 20/20; entrada, techo, pared, cañón y salida |
 | Contactos procedurales en host/cliente ENet | 13/13; ambos procesos finalizan con código 0 |
-| Menú, configuración de mundo, ajustes, extras, selección y combate | 13/13 |
+| Edificios de tres y cuatro plantas y controlador real | 18/18, subida y bajada del personaje y mecha |
+| Recorrido multijugador de escaleras y versión | 13/13, ambos procesos finalizan con código 0 |
+| Menú, versión, configuración de mundo, ajustes, extras, selección y combate | 15/15 |
 | Importación de editor y escenas de ambos proyectos | Correctas |
 | Render gráfico OpenGL 4.5 / Mesa llvmpipe | Capturas reales del terreno, exterior, ventanas, menú y juego |
 
@@ -157,6 +163,8 @@ GODOT=/workspace/godot441/Godot_v4.4.1-stable_linux.x86_64
 /workspace/punchline-tools/bin/python district_housing/tools/validate_district.py
 "$GODOT" --headless --path game --script housing/qa/pilot_test.gd
 "$GODOT" --headless --path game --script housing/qa/confinement_test.gd
+"$GODOT" --headless --path game --script housing/qa/multistorey_test.gd
+python3 game/housing/qa/run_confinement_network.py --suite multistorey
 python3 game/housing/qa/run_confinement_network.py
 "$GODOT" --headless --path game --script housing/qa/archetype_checks.gd
 "$GODOT" --headless --path game --script housing/qa/architecture_test.gd

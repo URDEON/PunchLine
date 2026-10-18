@@ -6,6 +6,7 @@
   },
   "edited_original_code": [
     "launcher.gd",
+    "network/interface.gd",
     "network/online_arena.gd",
     "network/player.gd",
     "network/session.gd",
@@ -20,10 +21,13 @@
     "scripts/main.gd",
     "scripts/mecha_cockpit.gd",
     "scripts/mecha_combat.gd",
+    "scripts/mecha_foot_planner.gd",
+    "scripts/performance_capture.gd",
     "scripts/preferences.gd",
     "scripts/punchline_interactions.gd",
     "scripts/punchline_map.gd",
     "scripts/robot_clearance.gd",
+    "scripts/robot_grounding.gd",
     "scripts/route_trial.gd",
     "scripts/sentinel_articulation.gd",
     "scripts/settings_panel.gd",
@@ -33,9 +37,15 @@
     "assets/environment/ruined_city",
     "assets/environment/punchline_v54"
   ],
-  "project_godot_preserved": true,
+  "project_godot_preserved": false,
   "original_archive_copies_preserved": "/workspace/punchline-source",
   "missing_original_map": "District500.tscn and original Curbs/RoadMarkings/ParkingMarkings were not present in any supplied archive",
   "rustcrawler_source_sha256": "f694f7863266d66b8bae91b5fa59040adcdb00d48b734af997039adcdc291f45",
-  "rustcrawler_source_notice": "User-provided GLB; original bytes preserved. Its skin is rebuilt in rustcrawler_rig.gd because original joint rests/weights do not provide usable animation."
+  "rustcrawler_source_notice": "User-provided GLB; original bytes preserved. Its skin is rebuilt in rustcrawler_rig.gd because original joint rests/weights do not provide usable animation.",
+  "project_godot_changes": [
+    "config/name stable as PunchLine",
+    "config/version 0.9.25",
+    "BuildInfo autoload for version and legacy settings",
+    "physics layer 10 named for stair foot contacts; original engine/render/input settings retained"
+  ]
 }

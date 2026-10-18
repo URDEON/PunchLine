@@ -1,0 +1,10 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/MultiStoreyNetworkTest/OnlineArena/Players/Player1/@CanvasLayer@265/@Control@266/@Control@267/@SubViewport@368/model/RobotArmature/Skeleton3D/George" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PunchLine · módulos de fusión cargados: 112
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/MultiStoreyNetworkTest/OnlineArena/Players/Player1/FusionController/@Node3D@670/Fusion_Final_2x/SentinelArticulation2/InternalMechanicalJoints" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/MultiStoreyNetworkTest/OnlineArena/Players/Player1/FusionController/@Node3D@670/Fusion_Final_2x/SentinelArticulation2/InternalMechanicalJoints" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS client received completion after authoritative snapshots

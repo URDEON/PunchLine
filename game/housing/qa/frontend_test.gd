@@ -16,6 +16,8 @@ func run()->void:
 	var menu:Control=load("res://launcher.tscn").instantiate()
 	root.add_child(menu);current_scene=menu;await frames(25)
 	check(menu.title.text=="PUNCHLINE" and menu.buttons.size()==4,"original launcher menu loads with four entries")
+	var version: String=str(ProjectSettings.get_setting("application/config/version"))
+	check(menu.status.text.begins_with(version) and root.title.contains(version),"launcher and window show the current project version")
 	find_button(menu,"AJUSTES").pressed.emit();await frames(3)
 	check(menu.current_page=="settings" and menu.content.get_child_count()>1,"settings button opens original settings panel")
 	find_button(menu,"VOLVER").pressed.emit();await frames(3)
@@ -32,6 +34,7 @@ func run()->void:
 	await frames(65)
 	var game:Node3D=current_scene
 	check(game!=null and game.player!=null and game.rig_scene!=null,"DEMO button enters complete game with player rig")
+	check(game.interface.menu_context.text.contains(version),"in-game menu uses the same release version")
 	check(game.arena.punchline.housing.get_meta("world_settings").seed=="Frontend 104" and game.arena.punchline.housing.get_node("GeneratedBuildings").find_children("Building_*","Node3D",true,false).size()<71,"selected seed and sparse density actually rebuild the playable houses")
 	check(game.get_node("ArenaEnvironment").environment.sky.sky_material.panorama.resource_path.ends_with("skybox-night.png"),"selected night setting reaches the actual game environment")
 	check(game.interface.character_rows.size()==3 and not game.interface.character_rows[1].disabled,"original character selector exposes player and Robot")

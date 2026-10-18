@@ -1568,7 +1568,7 @@ func _physics_process(delta: float) -> void:
 	if combo == 4 and attack_anim > 0:
 		variant_text = " · %s" % attack_variant.to_upper()
 	var lock_text := "ON" if camera_lock else "OFF"
-	hud.text = "NAOYA · LABORATORIO 0.9.24 · PROYECCIÓN\nVida %d / 100 · %s\n%s%s · %s · MIRA LOCK %s" % [int(hp),state_text,combo_text,variant_text,ult_hud_text(),lock_text]
+	hud.text = "NAOYA · LABORATORIO %s · PROYECCIÓN\nVida %d / 100 · %s\n%s%s · %s · MIRA LOCK %s" % [BuildInfo.version,int(hp),state_text,combo_text,variant_text,ult_hud_text(),lock_text]
 	if ult_msg_time > 0:
 		hud.text += "\n>> %s" % ult_msg
 	health_bar.value = hp

@@ -1,0 +1,22 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS running HUD uses current project version
+PASS six additional buildings have three/four real floors and transparent windows
+PASS every storey has a physical floor at its correct height
+PASS stairwells have actual openings through upper slabs
+PASS The Proyected enters through actual ground-floor door
+PASS The Proyected reaches occupied floor 2 by walking
+PASS The Proyected reaches occupied floor 3 by walking
+PASS The Proyected reaches the top floor using the continuous U stairs
+PASS The Proyected walks back down and exits without teleporting
+PunchLine · módulos de fusión cargados: 112
+PASS mecha fusion still starts in the parking spawn
+PASS Mega mecha enters through actual ground-floor door
+PASS Mega mecha reaches occupied floor 2 by walking
+PASS Mega mecha reaches occupied floor 3 by walking
+PASS Mega mecha reaches occupied floor 4 by walking
+PASS Mega mecha reaches the top floor using the continuous U stairs
+PASS Mega mecha walks back down and exits without teleporting
+PASS stairs retain the original mecha collision width
+PASS all six tower structures survive density and reproduce from the selected seed
+RESULT 18/18 actual multi-storey building checks

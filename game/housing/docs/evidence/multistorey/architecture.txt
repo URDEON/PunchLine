@@ -1,0 +1,14 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS all terrain top faces use Godot front-facing winding
+PASS roads, parking, lots and sidewalks have real textures
+PASS every production building is enterable
+PASS all 77 doors fit their measured body
+PASS all five workshop lintels reject a standing mecha
+PASS ShapeCast traverses every doorway and connected interior
+PASS every house has windows on multiple walls
+PASS all 799 windows have genuine unobstructed wall apertures
+PASS window glass preserves physical barriers while remaining transparent
+PASS all actual meshes, detail batches and roof geometry stay within validated envelopes
+PASS walls, roofs, windows and props share the same visibility limit
+RESULT 11/11 architecture checks; buildings=77 windows=799

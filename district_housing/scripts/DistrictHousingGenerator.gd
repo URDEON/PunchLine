@@ -2,7 +2,7 @@
 extends Node3D
 ## Editable geometric architecture. All detail stays in the validated building envelope.
 @export_file("*.json") var plan_path:="res://data/generated_plan.json"
-const REVISION:="architecture-2.2-confinement"
+const REVISION:="architecture-2.3-multistorey"
 const WALL_COLORS:=[Color("e5d7b7"),Color("d2ae88"),Color("b9c6b1"),Color("c2cfce"),Color("cba28e"),Color("d8d0bc"),Color("b5c4ca"),Color("eadfcb")]
 const ROOF_COLORS:=[Color("b56b4d"),Color("925247"),Color("676d70"),Color("a37451"),Color("7c8b85")]
 var materials:Dictionary={}
@@ -87,8 +87,16 @@ func finish_build(root:Node3D)->void:
 		geometry.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF
 
 func generate()->Dictionary:
-	var data=JSON.parse_string(FileAccess.get_file_as_string(plan_path))
-	return generate_plan(data)
+	return generate_plan(load_plan(plan_path))
+
+static func load_plan(path:String)->Dictionary:
+	var data=JSON.parse_string(FileAccess.get_file_as_string(path))
+	if not data is Dictionary:return {}
+	var extra_path:String=path.get_base_dir()+"/multistorey_plan.json"
+	if path.get_file()=="generated_plan.json" and FileAccess.file_exists(extra_path):
+		var extra:Dictionary=JSON.parse_string(FileAccess.get_file_as_string(extra_path))
+		data.buildings.append_array(extra.buildings)
+	return data
 
 func generate_plan(data:Dictionary)->Dictionary:
 	if not data is Dictionary or not data.has("buildings"):push_error("Invalid housing plan");return {}
@@ -118,6 +126,9 @@ func build_path(parent:Node3D,b:Dictionary)->void:
 	var mesh:=MeshInstance3D.new();mesh.name=b.lot+"_"+b.id;mesh.mesh=st.commit();mesh.material_override=material("garden_path",Color("aaa28b"),"pavers",1.0);parent.add_child(mesh)
 
 func build(root:Node3D,b:Dictionary)->void:
+	if int(b.get("storeys",1))>1:
+		load(get_script().resource_path.get_base_dir()+"/MultiStoreyBuilding.gd").new().build(self,root,b)
+		return
 	active_building=root
 	var ew:float=b.width;var ed:float=b.depth;var h:float=b.height
 	var passage:Dictionary=access_profile(b)

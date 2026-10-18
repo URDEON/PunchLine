@@ -243,7 +243,7 @@ func build_menu() -> void:
 	menu_panel.add_child(column)
 	menu_title = label("THE PROYECTED", 34,Color("e7d2a3"))
 	column.add_child(menu_title)
-	menu_context = label("PUNCHLINE / 0.9.24 · TIEMPO DETENIDO",12,MUTED); column.add_child(menu_context)
+	menu_context = label("PUNCHLINE / "+BuildInfo.version+" · TIEMPO DETENIDO",12,MUTED); column.add_child(menu_context)
 	menu_body = GridContainer.new(); menu_body.columns = 2; menu_body.size_flags_vertical = Control.SIZE_EXPAND_FILL; menu_body.add_theme_constant_override("h_separation",28); column.add_child(menu_body)
 	menu_grid = GridContainer.new()
 	menu_grid.columns = 4
@@ -654,11 +654,11 @@ func tick(delta: float) -> void:
 	elif game.fusion.spider.active():status.text="RUSTCRAWLER / cabeza separada · %s para reconectar cerca del mecha" % game.preferences.key_name("interact")
 	if game.skill_active == "extra" and game.moves.key in ["b1","u1"]:
 		status.text = {"windup":"PREPARACIÓN", "approach":"APROXIMACIÓN · AUTOAPUNTADO", "commit":"IMPACTO COMPROMETIDO · RUMBO FIJO", "barrage":"RÁFAGA CERCANA" if game.moves.projection.close_variant else "RÁFAGA", "recover":"RECUPERACIÓN"}.get(game.moves.stage,"")
-	metric.text = "%d FPS" % Engine.get_frames_per_second() if bool(game.preferences.values.fps) else "PUNCHLINE · 0.9.24"
+	metric.text = "%d FPS" % Engine.get_frames_per_second() if bool(game.preferences.values.fps) else "PUNCHLINE · "+BuildInfo.version
 	if game.route_trial.active or not game.route_trial.result_text.is_empty(): status.text = game.route_trial.hud_text()
 	menu_portrait.visible=menu.visible and selected_tab not in ["settings","controls"]
 	menu_title.text = "RUSTCRAWLER" if game.fusion.spider.active() else ("JUNKYARD SENTINEL" if game.fusion.fused else ("ROBOT / "+game.robots.NAMES[game.robots.index] if game.robots.active else "THE PROYECTED"))
-	if menu_context != null: menu_context.text = "PUNCHLINE / 0.9.24 · %s · %d HP · TIEMPO DETENIDO" % [game.form,int(game.hp)]
+	if menu_context != null: menu_context.text = "PUNCHLINE / %s · %s · %d HP · TIEMPO DETENIDO" % [BuildInfo.version,game.form,int(game.hp)]
 	var nearest: Dictionary = {}
 	var distance := 12.0
 	for enemy in game.enemies:

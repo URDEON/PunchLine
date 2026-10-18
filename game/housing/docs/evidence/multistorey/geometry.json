@@ -1,0 +1,11 @@
+{
+  "passed": true,
+  "total_buildings": 77,
+  "preserved_houses": 71,
+  "three_storeys": 3,
+  "four_storeys": 3,
+  "excluded_geometry_violations": 0,
+  "preserved_route_obstructions": 0,
+  "setback_m": 2.5,
+  "separation_m": 3
+}

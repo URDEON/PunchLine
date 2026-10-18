@@ -4,12 +4,17 @@ import pathlib
 import subprocess
 import sys
 import time
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--suite', choices=['confinement', 'multistorey'], default='confinement')
+suite = parser.parse_args().suite
 
 root = pathlib.Path(__file__).resolve().parents[2]
-output = root / 'housing/docs/evidence/confinement/network'
+output = root / f'housing/docs/evidence/{suite}/network'
 output.mkdir(parents=True, exist_ok=True)
 command = ['/workspace/godot441/Godot_v4.4.1-stable_linux.x86_64', '--headless',
-           '--path', str(root), '--script', 'housing/qa/confinement_network_run.gd', '--']
+           '--path', str(root), '--script', f'housing/qa/{suite}_network_run.gd', '--']
 env = dict(os.environ, XDG_CONFIG_HOME='/workspace/.config',
            XDG_DATA_HOME='/workspace/.local/share', XDG_CACHE_HOME='/workspace/.cache')
 processes = []
