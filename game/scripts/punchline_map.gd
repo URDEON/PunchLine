@@ -23,6 +23,11 @@ func setup(host: Node3D) -> void:
         housing.free(); housing = null
     else:
         add_child(housing)
+        var config=preload("res://scripts/world_config.gd")
+        var settings:Dictionary=config.DEFAULTS.duplicate() if "session" in game else config.current()
+        if String(settings.seed)!="923" or int(settings.density)!=2:
+            housing.generate_plan(preload("res://scripts/world_config.gd").make_plan(settings))
+        housing.set_meta("world_settings",settings)
     var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/vector_meshes.json"))
     for point in data.spawns.slice(0,3):
         player_spawns.append(marker("Jugador",Vector3(point[0],.1,point[1])))

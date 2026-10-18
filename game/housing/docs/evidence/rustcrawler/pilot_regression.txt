@@ -1,0 +1,34 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_02/Building_03/FacadeDetails/@StaticBody3D@515/@MeshInstance3D@517" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+PASS real fusion starts at unobstructed parking spawn
+PASS production fused controller active
+PASS standing real capsule cannot cross workshop lintel
+TRACE 59 pos=(-0.006378, -0.119098, 5.174469) vel=(-2.349905, 0.0, 0.021155) height=3.61901831030846
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/District500/Lots/Lots_04/SurfaceContact
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/District500/Lots/Lots_04/SurfaceContact
+TRACE 119 pos=(-0.00647, 0.000902, 2.857327) vel=(-2.349905, 0.0, 0.021155) height=3.27385540008545
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab
+TRACE 179 pos=(-0.006828, 0.000902, 0.507412) vel=(-2.349905, 0.0, 0.021155) height=3.49901785850525
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab
+TRACE 239 pos=(-0.007187, 0.000902, -1.842505) vel=(-2.349905, 0.0, 0.021155) height=3.49901785850525
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab
+TRACE_HIT (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab
+PILOT_COLLISION (0.0, 1.0, 0.0) /root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_04/Building_01/Floors/Slab at (-0.002708, -0.0, -2.340595)
+PILOT_POSITION (-0.002708, 0.000941, -2.340595) height=3.4989787876606 floor=true
+PASS real mecha enters workshop and passes connected interior
+PASS real crouch preserves capsule width
+PASS idle mecha stays crouched under roof
+PASS real procedural feet retain IK reach under workshop roof
+PASS production cannon action accepts crouched mecha
+PASS skill pose remains active while crouched
+PASS fusion occupancy check rejects workshop interior
+PASS real block coexists with crouch posture
+PASS real mecha dash/boost starts while crouched
+PASS boost stops at roof/walls and settles without penetrating ceiling
+PASS real mecha exits and gradually stands up
+RESULT 14/14 actual 0.9.24 fused robot

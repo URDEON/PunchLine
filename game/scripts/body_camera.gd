@@ -64,7 +64,10 @@ func update(game: Node3D, camera: Camera3D, distance: float, yaw: float, pitch: 
 		cockpit.get_child(0).host = game
 	if game.fusion.fused and not is_instance_valid(lens):
 		lens = preload("res://scripts/body_lens.gd").new(); camera.add_child(lens)
-	if is_instance_valid(lens): lens.set_strength(float(game.preferences.values.body_lens) if game.fusion.fused else 0)
+	if is_instance_valid(lens):
+		lens.configure(game.preferences.values)
+		lens.set_strength(float(game.preferences.values.body_lens) if game.fusion.fused else 0)
+		lens.visible=game.fusion.fused
 	active = true; camera.cull_mask &= ~SELF_LAYER
 	var eye: Vector3 = game.player.get_global_transform_interpolated().origin+Vector3.UP*eye_height(game)
 	if game.fusion.fused:
@@ -95,3 +98,12 @@ func update(game: Node3D, camera: Camera3D, distance: float, yaw: float, pitch: 
 	camera.fov = lerpf(camera.fov,minf(105,float(game.preferences.values.fov)+10.0*cannon_view_weight),1-exp(-delta*10))
 	game.fusion.camera_shake(camera,delta)
 	return true
+
+func spider_overlay(game:Node3D,camera:Camera3D)->void:
+	if not is_instance_valid(cockpit):
+		cockpit=CanvasLayer.new();cockpit.layer=2;camera.add_child(cockpit)
+		cockpit.add_child(preload("res://scripts/mecha_cockpit.gd").new())
+		cockpit_frame=preload("res://scripts/cockpit_frame.gd").new();camera.add_child(cockpit_frame)
+	if not is_instance_valid(lens):lens=preload("res://scripts/body_lens.gd").new();camera.add_child(lens)
+	active=true;cockpit.show();cockpit_frame.show();cockpit.get_child(0).host=game
+	lens.configure(game.preferences.values);lens.set_strength(float(game.preferences.values.body_lens))

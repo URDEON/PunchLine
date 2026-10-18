@@ -1,0 +1,1652 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+first_scan_filesystem: begin: Project initialization steps: 5
+	first_scan_filesystem: step 0: Scanning file structure...
+	first_scan_filesystem: step 1: Loading global class names...
+	first_scan_filesystem: step 2: Verifying GDExtensions...
+	first_scan_filesystem: step 3: Creating autoload scripts...
+	first_scan_filesystem: step 4: Initializing plugins...
+	first_scan_filesystem: step 5: Starting file scan...
+first_scan_filesystem: end
+update_scripts_classes: begin: Registering global classes... steps: 210
+	update_scripts_classes: step 0:
+	update_scripts_classes: step 1:
+	update_scripts_classes: step 2:
+	update_scripts_classes: step 3:
+	update_scripts_classes: step 4:
+	update_scripts_classes: step 5:
+	update_scripts_classes: step 6:
+	update_scripts_classes: step 7:
+	update_scripts_classes: step 8:
+	update_scripts_classes: step 9:
+	update_scripts_classes: step 10:
+	update_scripts_classes: step 11:
+	update_scripts_classes: step 12:
+	update_scripts_classes: step 13:
+	update_scripts_classes: step 14:
+	update_scripts_classes: step 15:
+	update_scripts_classes: step 16:
+	update_scripts_classes: step 17:
+	update_scripts_classes: step 18:
+	update_scripts_classes: step 19:
+	update_scripts_classes: step 20:
+	update_scripts_classes: step 21:
+	update_scripts_classes: step 22:
+	update_scripts_classes: step 23:
+	update_scripts_classes: step 24:
+	update_scripts_classes: step 25:
+	update_scripts_classes: step 26:
+	update_scripts_classes: step 27:
+	update_scripts_classes: step 28:
+	update_scripts_classes: step 29:
+	update_scripts_classes: step 30:
+	update_scripts_classes: step 31:
+	update_scripts_classes: step 32:
+	update_scripts_classes: step 33:
+	update_scripts_classes: step 34:
+	update_scripts_classes: step 35:
+	update_scripts_classes: step 36:
+	update_scripts_classes: step 37:
+	update_scripts_classes: step 38:
+	update_scripts_classes: step 39:
+	update_scripts_classes: step 40:
+	update_scripts_classes: step 41:
+	update_scripts_classes: step 42:
+	update_scripts_classes: step 43:
+	update_scripts_classes: step 44:
+	update_scripts_classes: step 45:
+	update_scripts_classes: step 46:
+	update_scripts_classes: step 47:
+	update_scripts_classes: step 48:
+	update_scripts_classes: step 49:
+	update_scripts_classes: step 50:
+	update_scripts_classes: step 51:
+	update_scripts_classes: step 52:
+	update_scripts_classes: step 53:
+	update_scripts_classes: step 54:
+	update_scripts_classes: step 55:
+	update_scripts_classes: step 56:
+	update_scripts_classes: step 57:
+	update_scripts_classes: step 58:
+	update_scripts_classes: step 59:
+	update_scripts_classes: step 60:
+	update_scripts_classes: step 61:
+	update_scripts_classes: step 62:
+	update_scripts_classes: step 63:
+	update_scripts_classes: step 64:
+	update_scripts_classes: step 65:
+	update_scripts_classes: step 66:
+	update_scripts_classes: step 67:
+	update_scripts_classes: step 68:
+	update_scripts_classes: step 69:
+	update_scripts_classes: step 70:
+	update_scripts_classes: step 71:
+	update_scripts_classes: step 72:
+	update_scripts_classes: step 73:
+	update_scripts_classes: step 74:
+	update_scripts_classes: step 75:
+	update_scripts_classes: step 76:
+	update_scripts_classes: step 77:
+	update_scripts_classes: step 78:
+	update_scripts_classes: step 79:
+	update_scripts_classes: step 80:
+	update_scripts_classes: step 81:
+	update_scripts_classes: step 82:
+	update_scripts_classes: step 83:
+	update_scripts_classes: step 84:
+	update_scripts_classes: step 85:
+	update_scripts_classes: step 86:
+	update_scripts_classes: step 87:
+	update_scripts_classes: step 88:
+	update_scripts_classes: step 89:
+	update_scripts_classes: step 90:
+	update_scripts_classes: step 91:
+	update_scripts_classes: step 92:
+	update_scripts_classes: step 93:
+	update_scripts_classes: step 94:
+	update_scripts_classes: step 95:
+	update_scripts_classes: step 96:
+	update_scripts_classes: step 97:
+	update_scripts_classes: step 98:
+	update_scripts_classes: step 99:
+	update_scripts_classes: step 100:
+	update_scripts_classes: step 101:
+	update_scripts_classes: step 102:
+	update_scripts_classes: step 103:
+	update_scripts_classes: step 104:
+	update_scripts_classes: step 105:
+	update_scripts_classes: step 106:
+	update_scripts_classes: step 107:
+	update_scripts_classes: step 108:
+	update_scripts_classes: step 109:
+	update_scripts_classes: step 110:
+	update_scripts_classes: step 111:
+	update_scripts_classes: step 112:
+	update_scripts_classes: step 113:
+	update_scripts_classes: step 114:
+	update_scripts_classes: step 115:
+	update_scripts_classes: step 116:
+	update_scripts_classes: step 117:
+	update_scripts_classes: step 118:
+	update_scripts_classes: step 119:
+	update_scripts_classes: step 120:
+	update_scripts_classes: step 121:
+	update_scripts_classes: step 122:
+	update_scripts_classes: step 123:
+	update_scripts_classes: step 124:
+	update_scripts_classes: step 125:
+	update_scripts_classes: step 126:
+	update_scripts_classes: step 127:
+	update_scripts_classes: step 128:
+	update_scripts_classes: step 129:
+	update_scripts_classes: step 130:
+	update_scripts_classes: step 131:
+	update_scripts_classes: step 132:
+	update_scripts_classes: step 133:
+	update_scripts_classes: step 134:
+	update_scripts_classes: step 135:
+	update_scripts_classes: step 136:
+	update_scripts_classes: step 137:
+	update_scripts_classes: step 138:
+	update_scripts_classes: step 139:
+	update_scripts_classes: step 140:
+	update_scripts_classes: step 141:
+	update_scripts_classes: step 142:
+	update_scripts_classes: step 143:
+	update_scripts_classes: step 144:
+	update_scripts_classes: step 145:
+	update_scripts_classes: step 146:
+	update_scripts_classes: step 147:
+	update_scripts_classes: step 148:
+	update_scripts_classes: step 149:
+	update_scripts_classes: step 150:
+	update_scripts_classes: step 151:
+	update_scripts_classes: step 152:
+	update_scripts_classes: step 153:
+	update_scripts_classes: step 154:
+	update_scripts_classes: step 155:
+	update_scripts_classes: step 156:
+	update_scripts_classes: step 157:
+	update_scripts_classes: step 158:
+	update_scripts_classes: step 159:
+	update_scripts_classes: step 160:
+	update_scripts_classes: step 161:
+	update_scripts_classes: step 162:
+	update_scripts_classes: step 163:
+	update_scripts_classes: step 164:
+	update_scripts_classes: step 165:
+	update_scripts_classes: step 166:
+	update_scripts_classes: step 167:
+	update_scripts_classes: step 168:
+	update_scripts_classes: step 169:
+	update_scripts_classes: step 170:
+	update_scripts_classes: step 171:
+	update_scripts_classes: step 172:
+	update_scripts_classes: step 173:
+	update_scripts_classes: step 174:
+	update_scripts_classes: step 175:
+	update_scripts_classes: step 176:
+	update_scripts_classes: step 177:
+	update_scripts_classes: step 178:
+	update_scripts_classes: step 179:
+	update_scripts_classes: step 180:
+	update_scripts_classes: step 181:
+	update_scripts_classes: step 182:
+	update_scripts_classes: step 183:
+	update_scripts_classes: step 184:
+	update_scripts_classes: step 185:
+	update_scripts_classes: step 186:
+	update_scripts_classes: step 187:
+	update_scripts_classes: step 188:
+	update_scripts_classes: step 189:
+	update_scripts_classes: step 190:
+	update_scripts_classes: step 191:
+	update_scripts_classes: step 192:
+	update_scripts_classes: step 193:
+	update_scripts_classes: step 194:
+	update_scripts_classes: step 195:
+	update_scripts_classes: step 196:
+	update_scripts_classes: step 197:
+	update_scripts_classes: step 198:
+	update_scripts_classes: step 199:
+	update_scripts_classes: step 200:
+	update_scripts_classes: step 201:
+	update_scripts_classes: step 202:
+	update_scripts_classes: step 203:
+	update_scripts_classes: step 204:
+	update_scripts_classes: step 205:
+	update_scripts_classes: step 206:
+	update_scripts_classes: step 207:
+	update_scripts_classes: step 208:
+	update_scripts_classes: step 209:
+update_scripts_classes: end
+_update_scan_actions: begin: Scanning actions... steps: 249
+	_update_scan_actions: step 0: step_sub.wav
+	_update_scan_actions: step 1: armor_hit_01.ogg
+	_update_scan_actions: step 2: core_loop.ogg
+	_update_scan_actions: step 3: power_t3_loop.ogg
+	_update_scan_actions: step 4: servo_sweep_01.ogg
+	_update_scan_actions: step 5: servo_sweep_02.ogg
+	_update_scan_actions: step 6: servo_sweep_03.ogg
+	_update_scan_actions: step 7: step_heavy_0.wav
+	_update_scan_actions: step 8: step_heavy_1.wav
+	_update_scan_actions: step 9: step_heavy_2.wav
+	_update_scan_actions: step 10: stride_t3_01.ogg
+	_update_scan_actions: step 11: stride_t4_01.ogg
+	_update_scan_actions: step 12: stride_t5_01.ogg
+	_update_scan_actions: step 13: checkpoint.wav
+	_update_scan_actions: step 14: domain_ambient.ogg
+	_update_scan_actions: step 15: jump.wav
+	_update_scan_actions: step 16: kogane.wav
+	_update_scan_actions: step 17: menu_close.wav
+	_update_scan_actions: step 18: menu_open.wav
+	_update_scan_actions: step 19: projection_groove.ogg
+	_update_scan_actions: step 20: recovery.wav
+	_update_scan_actions: step 21: click1.ogg
+	_update_scan_actions: step 22: click2.ogg
+	_update_scan_actions: step 23: rollover1.ogg
+	_update_scan_actions: step 24: switch1.ogg
+	_update_scan_actions: step 25: block.wav
+	_update_scan_actions: step 26: body_1.wav
+	_update_scan_actions: step 27: body_2.wav
+	_update_scan_actions: step 28: body_3.wav
+	_update_scan_actions: step 29: body_4.wav
+	_update_scan_actions: step 30: dash.wav
+	_update_scan_actions: step 31: domain_ambient.wav
+	_update_scan_actions: step 32: domain_open.wav
+	_update_scan_actions: step 33: evolved_accel.wav
+	_update_scan_actions: step 34: glass_enter.wav
+	_update_scan_actions: step 35: m1_1.wav
+	_update_scan_actions: step 36: m1_2.wav
+	_update_scan_actions: step 37: m1_3.wav
+	_update_scan_actions: step 38: m1_4.wav
+	_update_scan_actions: step 39: rush.wav
+	_update_scan_actions: step 40: rush_alt.wav
+	_update_scan_actions: step 41: dance_music.mp3
+	_update_scan_actions: step 42: dash_swish.ogg
+	_update_scan_actions: step 43: explosionCrunch_000.ogg
+	_update_scan_actions: step 44: footstep_concrete_000.ogg
+	_update_scan_actions: step 45: footstep_concrete_001.ogg
+	_update_scan_actions: step 46: forceField_000.ogg
+	_update_scan_actions: step 47: glass.wav
+	_update_scan_actions: step 48: guard_tap.ogg
+	_update_scan_actions: step 49: impactMetal_light_000.ogg
+	_update_scan_actions: step 50: impactPunch_heavy_000.ogg
+	_update_scan_actions: step 51: impactPunch_medium_000.ogg
+	_update_scan_actions: step 52: thrusterFire_000.ogg
+	_update_scan_actions: step 53: ui_click.wav
+	_update_scan_actions: step 54: Alien_Naoya_Rig_Combat.glb
+	_update_scan_actions: step 55: Alien_Naoya_Rig_Combat_Image_0.jpg
+	_update_scan_actions: step 56: Alien_Naoya_Rig_Combat_Image_1.jpg
+	_update_scan_actions: step 57: Alien_Naoya_Rig_Combat_Image_2.jpg
+	_update_scan_actions: step 58: Alien_Naoya_Rig_Combat_Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_basecolor.jpg
+	_update_scan_actions: step 59: Alien_Naoya_Rig_Combat_Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_normal.jpg
+	_update_scan_actions: step 60: base.png
+	_update_scan_actions: step 61: color_1.webp
+	_update_scan_actions: step 62: color_2.webp
+	_update_scan_actions: step 63: color_3.webp
+	_update_scan_actions: step 64: color_4.webp
+	_update_scan_actions: step 65: model.gltf
+	_update_scan_actions: step 66: base.png
+	_update_scan_actions: step 67: color_1.webp
+	_update_scan_actions: step 68: color_2.webp
+	_update_scan_actions: step 69: color_3.webp
+	_update_scan_actions: step 70: color_4.webp
+	_update_scan_actions: step 71: model.gltf
+	_update_scan_actions: step 72: base.png
+	_update_scan_actions: step 73: color_1.webp
+	_update_scan_actions: step 74: color_2.webp
+	_update_scan_actions: step 75: color_3.webp
+	_update_scan_actions: step 76: color_4.webp
+	_update_scan_actions: step 77: model.gltf
+	_update_scan_actions: step 78: base.png
+	_update_scan_actions: step 79: color_1.webp
+	_update_scan_actions: step 80: color_2.webp
+	_update_scan_actions: step 81: color_3.webp
+	_update_scan_actions: step 82: color_4.webp
+	_update_scan_actions: step 83: model.gltf
+	_update_scan_actions: step 84: Rustcrawler.glb
+	_update_scan_actions: step 85: Rustcrawler_Meshy_AI_Rustcrawler_1018182955_generate.glb_basecolor.jpg
+	_update_scan_actions: step 86: Rustcrawler_Meshy_AI_Rustcrawler_1018182955_generate.glb_normal.jpg
+	_update_scan_actions: step 87: SkullWisp.glb
+	_update_scan_actions: step 88: SkullWispRig.glb
+	_update_scan_actions: step 89: SkullWispRig_Meshy_AI_Skull_Wisp_1011011544_generate_glb_basecolor.jpg
+	_update_scan_actions: step 90: SkullWisp_Meshy_AI_Skull_Wisp_1011011544_generate_glb_basecolor.jpg
+	_update_scan_actions: step 91: running_man.fbx
+	_update_scan_actions: step 92: regions_a.png
+	_update_scan_actions: step 93: regions_b.png
+	_update_scan_actions: step 94: UrbanShadow_Rig.gltf
+	_update_scan_actions: step 95: UrbanShadow_Rig_Image_0.jpg
+	_update_scan_actions: step 96: UrbanShadow_Rig_Image_1.jpg
+	_update_scan_actions: step 97: UrbanShadow_Rig_Image_2.jpg
+	_update_scan_actions: step 98: colormap.png
+	_update_scan_actions: step 99: bridge-pillar.glb
+	_update_scan_actions: step 100: construction-barrier.glb
+	_update_scan_actions: step 101: construction-cone.glb
+	_update_scan_actions: step 102: dumpster.glb
+	_update_scan_actions: step 103: light-curved.glb
+	_update_scan_actions: step 104: road-bend.glb
+	_update_scan_actions: step 105: road-bridge.glb
+	_update_scan_actions: step 106: road-crossing.glb
+	_update_scan_actions: step 107: road-crossroad.glb
+	_update_scan_actions: step 108: road-intersection.glb
+	_update_scan_actions: step 109: road-slant.glb
+	_update_scan_actions: step 110: road-straight.glb
+	_update_scan_actions: step 111: skybox-morning.png
+	_update_scan_actions: step 112: skybox-night.png
+	_update_scan_actions: step 113: asphalt.png
+	_update_scan_actions: step 114: bars.png
+	_update_scan_actions: step 115: concrete.png
+	_update_scan_actions: step 116: dirt.png
+	_update_scan_actions: step 117: doors.png
+	_update_scan_actions: step 118: grass.png
+	_update_scan_actions: step 119: metal.png
+	_update_scan_actions: step 120: metal_wall.png
+	_update_scan_actions: step 121: planks.png
+	_update_scan_actions: step 122: rock.png
+	_update_scan_actions: step 123: roof.png
+	_update_scan_actions: step 124: roof_plates.png
+	_update_scan_actions: step 125: signs.png
+	_update_scan_actions: step 126: tiles.png
+	_update_scan_actions: step 127: treeA.png
+	_update_scan_actions: step 128: treeB.png
+	_update_scan_actions: step 129: truck.png
+	_update_scan_actions: step 130: truck_alien.png
+	_update_scan_actions: step 131: wall.png
+	_update_scan_actions: step 132: wall_garage.png
+	_update_scan_actions: step 133: wall_lines.png
+	_update_scan_actions: step 134: windows.png
+	_update_scan_actions: step 135: balcony-type-a.glb
+	_update_scan_actions: step 136: detail-awning-wide.glb
+	_update_scan_actions: step 137: detail-bench.glb
+	_update_scan_actions: step 138: detail-dumpster-closed.glb
+	_update_scan_actions: step 139: pallet.glb
+	_update_scan_actions: step 140: roof-metal-type-a.glb
+	_update_scan_actions: step 141: scaffolding-floor.glb
+	_update_scan_actions: step 142: scaffolding-structure.glb
+	_update_scan_actions: step 143: tree-park-large.glb
+	_update_scan_actions: step 144: tree-park-pine-large.glb
+	_update_scan_actions: step 145: tree-shrub.glb
+	_update_scan_actions: step 146: truck-green.glb
+	_update_scan_actions: step 147: truck-grey.glb
+	_update_scan_actions: step 148: wall-a-corner.glb
+	_update_scan_actions: step 149: wall-a-door.glb
+	_update_scan_actions: step 150: wall-a-flat-garage.glb
+	_update_scan_actions: step 151: wall-a-flat-window.glb
+	_update_scan_actions: step 152: wall-a-flat.glb
+	_update_scan_actions: step 153: wall-a-roof.glb
+	_update_scan_actions: step 154: wall-b-door.glb
+	_update_scan_actions: step 155: wall-b-flat-window.glb
+	_update_scan_actions: step 156: wall-b-flat.glb
+	_update_scan_actions: step 157: wall-b-roof.glb
+	_update_scan_actions: step 158: evolved_0.png
+	_update_scan_actions: step 159: Image_0.png
+	_update_scan_actions: step 160: Image_1.png
+	_update_scan_actions: step 161: Image_2.png
+	_update_scan_actions: step 162: Image_3.jpg
+	_update_scan_actions: step 163: Image_4.webp
+	_update_scan_actions: step 164: Image_5.jpg
+	_update_scan_actions: step 165: worm.gltf
+	_update_scan_actions: step 166: George.gltf
+	_update_scan_actions: step 167: Leela.gltf
+	_update_scan_actions: step 168: Mike.gltf
+	_update_scan_actions: step 169: Stan.gltf
+	_update_scan_actions: step 170: Junkyard_Sentinel.glb
+	_update_scan_actions: step 171: Rustwing_56_Original.glb
+	_update_scan_actions: step 172: PlayerRagdollSource.gltf
+	_update_scan_actions: step 173: PlayerRagdollSource_Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_basecolor.jpg
+	_update_scan_actions: step 174: PlayerRagdollSource_Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_normal.jpg
+	_update_scan_actions: step 175: GlassPane.glb
+	_update_scan_actions: step 176: Unarmed.glb
+	_update_scan_actions: step 177: naoya_study.png
+	_update_scan_actions: step 178: sentinel_study.png
+	_update_scan_actions: step 179: bar_smooth_fill_health_256x32.svg
+	_update_scan_actions: step 180: bar_smooth_frame_256x32.svg
+	_update_scan_actions: step 181: bar_smooth_health_pct_50_256x32.svg
+	_update_scan_actions: step 182: bar_smooth_track_256x32.svg
+	_update_scan_actions: step 183: btn_wide_192x48_disabled.svg
+	_update_scan_actions: step 184: btn_wide_192x48_focused.svg
+	_update_scan_actions: step 185: btn_wide_192x48_hover.svg
+	_update_scan_actions: step 186: btn_wide_192x48_normal.svg
+	_update_scan_actions: step 187: btn_wide_192x48_pressed.svg
+	_update_scan_actions: step 188: gauge_ring_fill_128.svg
+	_update_scan_actions: step 189: gauge_ring_frame_128.svg
+	_update_scan_actions: step 190: gauge_ring_pct_70_128.svg
+	_update_scan_actions: step 191: gauge_ring_track_128.svg
+	_update_scan_actions: step 192: reticle_cross_gap_96x96.svg
+	_update_scan_actions: step 193: reticle_ring_ticks_96x96.svg
+	_update_scan_actions: step 194: selection.svg
+	_update_scan_actions: step 195: shadow.svg
+	_update_scan_actions: step 196: cannon.png
+	_update_scan_actions: step 197: counter.png
+	_update_scan_actions: step 198: evolved_charge.png
+	_update_scan_actions: step 199: evolved_domain.png
+	_update_scan_actions: step 200: evolved_speed.png
+	_update_scan_actions: step 201: evolved_tendrils.png
+	_update_scan_actions: step 202: george1.png
+	_update_scan_actions: step 203: george2.png
+	_update_scan_actions: step 204: george3.png
+	_update_scan_actions: step 205: ground_slam.png
+	_update_scan_actions: step 206: idle.png
+	_update_scan_actions: step 207: kick.png
+	_update_scan_actions: step 208: leela1.png
+	_update_scan_actions: step 209: leela2.png
+	_update_scan_actions: step 210: leela3.png
+	_update_scan_actions: step 211: mike1.png
+	_update_scan_actions: step 212: mike2.png
+	_update_scan_actions: step 213: mike3.png
+	_update_scan_actions: step 214: projection.png
+	_update_scan_actions: step 215: ram.png
+	_update_scan_actions: step 216: rush.png
+	_update_scan_actions: step 217: stan1.png
+	_update_scan_actions: step 218: stan2.png
+	_update_scan_actions: step 219: stan3.png
+	_update_scan_actions: step 220: stomp.png
+	_update_scan_actions: step 221: worm_charge.png
+	_update_scan_actions: step 222: worm_domain.png
+	_update_scan_actions: step 223: worm_speed.png
+	_update_scan_actions: step 224: worm_tendrils.png
+	_update_scan_actions: step 225: arrow_right.png
+	_update_scan_actions: step 226: arrow_rotate.png
+	_update_scan_actions: step 227: flag_square.png
+	_update_scan_actions: step 228: pawn.png
+	_update_scan_actions: step 229: shield.png
+	_update_scan_actions: step 230: structure_house.png
+	_update_scan_actions: step 231: timer_100.png
+	_update_scan_actions: step 232: light_01.png
+	_update_scan_actions: step 233: smoke_01.png
+	_update_scan_actions: step 234: spark_01.png
+	_update_scan_actions: step 235: star_01.png
+	_update_scan_actions: step 236: district_overlay.svg
+	_update_scan_actions: step 237: asphalt.png
+	_update_scan_actions: step 238: brick.png
+	_update_scan_actions: step 239: clay_tiles.png
+	_update_scan_actions: step 240: concrete.png
+	_update_scan_actions: step 241: dirt.png
+	_update_scan_actions: step 242: grass.png
+	_update_scan_actions: step 243: pavers.png
+	_update_scan_actions: step 244: plaster.png
+	_update_scan_actions: step 245: tiles.png
+	_update_scan_actions: step 246: wood.png
+	_update_scan_actions: step 247: counter_y_fallo_antes.jpg
+	_update_scan_actions: step 248: rafaga_y_caida_antes.jpg
+_update_scan_actions: end
+reimport: begin: (Re)Importing Assets steps: 249
+	reimport: step 0: Preparing files to reimport...
+	reimport: step 1: Preparing files to reimport...
+	reimport: step 2: Preparing files to reimport...
+	reimport: step 3: Preparing files to reimport...
+	reimport: step 4: Preparing files to reimport...
+	reimport: step 5: Preparing files to reimport...
+	reimport: step 6: Preparing files to reimport...
+	reimport: step 7: Preparing files to reimport...
+	reimport: step 8: Preparing files to reimport...
+	reimport: step 9: Preparing files to reimport...
+	reimport: step 10: Preparing files to reimport...
+	reimport: step 11: Preparing files to reimport...
+	reimport: step 12: Preparing files to reimport...
+	reimport: step 13: Preparing files to reimport...
+	reimport: step 14: Preparing files to reimport...
+	reimport: step 15: Preparing files to reimport...
+	reimport: step 16: Preparing files to reimport...
+	reimport: step 17: Preparing files to reimport...
+	reimport: step 18: Preparing files to reimport...
+	reimport: step 19: Preparing files to reimport...
+	reimport: step 20: Preparing files to reimport...
+	reimport: step 21: Preparing files to reimport...
+	reimport: step 22: Preparing files to reimport...
+	reimport: step 23: Preparing files to reimport...
+	reimport: step 24: Preparing files to reimport...
+	reimport: step 25: Preparing files to reimport...
+	reimport: step 26: Preparing files to reimport...
+	reimport: step 27: Preparing files to reimport...
+	reimport: step 28: Preparing files to reimport...
+	reimport: step 29: Preparing files to reimport...
+	reimport: step 30: Preparing files to reimport...
+	reimport: step 31: Preparing files to reimport...
+	reimport: step 32: Preparing files to reimport...
+	reimport: step 33: Preparing files to reimport...
+	reimport: step 34: Preparing files to reimport...
+	reimport: step 35: Preparing files to reimport...
+	reimport: step 36: Preparing files to reimport...
+	reimport: step 37: Preparing files to reimport...
+	reimport: step 38: Preparing files to reimport...
+	reimport: step 39: Preparing files to reimport...
+	reimport: step 40: Preparing files to reimport...
+	reimport: step 41: Preparing files to reimport...
+	reimport: step 42: Preparing files to reimport...
+	reimport: step 43: Preparing files to reimport...
+	reimport: step 44: Preparing files to reimport...
+	reimport: step 45: Preparing files to reimport...
+	reimport: step 46: Preparing files to reimport...
+	reimport: step 47: Preparing files to reimport...
+	reimport: step 48: Preparing files to reimport...
+	reimport: step 49: Preparing files to reimport...
+	reimport: step 50: Preparing files to reimport...
+	reimport: step 51: Preparing files to reimport...
+	reimport: step 52: Preparing files to reimport...
+	reimport: step 53: Preparing files to reimport...
+	reimport: step 54: Preparing files to reimport...
+	reimport: step 55: Preparing files to reimport...
+	reimport: step 56: Preparing files to reimport...
+	reimport: step 57: Preparing files to reimport...
+	reimport: step 58: Preparing files to reimport...
+	reimport: step 59: Preparing files to reimport...
+	reimport: step 60: Preparing files to reimport...
+	reimport: step 61: Preparing files to reimport...
+	reimport: step 62: Preparing files to reimport...
+	reimport: step 63: Preparing files to reimport...
+	reimport: step 64: Preparing files to reimport...
+	reimport: step 65: Preparing files to reimport...
+	reimport: step 66: Preparing files to reimport...
+	reimport: step 67: Preparing files to reimport...
+	reimport: step 68: Preparing files to reimport...
+	reimport: step 69: Preparing files to reimport...
+	reimport: step 70: Preparing files to reimport...
+	reimport: step 71: Preparing files to reimport...
+	reimport: step 72: Preparing files to reimport...
+	reimport: step 73: Preparing files to reimport...
+	reimport: step 74: Preparing files to reimport...
+	reimport: step 75: Preparing files to reimport...
+	reimport: step 76: Preparing files to reimport...
+	reimport: step 77: Preparing files to reimport...
+	reimport: step 78: Preparing files to reimport...
+	reimport: step 79: Preparing files to reimport...
+	reimport: step 80: Preparing files to reimport...
+	reimport: step 81: Preparing files to reimport...
+	reimport: step 82: Preparing files to reimport...
+	reimport: step 83: Preparing files to reimport...
+	reimport: step 84: Preparing files to reimport...
+	reimport: step 85: Preparing files to reimport...
+	reimport: step 86: Preparing files to reimport...
+	reimport: step 87: Preparing files to reimport...
+	reimport: step 88: Preparing files to reimport...
+	reimport: step 89: Preparing files to reimport...
+	reimport: step 90: Preparing files to reimport...
+	reimport: step 91: Preparing files to reimport...
+	reimport: step 92: Preparing files to reimport...
+	reimport: step 93: Preparing files to reimport...
+	reimport: step 94: Preparing files to reimport...
+	reimport: step 95: Preparing files to reimport...
+	reimport: step 96: Preparing files to reimport...
+	reimport: step 97: Preparing files to reimport...
+	reimport: step 98: Preparing files to reimport...
+	reimport: step 99: Preparing files to reimport...
+	reimport: step 100: Preparing files to reimport...
+	reimport: step 101: Preparing files to reimport...
+	reimport: step 102: Preparing files to reimport...
+	reimport: step 103: Preparing files to reimport...
+	reimport: step 104: Preparing files to reimport...
+	reimport: step 105: Preparing files to reimport...
+	reimport: step 106: Preparing files to reimport...
+	reimport: step 107: Preparing files to reimport...
+	reimport: step 108: Preparing files to reimport...
+	reimport: step 109: Preparing files to reimport...
+	reimport: step 110: Preparing files to reimport...
+	reimport: step 111: Preparing files to reimport...
+	reimport: step 112: Preparing files to reimport...
+	reimport: step 113: Preparing files to reimport...
+	reimport: step 114: Preparing files to reimport...
+	reimport: step 115: Preparing files to reimport...
+	reimport: step 116: Preparing files to reimport...
+	reimport: step 117: Preparing files to reimport...
+	reimport: step 118: Preparing files to reimport...
+	reimport: step 119: Preparing files to reimport...
+	reimport: step 120: Preparing files to reimport...
+	reimport: step 121: Preparing files to reimport...
+	reimport: step 122: Preparing files to reimport...
+	reimport: step 123: Preparing files to reimport...
+	reimport: step 124: Preparing files to reimport...
+	reimport: step 125: Preparing files to reimport...
+	reimport: step 126: Preparing files to reimport...
+	reimport: step 127: Preparing files to reimport...
+	reimport: step 128: Preparing files to reimport...
+	reimport: step 129: Preparing files to reimport...
+	reimport: step 130: Preparing files to reimport...
+	reimport: step 131: Preparing files to reimport...
+	reimport: step 132: Preparing files to reimport...
+	reimport: step 133: Preparing files to reimport...
+	reimport: step 134: Preparing files to reimport...
+	reimport: step 135: Preparing files to reimport...
+	reimport: step 136: Preparing files to reimport...
+	reimport: step 137: Preparing files to reimport...
+	reimport: step 138: Preparing files to reimport...
+	reimport: step 139: Preparing files to reimport...
+	reimport: step 140: Preparing files to reimport...
+	reimport: step 141: Preparing files to reimport...
+	reimport: step 142: Preparing files to reimport...
+	reimport: step 143: Preparing files to reimport...
+	reimport: step 144: Preparing files to reimport...
+	reimport: step 145: Preparing files to reimport...
+	reimport: step 146: Preparing files to reimport...
+	reimport: step 147: Preparing files to reimport...
+	reimport: step 148: Preparing files to reimport...
+	reimport: step 149: Preparing files to reimport...
+	reimport: step 150: Preparing files to reimport...
+	reimport: step 151: Preparing files to reimport...
+	reimport: step 152: Preparing files to reimport...
+	reimport: step 153: Preparing files to reimport...
+	reimport: step 154: Preparing files to reimport...
+	reimport: step 155: Preparing files to reimport...
+	reimport: step 156: Preparing files to reimport...
+	reimport: step 157: Preparing files to reimport...
+	reimport: step 158: Preparing files to reimport...
+	reimport: step 159: Preparing files to reimport...
+	reimport: step 160: Preparing files to reimport...
+	reimport: step 161: Preparing files to reimport...
+	reimport: step 162: Preparing files to reimport...
+	reimport: step 163: Preparing files to reimport...
+	reimport: step 164: Preparing files to reimport...
+	reimport: step 165: Preparing files to reimport...
+	reimport: step 166: Preparing files to reimport...
+	reimport: step 167: Preparing files to reimport...
+	reimport: step 168: Preparing files to reimport...
+	reimport: step 169: Preparing files to reimport...
+	reimport: step 170: Preparing files to reimport...
+	reimport: step 171: Preparing files to reimport...
+	reimport: step 172: Preparing files to reimport...
+	reimport: step 173: Preparing files to reimport...
+	reimport: step 174: Preparing files to reimport...
+	reimport: step 175: Preparing files to reimport...
+	reimport: step 176: Preparing files to reimport...
+	reimport: step 177: Preparing files to reimport...
+	reimport: step 178: Preparing files to reimport...
+	reimport: step 179: Preparing files to reimport...
+	reimport: step 180: Preparing files to reimport...
+	reimport: step 181: Preparing files to reimport...
+	reimport: step 182: Preparing files to reimport...
+	reimport: step 183: Preparing files to reimport...
+	reimport: step 184: Preparing files to reimport...
+	reimport: step 185: Preparing files to reimport...
+	reimport: step 186: Preparing files to reimport...
+	reimport: step 187: Preparing files to reimport...
+	reimport: step 188: Preparing files to reimport...
+	reimport: step 189: Preparing files to reimport...
+	reimport: step 190: Preparing files to reimport...
+	reimport: step 191: Preparing files to reimport...
+	reimport: step 192: Preparing files to reimport...
+	reimport: step 193: Preparing files to reimport...
+	reimport: step 194: Preparing files to reimport...
+	reimport: step 195: Preparing files to reimport...
+	reimport: step 196: Preparing files to reimport...
+	reimport: step 197: Preparing files to reimport...
+	reimport: step 198: Preparing files to reimport...
+	reimport: step 199: Preparing files to reimport...
+	reimport: step 200: Preparing files to reimport...
+	reimport: step 201: Preparing files to reimport...
+	reimport: step 202: Preparing files to reimport...
+	reimport: step 203: Preparing files to reimport...
+	reimport: step 204: Preparing files to reimport...
+	reimport: step 205: Preparing files to reimport...
+	reimport: step 206: Preparing files to reimport...
+	reimport: step 207: Preparing files to reimport...
+	reimport: step 208: Preparing files to reimport...
+	reimport: step 209: Preparing files to reimport...
+	reimport: step 210: Preparing files to reimport...
+	reimport: step 211: Preparing files to reimport...
+	reimport: step 212: Preparing files to reimport...
+	reimport: step 213: Preparing files to reimport...
+	reimport: step 214: Preparing files to reimport...
+	reimport: step 215: Preparing files to reimport...
+	reimport: step 216: Preparing files to reimport...
+	reimport: step 217: Preparing files to reimport...
+	reimport: step 218: Preparing files to reimport...
+	reimport: step 219: Preparing files to reimport...
+	reimport: step 220: Preparing files to reimport...
+	reimport: step 221: Preparing files to reimport...
+	reimport: step 222: Preparing files to reimport...
+	reimport: step 223: Preparing files to reimport...
+	reimport: step 224: Preparing files to reimport...
+	reimport: step 225: Preparing files to reimport...
+	reimport: step 226: Preparing files to reimport...
+	reimport: step 227: Preparing files to reimport...
+	reimport: step 228: Preparing files to reimport...
+	reimport: step 229: Preparing files to reimport...
+	reimport: step 230: Preparing files to reimport...
+	reimport: step 231: Preparing files to reimport...
+	reimport: step 232: Preparing files to reimport...
+	reimport: step 233: Preparing files to reimport...
+	reimport: step 234: Preparing files to reimport...
+	reimport: step 235: Preparing files to reimport...
+	reimport: step 236: Preparing files to reimport...
+	reimport: step 237: Preparing files to reimport...
+	reimport: step 238: Preparing files to reimport...
+	reimport: step 239: Preparing files to reimport...
+	reimport: step 240: Preparing files to reimport...
+	reimport: step 241: Preparing files to reimport...
+	reimport: step 242: Preparing files to reimport...
+	reimport: step 243: Preparing files to reimport...
+	reimport: step 244: Preparing files to reimport...
+	reimport: step 245: Preparing files to reimport...
+	reimport: step 246: Preparing files to reimport...
+	reimport: step 247: Preparing files to reimport...
+	reimport: step 248: Preparing files to reimport...
+	reimport: step 0: Executing pre-reimport operations...
+preload_reimporting_scene: begin: Preparing scenes for reload steps: 1
+	preload_reimporting_scene: step 0: Analyzing scene [empty]
+	preload_reimporting_scene: step 1: Preparation done.
+preload_reimporting_scene: end
+	reimport: step 0: dance_music.mp3
+	reimport: step 1: dance_music.mp3
+	reimport: step 2: forceField_000.ogg
+	reimport: step 4: footstep_concrete_000.ogg
+	reimport: step 5: explosionCrunch_000.ogg
+	reimport: step 6: dash_swish.ogg
+	reimport: step 7: guard_tap.ogg
+	reimport: step 8: impactMetal_light_000.ogg
+	reimport: step 10: impactPunch_medium_000.ogg
+	reimport: step 11: thrusterFire_000.ogg
+	reimport: step 13: rollover1.ogg
+	reimport: step 14: click2.ogg
+	reimport: step 15: click1.ogg
+	reimport: step 16: projection_groove.ogg
+	reimport: step 17: armor_hit_01.ogg
+	reimport: step 18: core_loop.ogg
+	reimport: step 19: power_t3_loop.ogg
+	reimport: step 20: servo_sweep_01.ogg
+	reimport: step 21: domain_ambient.ogg
+	reimport: step 22: servo_sweep_02.ogg
+	reimport: step 23: stride_t5_01.ogg
+	reimport: step 24: stride_t4_01.ogg
+	reimport: step 25: servo_sweep_03.ogg
+	reimport: step 26: dance_music.mp3
+	reimport: step 27: forceField_000.ogg
+	reimport: step 28: footstep_concrete_001.ogg
+	reimport: step 29: footstep_concrete_000.ogg
+	reimport: step 30: explosionCrunch_000.ogg
+	reimport: step 31: dash_swish.ogg
+	reimport: step 32: guard_tap.ogg
+	reimport: step 33: impactMetal_light_000.ogg
+	reimport: step 34: impactPunch_heavy_000.ogg
+	reimport: step 35: impactPunch_medium_000.ogg
+	reimport: step 36: thrusterFire_000.ogg
+	reimport: step 37: switch1.ogg
+	reimport: step 38: rollover1.ogg
+	reimport: step 39: click2.ogg
+	reimport: step 40: click1.ogg
+	reimport: step 41: projection_groove.ogg
+	reimport: step 42: armor_hit_01.ogg
+	reimport: step 44: power_t3_loop.ogg
+	reimport: step 46: domain_ambient.ogg
+	reimport: step 47: servo_sweep_02.ogg
+	reimport: step 48: stride_t5_01.ogg
+	reimport: step 49: stride_t4_01.ogg
+	reimport: step 50: servo_sweep_03.ogg
+	reimport: step 51: stride_t3_01.ogg
+	reimport: step 52: bar_smooth_track_256x32.svg
+	reimport: step 53: bar_smooth_health_pct_50_256x32.svg
+	reimport: step 54: counter.png
+	reimport: step 55: evolved_charge.png
+	reimport: step 56: evolved_domain.png
+	reimport: step 57: bar_smooth_frame_256x32.svg
+	reimport: step 58: evolved_speed.png
+	reimport: step 59: btn_wide_192x48_disabled.svg
+	reimport: step 60: btn_wide_192x48_focused.svg
+	reimport: step 61: btn_wide_192x48_hover.svg
+	reimport: step 62: btn_wide_192x48_normal.svg
+	reimport: step 63: btn_wide_192x48_pressed.svg
+	reimport: step 64: gauge_ring_fill_128.svg
+	reimport: step 65: gauge_ring_frame_128.svg
+	reimport: step 66: gauge_ring_pct_70_128.svg
+	reimport: step 67: cannon.png
+	reimport: step 68: gauge_ring_track_128.svg
+	reimport: step 69: shadow.svg
+	reimport: step 70: reticle_cross_gap_96x96.svg
+	reimport: step 71: reticle_ring_ticks_96x96.svg
+	reimport: step 72: selection.svg
+	reimport: step 73: planks.png
+	reimport: step 74: rock.png
+	reimport: step 75: roof.png
+	reimport: step 76: roof_plates.png
+	reimport: step 77: signs.png
+	reimport: step 78: tiles.png
+	reimport: step 79: treeA.png
+	reimport: step 80: treeB.png
+	reimport: step 81: truck.png
+	reimport: step 82: truck_alien.png
+	reimport: step 83: wall.png
+	reimport: step 84: wall_garage.png
+	reimport: step 85: wall_lines.png
+	reimport: step 86: windows.png
+	reimport: step 87: evolved_0.png
+	reimport: step 88: Image_0.png
+	reimport: step 89: Image_1.png
+	reimport: step 90: Image_2.png
+	reimport: step 91: Image_3.jpg
+	reimport: step 92: Image_4.webp
+	reimport: step 93: Image_5.jpg
+	reimport: step 94: PlayerRagdollSource_Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_basecolor.jpg
+	reimport: step 95: PlayerRagdollSource_Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_normal.jpg
+	reimport: step 96: naoya_study.png
+	reimport: step 97: sentinel_study.png
+	reimport: step 98: bar_smooth_fill_health_256x32.svg
+	reimport: step 99: arrow_right.png
+	reimport: step 100: arrow_rotate.png
+	reimport: step 101: flag_square.png
+	reimport: step 102: pawn.png
+	reimport: step 103: shield.png
+	reimport: step 104: structure_house.png
+	reimport: step 105: timer_100.png
+	reimport: step 106: light_01.png
+	reimport: step 107: smoke_01.png
+	reimport: step 108: spark_01.png
+	reimport: step 109: star_01.png
+	reimport: step 110: district_overlay.svg
+	reimport: step 111: asphalt.png
+	reimport: step 112: brick.png
+	reimport: step 113: clay_tiles.png
+	reimport: step 114: concrete.png
+	reimport: step 115: dirt.png
+	reimport: step 116: grass.png
+	reimport: step 117: pavers.png
+	reimport: step 118: plaster.png
+	reimport: step 119: tiles.png
+	reimport: step 120: wood.png
+	reimport: step 121: counter_y_fallo_antes.jpg
+	reimport: step 122: rafaga_y_caida_antes.jpg
+	reimport: step 123: evolved_tendrils.png
+	reimport: step 124: george1.png
+	reimport: step 125: george2.png
+	reimport: step 126: george3.png
+	reimport: step 127: ground_slam.png
+	reimport: step 128: idle.png
+	reimport: step 129: kick.png
+	reimport: step 130: leela1.png
+	reimport: step 131: leela2.png
+	reimport: step 132: leela3.png
+	reimport: step 133: mike1.png
+	reimport: step 134: mike2.png
+	reimport: step 135: mike3.png
+	reimport: step 136: projection.png
+	reimport: step 137: ram.png
+	reimport: step 138: rush.png
+	reimport: step 139: stan1.png
+	reimport: step 140: stan2.png
+	reimport: step 141: stan3.png
+	reimport: step 142: stomp.png
+	reimport: step 143: worm_charge.png
+	reimport: step 144: worm_domain.png
+	reimport: step 145: worm_speed.png
+	reimport: step 146: worm_tendrils.png
+	reimport: step 147: color_3.webp
+	reimport: step 148: color_4.webp
+	reimport: step 149: base.png
+	reimport: step 150: color_1.webp
+	reimport: step 151: color_2.webp
+	reimport: step 152: color_3.webp
+	reimport: step 153: color_4.webp
+	reimport: step 154: Rustcrawler_Meshy_AI_Rustcrawler_1018182955_generate.glb_basecolor.jpg
+	reimport: step 155: Rustcrawler_Meshy_AI_Rustcrawler_1018182955_generate.glb_normal.jpg
+	reimport: step 156: SkullWispRig_Meshy_AI_Skull_Wisp_1011011544_generate_glb_basecolor.jpg
+	reimport: step 157: SkullWisp_Meshy_AI_Skull_Wisp_1011011544_generate_glb_basecolor.jpg
+	reimport: step 158: regions_a.png
+	reimport: step 159: regions_b.png
+	reimport: step 160: UrbanShadow_Rig_Image_0.jpg
+	reimport: step 161: UrbanShadow_Rig_Image_1.jpg
+	reimport: step 162: UrbanShadow_Rig_Image_2.jpg
+	reimport: step 163: colormap.png
+	reimport: step 164: Alien_Naoya_Rig_Combat_Image_0.jpg
+	reimport: step 165: Alien_Naoya_Rig_Combat_Image_1.jpg
+	reimport: step 166: dance_music.mp3
+	reimport: step 167: forceField_000.ogg
+	reimport: step 168: footstep_concrete_001.ogg
+	reimport: step 169: footstep_concrete_000.ogg
+	reimport: step 170: explosionCrunch_000.ogg
+	reimport: step 171: dash_swish.ogg
+	reimport: step 172: guard_tap.ogg
+	reimport: step 173: impactMetal_light_000.ogg
+	reimport: step 174: impactPunch_heavy_000.ogg
+	reimport: step 175: impactPunch_medium_000.ogg
+	reimport: step 176: thrusterFire_000.ogg
+	reimport: step 177: switch1.ogg
+	reimport: step 178: rollover1.ogg
+	reimport: step 180: click1.ogg
+	reimport: step 181: projection_groove.ogg
+	reimport: step 182: armor_hit_01.ogg
+	reimport: step 183: core_loop.ogg
+	reimport: step 184: power_t3_loop.ogg
+	reimport: step 185: servo_sweep_01.ogg
+	reimport: step 186: domain_ambient.ogg
+	reimport: step 187: servo_sweep_02.ogg
+	reimport: step 188: stride_t5_01.ogg
+	reimport: step 189: stride_t4_01.ogg
+	reimport: step 190: servo_sweep_03.ogg
+	reimport: step 191: stride_t3_01.ogg
+	reimport: step 192: bar_smooth_track_256x32.svg
+	reimport: step 193: bar_smooth_health_pct_50_256x32.svg
+	reimport: step 194: model.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 195: balcony-type-a.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 196: road-crossroad.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 197: road-intersection.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 198: road-slant.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 199: road-straight.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 200: model.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 201: Alien_Naoya_Rig_Combat.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 202: wall-a-roof.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 203: wall-b-door.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 204: Unarmed.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 205: GlassPane.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 206: wall-b-flat-window.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 207: bridge-pillar.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 208: PlayerRagdollSource.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 209: Rustwing_56_Original.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+Mode: UASTC LDR Level 0
+Mode: UASTC LDR Level 0
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 210: Junkyard_Sentinel.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+Mode: UASTC LDR Level 0
+Mode: UASTC LDR Level 0
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 211: Stan.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 212: Mike.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 213: Leela.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 214: George.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 215: worm.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 216: construction-barrier.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 217: construction-cone.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 218: dumpster.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 219: light-curved.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 220: road-bend.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 221: road-bridge.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 222: road-crossing.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 223: wall-b-roof.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 224: wall-b-flat.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 225: detail-awning-wide.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 226: detail-bench.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 227: detail-dumpster-closed.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 228: pallet.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 229: roof-metal-type-a.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 230: model.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 231: scaffolding-floor.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 232: scaffolding-structure.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 233: tree-park-large.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 234: tree-park-pine-large.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 235: tree-shrub.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 236: model.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 237: Rustcrawler.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 238: truck-green.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 239: truck-grey.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 240: SkullWisp.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 241: SkullWispRig.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 242: wall-a-corner.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 243: wall-a-door.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 244: running_man.fbx
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 245: wall-a-flat-garage.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 246: wall-a-flat-window.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 247: UrbanShadow_Rig.gltf
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 248: wall-a-flat.glb
+import: begin: Import Scene steps: 104
+	import: step 0: Importing Scene...
+	import: step 2: Running Custom Script...
+	import: step 104: Saving...
+ERROR: Parameter "t" is null.
+   at: texture_2d_get (servers/rendering/dummy/storage/texture_storage.h:107)
+import: end
+	reimport: step 249: Finalizing Asset Import...
+reimport: end
+update_script_paths_documentation: begin: Updating scripts documentation steps: 210
+	update_script_paths_documentation: step 0: articulacion_data.gd
+	update_script_paths_documentation: step 1: joint_sleeves_v0915.gd
+	update_script_paths_documentation: step 2: archetype_checks.gd
+	update_script_paths_documentation: step 3: architecture_test.gd
+	update_script_paths_documentation: step 4: bake_housing.gd
+	update_script_paths_documentation: step 5: bake_modules.gd
+	update_script_paths_documentation: step 6: bake_textures.gd
+	update_script_paths_documentation: step 7: bake_vector.gd
+	update_script_paths_documentation: step 8: frontend_test.gd
+	update_script_paths_documentation: step 9: measure_robots.gd
+	update_script_paths_documentation: step 10: network_driver.gd
+	update_script_paths_documentation: step 11: network_run.gd
+	update_script_paths_documentation: step 12: performance.gd
+	update_script_paths_documentation: step 13: pilot_test.gd
+	update_script_paths_documentation: step 14: render_gameplay.gd
+	update_script_paths_documentation: step 15: render_housing.gd
+	update_script_paths_documentation: step 16: BakedMultiMesh.gd
+	update_script_paths_documentation: step 17: DistrictHousingGenerator.gd
+	update_script_paths_documentation: step 18: VectorDistrict.gd
+	update_script_paths_documentation: step 19: feedback.gd
+	update_script_paths_documentation: step 20: interface.gd
+	update_script_paths_documentation: step 21: moves.gd
+	update_script_paths_documentation: step 22: online_arena.gd
+	update_script_paths_documentation: step 23: player.gd
+	update_script_paths_documentation: step 24: props_adapter.gd
+	update_script_paths_documentation: step 25: rig.gd
+	update_script_paths_documentation: step 26: robot.gd
+	update_script_paths_documentation: step 27: session.gd
+	update_script_paths_documentation: step 28: terrain_adapter.gd
+	update_script_paths_documentation: step 29: cases.gd
+	update_script_paths_documentation: step 30: full_local.gd
+	update_script_paths_documentation: step 31: lifecycle.gd
+	update_script_paths_documentation: step 32: mecha_cases.gd
+	update_script_paths_documentation: step 33: native_probe.gd
+	update_script_paths_documentation: step 34: run.gd
+	update_script_paths_documentation: step 35: socket_probe.gd
+	update_script_paths_documentation: step 36: ui_test.gd
+	update_script_paths_documentation: step 37: feature_test.gd
+	update_script_paths_documentation: step 38: network_driver.gd
+	update_script_paths_documentation: step 39: network_run.gd
+	update_script_paths_documentation: step 40: render.gd
+	update_script_paths_documentation: step 41: assets_test.gd
+	update_script_paths_documentation: step 42: combat_test.gd
+	update_script_paths_documentation: step 43: crystal_graphics_v098.gd
+	update_script_paths_documentation: step 44: crystal_v095_test.gd
+	update_script_paths_documentation: step 45: damage_network_v0920_test.gd
+	update_script_paths_documentation: step 46: demo.gd
+	update_script_paths_documentation: step 47: diagnose_crouch_v0924.gd
+	update_script_paths_documentation: step 48: diagnose_ragdoll_v096.gd
+	update_script_paths_documentation: step 49: distribution_v0924_test.gd
+	update_script_paths_documentation: step 50: embodiment_network_v0919_test.gd
+	update_script_paths_documentation: step 51: embodiment_v0919_test.gd
+	update_script_paths_documentation: step 52: exportar_hud.gd
+	update_script_paths_documentation: step 53: export_phase2_v096.gd
+	update_script_paths_documentation: step 54: export_review_v097.gd
+	update_script_paths_documentation: step 55: frontend_v0920_test.gd
+	update_script_paths_documentation: step 56: fusion_network_test.gd
+	update_script_paths_documentation: step 57: fusion_test.gd
+	update_script_paths_documentation: step 58: hud_demo.gd
+	update_script_paths_documentation: step 59: hud_feedback_test.gd
+	update_script_paths_documentation: step 60: hud_test.gd
+	update_script_paths_documentation: step 61: human_motion_v0924_test.gd
+	update_script_paths_documentation: step 62: idle_steps_v0924_test.gd
+	update_script_paths_documentation: step 63: integration_v095_test.gd
+	update_script_paths_documentation: step 64: joint_caps_v0918_test.gd
+	update_script_paths_documentation: step 65: joint_properties.gd
+	update_script_paths_documentation: step 66: jolt_limits_v098.gd
+	update_script_paths_documentation: step 67: locomotion_network_v0918_test.gd
+	update_script_paths_documentation: step 68: locomotion_profile_v0918.gd
+	update_script_paths_documentation: step 69: locomotion_v0918_test.gd
+	update_script_paths_documentation: step 70: map_crystal_v099_test.gd
+	update_script_paths_documentation: step 71: map_v0924_test.gd
+	update_script_paths_documentation: step 72: mecha_bounds_v0915.gd
+	update_script_paths_documentation: step 73: mecha_polish_v0924_test.gd
+	update_script_paths_documentation: step 74: mecha_shader_probe.gd
+	update_script_paths_documentation: step 75: mecha_visual_review.gd
+	update_script_paths_documentation: step 76: mega_combat_v0915_test.gd
+	update_script_paths_documentation: step 77: mega_network_v0915_test.gd
+	update_script_paths_documentation: step 78: mega_visual_v0915.gd
+	update_script_paths_documentation: step 79: menu_revision_test.gd
+	update_script_paths_documentation: step 80: modelo_alien_test.gd
+	update_script_paths_documentation: step 81: modelo_demo.gd
+	update_script_paths_documentation: step 82: navigation_v0916_test.gd
+	update_script_paths_documentation: step 83: network_v0916_test.gd
+	update_script_paths_documentation: step 84: network_v0917_test.gd
+	update_script_paths_documentation: step 85: polish_test.gd
+	update_script_paths_documentation: step 86: preferences_migration_v097_test.gd
+	update_script_paths_documentation: step 87: preferences_migration_v098_test.gd
+	update_script_paths_documentation: step 88: preferences_migration_v099_test.gd
+	update_script_paths_documentation: step 89: presentation_demo.gd
+	update_script_paths_documentation: step 90: presentation_test.gd
+	update_script_paths_documentation: step 91: proximidad_diagnostico.gd
+	update_script_paths_documentation: step 92: ragdoll_lab.gd
+	update_script_paths_documentation: step 93: ragdoll_start_probe.gd
+	update_script_paths_documentation: step 94: ragdoll_v095_test.gd
+	update_script_paths_documentation: step 95: render_probe_v098.gd
+	update_script_paths_documentation: step 96: replication_v0921_test.gd
+	update_script_paths_documentation: step 97: review_demo.gd
+	update_script_paths_documentation: step 98: revision_demo.gd
+	update_script_paths_documentation: step 99: revision_test.gd
+	update_script_paths_documentation: step 100: robot_grounding_v0921_test.gd
+	update_script_paths_documentation: step 101: robot_hud_v0914_test.gd
+	update_script_paths_documentation: step 102: robot_skills_v099_test.gd
+	update_script_paths_documentation: step 103: robot_test_v099.gd
+	update_script_paths_documentation: step 104: robot_visual_v0910.gd
+	update_script_paths_documentation: step 105: ruined_city_smoke_v0921_exp.gd
+	update_script_paths_documentation: step 106: skin_probe_v097.gd
+	update_script_paths_documentation: step 107: soak_v0924.gd
+	update_script_paths_documentation: step 108: stability_v0921_test.gd
+	update_script_paths_documentation: step 109: terrain_v0916_test.gd
+	update_script_paths_documentation: step 110: update_v096_test.gd
+	update_script_paths_documentation: step 111: update_v097_test.gd
+	update_script_paths_documentation: step 112: update_v098_test.gd
+	update_script_paths_documentation: step 113: update_v0910_test.gd
+	update_script_paths_documentation: step 114: update_v0914_test.gd
+	update_script_paths_documentation: step 115: update_v0916_test.gd
+	update_script_paths_documentation: step 116: update_v0917_test.gd
+	update_script_paths_documentation: step 117: update_v0920_test.gd
+	update_script_paths_documentation: step 118: update_v0924_test.gd
+	update_script_paths_documentation: step 119: v094_demo.gd
+	update_script_paths_documentation: step 120: v095_demo.gd
+	update_script_paths_documentation: step 121: v096_demo.gd
+	update_script_paths_documentation: step 122: v097_demo.gd
+	update_script_paths_documentation: step 123: v098_demo.gd
+	update_script_paths_documentation: step 124: video_feedback_test.gd
+	update_script_paths_documentation: step 125: visual_revision_test.gd
+	update_script_paths_documentation: step 126: arena.gd
+	update_script_paths_documentation: step 127: body_camera.gd
+	update_script_paths_documentation: step 128: body_lens.gd
+	update_script_paths_documentation: step 129: cockpit_frame.gd
+	update_script_paths_documentation: step 130: combat_audio_bank.gd
+	update_script_paths_documentation: step 131: combat_geometry.gd
+	update_script_paths_documentation: step 132: combat_moves.gd
+	update_script_paths_documentation: step 133: combat_tuning.gd
+	update_script_paths_documentation: step 134: damaged_socket.gd
+	update_script_paths_documentation: step 135: district_expansion.gd
+	update_script_paths_documentation: step 136: domain_inspector.gd
+	update_script_paths_documentation: step 137: domain_scenery.gd
+	update_script_paths_documentation: step 138: emote_glass_surface.gd
+	update_script_paths_documentation: step 139: emote_wheel.gd
+	update_script_paths_documentation: step 140: emote_wheel_glass.gd
+	update_script_paths_documentation: step 141: enemy_appearance.gd
+	update_script_paths_documentation: step 142: enemy_gallery.gd
+	update_script_paths_documentation: step 143: extras_browser.gd
+	update_script_paths_documentation: step 144: feedback.gd
+	update_script_paths_documentation: step 145: frontend_settings_host.gd
+	update_script_paths_documentation: step 146: fusion_controller.gd
+	update_script_paths_documentation: step 147: fusion_g.gd
+	update_script_paths_documentation: step 148: guided_projection.gd
+	update_script_paths_documentation: step 149: head_spider.gd
+	update_script_paths_documentation: step 150: hud_ability.gd
+	update_script_paths_documentation: step 151: hud_identity.gd
+	update_script_paths_documentation: step 152: hud_ink.gd
+	update_script_paths_documentation: step 153: human_grounding.gd
+	update_script_paths_documentation: step 154: ink_button.gd
+	update_script_paths_documentation: step 155: interface.gd
+	update_script_paths_documentation: step 156: main.gd
+	update_script_paths_documentation: step 157: mecha_articulation.gd
+	update_script_paths_documentation: step 158: mecha_cockpit.gd
+	update_script_paths_documentation: step 159: mecha_combat.gd
+	update_script_paths_documentation: step 160: mecha_damage.gd
+	update_script_paths_documentation: step 161: mecha_dust.gd
+	update_script_paths_documentation: step 162: mecha_emotes.gd
+	update_script_paths_documentation: step 163: mecha_foot_planner.gd
+	update_script_paths_documentation: step 164: mecha_move_catalog.gd
+	update_script_paths_documentation: step 165: mecha_thruster.gd
+	update_script_paths_documentation: step 166: mecha_wreck.gd
+	update_script_paths_documentation: step 167: menu_backdrop.gd
+	update_script_paths_documentation: step 168: menu_depth.gd
+	update_script_paths_documentation: step 169: menu_portrait.gd
+	update_script_paths_documentation: step 170: mesh_pose_snapshot.gd
+	update_script_paths_documentation: step 171: performance_capture.gd
+	update_script_paths_documentation: step 172: physical_ragdoll.gd
+	update_script_paths_documentation: step 173: preferences.gd
+	update_script_paths_documentation: step 174: presentation.gd
+	update_script_paths_documentation: step 175: projection_echo.gd
+	update_script_paths_documentation: step 176: projection_frame.gd
+	update_script_paths_documentation: step 177: punchline_interactions.gd
+	update_script_paths_documentation: step 178: punchline_map.gd
+	update_script_paths_documentation: step 179: rigid_mesh_batch.gd
+	update_script_paths_documentation: step 180: robot_character.gd
+	update_script_paths_documentation: step 181: robot_clearance.gd
+	update_script_paths_documentation: step 182: robot_grounding.gd
+	update_script_paths_documentation: step 183: robot_locomotion.gd
+	update_script_paths_documentation: step 184: robot_procedural_motion.gd
+	update_script_paths_documentation: step 185: robot_ragdoll.gd
+	update_script_paths_documentation: step 186: robot_skill_vfx.gd
+	update_script_paths_documentation: step 187: route_trial.gd
+	update_script_paths_documentation: step 188: rustcrawler_rig.gd
+	update_script_paths_documentation: step 189: sentinel_articulation.gd
+	update_script_paths_documentation: step 190: sentinel_cannon.gd
+	update_script_paths_documentation: step 191: sentinel_cannon_demo.gd
+	update_script_paths_documentation: step 192: settings_panel.gd
+	update_script_paths_documentation: step 193: settings_preview.gd
+	update_script_paths_documentation: step 194: stability_display.gd
+	update_script_paths_documentation: step 195: terrain_steps.gd
+	update_script_paths_documentation: step 196: urban_arena.gd
+	update_script_paths_documentation: step 197: visual_motion.gd
+	update_script_paths_documentation: step 198: world_config.gd
+	update_script_paths_documentation: step 199: world_setup.gd
+	update_script_paths_documentation: step 200: boot.gd
+	update_script_paths_documentation: step 201: bake_contact_hulls_v0924.gd
+	update_script_paths_documentation: step 202: package_content_v0924.gd
+	update_script_paths_documentation: step 203: retarget_dance.gd
+	update_script_paths_documentation: step 204: retarget_emotes_v097.gd
+	update_script_paths_documentation: step 205: retarget_extras_v096.gd
+	update_script_paths_documentation: step 206: retarget_mixamo_v095.gd
+	update_script_paths_documentation: step 207: retarget_ual2.gd
+	update_script_paths_documentation: step 208: rig_forms.gd
+	update_script_paths_documentation: step 209: launcher.gd
+update_script_paths_documentation: end
+update_scene_groups: begin: Updating Scene Groups steps: 70
+	update_scene_groups: step 0: evolved_rig.tscn
+	update_scene_groups: step 1: worm_rig.tscn
+	update_scene_groups: step 2: corner_shop.tscn
+	update_scene_groups: step 3: small_residential.tscn
+	update_scene_groups: step 4: warehouse_standing.tscn
+	update_scene_groups: step 5: workshop_crouch.tscn
+	update_scene_groups: step 6: District500.tscn
+	update_scene_groups: step 7: GeneratedHousing.tscn
+	update_scene_groups: step 8: online.tscn
+	update_scene_groups: step 9: ragdoll_lab.tscn
+	update_scene_groups: step 10: boot.tscn
+	update_scene_groups: step 11: CannonDemo.tscn
+	update_scene_groups: step 12: FusionDemo.tscn
+	update_scene_groups: step 13: launcher.tscn
+	update_scene_groups: step 14: main.tscn
+	update_scene_groups: step 15: Alien_Naoya_Rig_Combat.glb
+	update_scene_groups: step 16: model.gltf
+	update_scene_groups: step 17: model.gltf
+	update_scene_groups: step 18: model.gltf
+	update_scene_groups: step 19: model.gltf
+	update_scene_groups: step 20: Rustcrawler.glb
+	update_scene_groups: step 21: SkullWisp.glb
+	update_scene_groups: step 22: SkullWispRig.glb
+	update_scene_groups: step 23: running_man.fbx
+	update_scene_groups: step 24: UrbanShadow_Rig.gltf
+	update_scene_groups: step 25: bridge-pillar.glb
+	update_scene_groups: step 26: construction-barrier.glb
+	update_scene_groups: step 27: construction-cone.glb
+	update_scene_groups: step 28: dumpster.glb
+	update_scene_groups: step 29: light-curved.glb
+	update_scene_groups: step 30: road-bend.glb
+	update_scene_groups: step 31: road-bridge.glb
+	update_scene_groups: step 32: road-crossing.glb
+	update_scene_groups: step 33: road-crossroad.glb
+	update_scene_groups: step 34: road-intersection.glb
+	update_scene_groups: step 35: road-slant.glb
+	update_scene_groups: step 36: road-straight.glb
+	update_scene_groups: step 37: balcony-type-a.glb
+	update_scene_groups: step 38: detail-awning-wide.glb
+	update_scene_groups: step 39: detail-bench.glb
+	update_scene_groups: step 40: detail-dumpster-closed.glb
+	update_scene_groups: step 41: pallet.glb
+	update_scene_groups: step 42: roof-metal-type-a.glb
+	update_scene_groups: step 43: scaffolding-floor.glb
+	update_scene_groups: step 44: scaffolding-structure.glb
+	update_scene_groups: step 45: tree-park-large.glb
+	update_scene_groups: step 46: tree-park-pine-large.glb
+	update_scene_groups: step 47: tree-shrub.glb
+	update_scene_groups: step 48: truck-green.glb
+	update_scene_groups: step 49: truck-grey.glb
+	update_scene_groups: step 50: wall-a-corner.glb
+	update_scene_groups: step 51: wall-a-door.glb
+	update_scene_groups: step 52: wall-a-flat-garage.glb
+	update_scene_groups: step 53: wall-a-flat-window.glb
+	update_scene_groups: step 54: wall-a-flat.glb
+	update_scene_groups: step 55: wall-a-roof.glb
+	update_scene_groups: step 56: wall-b-door.glb
+	update_scene_groups: step 57: wall-b-flat-window.glb
+	update_scene_groups: step 58: wall-b-flat.glb
+	update_scene_groups: step 59: wall-b-roof.glb
+	update_scene_groups: step 60: worm.gltf
+	update_scene_groups: step 61: George.gltf
+	update_scene_groups: step 62: Leela.gltf
+	update_scene_groups: step 63: Mike.gltf
+	update_scene_groups: step 64: Stan.gltf
+	update_scene_groups: step 65: Junkyard_Sentinel.glb
+	update_scene_groups: step 66: Rustwing_56_Original.glb
+	update_scene_groups: step 67: PlayerRagdollSource.gltf
+	update_scene_groups: step 68: GlassPane.glb
+	update_scene_groups: step 69: Unarmed.glb
+update_scene_groups: end
+reimport: begin: (Re)Importing Assets steps: 249
+	reimport: step 0: Executing post-reimport operations...
+reimport: end
+loading_editor_layout: begin: Loading editor steps: 5
+	loading_editor_layout: step 0: Loading editor layout...
+loading_editor_layout: end

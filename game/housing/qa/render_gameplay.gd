@@ -18,6 +18,10 @@ func run()->void:
 	if not await capture("menu"):quit(1);return
 	for button in menu.buttons:
 		if button.text=="DEMO":button.pressed.emit();break
+	await frames(3)
+	if menu.current_page=="world":
+		for button in menu.world_setup.get_children():
+			if button is Button and button.text=="CREAR MUNDO Y JUGAR":button.pressed.emit();break
 	await frames(90)
 	var game:Node3D=current_scene
 	if game==null or game.get("player")==null:push_error("Launcher did not enter gameplay");quit(1);return

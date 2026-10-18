@@ -216,7 +216,8 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		if actor.hud_cursor: return
 		yaw = wrapf(yaw-event.relative.x*.003*float(preferences.values.sensitivity),-PI,PI)
-		pitch = clampf(pitch-event.relative.y*.003*float(preferences.values.sensitivity),-1.35 if zoom <= .55 else -1.05,1.35 if zoom <= .55 else .25)
+		var body_view:bool=zoom<=.55 or actor.fusion.spider.active()
+		pitch = clampf(pitch-event.relative.y*.003*float(preferences.values.sensitivity),-1.35 if body_view else -1.05,1.35 if body_view else .25)
 	elif event is InputEventMouseButton and event.pressed:
 		match event.button_index:
 			MOUSE_BUTTON_LEFT:
@@ -225,6 +226,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_UP: zoom = maxf(0,zoom-.4)
 			MOUSE_BUTTON_WHEEL_DOWN: zoom = minf(10,zoom+.4)
 	elif event is InputEventKey and event.pressed and not event.echo:
+		if event.is_action_pressed("interact"):session.local_action("interact");return
 		if event.is_action_pressed("jump"): session.local_action("jump")
 		if event.is_action_pressed("dash"): session.local_action("dash")
 		for slot in range(1,5):
@@ -246,7 +248,7 @@ func _physics_process(delta: float) -> void:
 			if Input.is_action_pressed("block"): flags |= 1
 			if Input.is_action_pressed("walk"): flags |= 2
 			if Input.is_action_pressed("ability1"): flags |= 8
-			if zoom <= .55: flags |= 16
+			if zoom <= .55 or session.actors[session.local_id()].fusion.spider.active(): flags |= 16
 			if bool(preferences.values.hold_attack) and Input.is_action_pressed("attack") and not session.actors[session.local_id()].hud_cursor: flags |= 4
 		session.local_input(axis,yaw,flags,pitch)
 

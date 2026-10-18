@@ -30,6 +30,7 @@ var heavy_attack_cd := 0.0
 var heavy_contact := false
 var heavy_side := "Der"
 var combat: Node3D
+var spider:Node3D
 var damage = preload("res://scripts/mecha_damage.gd").new()
 var wreck:Node3D
 var death_wait:=0.0
@@ -51,6 +52,7 @@ const HEAVY_REACH := 4.2
 
 func setup(host: Node3D) -> void:
 	game = host; name = "FusionController"
+	spider=preload("res://scripts/head_spider.gd").new();add_child(spider);spider.setup(self)
 	combat = preload("res://scripts/mecha_combat.gd").new(); add_child(combat); combat.setup(self)
 	add_child(damage); damage.setup(self)
 
@@ -86,6 +88,7 @@ func damage_exclusions() -> Array[RID]:
 	return result
 
 func visual() -> Node3D:
+	if spider!=null and spider.active():return spider.rig
 	return sequence._fusion_root if is_instance_valid(sequence) else null
 
 func busy() -> bool: return cinematic or fused
@@ -197,6 +200,9 @@ func finished(_root: Node3D) -> void:
 	game.ult_msg = "JUNKYARD SENTINEL / 300 HP · núcleo activo"; game.ult_msg_time = 5
 
 func tick(delta: float) -> bool:
+	spider.return_cd=maxf(0,spider.return_cd-delta)
+	if not spider.active():
+		spider.scan_cd=maxf(0,spider.scan_cd-delta);spider.cloak_cd=maxf(0,spider.cloak_cd-delta)
 	cooldown = maxf(0,cooldown-delta)
 	if not busy(): return false
 	if death_broken and game.hp <= 0:
@@ -204,6 +210,8 @@ func tick(delta: float) -> bool:
 		if can_respawn(): reset(); game.respawn_player()
 		return true
 	game.clock += delta
+	if spider.active():
+		spider.tick(delta);return true
 	var requested_slot: int = game.buffered_ability if game.ability_buffer > 0 else 0
 	var request_attack: bool = game.attack_buffer > 0 or (bool(game.preferences.values.hold_attack) and game.input_pressed("attack") and not game.hud_attack_requires_release)
 	game.attack_buffer = 0; game.ability_buffer = 0; game.jump_buffer = 0; game.attack_anim = 0; game.block = false
@@ -314,6 +322,13 @@ func protected_m1(attacker_is_mega: bool = false) -> bool:
 	return fused and not attacker_is_mega and combat.current.get("id","") in ["m1_hammer","m1_stomp"]
 
 func receive_enemy(enemy: Dictionary,offset: Vector3) -> void:
+	if spider.active():
+		var source:Vector3=enemy.body.global_position+Vector3.UP*1.1
+		var target:Vector3=game.player.global_position+spider.normal*.32
+		if source.distance_to(target)>2.5:return
+		var ray:=PhysicsRayQueryParameters3D.create(source,target,1);ray.exclude=[game.player.get_rid(),enemy.body.get_rid()]
+		if game.get_world_3d().direct_space_state.intersect_ray(ray).is_empty():spider.take_damage(10.0 if int(enemy.combo)==4 else 6.0)
+		return
 	if game.hp<=0 or cinematic or (game.stun > 0 and not protected_m1()) or game.player_wakeup_protection > 0: return
 	if game.block and game.facing_forward().dot((enemy.body.position-game.player.position).normalized()) > .25:
 		game.feedback.sound("mecha_armor",game.player.position,-4); return
@@ -327,6 +342,7 @@ func receive_enemy(enemy: Dictionary,offset: Vector3) -> void:
 	if game.hp <= 0: game.on_player_death()
 
 func camera_update(camera: Camera3D,delta: float) -> bool:
+	if spider.active():spider.camera_update(camera,delta);return true
 	if death_broken:
 		var target:Vector3=game.player.global_position+Vector3.UP*1.2
 		var point:Vector3=game.player.global_position+Vector3(6,4.5,7).rotated(Vector3.UP,game.yaw)
@@ -367,7 +383,7 @@ func break_apart(remaining:float = 3.6) -> void:
 	combat.interrupted(); boost_time = 0
 	game.player.collision_layer = 0
 	if is_instance_valid(hurt_area): hurt_area.collision_layer = 0
-	game.skill_vfx.mega_event("land",game.player.global_position,game.facing_forward(),"death",revision)
+	if not replica:game.skill_vfx.mega_event("land",game.player.global_position,game.facing_forward(),"death",revision)
 
 func tick_death(delta:float)->void:
 	death_wait=maxf(0,death_wait-delta)
@@ -375,6 +391,7 @@ func can_respawn()->bool:
 	return death_wait<=0 and (not is_instance_valid(wreck) or wreck.remaining<=0) and damage.remnants_gone()
 
 func reset() -> void:
+	if is_instance_valid(spider):spider.reset()
 	if is_instance_valid(wreck): wreck.queue_free()
 	wreck=null
 	if not busy() and not is_instance_valid(sequence) and base_state.is_empty(): return
@@ -403,7 +420,7 @@ func reset() -> void:
 	last_replica_revision = -1
 
 func state() -> Dictionary:
-	return {"cinematic":cinematic,"fused":fused,"elapsed":elapsed,"cooldown":cooldown,"revision":revision,"origin":origin,"yaw":cast_yaw,"lift":sequence.incoming_lift if is_instance_valid(sequence) else 0.0,"chassis":game.robots.NAMES[game.robots.index] if game.robots.active else "George","swing":heavy_attack/.95 if heavy_attack >= 0 else -1.0,"swing_side":heavy_side,"guard":game.block,"gait":sequence.articulation.phase if is_instance_valid(sequence) and sequence.articulation != null else 0.0,"dead":death_broken,"wreck_time":wreck.remaining if is_instance_valid(wreck) else 0.0,"damage":damage.state(),"death_wait":death_wait,"view_locked":game.camera_lock,"view":Vector2(game.yaw,game.pitch),"emote":{"index":game.presentation.emote_index,"time":game.presentation.emote_elapsed} if game.presentation.emote_time > 0 else {},"feet":sequence.articulation.gait.snapshot() if is_instance_valid(sequence) and sequence.articulation != null else {},"rig_clock":sequence.articulation.clock if is_instance_valid(sequence) and sequence.articulation != null else 0.0,"velocity":game.player.velocity,"grounded":game.player.is_on_floor(),"combat":combat.pose_state(),"boost":boost_time,"boost_dir":boost_direction,"dash_cd":game.dash_cd}
+	return {"spider":spider.snapshot(),"cinematic":cinematic,"fused":fused,"elapsed":elapsed,"cooldown":cooldown,"revision":revision,"origin":origin,"yaw":cast_yaw,"lift":sequence.incoming_lift if is_instance_valid(sequence) else 0.0,"chassis":game.robots.NAMES[game.robots.index] if game.robots.active else "George","swing":heavy_attack/.95 if heavy_attack >= 0 else -1.0,"swing_side":heavy_side,"guard":game.block,"gait":sequence.articulation.phase if is_instance_valid(sequence) and sequence.articulation != null else 0.0,"dead":death_broken,"wreck_time":wreck.remaining if is_instance_valid(wreck) else 0.0,"damage":damage.state(),"death_wait":death_wait,"view_locked":game.camera_lock,"view":Vector2(game.yaw,game.pitch),"emote":{"index":game.presentation.emote_index,"time":game.presentation.emote_elapsed} if game.presentation.emote_time > 0 else {},"feet":sequence.articulation.gait.snapshot() if is_instance_valid(sequence) and sequence.articulation != null else {},"rig_clock":sequence.articulation.clock if is_instance_valid(sequence) and sequence.articulation != null else 0.0,"velocity":game.player.velocity,"grounded":game.player.is_on_floor(),"combat":combat.pose_state(),"boost":boost_time,"boost_dir":boost_direction,"dash_cd":game.dash_cd}
 
 func apply_state(data: Dictionary) -> void:
 	var previously_fused := fused
@@ -454,6 +471,7 @@ func apply_state(data: Dictionary) -> void:
 		var frozen := float(game.full_state.get("full",{}).get("moves",{}).get("freeze",0)) > 0 if "full_state" in game else false
 		if not frozen and not death_broken: sequence.articulation.locomotion(replica_delta,Vector2(velocity.x,velocity.z).length(),bool(data.get("grounded",true)),velocity.y,0,true)
 		if not previously_fused: game.interface.identity.set_robot_portrait(sequence._fusion_root,sequence._fusion_root.scale.x,-1,4.0)
+	spider.accept(data.get("spider",{}),replica_delta)
 	if cinematic and not is_instance_valid(assembly_guard): create_guard()
 	if not cinematic: clear_guard()
 

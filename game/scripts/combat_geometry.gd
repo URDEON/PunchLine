@@ -3,6 +3,7 @@ extends RefCounted
 ## Los personajes normales conservan los alcances anteriores.
 static func point(enemy: Dictionary, source: Vector3) -> Vector3:
 	var origin: Vector3 = enemy.body.global_position
+	if bool(enemy.get("spider",false)):return origin+enemy.get("surface_up",Vector3.UP)*.32
 	if not bool(enemy.get("mega",false)): return origin+Vector3.UP
 	var yaw: float = enemy.get("mega_yaw",0.0)
 	var local := (source-origin).rotated(Vector3.UP,-yaw)

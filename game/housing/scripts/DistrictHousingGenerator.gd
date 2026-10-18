@@ -77,6 +77,9 @@ func finish_build(root:Node3D)->void:
 
 func generate()->Dictionary:
 	var data=JSON.parse_string(FileAccess.get_file_as_string(plan_path))
+	return generate_plan(data)
+
+func generate_plan(data:Dictionary)->Dictionary:
 	if not data is Dictionary or not data.has("buildings"):push_error("Invalid housing plan");return {}
 	var fingerprint:String=(REVISION+JSON.stringify(data)).sha256_text()
 	if get_meta("plan_hash","")==fingerprint:return data

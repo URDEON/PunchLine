@@ -56,6 +56,7 @@ func set_robot_portrait(scene: Node3D, scale_value: float, _model: int, height: 
 	robot_viewport.size = Vector2i(160,160); robot_viewport.transparent_bg = true
 	robot_viewport.own_world_3d = true; robot_viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
 	var copy: Node3D = scene.duplicate(0); robot_viewport.add_child(copy)
+	copy.position=Vector3.ZERO
 	copy.scale = Vector3.ONE*scale_value; copy.rotation.y = 0; copy.process_mode = Node.PROCESS_MODE_DISABLED
 	var animator := portrait_animator(copy)
 	if animator != null:

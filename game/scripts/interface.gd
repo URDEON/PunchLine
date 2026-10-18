@@ -596,13 +596,13 @@ func tick(delta: float) -> void:
 		var skin: StyleBoxFlat = menu_panel.get_theme_stylebox("panel")
 		skin.border_color = Color("3b9bb4") if game.robots.active else Color("b19a66")
 		resize()
-	for card in cards: card.panel.set_holographic(game.robots.active,screen.size.x < 850)
+	for card in cards:card.panel.visible=true;card.panel.set_holographic(game.robots.active,screen.size.x < 850)
 	phase_text.text = {"BASE":"THE PROYECTED · PROYECCIÓN","FORM1":"THE PROYECTED · FASE 1","FORM2":"THE PROYECTED · FASE 2"}[game.form]
 	var energy: float = (100.0 if game.fusion.fused else game.charge) if game.form == "BASE" else game.ult_time/game.ult_duration*100
 	var flags := [game.player_ragdoll or game.stun > 0 or game.wakeup_anim > 0,game.dash_time > 0 or (game.skill_active == "extra" and game.moves.stage in ["approach","commit","rush"]),game.form != "BASE" or game.charge >= 100,game.block or game.player_wakeup_protection > 0 or (game.moves.key == "b2" and game.moves.stage == "window")]
 	identity.update_state(game.hp/maxf(1,game.max_hp)*100,energy,game.form,flags,game.preferences.key_name("character"),delta)
-	stability.tick(delta);health_text.visible=not game.fusion.fused
-	if identity.holo_health!=null:identity.holo_health.visible=game.robots.active and not game.fusion.fused
+	stability.tick(delta);health_text.visible=not game.fusion.fused or game.fusion.spider.active()
+	if identity.holo_health!=null:identity.holo_health.visible=game.robots.active and (not game.fusion.fused or game.fusion.spider.active())
 	for i in range(4): state_captions[i].modulate = MINT if flags[i] else Color.WHITE
 	var transform_key: String = game.preferences.key_name("transform")
 	if game.form == "BASE":
@@ -641,14 +641,23 @@ func tick(delta: float) -> void:
 			var move: Dictionary = preload("res://scripts/mecha_move_catalog.gd").mega(card_index+1)
 			cards[card_index].panel.set_state("FUERA DE SERVICIO" if game.fusion.fused and not game.fusion.damage.allowed(card_index+1) else ("Montaje" if game.fusion.cinematic else move.title),game.preferences.key_name("ability"+str(card_index+1)),move.icon,game.fusion.combat.cooldowns[card_index],move.cooldown,game.fusion.cinematic or not game.fusion.damage.allowed(card_index+1),preload("res://scripts/mecha_move_catalog.gd").description(card_index+1),game.fusion.combat.current.get("id","") == move.id)
 	combo_life = maxf(0,combo_life-delta)
+	if game.fusion.spider.active():
+		var spider:Node3D=game.fusion.spider
+		phase_text.text="RUSTCRAWLER"
+		energy_text.text="%d / 50 HP · %s RECONECTAR CERCA DEL MECHA" % [int(game.hp),game.preferences.key_name("interact")]
+		cards[0].panel.set_state("Escaneo",game.preferences.key_name("ability1"),"spider_scan",spider.scan_cd,10.0,spider.mode!="spider","Detecta señales a 25 m durante 6 s",spider.scan_time>0)
+		cards[1].panel.set_state("Camuflaje",game.preferences.key_name("ability2"),"spider_cloak",spider.cloak_cd,16.0,spider.mode!="spider","8 s de camuflaje; se rompe con daño o escaneo",spider.cloak_time>0)
+		cards[2].panel.hide();cards[3].panel.hide()
+		hint.text="WASD · caminar por superficies · %s reconectar · 1 escaneo · 2 camuflaje · Esc Menú" % game.preferences.key_name("interact")
 	status.text = "%d IMPACTOS  /  %.0f DAÑO" % [combo_hits,combo_damage] if combo_life > 0 else ("GUARDIA" if game.block else ("RECUPERANDO" if game.stun > 0 else "DASH  "+("LISTO" if game.dash_cd <= 0 else "%.1f s" % game.dash_cd)))
 	if game.ult_msg_time > 0: status.text = game.ult_msg
+	elif game.fusion.spider.active():status.text="RUSTCRAWLER / cabeza separada · %s para reconectar cerca del mecha" % game.preferences.key_name("interact")
 	if game.skill_active == "extra" and game.moves.key in ["b1","u1"]:
 		status.text = {"windup":"PREPARACIÓN", "approach":"APROXIMACIÓN · AUTOAPUNTADO", "commit":"IMPACTO COMPROMETIDO · RUMBO FIJO", "barrage":"RÁFAGA CERCANA" if game.moves.projection.close_variant else "RÁFAGA", "recover":"RECUPERACIÓN"}.get(game.moves.stage,"")
 	metric.text = "%d FPS" % Engine.get_frames_per_second() if bool(game.preferences.values.fps) else "PUNCHLINE · 0.9.24"
 	if game.route_trial.active or not game.route_trial.result_text.is_empty(): status.text = game.route_trial.hud_text()
 	menu_portrait.visible=menu.visible and selected_tab not in ["settings","controls"]
-	menu_title.text = "JUNKYARD SENTINEL" if game.fusion.fused else ("ROBOT / "+game.robots.NAMES[game.robots.index] if game.robots.active else "THE PROYECTED")
+	menu_title.text = "RUSTCRAWLER" if game.fusion.spider.active() else ("JUNKYARD SENTINEL" if game.fusion.fused else ("ROBOT / "+game.robots.NAMES[game.robots.index] if game.robots.active else "THE PROYECTED"))
 	if menu_context != null: menu_context.text = "PUNCHLINE / 0.9.24 · %s · %d HP · TIEMPO DETENIDO" % [game.form,int(game.hp)]
 	var nearest: Dictionary = {}
 	var distance := 12.0

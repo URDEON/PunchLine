@@ -7,7 +7,8 @@ El `project.godot` original se conserva byte por byte. No se exportó ni modific
 ## Abrir y jugar
 
 Abrir **`game/project.godot` con Godot 4.4.1** y ejecutar el proyecto. El lanzador conserva
-las opciones individual y multijugador. WASD mueve, Espacio salta, Q activa dash, F bloquea,
+las opciones individual y multijugador. DEMO abre primero la configuración de mundo: semilla
+numérica o de texto, aleatoria, densidad y día/noche. Confirmar «CREAR MUNDO Y JUGAR». WASD mueve, Espacio salta, Q activa dash, F bloquea,
 1–4 usa habilidades y G activa la fusión con energía suficiente. En el selector de personaje
 está Robot; los cuatro chasis, su locomoción, combate y articulación son los del proyecto real.
 El inicio está en el estacionamiento protegido y sin edificios.
@@ -72,7 +73,13 @@ original no se modifica. La generación es una propuesta, no un levantamiento de
 Se eliminaron `assets/environment/ruined_city` y `assets/environment/punchline_v54` de
 esta copia, además de los props de ejercicios de la ciudad retirada. Los ZIP y la copia original
 están preservados fuera del checkout en `/workspace/punchline-source`. El manifiesto
-`docs/integration_changes.json` identifica los seis scripts originales editados y hashes de origen.
+`docs/integration_changes.json` identifica los scripts originales editados y la procedencia de los archivos.
+
+## Semillas y cabeza araña
+
+[Controles, reglas, pruebas y capturas de Rustcrawler](docs/rustcrawler.md). La configuración
+de mundo se aplica a DEMO. El mapa multijugador conserva el distrito común para ambos peers;
+la cabeza araña funciona en los dos modos.
 
 ## Medidas reales y agachado
 
@@ -109,7 +116,7 @@ Evidencia en `docs/evidence/`, generada en esta sesión, no tomada de informes a
 | Jugador real y comprobaciones de arquetipos | 8/8; almacén por consultas físicas, estrechez por ShapeCast |
 | Regresión existente de postura de los cuatro chasis y fusión | 37/37 |
 | Dos procesos host/cliente ENet reales | 10/10; ambos procesos finalizan con código 0 |
-| Menú, ajustes, extras, selección y combate originales | 10/10 |
+| Menú, configuración de mundo, ajustes, extras, selección y combate | 13/13 |
 | Importación de editor y escenas de ambos proyectos | Correctas |
 | Render gráfico OpenGL 4.5 / Mesa llvmpipe | Capturas reales del terreno, exterior, ventanas, menú y juego |
 

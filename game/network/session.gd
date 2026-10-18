@@ -2,7 +2,7 @@ extends Node
 # Todos los RPC usan esta ruta estable; ningún cliente puede transmitir daño o posiciones.
 signal changed
 signal message(text: String)
-const PROTOCOL := "naoya-0.9.24-mecha-4"
+const PROTOCOL := "punchline-district-head-spider-1"
 const DEFAULT_PORT := 7777
 const MAX_PLAYERS := 3
 const PLAYER = preload("res://network/player.gd")
@@ -90,7 +90,7 @@ func hello(protocol: String, name_text: String, selected: int) -> void:
 	var id := multiplayer.get_remote_sender_id()
 	if id <= 1 or roster.has(id): return
 	if protocol != PROTOCOL or roster.size() >= MAX_PLAYERS:
-		disconnect_reason = "Usa la misma versión 0.9.24." if protocol != PROTOCOL else "La partida está completa (3/3)."
+		disconnect_reason = "Usa la misma versión de PunchLine (District500 + Rustcrawler) que el anfitrión." if protocol != PROTOCOL else "La partida está completa (3/3)."
 		reject_join.rpc_id(id,disconnect_reason)
 		# Permitir que el motivo fiable llegue antes de cerrar ese par.
 		get_tree().create_timer(.35).timeout.connect(func() -> void:
@@ -201,7 +201,7 @@ func request_action(sequence: int, action: String) -> void:
 	if is_host(): apply_action(multiplayer.get_remote_sender_id(),sequence,action)
 
 func apply_action(id: int, sequence: int, action: String) -> void:
-	if not actors.has(id) or action not in ["attack","jump","dash","ability1","ability2","ability3","ability4","transform","kogane","lock","cannon_release","emote:0","emote:1","emote:2","emote:3","emote:4","emote:5","emote:6"]: return
+	if not actors.has(id) or action not in ["interact","attack","jump","dash","ability1","ability2","ability3","ability4","transform","kogane","lock","cannon_release","emote:0","emote:1","emote:2","emote:3","emote:4","emote:5","emote:6"]: return
 	var actor: Node3D = actors[id]
 	if sequence <= actor.last_action_sequence: return
 	actor.last_action_sequence = sequence; actor.queue_action(action)

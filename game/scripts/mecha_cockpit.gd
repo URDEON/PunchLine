@@ -38,6 +38,13 @@ func _draw() -> void:
 	var speed := Vector2(host.player.velocity.x,host.player.velocity.z).length()*3.6
 	var small := size.x < 800; var font_size := 11 if small else 14
 	var base := Vector2(size.x*.34,size.y*.91)
+	if host.fusion.spider.active():
+		var spider:Node3D=host.fusion.spider
+		label_at(base,"RUSTCRAWLER / %d / 50 HP" % int(host.hp),cyan,font_size)
+		label_at(base+Vector2(0,20),"E / RECONECTAR CERCA DEL SENTINEL",cyan,font_size)
+		label_at(Vector2(size.x*.12,size.y*.23),"1 ESCÁNER / "+("LISTO" if spider.scan_cd<=0 else "%.1f s"%spider.scan_cd),cyan,font_size)
+		label_at(Vector2(size.x*.60,size.y*.16),"2 CAMUFLAJE / "+("ACTIVO %.1f s"%spider.cloak_time if spider.cloak_time>0 else ("LISTO" if spider.cloak_cd<=0 else "%.1f s"%spider.cloak_cd)),cyan,font_size)
+		return
 	label_at(base,"SENTINEL  /  PILOTO CONECTADO",cyan,font_size)
 	label_at(base+Vector2(0,20),"%.1f KM/H    ESTABILIDAD %.1f%%" % [speed,clampf(host.hp/maxf(1,host.max_hp)*100,0,100)],Color("c1c9c9"),font_size)
 	var combat: Node = host.fusion.combat

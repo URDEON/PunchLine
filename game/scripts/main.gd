@@ -734,7 +734,7 @@ func _ready() -> void:
 	world.environment.ambient_light_color = Color("a7bbd4")
 	world.environment.ambient_light_energy = 0.42
 	add_child(world)
-	arena.urban.expansion.set_sky(false)
+	arena.urban.expansion.set_sky(bool(preload("res://scripts/world_config.gd").current().night))
 
 	player = body(Vector3(0,0.1,5))
 	var player_parts := mannequin(player, Color("ebe5d7"), true)
@@ -947,7 +947,7 @@ func create_dash_frame() -> void:
 	dash_frame.setup()
 	dash_frame.visible = false
 
-func first_person_enabled() -> bool: return zoom <= .55
+func first_person_enabled() -> bool: return zoom <= .55 or (fusion.spider!=null and fusion.spider.active())
 
 func camera_aim_locked() -> bool: return camera_lock or first_person_enabled()
 
@@ -1043,7 +1043,12 @@ func _unhandled_input(event: InputEvent) -> void:
 			zoom = maxf(2.0,float(preferences.values.camera_distance)) if zoom <= .55 else 0.0
 			return
 		if event.is_action_pressed("interact"):
+			if fusion.spider.interact():return
 			arena.urban.interact(); return
+		if fusion.spider.active():
+			for slot in range(1,3):
+				if event.is_action_pressed("ability"+str(slot)):fusion.spider.ability(slot)
+			return
 		if event.is_action_pressed("kogane"):
 			presentation.toggle_kogane()
 		if event.is_action_pressed("lock"):
@@ -1075,7 +1080,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
 		var sensitivity: float = 0.003*float(preferences.values.sensitivity)
 		yaw -= event.relative.x*sensitivity
-		pitch = clampf(pitch-event.relative.y*sensitivity,-1.35 if zoom <= .55 else -1.05,1.35 if zoom <= .55 else .25)
+		pitch = clampf(pitch-event.relative.y*sensitivity,-1.35 if first_person_enabled() else -1.05,1.35 if first_person_enabled() else .25)
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if hud_attack_requires_release: return
@@ -1095,6 +1100,7 @@ func movement() -> Vector3:
 	return input.normalized().rotated(Vector3.UP,yaw)
 
 func start_dash() -> void:
+	if fusion.spider!=null and fusion.spider.active():return
 	if fusion.fused:
 		fusion.start_boost()
 		return
@@ -1123,6 +1129,7 @@ func select_fourth_variant() -> String:
 	return "normal"
 
 func punch() -> void:
+	if fusion.spider!=null and fusion.spider.active():return
 	if moves.player_freeze > 0: return
 	if fusion.fused:
 		attack_buffer = .16; return
@@ -1712,6 +1719,7 @@ func rebirth_phase1() -> void:
 	ult_msg = "RENACIMIENTO · FASE 1 · EVOLUCIÓN 0%"
 
 func on_player_death() -> void:
+	if fusion.spider.active():fusion.spider.destroy();return
 	if fusion.fused:
 		fusion.break_apart(); return
 	if ult_ready():
@@ -1966,6 +1974,9 @@ func update_enemy(enemy: Dictionary, delta: float) -> void:
 
 	var offset := player.position-actor.position
 	offset.y = 0
+	if fusion.spider.invisible():
+		actor.velocity.x=move_toward(actor.velocity.x,0,delta*18);actor.velocity.z=move_toward(actor.velocity.z,0,delta*18)
+		actor.velocity.y-=GRAVITY*delta;actor.move_and_slide();animate_enemy(enemy,delta);return
 
 	if enemy.ragdoll:
 		update_enemy_ragdoll_physics(enemy, delta)

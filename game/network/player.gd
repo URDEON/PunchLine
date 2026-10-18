@@ -88,7 +88,7 @@ func _process(delta: float) -> void:
 		interpolate_state(delta); clock += delta
 		presentation.tick(delta); feedback.tick(delta); moves.replica_tick(delta); skill_vfx.tick(delta)
 		interface.tick(delta)
-	tag.visible = not fusion.cinematic; tag.position.y = 4.5 if fusion.fused else 2.7
+	tag.visible = not fusion.cinematic and not fusion.spider.invisible(); tag.position.y = .85 if fusion.spider.active() else (4.5 if fusion.fused else 2.7)
 	tag.text = "%s · %d" % [metadata.nickname,int(hp)]
 	tag.modulate = Color("86d7c2") if peer_id == session.local_id() else Color("e7d2a3")
 
@@ -99,6 +99,7 @@ func input_pressed(action: String) -> bool:
 	if clock-float(input_state.time) > .35: return false
 	return int(input_state.flags) & int({"block":1,"walk":2,"attack":4,"ability1":8}.get(action,0)) != 0
 func first_person_enabled() -> bool:
+	if fusion.spider!=null and fusion.spider.active():return true
 	return clock-float(input_state.time) <= .35 and int(input_state.flags) & 16 != 0
 
 func movement() -> Vector3:
@@ -112,6 +113,10 @@ func simulate(delta: float) -> void:
 	yaw = float(input_state.yaw)
 	for action in action_queue:
 		if hp <= 0: break
+		if action=="interact":fusion.spider.interact();continue
+		if fusion.spider.active():
+			if action in ["ability1","ability2"]:fusion.spider.ability(int(action.trim_prefix("ability")))
+			continue
 		if action == "attack": attack_buffer = .14
 		elif action == "cannon_release": fusion.combat.release_cannon()
 		elif action == "jump": jump_buffer = .12
@@ -145,7 +150,7 @@ func refresh_targets() -> void:
 		if other == self or not is_instance_valid(other) or other.is_queued_for_deletion(): continue
 		if not proxies.has(other.peer_id): proxies[other.peer_id] = {"peer":other.peer_id,"sequence_hold":0.0,"cd":0.0,"attack_timer":0.0,"flash":0.0,"respawn":0.0,"spawn":other.player.position,"projection_frame":null}
 		var e: Dictionary = proxies[other.peer_id]
-		e.merge({"body":other.player,"mega":other.fusion.fused,"mega_yaw":other.model.rotation.y,"visual":other.model,"rig_holder":other.rig_holder,"rig_scene":other.rig_scene,"rig_anim":other.rig_anim,"rig_enabled":other.rig_enabled,"physics":other.physical_ragdoll,"hp":other.hp,"stun":other.stun,"ragdoll":other.player_ragdoll,"ragdoll_time":other.player_ragdoll_time,"wakeup_protection":maxf(other.spawn_protection,other.player_wakeup_protection),"projection_freeze":maxf(other.moves.player_freeze,other.held_time),"kind":0,"combo":other.combo,"attack_phase":"attack" if other.attack_anim > 0 or not other.skill_active.is_empty() else "idle","attack_anim":other.attack_anim,"label":other.tag},true)
+		e.merge({"body":other.player,"mega":other.fusion.fused and not other.fusion.spider.active(),"spider":other.fusion.spider.active(),"surface_up":other.fusion.spider.normal,"mega_yaw":other.model.rotation.y,"visual":other.model,"rig_holder":other.rig_holder,"rig_scene":other.rig_scene,"rig_anim":other.rig_anim,"rig_enabled":other.rig_enabled,"physics":other.physical_ragdoll,"hp":other.hp,"stun":other.stun,"ragdoll":other.player_ragdoll,"ragdoll_time":other.player_ragdoll_time,"wakeup_protection":maxf(other.spawn_protection,other.player_wakeup_protection),"projection_freeze":maxf(other.moves.player_freeze,other.held_time),"kind":0,"combo":other.combo,"attack_phase":"attack" if other.attack_anim > 0 or not other.skill_active.is_empty() else "idle","attack_anim":other.attack_anim,"label":other.tag},true)
 		enemies.append(e)
 func interrupt_enemy_attack(enemy: Dictionary) -> void:
 	if not session.actors.has(int(enemy.peer)): return
@@ -168,7 +173,7 @@ func perform_hit(enemy: Dictionary,damage: float,charge_gain: float,forward: Vec
 func receive_hit(attacker: Node3D,profile: Dictionary) -> bool:
 	if fusion.cinematic or hp <= 0 or player_ragdoll or spawn_protection > 0 or player_wakeup_protection > 0: return false
 	refresh_targets()
-	if moves.player_freeze <= 0 and not applying_counter:
+	if moves.player_freeze <= 0 and not applying_counter and not fusion.spider.active():
 		applying_counter = true
 		var countered: bool = robots.counter(proxies[attacker.peer_id]) if robots.active else moves.counter(proxies[attacker.peer_id])
 		applying_counter = false
@@ -180,7 +185,8 @@ func receive_hit(attacker: Node3D,profile: Dictionary) -> bool:
 		session.effect("block",attacker.peer_id,peer_id,0); return false
 	if crystallized: moves.break_player_frame("hit")
 	hp = maxf(0,hp-float(profile.damage)); last_damage_time = clock
-	if fusion.fused: fusion.damage.record(float(profile.damage),profile.get("point",player.global_position+Vector3.UP*2.15+incoming.normalized()*.8))
+	if fusion.spider.active():fusion.spider.cloak_time=0
+	if fusion.fused and not fusion.spider.active(): fusion.damage.record(float(profile.damage),profile.get("point",player.global_position+Vector3.UP*2.15+incoming.normalized()*.8))
 	var armor: bool = fusion.protected_m1(attacker.fusion.fused)
 	if not armor:
 		stun = maxf(stun,float(profile.stun)); attack_anim = 0; attack_hit_done = true; block = false
@@ -201,6 +207,7 @@ func receive_hit(attacker: Node3D,profile: Dictionary) -> bool:
 	return true
 func on_player_death() -> void:
 	if not session.is_host():return
+	if fusion.spider.active():fusion.spider.destroy();return
 	death_timer=maxf(death_timer,3.85 if fusion.fused else 3.0)
 	if fusion.fused:fusion.break_apart()
 func respawn_player() -> void:
@@ -299,7 +306,7 @@ func apply_full_state(data: Dictionary) -> void:
 		var prediction: float = clampf(Time.get_ticks_msec()/1000.0-float(states[-1].received),0,.1)
 		fusion_data.elapsed = minf(11.5,float(fusion_data.elapsed)+prediction)
 	fusion.apply_state(fusion_data)
-	if data.has("clearance"):
+	if data.has("clearance") and not fusion.spider.active():
 		robot_clearance.apply_snapshot(data.clearance)
 		if fusion.fused: fusion.sync_hurtbox()
 	if hp <= 0 and fusion.fused: fusion.break_apart()

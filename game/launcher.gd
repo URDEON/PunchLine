@@ -15,6 +15,7 @@ var profile: Node3D
 var extras:Control
 var quit_dialog:ConfirmationDialog
 var power_button:Button
+var world_setup:VBoxContainer
 func _ready() -> void:
     var args := OS.get_cmdline_user_args()
     if args.has("--online"): get_tree().change_scene_to_file.call_deferred("res://network/online.tscn"); return
@@ -50,11 +51,16 @@ func page(id: String) -> void:
     if is_instance_valid(extras):extras.queue_free();extras=null
     column.visible=id!="extras";portrait.visible=id=="home"
     if id=="home":
-        choice("DEMO",func()->void:enter("res://main.tscn"))
+        choice("DEMO",func()->void:page("world"))
         choice("MULTIJUGADOR",func()->void:enter("res://network/online.tscn"))
         choice("AJUSTES",func()->void:page("settings"))
         choice("EXTRAS",func()->void:page("extras"))
         status.text="0.9.24 / THE PROYECTED Y ACERO VIVO"
+    elif id=="world":
+        var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.custom_minimum_size.y=maxf(100,get_viewport_rect().size.y-300);content.add_child(scroll)
+        world_setup=preload("res://scripts/world_setup.gd").new();world_setup.size_flags_horizontal=Control.SIZE_EXPAND_FILL;scroll.add_child(world_setup)
+        world_setup.start_requested.connect(func(settings:Dictionary)->void:preload("res://scripts/world_config.gd").select(settings);enter("res://main.tscn"))
+        choice("VOLVER",func()->void:page("home"));status.text="Elige cómo será tu próxima partida."
     elif id=="settings":
         var scroll:=ScrollContainer.new();scroll.horizontal_scroll_mode=ScrollContainer.SCROLL_MODE_DISABLED;scroll.custom_minimum_size.y=maxf(100,get_viewport_rect().size.y-300);content.add_child(scroll)
         var settings=preload("res://scripts/settings_panel.gd").new();settings.preferences=profile.preferences;scroll.add_child(settings)
@@ -68,7 +74,7 @@ func page(id: String) -> void:
     if not buttons.is_empty(): buttons[0].grab_focus()
 func resize_menu() -> void:
     var extent := get_viewport_rect().size
-    column.position = Vector2(maxf(18,(extent.x-minf(920,extent.x-36))*.5),58) if current_page=="settings" else Vector2(maxf(18,extent.x*.08),maxf(60 if extent.y<500 else 70,(extent.y-minf(510,extent.y-24))*.5))
+    column.position = Vector2(maxf(18,(extent.x-minf(920 if current_page=="settings" else 540,extent.x-36))*.5),36 if extent.y<500 else 58) if current_page in ["settings","world"] else Vector2(maxf(18,extent.x*.08),maxf(60 if extent.y<500 else 70,(extent.y-minf(510,extent.y-24))*.5))
     column.size.x = minf(920 if current_page=="settings" else 440,extent.x-36); column.custom_minimum_size.x = minf(340,extent.x-36)
     var compact := extent.y < 500
     column.add_theme_constant_override("separation",5 if compact else 14)

@@ -8,7 +8,7 @@ func _ready()->void:
  mouse_filter=Control.MOUSE_FILTER_IGNORE;size=Vector2(384,52)
  alert=Control.new();game.interface.screen.add_child(alert);alert.mouse_filter=Control.MOUSE_FILTER_IGNORE;alert.draw.connect(draw_alert)
 func tick(delta:float)->void:
- clock+=delta;visible=game.fusion.fused
+ clock+=delta;visible=game.fusion.fused and not game.fusion.spider.active()
  value=clampf(game.hp/maxf(1,game.max_hp)*100,0,100)
  alert.visible=visible and value<20
  alert.position=Vector2(maxf(8,(game.interface.screen.size.x-310)*.5),12);alert.size=Vector2(310,62)

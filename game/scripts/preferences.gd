@@ -3,7 +3,7 @@ extends Node
 var game: Node3D
 var binding_notice := ""
 var values := {
-	"fullscreen": false, "vsync": true, "ui_motion": 1.0,
+	"fullscreen": false, "vsync": true, "ui_motion": 1.0,"chromatic":.3,"bloom":.35,"lens_dirt":.25,
 	"master": 0.85, "sfx": 0.85, "music": 0.55, "sensitivity": 1.0,
 	"fov": 75.0, "shake": 0.35, "effects": true, "hints": true,
 	"hold_attack": true, "fps": false, "quality": 1, "hud_scale": 0.8,

@@ -32,6 +32,10 @@ static func creature(evolved: bool) -> Array:
 static func drawing(kind: String) -> Array:
 	var out: Array = []
 	match kind:
+		"spider_scan":
+			out=[circle(Vector2(50,50),36,MINT),circle(Vector2(50,50),22,MINT),path([[50,14],[50,50],[77,28]],MINT),circle(Vector2(28,62),4,PAPER,true),circle(Vector2(68,62),3,GOLD,true)]
+		"spider_cloak":
+			out=[circle(Vector2(50,39),13,MINT),path([[37,52],[28,70],[37,87],[63,87],[72,70],[63,52]],MINT),path([[12,14],[88,86]],PAPER,4),path([[14,35],[27,29]],EDGE),path([[74,29],[87,35]],EDGE),path([[9,62],[23,62]],EDGE),path([[77,62],[91,62]],EDGE)]
 		"projection":
 			out = [path([[8,22],[23,12],[23,76],[8,89]],PAPER,2.2,true),path([[34,22],[46,12],[46,76],[34,89]],PAPER,2.2,true),path([[18,20],[15,39],[20,46],[15,60]]),path([[42,23],[37,37],[44,48],[38,64]]),path([[2,44],[5,49],[1,54]],EDGE),path([[29,33],[32,38],[28,42]],EDGE),path([[49,17],[52,23],[48,27]],EDGE)]
 			out += figure(Vector2(65,31),[[65,39],[56,59],[73,65],[88,58]])

@@ -1,0 +1,27 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS host opens real ENet spider session
+PASS host and client finish actual model loading
+PunchLine · módulos de fusión cargados: 112
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player1/FusionController/@Node3D@670/Fusion_Final_2x/Despiece_Rust_Vanguard/ROOT/ARM_RIGHT_shoulder_corrected_forward_axis/ONE_DOT_WHITE_SHOULDER_ACTUAL_HINGE/ONE_DOT_ACTUAL_WHITE_SHOULDER_tripo_part_10/tripo_part_10" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS host performs actual robot fusion
+PASS E ejection is authoritative and replicated
+PASS client receives separate 50 HP spider pool
+PASS client collider keeps spider size instead of mecha clearance height
+PASS client hides parked mecha head
+PASS camouflage state replicates from host
+PASS scanner state and cloak cancellation replicate
+PASS client position and HP tampering overwritten by authoritative snapshots
+PASS nearby reconnection restores mecha on both peers
+PASS mecha health pool and full collider restored on client
+PASS spider destruction enters original authoritative player death flow
+PASS normal respawn completes after spider death
+PunchLine · módulos de fusión cargados: 112
+PASS remote player's actual robot can also fuse
+PASS remote client E input creates its own authoritative spider
+PASS remote spider camera supports the full first-person pitch range
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player1805533373/Controller/@Label3D@669" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS remote client E input reconnects through host validation
+RESULT 18/18 host/client real ENet

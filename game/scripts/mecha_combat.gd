@@ -30,6 +30,7 @@ func can_act() -> bool:
 	return controller.fused and not controller.replica and game.hp > 0 and game.stun <= 0 and game.moves.player_freeze <= 0 and not game.player_ragdoll and not game.block and current.is_empty() and controller.boost_time <= 0
 
 func press(slot: int) -> bool:
+	if controller.spider.active():controller.spider.ability(slot);return slot in [1,2]
 	if slot>=1 and slot<=4 and not controller.damage.allowed(slot):
 		game.ult_msg=controller.damage.reason(slot);game.ult_msg_time=2.5;return false
 	if slot < 1 or slot > 4 or not can_act() or cooldowns[slot-1] > 0 or not game.player.is_on_floor(): return false

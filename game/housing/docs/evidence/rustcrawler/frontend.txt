@@ -1,0 +1,16 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS original launcher menu loads with four entries
+PASS settings button opens original settings panel
+PASS extras button loads original browser
+PASS closing extras restores original home menu
+PASS DEMO opens editable world settings before starting
+PASS DEMO button enters complete game with player rig
+PASS selected seed and sparse density actually rebuild the playable houses
+PASS selected night setting reaches the actual game environment
+PASS original character selector exposes player and Robot
+PASS original movement controls move player in District500
+PASS Robot selector button loads original animated robot
+PASS original robot combat starts real attack animation
+PASS original selector restores The Proyected character
+RESULT 13/13 launcher, menu navigation, character selector and gameplay

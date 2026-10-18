@@ -6,6 +6,7 @@ Las 71 construcciones tienen entrada funcional.
 
 Abrir **game/project.godot** con Godot 4.4.1 para jugar; la ciudad anterior fue retirada.
 
+- [Semillas, cabeza araña y controles](game/housing/docs/rustcrawler.md)
 - [Uso, integración, pruebas y pendientes](game/housing/README.md)
 - [Overlay del distrito](game/housing/docs/district_overlay.svg)
 - [Módulo reutilizable independiente](district_housing/README.md)

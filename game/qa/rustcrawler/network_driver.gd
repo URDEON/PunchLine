@@ -1,0 +1,73 @@
+extends "res://housing/qa/network_driver.gd"
+func _ready()->void:
+	host=OS.get_cmdline_user_args().has("--housing-host");started=Time.get_ticks_msec()/1000.0
+	arena=load("res://network/online.tscn").instantiate();add_child(arena);arena.set_physics_process(false);arena.menu_open=false
+	await pause(.3)
+	if host:
+		check(arena.session.host_game("SpiderHost",1,17964)==OK,"host opens real ENet spider session");run_host()
+	else:
+		if arena.session.join_game("127.0.0.1",17964,"SpiderClient",1)!=OK:get_tree().quit(1)
+@rpc("authority","call_remote","reliable")
+func inspect(tag:String,tamper:=false)->void:
+	var actor:Node3D=arena.session.actors.get(1)
+	if actor==null:observation.rpc_id(1,tag,{});return
+	if tamper:actor.player.position=Vector3(999,999,999);actor.hp=999;await pause(1.0)
+	var s:Node3D=actor.fusion.spider
+	observation.rpc_id(1,tag,{"mode":s.mode,"hp":actor.hp,"max_hp":actor.max_hp,"capsule":actor.robots.naoya.collision.shape.height,"position":actor.player.position,"up":actor.player.up_direction,"cloak":s.cloak_time,"scan":s.scan_time,"mecha":s.mecha_origin,"head_hidden":not actor.fusion.sequence.articulation.pivots.Cabeza.visible if is_instance_valid(actor.fusion.sequence) else false,"fused":actor.fusion.fused})
+@rpc("authority","call_remote","reliable")
+func owner_action(action:String)->void:
+	arena.session.local_action(action)
+@rpc("authority","call_remote","reliable")
+func owner_camera_probe()->void:
+	var event:=InputEventMouseMotion.new();event.relative=Vector2(0,-320)
+	arena._unhandled_input(event)
+	var actor:Node3D=arena.session.actors[arena.session.local_id()]
+	observation.rpc_id(1,"owner_camera",{"pitch":arena.pitch,"mode":actor.fusion.spider.mode,"hp":actor.hp})
+func run_host()->void:
+	var deadline:=Time.get_ticks_msec()+50000
+	while (arena.session.actors.size()<2 or arena.session.ready_peers.size()<1) and Time.get_ticks_msec()<deadline:await pause(.1)
+	check(arena.session.actors.size()==2 and arena.session.ready_peers.size()==1,"host and client finish actual model loading")
+	if arena.session.actors.size()!=2:finish();return
+	var peer:=0
+	for id in arena.session.actors:
+		if int(id)!=1:peer=int(id)
+	var actor:Node3D=arena.session.actors[1];await pause(.5);actor.charge=100
+	check(actor.fusion.request(),"host performs actual robot fusion")
+	if not actor.fusion.cinematic:finish();return
+	actor.fusion.sequence.advance(11.5);await pause(.6)
+	arena.session.local_action("interact");await pause(2.5)
+	var report:Dictionary=await ask(peer,"eject")
+	check(actor.fusion.spider.mode=="spider" and report.get("mode","")=="spider","E ejection is authoritative and replicated")
+	check(report.get("hp",0)==50 and report.get("max_hp",0)==50,"client receives separate 50 HP spider pool")
+	check(absf(float(report.get("capsule",9))-.58)<.01,"client collider keeps spider size instead of mecha clearance height")
+	check(report.get("head_hidden",false),"client hides parked mecha head")
+	arena.session.local_action("ability2");await pause(.5);report=await ask(peer,"cloak")
+	check(float(report.get("cloak",0))>0 and actor.fusion.spider.invisible(),"camouflage state replicates from host")
+	arena.session.local_action("ability1");await pause(.5);report=await ask(peer,"scan")
+	check(float(report.get("scan",0))>0 and float(report.get("cloak",99))==0,"scanner state and cloak cancellation replicate")
+	report=await ask(peer,"tamper",true)
+	check(report.get("position",Vector3(999,999,999)).distance_to(actor.player.position)<.25 and float(report.get("hp",999))==50,"client position and HP tampering overwritten by authoritative snapshots")
+	actor.player.global_position=actor.fusion.spider.mecha_origin+Vector3(0,.025,2.2);actor.player.velocity=Vector3.ZERO
+	arena.session.local_action("interact");await pause(1.5);report=await ask(peer,"return")
+	check(not actor.fusion.spider.active() and report.get("mode","")=="attached" and report.get("fused",false),"nearby reconnection restores mecha on both peers")
+	check(float(report.get("max_hp",0))==300 and float(report.get("capsule",0))>3.9,"mecha health pool and full collider restored on client")
+	actor.fusion.spider.return_cd=0;await pause(.2)
+	arena.session.local_action("interact");await pause(2.5);actor.fusion.spider.take_damage(50)
+	check(actor.hp==0 and actor.death_timer>0,"spider destruction enters original authoritative player death flow")
+	await pause(4.6)
+	check(arena.session.actors.has(1) and arena.session.actors[1].hp>0 and not arena.session.actors[1].fusion.fused,"normal respawn completes after spider death")
+	# The remote owner sends ordinary inputs; the host still decides ejection and return.
+	actor=arena.session.actors[peer];actor.charge=100
+	check(actor.fusion.request(),"remote player's actual robot can also fuse")
+	if actor.fusion.cinematic:
+		actor.fusion.sequence.advance(11.5);await pause(.7)
+		owner_action.rpc_id(peer,"interact");await pause(2.5)
+		check(actor.fusion.spider.mode=="spider" and actor.hp==50,"remote client E input creates its own authoritative spider")
+		owner_camera_probe.rpc_id(peer)
+		var camera_deadline:=Time.get_ticks_msec()+5000
+		while not reports.has("owner_camera") and Time.get_ticks_msec()<camera_deadline:await pause(.05)
+		check(float(reports.get("owner_camera",{}).get("pitch",0))>.25 and reports.get("owner_camera",{}).get("mode","")=="spider","remote spider camera supports the full first-person pitch range")
+		actor.player.global_position=actor.fusion.spider.mecha_origin+Vector3(0,.025,2.2);actor.player.velocity=Vector3.ZERO
+		owner_action.rpc_id(peer,"interact");await pause(1.5)
+		check(not actor.fusion.spider.active() and actor.fusion.fused,"remote client E input reconnects through host validation")
+	finish()

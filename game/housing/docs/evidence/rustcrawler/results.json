@@ -1,0 +1,21 @@
+{
+  "created_utc": "2026-10-18T20:29:58.534676+00:00",
+  "godot": "4.4.1-stable",
+  "source_glb_sha256": "f694f7863266d66b8bae91b5fa59040adcdb00d48b734af997039adcdc291f45",
+  "source_glb_preserved": true,
+  "features": "28/28",
+  "frontend": "13/13",
+  "ENet": "18/18",
+  "ENet_process_exits": [
+    0,
+    0
+  ],
+  "posture": "37/37",
+  "workshop": "14/14",
+  "clean_zip_editor_import_final_exit": 0,
+  "clean_zip_features_exit": 0,
+  "clean_zip_frontend_exit": 0,
+  "graphics": "OpenGL 4.5 / Mesa llvmpipe; six scene captures and nonzero pixel difference with frozen camera/physics",
+  "desktop_gpu_fps_measured": false,
+  "camouflage_graphical_state": "material translucency explicitly verified with paused simulation; distinct exterior/camouflage captures"
+}

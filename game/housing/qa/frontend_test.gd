@@ -23,9 +23,17 @@ func run()->void:
 	check(menu.current_page=="extras" and is_instance_valid(menu.extras),"extras button loads original browser")
 	menu.extras.close_requested.emit();await frames(3)
 	check(menu.current_page=="home","closing extras restores original home menu")
-	find_button(menu,"DEMO").pressed.emit();await frames(65)
+	var previous:Dictionary=preload("res://scripts/world_config.gd").remembered()
+	find_button(menu,"DEMO").pressed.emit();await frames(3)
+	check(menu.current_page=="world" and is_instance_valid(menu.world_setup.seed_edit),"DEMO opens editable world settings before starting")
+	menu.world_setup.seed_edit.text="Frontend 104";menu.world_setup.density.selected=0;menu.world_setup.night.button_pressed=true
+	for button in menu.world_setup.get_children():
+		if button is Button and button.text=="CREAR MUNDO Y JUGAR":button.pressed.emit();break
+	await frames(65)
 	var game:Node3D=current_scene
 	check(game!=null and game.player!=null and game.rig_scene!=null,"DEMO button enters complete game with player rig")
+	check(game.arena.punchline.housing.get_meta("world_settings").seed=="Frontend 104" and game.arena.punchline.housing.get_node("GeneratedBuildings").find_children("Building_*","Node3D",true,false).size()<71,"selected seed and sparse density actually rebuild the playable houses")
+	check(game.get_node("ArenaEnvironment").environment.sky.sky_material.panorama.resource_path.ends_with("skybox-night.png"),"selected night setting reaches the actual game environment")
 	check(game.interface.character_rows.size()==3 and not game.interface.character_rows[1].disabled,"original character selector exposes player and Robot")
 	for e in game.enemies:game.set_dummy_mode(e,0)
 	var before:Vector3=game.player.global_position
@@ -40,4 +48,5 @@ func run()->void:
 	game.interface.character_rows[0].pressed.emit();await frames(20)
 	check(not game.robots.active and game.rig_holder.visible,"original selector restores The Proyected character")
 	print("RESULT ",checks-failures,"/",checks," launcher, menu navigation, character selector and gameplay")
+	preload("res://scripts/world_config.gd").select(previous)
 	game.queue_free();await frames(8);quit(1 if failures else 0)

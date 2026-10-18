@@ -5,12 +5,28 @@
     "01_Proyecto_y_Sistemas.zip": "40a3c1af2e3334d57f0d54ae983530fa0aed47040f05607ed71e9d830b231ffe"
   },
   "edited_original_code": [
+    "launcher.gd",
+    "network/online_arena.gd",
+    "network/player.gd",
+    "network/session.gd",
+    "scripts/arena.gd",
+    "scripts/body_camera.gd",
+    "scripts/body_lens.gd",
+    "scripts/combat_geometry.gd",
+    "scripts/fusion_controller.gd",
+    "scripts/hud_identity.gd",
+    "scripts/hud_ink.gd",
+    "scripts/interface.gd",
+    "scripts/main.gd",
+    "scripts/mecha_cockpit.gd",
+    "scripts/mecha_combat.gd",
+    "scripts/preferences.gd",
+    "scripts/punchline_interactions.gd",
     "scripts/punchline_map.gd",
     "scripts/robot_clearance.gd",
-    "scripts/punchline_interactions.gd",
     "scripts/route_trial.gd",
-    "scripts/arena.gd",
-    "network/online_arena.gd"
+    "scripts/settings_panel.gd",
+    "scripts/stability_display.gd"
   ],
   "removed_from_editable": [
     "assets/environment/ruined_city",
@@ -18,5 +34,7 @@
   ],
   "project_godot_preserved": true,
   "original_archive_copies_preserved": "/workspace/punchline-source",
-  "missing_original_map": "District500.tscn and original Curbs/RoadMarkings/ParkingMarkings were not present in any supplied archive"
+  "missing_original_map": "District500.tscn and original Curbs/RoadMarkings/ParkingMarkings were not present in any supplied archive",
+  "rustcrawler_source_sha256": "f694f7863266d66b8bae91b5fa59040adcdb00d48b734af997039adcdc291f45",
+  "rustcrawler_source_notice": "User-provided GLB; original bytes preserved. Its skin is rebuilt in rustcrawler_rig.gd because original joint rests/weights do not provide usable animation."
 }

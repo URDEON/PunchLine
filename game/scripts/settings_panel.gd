@@ -49,6 +49,7 @@ func show_category(id:String)->void:
    toggle("reference_audio","Sonidos de tus referencias")
   "camera":
    slider("sensitivity","Sensibilidad",.25,2.5,.05);slider("fov","Campo de visión",60,95,1);slider("camera_distance","Distancia / 0 = primera persona",0,10,.1);slider("body_lens","Ojo de pez / cámara corporal",0,.35,.01);slider("shake","Impactos en cámara",0,1,.05)
+   slider("chromatic","Aberración cromática / cámara corporal",0,1,.05);slider("bloom","Bloom / cámara corporal",0,1,.05);slider("lens_dirt","Suciedad de lente",0,1,.05)
    toggle("procedural_gait","Apoyos del Sentinel");toggle("human_grounding","Apoyos de The Proyected");toggle("robot_grounding","Apoyos de robots base")
   "interface":
    slider("hud_scale","Escala del HUD",.5,1,.05);slider("ui_motion","Movimiento de menús",0,1,.05);toggle("hints","Ayuda de controles");toggle("kogane_comments","Comentarios de Kogane");toggle("hold_attack","Encadenar M1 al mantener clic")
