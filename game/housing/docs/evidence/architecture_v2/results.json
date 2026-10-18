@@ -1,0 +1,19 @@
+{
+  "date_utc": "2026-10-18T05:33:08.396571+00:00",
+  "revision": "architecture-2.1",
+  "godot": "4.4.1-stable",
+  "buildings": 71,
+  "enterable_buildings": 71,
+  "windows": 568,
+  "plan_unit_tests": "6/6",
+  "geometry": "71 buildings and paved paths, no protected-layer violations",
+  "architecture": "11/11",
+  "real_mecha": "14/14",
+  "archetypes": "8/8",
+  "robot_posture": "37/37",
+  "ENet_host_client": "10/10, exits 0/0",
+  "frontend": "10/10",
+  "synthetic_standalone": "11/11",
+  "render": "OpenGL 4.5, Mesa llvmpipe via Xvfb",
+  "render_frames_are_desktop_gpu_benchmark": false
+}

@@ -1,0 +1,14 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS standing body blocked by workshop lintel
+PASS capsule smoothly reaches crouch height
+PASS crouched body passes doorway and connected partition
+PASS standing up prohibited under roof
+PASS fusion blocked where large body overlaps ceiling
+PASS hidden roof retains physical collision
+PASS exits and regains standing posture after hysteresis
+PASS one metre opening rejects 1.5 metre body even crouched
+PASS warehouse permits standing body
+PASS house permits player at entrance
+PASS inaccessible facade has solid collider
+RESULT checks=11 failed=0 SYNTHETIC body; real rig untested

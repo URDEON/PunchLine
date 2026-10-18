@@ -1,6 +1,6 @@
 Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
 
 PunchLine · módulos de fusión cargados: 112
-WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/HousingNetworkTest/OnlineArena/Players/Player1/FusionController/@Node3D@641/Fusion_Final_2x/SentinelArticulation2/@Node3D@762/@Node3D@773/@Node3D@775/@Node3D@777/RigidBatch" (possibly benign).
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/HousingNetworkTest/OnlineArena/Players/Player1/FusionController/@Node3D@641/Fusion_Final_2x/SentinelArticulation2/@Node3D@762/@Node3D@763/@Node3D@764/@Node3D@766/ARM_RIGHT_shoulder_corrected_forward_axis/ONE_DOT_SHOULDER_ARTICULATED_tripo_part_72/tripo_part_72" (possibly benign).
      at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
 PASS client received completion after authoritative snapshots

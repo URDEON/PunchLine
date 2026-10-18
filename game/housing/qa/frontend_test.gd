@@ -1,0 +1,43 @@
+extends SceneTree
+var checks:=0
+var failures:=0
+func _initialize()->void:run.call_deferred()
+func frames(n:int)->void:
+	for i in range(n):await physics_frame
+func check(ok:bool,label:String)->void:
+	checks+=1
+	if not ok:failures+=1
+	print("PASS " if ok else "FAIL ",label)
+func find_button(menu:Control,label:String)->Button:
+	for b in menu.buttons:
+		if b.text==label:return b
+	return null
+func run()->void:
+	var menu:Control=load("res://launcher.tscn").instantiate()
+	root.add_child(menu);current_scene=menu;await frames(25)
+	check(menu.title.text=="PUNCHLINE" and menu.buttons.size()==4,"original launcher menu loads with four entries")
+	find_button(menu,"AJUSTES").pressed.emit();await frames(3)
+	check(menu.current_page=="settings" and menu.content.get_child_count()>1,"settings button opens original settings panel")
+	find_button(menu,"VOLVER").pressed.emit();await frames(3)
+	find_button(menu,"EXTRAS").pressed.emit();await frames(3)
+	check(menu.current_page=="extras" and is_instance_valid(menu.extras),"extras button loads original browser")
+	menu.extras.close_requested.emit();await frames(3)
+	check(menu.current_page=="home","closing extras restores original home menu")
+	find_button(menu,"DEMO").pressed.emit();await frames(65)
+	var game:Node3D=current_scene
+	check(game!=null and game.player!=null and game.rig_scene!=null,"DEMO button enters complete game with player rig")
+	check(game.interface.character_rows.size()==3 and not game.interface.character_rows[1].disabled,"original character selector exposes player and Robot")
+	for e in game.enemies:game.set_dummy_mode(e,0)
+	var before:Vector3=game.player.global_position
+	Input.action_press("forward");await frames(40);Input.action_release("forward");await frames(5)
+	check(game.player.global_position.distance_to(before)>.5,"original movement controls move player in District500")
+	game.robots.forced=1
+	game.interface.character_rows[1].pressed.emit();await frames(25)
+	check(game.robots.active and game.rig_holder.visible and game.robots.current.meshes.size()>0,"Robot selector button loads original animated robot")
+	game.punch();await frames(2)
+	check(not game.robots.attack.is_empty() and game.rig_anim.is_playing(),"original robot combat starts real attack animation")
+	await frames(50)
+	game.interface.character_rows[0].pressed.emit();await frames(20)
+	check(not game.robots.active and game.rig_holder.visible,"original selector restores The Proyected character")
+	print("RESULT ",checks-failures,"/",checks," launcher, menu navigation, character selector and gameplay")
+	game.queue_free();await frames(8);quit(1 if failures else 0)

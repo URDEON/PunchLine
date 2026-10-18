@@ -18,26 +18,41 @@ sin dependencias de los personajes: cámara libre WASD/QE; botón derecho y rat�
 ## Qué contiene la integración
 
 - 19 polígonos originales verificados contra el GeoJSON a 1 mm. Semilla 923 reproducible.
-- **77 edificios en 17 macro-lotes**: 20 viviendas, 3 comercios de esquina, 5 talleres para
-  mecha agachado, 1 almacén para mecha de pie y 48 edificios sólidos `access=inaccessible`.
+- **71 edificios en 17 macro-lotes**, todos con entrada e interior: 62 viviendas, 3 comercios
+  de esquina, 5 talleres para mecha agachado y 1 almacén para mecha de pie.
+  Por el pedido de dar entradas a todas las casas, las alternativas `facade_only` del
+  generador anterior ahora se resuelven como viviendas accesibles; el JSON fuente se conserva.
   Dos lotes quedan vacíos porque la búsqueda actual no encuentra un acceso/huella válido;
   no es una prueba de imposibilidad geométrica. Véase `docs/lots.md`.
 - Retiro mínimo 2,5 m y separación mínima 3 m. Las huellas físicas, incluidas las rampas
   inclinadas, no invaden calles, veredas, estacionamiento ni otros lotes. Parking_00 permanece libre.
 - Cada interior accesible tiene piso, techo y paredes con grosor, entrada permanentemente
   abierta y dos habitaciones conectadas. Rampas de 12 cm de desnivel dentro de la propiedad.
-  Fachadas inaccesibles completamente sólidas y sin puertas que aparenten funcionar.
+  Los 71 senderos de acceso se recortan dentro del lote y fuera de las capas protegidas.
+- Arquitectura procedural reproducible: ocho paletas, dos tipos de tejado inclinado,
+  tejas, chimeneas, zócalos, marcos, contraventanas, porches, jardineras y mobiliario interior.
+  Los comercios tienen toldos y carteles. **568 ventanas transparentes** ocupan huecos reales
+  en los muros: permiten ver hacia fuera y hacia dentro, conservando su barrera física.
 - Escena editable `housing/scenes/GeneratedHousing.tscn`, con jerarquía
   `GeneratedBuildings/lot_ID/Building_ID`. Pisos, paredes, puertas, ventanas, techo,
   interiores y rampas son categorías separadas. Prefabs medidos en `housing/scenes/prefabs/`.
-- Materiales compartidos, culling visual a 180 m y generación explícita con hash. Ningún
-  edificio se instancia por frame. `set_roof_visible` oculta solo mallas, sin quitar colisiones.
+- Texturas compartidas de asfalto, césped, pavimento, estuco, ladrillo, madera y tejas.
+  Culling visual a 320 m para todas las piezas y generación explícita con hash. Ningún edificio se
+  instancia por frame. `set_roof_visible` oculta solo mallas, sin quitar colisiones.
+- Piezas repetidas agrupadas mediante MultiMesh por categoría y material. `BakedMultiMesh.gd`
+  conserva sus transformaciones en CPU al guardar escenas sin renderer y las carga una vez;
+  las instancias estáticas no interpolan desde matrices vacías. Las colisiones siguen separadas.
 
 ## Origen del mapa y correcciones documentadas
 
 El proyecto recibido por Drive trae otras ciudades, **no el District500.tscn original**.
 Se reconstruyeron las cuatro capas disponibles directamente del GeoJSON:
 26 Roads, 1 Parking, 19 Lots y 15 Sidewalks, con alturas del JSON y colisiones.
+El suelo invisible se corrigió invirtiendo el orden de los vértices superiores para el
+frente de cara horario de Godot; se mantienen normales hacia arriba y las colisiones.
+También se añadió un sustrato inferior con colisión para cerrar las juntas del vector,
+sin modificar sus polígonos. Ahora cada superficie tiene textura y coordenadas UV.
+
 Las capas Curbs, RoadMarkings y ParkingMarkings están señaladas como `source_missing`:
 no se inventan como si se hubieran recuperado sus mallas originales. La escena está en
 `housing/scenes/District500.tscn`; el GeoJSON original está también en `tools/layout_vector.geojson`.
@@ -88,23 +103,31 @@ Evidencia en `docs/evidence/`, generada en esta sesión, no tomada de informes a
 | Comprobación | Resultado |
 | --- | --- |
 | Pruebas Python del planificador | 6/6 |
-| Validación del distrito guardado y repetición con 923 | 77 edificios, 0 invasiones; 5 talleres y 1 almacén requeridos |
+| Validación del distrito guardado y repetición con 923 | 71 edificios y senderos, 0 invasiones; 5 talleres y 1 almacén requeridos |
+| Arquitectura y física de toda la escena guardada | 11/11: texturas, caras, 71 puertas y rutas, 568 huecos, vidrio, envolventes y culling |
 | Taller con mecha real y juego completo | 14/14: entrada, interior, techo, IK, habilidad, bloqueo, boost y salida |
-| Jugador real y comprobaciones de arquetipos | 8/8; almacén/fachada por consultas físicas, estrechez por ShapeCast |
+| Jugador real y comprobaciones de arquetipos | 8/8; almacén por consultas físicas, estrechez por ShapeCast |
 | Regresión existente de postura de los cuatro chasis y fusión | 37/37 |
 | Dos procesos host/cliente ENet reales | 10/10; ambos procesos finalizan con código 0 |
-| Importación de editor y arranque individual headless | Correctos |
+| Menú, ajustes, extras, selección y combate originales | 10/10 |
+| Importación de editor y escenas de ambos proyectos | Correctas |
+| Render gráfico OpenGL 4.5 / Mesa llvmpipe | Capturas reales del terreno, exterior, ventanas, menú y juego |
 
 La prueba de red verifica postura/cápsula, representación, corrección de una alteración local
 de posición y recuperación de pie al salir. No equivale a una revisión exhaustiva antitrampas.
 El jugador real recorre una casa; el mecha real recorre el taller piloto. Las dimensiones y
-huellas del resto se validan geométricamente, sin afirmar recorridos manuales de los 77 edificios.
+huellas de todos se validan con consultas y barridos físicos, sin afirmar recorridos manuales
+por las 71 construcciones.
 
-Rendimiento: `performance_none.json` y `performance_district.json` registran 180 muestras
-por caso, con mapa/actores y con/sin edificios. Los datos incluyen CPU de física, nodos y
-formas. Se capturaron en un entorno compartido y headless: **no son mediciones de GPU ni
-FPS de renderizado y no demuestran una mejora de rendimiento**. No hay revisión gráfica
-ni comparativa de FPS al explorar interiores en este equipo.
+Las capturas `before_*.png` y `after_*.png` documentan la corrección con render real, usando
+Xvfb y Mesa llvmpipe. `after_gameplay.png` usa el juego original, sus luces, personaje y HUD.
+[Exterior corregido](docs/evidence/after_house.png) · [Vista por ventanas](docs/evidence/after_window.png).
+La evidencia de esta revisión está en `docs/evidence/architecture_v2/`.
+
+Los archivos `performance_none.json` y `performance_district.json` corresponden a la entrega
+anterior de geometría simple y se conservan como referencia histórica. No caracterizan
+esta arquitectura. El render por software en un entorno compartido no establece FPS de una
+GPU de escritorio; queda pendiente medir rendimiento en el equipo de juego.
 
 ## Repetir en este entorno
 
@@ -120,9 +143,15 @@ GODOT=/workspace/godot441/Godot_v4.4.1-stable_linux.x86_64
 /workspace/punchline-tools/bin/python district_housing/tools/validate_district.py
 "$GODOT" --headless --path game --script housing/qa/pilot_test.gd
 "$GODOT" --headless --path game --script housing/qa/archetype_checks.gd
+"$GODOT" --headless --path game --script housing/qa/architecture_test.gd
+"$GODOT" --headless --path game --script housing/qa/frontend_test.gd
 "$GODOT" --headless --path game --script qa/update_v0924_test.gd
 python3 game/housing/qa/run_network.py
 ```
+
+Para las capturas, ejecutar `housing/qa/render_housing.gd` y `housing/qa/render_gameplay.gd`
+sin `--headless`, con una pantalla disponible. En esta sesión se utilizó `DISPLAY=:99`
+y `LIBGL_ALWAYS_SOFTWARE=1`. Los scripts de captura rechazan el renderer headless.
 
 Las pruebas pueden tardar por la importación inicial de modelos. No hay servicios persistentes
 que iniciar. Se usan los checkouts existentes; no crear un worktree para tareas en la nube.
@@ -142,7 +171,7 @@ de regenerar. No ejecutar el horneado como paso automático de instalación. La 
 `district_housing` es independiente y reutilizable; nunca copiar su project.godot sobre el principal.
 
 Pendientes: recuperar las tres capas originales ausentes si se dispone del paquete base;
-revisión gráfica cercana y FPS con render; mejorar búsqueda en los dos lotes vacíos;
+medir FPS en hardware de juego; mejorar búsqueda en los dos lotes vacíos;
 pruebas exhaustivas de giros, acciones extremas, todas las variantes y más clientes.
 No se generaron escaleras ni edificios de dos plantas. Hay culling, no streaming físico;
-no se añadió decoración repetitiva que justifique MultiMesh. No hay un sistema nuevo de destrucción.
+las piezas repetidas usan MultiMesh con transformaciones editables. No hay un sistema nuevo de destrucción.

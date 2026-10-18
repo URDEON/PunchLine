@@ -26,7 +26,7 @@ func run()->void:
 	check(local.z<0 and local.z>-b.depth/2,"real player walks through house doorway into second room")
 	game.yaw+=PI;Input.action_press("forward");await frames(140);Input.action_release("forward");await frames(5)
 	check(building.to_local(game.player.global_position).z>b.depth/2,"real player can leave house")
-	for archetype in ["warehouse_standing","facade_only"]:
+	for archetype in ["warehouse_standing"]:
 		b=selected[archetype];building=game.arena.punchline.housing.get_node("GeneratedBuildings/"+b.lot+"/"+b.id)
 		var shape:=CapsuleShape3D.new();shape.radius=1.05;shape.height=4.0
 		var query:=PhysicsShapeQueryParameters3D.new();query.shape=shape;query.collision_mask=1
@@ -37,6 +37,9 @@ func run()->void:
 			for point in [Vector3(0,2.02,1),Vector3(0,2.02,0),Vector3(0,2.02,-1)]:
 				query.transform.origin=building.to_global(point)
 				check(game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty(),"standing warehouse room/partition clearance "+str(point.z))
+	var all_open:=true
+	for entry in data.buildings:all_open=all_open and entry.access!="inaccessible"
+	check(all_open,"all production houses have real entrances")
 	var factory:Node3D=load("res://housing/scripts/DistrictHousingGenerator.gd").new();game.add_child(factory)
 	factory.part(factory,"NarrowLeft",Vector3(5,5,.3),Vector3(396.6,2.5,0),null)
 	factory.part(factory,"NarrowRight",Vector3(5,5,.3),Vector3(403.4,2.5,0),null)

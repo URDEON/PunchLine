@@ -33,8 +33,12 @@ func run() -> void:
 	body.body_width = 1.5
 	body.position = Vector3(0,0.01,8)
 	root.add_child(body)
-	await tick(100, Vector3(0,0,-4))
-	check(body.position.z > 5.0, "standing body blocked by workshop lintel")
+	# Test the standing collider directly: move_authoritative automatically crouches near a lintel.
+	for i in range(100):
+		await physics_frame
+		body.velocity=Vector3(0,0,-4)
+		body.move_and_slide()
+	check(body.position.z > 5.0 and body.current_height==4.0, "standing body blocked by workshop lintel")
 	body.crouch_requested = true
 	await tick(70)
 	check(absf(body.current_height-2.0)<0.01, "capsule smoothly reaches crouch height")

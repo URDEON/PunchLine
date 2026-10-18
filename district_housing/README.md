@@ -1,6 +1,6 @@
 # District500 — módulo independiente para Godot 4.4.1
 
-El piloto inicial ya se integró con PunchLine 0.9.24 y se extendió a **77 edificios**.
+El piloto inicial ya se integró con PunchLine 0.9.24 y se extendió a **71 edificios**.
 Abre `project.godot` para inspeccionar el distrito con cámara libre (WASD/QE; botón derecho
 para orientar). Para jugar con los robots reales, abre **`../game/project.godot`**.
 
@@ -8,7 +8,9 @@ para orientar). Para jugar con los robots reales, abre **`../game/project.godot`
 
 Incluye planificador Python/Shapely, JSON original de 19 macro-lotes, GeoJSON original,
 perfil medido del mecha, plan reproducible con semilla 923, escenas editables, scripts,
-interiores, rampas y colisiones. `data/generated_plan.svg` identifica cada edificio;
+interiores, rampas, colisiones, materiales y texturas. Las 71 construcciones tienen entradas
+funcionales y 568 ventanas con vistas. La arquitectura combina paletas, tejados, porches,
+chimeneas, contraventanas, jardineras y mobiliario con una semilla reproducible. `data/generated_plan.svg` identifica cada edificio;
 los datos de sus accesos están en `data/generated_plan.json`. `data/pilot_plan.json`
 conserva el taller piloto. `scenes/SyntheticPrototypeGallery.tscn` y `tests/synthetic_profile.json`
 son fixtures de laboratorio, **no dimensiones reales de PunchLine**.

@@ -12,7 +12,10 @@ assert a==b and json.loads(json.dumps(a['buildings']))==saved['buildings'],'Seed
 data,layers=sources();lots={lot['id']:Polygon(lot['polygon_xz_m']) for lot in data['lots']}
 forbidden=unary_union([g for key,geoms in layers.items() if key!='Lots' for g in geoms])
 supports=[]
+path_count=0
 for building in saved['buildings']:
+ assert building['access']!='inaccessible','Production buildings must have real entrances'
+ assert building.get('style',{}).get('roof') in ('gable','hip'),'Missing procedural architecture'
  p=Polygon(building['footprint'])
  if building['access']!='inaccessible':
   angle=building['rotation'];cx,cz=building['center'];w=building['door_width'];depth=building['depth']
@@ -23,6 +26,12 @@ for building in saved['buildings']:
  assert lots[building['lot']].buffer(-2.5).covers(p),building
  assert not p.intersects(forbidden),building
  supports.append(p)
+ triangles=[Polygon(tri) for tri in building.get('path_triangles',[])]
+ assert triangles and all(t.is_valid and t.area>0 for t in triangles),'Missing or invalid entrance paving'
+ paving=unary_union(triangles)
+ assert lots[building['lot']].buffer(1e-7).covers(paving),'Entrance paving leaves its property'
+ assert paving.intersection(forbidden).area<1e-6,'Entrance paving invades protected map layers'
+ path_count+=1
 for i,x in enumerate(saved['buildings']):
  corridor=LineString([x['entry'],x['sidewalk']]).buffer(x['route_width']/2,cap_style=2)
  assert not corridor.intersects(unary_union(layers['Parking']))
@@ -33,5 +42,8 @@ for i,x in enumerate(saved['buildings']):
 for lot in data['lots']:
  required=lot['access_distribution']['requested_mecha_access']
  if required:assert any(b['lot']==lot['id'] and b['access']==required for b in saved['buildings'])
+assert len({b['style']['palette'] for b in saved['buildings']})==8
+assert {b['style']['roof'] for b in saved['buildings']}=={'gable','hip'}
 result={'passed':True,'seed':923,'buildings':len(saved['buildings']),'lots_in_source':len(lots),'populated_lots':len(set(b['lot'] for b in saved['buildings'])),'crouch_workshops':sum(b['access']=='mecha_crouch' for b in saved['buildings']),'standing_warehouses':sum(b['access']=='mecha_standing' for b in saved['buildings']),'excluded_geometry_violations':0,'setback_m':2.5,'clearance_m':3.0,'actual_ramp_box_extents_checked':True,'virtual_road_seam_max_m':.5,'zoning_overrides':saved['zoning_overrides']}
+result.update(enterable_buildings=len(saved['buildings']),validated_paved_paths=path_count,facade_palettes=8,roof_shapes=['gable','hip'])
 print(json.dumps(result,indent=2))

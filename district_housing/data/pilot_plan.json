@@ -8,7 +8,7 @@
     "player_height": 1.89999997615814,
     "player_width": 0.759999990463257,
     "collider_width": 2.09999990463257,
-    "measurement_source": "game/housing/data/robot_measurements.json; real 0.9.24 fused capsule and conservative rigid-mesh visual bounds, Godot 4.4.1"
+    "measurement_source": "game/housing/data/robot_measurements_initial.json; real 0.9.24 fused capsule and conservative rigid-mesh AABB diagonal; later bone-cache-corrected base measurements in robot_measurements.json"
   },
   "buildings": [
     {
@@ -62,24 +62,20 @@
           -114.92098326229389
         ],
         [
-          30.18772328243259,
-          -116.47829301028898
+          30.187723283332808,
+          -116.47829291029304
         ],
         [
-          31.387674657708033,
-          -116.48909564767848
+          31.3876747586042,
+          -116.48909554858275
         ],
         [
-          31.351051475283754,
-          -120.55717981383967
+          31.351051574379483,
+          -120.55717991473583
         ],
         [
-          30.15110010000831,
-          -120.54637717645016
-        ],
-        [
-          30.16941169122045,
-          -118.51233509336957
+          30.151100099108092,
+          -120.54637727644611
         ]
       ],
       "road_seam_area_m2": 1.3601271026321253,
@@ -109,7 +105,48 @@
         41.14343615821522,
         -118.61112943575962
       ],
-      "route_width": 4.06824901406764
+      "route_width": 4.06824901406764,
+      "style": {
+        "palette": 3,
+        "roof_palette": 2,
+        "roof": "gable",
+        "roof_rise": 0.869,
+        "porch": false,
+        "shutters": true,
+        "chimney": true,
+        "furniture_side": 0,
+        "sign": 3
+      },
+      "path_triangles": [
+        [
+          [
+            30.15110010000831,
+            -120.54637717645016
+          ],
+          [
+            40.80975264101481,
+            -116.57391849467578
+          ],
+          [
+            40.80842309791044,
+            -120.64232039403481
+          ]
+        ],
+        [
+          [
+            40.80975264101481,
+            -116.57391849467578
+          ],
+          [
+            30.15110010000831,
+            -120.54637717645016
+          ],
+          [
+            30.18772328243259,
+            -116.47829301028898
+          ]
+        ]
+      ]
     }
   ],
   "blockers": [],

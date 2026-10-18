@@ -1,0 +1,11 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS real player walks through house doorway into second room
+PASS real player can leave house
+PASS actual mecha capsule at warehouse_standing entrance
+PASS standing warehouse room/partition clearance 1.0
+PASS standing warehouse room/partition clearance 0.0
+PASS standing warehouse room/partition clearance -1.0
+PASS all production houses have real entrances
+PASS ShapeCast blocks real mecha width at 1.8 metre opening even crouched
+RESULT 8/8 actual player and measured physical mecha dimensions

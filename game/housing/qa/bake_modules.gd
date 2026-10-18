@@ -4,7 +4,7 @@ func _initialize()->void:
 	root.add_child(generator)
 	var plan:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/generated_plan.json"))
 	DirAccess.make_dir_recursive_absolute("res://housing/scenes/prefabs")
-	for archetype in ["small_residential","corner_shop","workshop_crouch","warehouse_standing","facade_only"]:
+	for archetype in ["small_residential","corner_shop","workshop_crouch","warehouse_standing"]:
 		for b in plan.buildings:
 			if b.archetype!=archetype:continue
 			var building:=Node3D.new();building.name=archetype;building.set_meta("access",b.access)

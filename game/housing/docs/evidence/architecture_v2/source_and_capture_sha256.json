@@ -1,0 +1,10 @@
+{
+  "district_housing/data/district_lots.json": "9d332e99bd5cec962b5bf25fd11de7738dae0aae0e98698f83bfcee0de2b4887",
+  "district_housing/tools/layout_vector.geojson": "30ccc6f725eec397de90c99a7a6816858b2f5d3d5f3a11d6d23c0872e6ab03fe",
+  "game/project.godot": "dbd498d4a0297d4ba93ef7d0b48d1fad17b753b1b3a1eb4ffe3732e4e390d584",
+  "game/housing/docs/evidence/after_district.png": "bde854502693729f72d46b617d82ed6c81b26593e1e7710c857d485a62d2e107",
+  "game/housing/docs/evidence/after_gameplay.png": "0d3f2a652de723976853b682aaf1d5c5afc06df16b07adeeb93371b9b3371edf",
+  "game/housing/docs/evidence/after_house.png": "d36d76b86e97353098c13aaa74aac123494a27db2100d362963afdf6531c0789",
+  "game/housing/docs/evidence/after_menu.png": "ea33a7f294237141eeed64a6507546ddac601d52ad70f76aa217dda602606713",
+  "game/housing/docs/evidence/after_window.png": "a14887f3f632cbc71203d946198d57c9c8eef3109491445e9fa29f5c994bb392"
+}

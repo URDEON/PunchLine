@@ -6,7 +6,7 @@ import math
 import random
 from pathlib import Path
 from shapely.geometry import Polygon, LineString, Point, box
-from shapely import make_valid
+from shapely import make_valid, constrained_delaunay_triangles
 from shapely.ops import nearest_points, unary_union
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -93,6 +93,9 @@ def plan(profile=None, scope='pilot', seed=923):
                 allowed = [a for a in lot['permitted_archetypes']
                            if a in ('small_residential', 'corner_shop', 'commercial_hall', 'facade_only')]
                 archetype = rng.choice(allowed)
+                # All production houses are now genuinely enterable, as requested.
+                if profile and archetype == 'facade_only':
+                    archetype = 'small_residential'
                 access = 'inaccessible' if archetype == 'facade_only' else 'player_only'
                 # Player entrances also need measured dimensions; no made-up production body sizes.
                 if access != 'inaccessible' and not profile:
@@ -121,7 +124,8 @@ def plan(profile=None, scope='pilot', seed=923):
                 continue
             entry = pt(0, depth/2)
             ramp = Polygon([pt(-door_w/2,depth/2),pt(door_w/2,depth/2),pt(door_w/2,depth/2+1.2),pt(-door_w/2,depth/2+1.2)]) if access != 'inaccessible' else footprint
-            support = footprint.union(ramp)
+            # Tiny outward tolerance joins collinear rotated edges robustly.
+            support = footprint.union(ramp.buffer(1e-7,join_style=2))
             if not available.covers(support) or not cell.covers(support) or support.intersects(forbidden):
                 continue
             if any(support.distance(p) < 3 for p in occupied):
@@ -145,7 +149,7 @@ def plan(profile=None, scope='pilot', seed=923):
             if any(route.intersects(p) for p in occupied):
                 rejected['if any(route.intersects(p) for p in occupied):'] = rejected.get('if any(route.intersects(p) for p in occupied):', 0) + 1
                 continue
-            if any(footprint.intersects(r) for r in routes):
+            if any(support.intersects(r) for r in routes):
                 rejected['if any(footprint.intersects(r) for r in routes):'] = rejected.get('if any(footprint.intersects(r) for r in routes):', 0) + 1
                 continue
             occupied.append(support)
@@ -158,12 +162,32 @@ def plan(profile=None, scope='pilot', seed=923):
                 support_footprint=list(support.exterior.coords)[:-1],
                 road_seam_area_m2=route.intersection(unary_union(layers['Roads'])).area,
                 parcel=list(cell.exterior.coords)[:-1],
-                entry=list(entry), sidewalk=[curb.x,curb.y], route_width=route_width))
+                entry=list(entry), sidewalk=[curb.x,curb.y], route_width=route_width,
+                style=architecture_style(seed,lot['id'],len(occupied),archetype),
+                path_triangles=path_triangles(route,boundary,forbidden)))
         if required and not occupied and profile:
             blockers.append(f'{lot["id"]}: no validated {required} candidate found by heuristic search; no placement forced')
     return dict(seed=seed, scope=scope, profile=profile, buildings=buildings,
                 blockers=sorted(set(blockers)), zoning_overrides=sorted(set(overrides)), rejected=rejected, source_sha256=hashlib.sha256(
                     (ROOT/'data/district_lots.json').read_bytes() + (ROOT/'tools/layout_vector.geojson').read_bytes()).hexdigest())
+
+
+def path_triangles(route,boundary,forbidden):
+    # Decorative paving has no extra colliders and never covers a protected map layer.
+    path = route.intersection(boundary).difference(forbidden)
+    polygons = [path] if path.geom_type == 'Polygon' else [p for p in path.geoms if p.geom_type == 'Polygon']
+    return [list(tri.exterior.coords)[:3] for polygon in polygons
+            for tri in constrained_delaunay_triangles(polygon).geoms]
+
+
+def architecture_style(seed, lot_id, index, archetype):
+    # Independent stream: visual variation never consumes placement random numbers.
+    r = random.Random(f'{seed}:{lot_id}:{index}:architecture-2')
+    return dict(palette=r.randrange(8),roof_palette=r.randrange(5),
+                roof='gable' if archetype in ('workshop_crouch','warehouse_standing') else r.choice(['gable','hip']),
+                roof_rise=round(r.uniform(.85,1.35) if 'workshop' in archetype or 'warehouse' in archetype else r.uniform(1.25,1.95),3),
+                porch=r.random()<.62,shutters=r.random()<.78,chimney=r.random()<.66,
+                furniture_side=r.randrange(2),sign=r.randrange(4))
 
 
 def overlay(result):
