@@ -2,12 +2,23 @@
 extends Node3D
 ## Editable geometric architecture. All detail stays in the validated building envelope.
 @export_file("*.json") var plan_path:="res://data/generated_plan.json"
-const REVISION:="architecture-2.1"
+const REVISION:="architecture-2.2-confinement"
 const WALL_COLORS:=[Color("e5d7b7"),Color("d2ae88"),Color("b9c6b1"),Color("c2cfce"),Color("cba28e"),Color("d8d0bc"),Color("b5c4ca"),Color("eadfcb")]
 const ROOF_COLORS:=[Color("b56b4d"),Color("925247"),Color("676d70"),Color("a37451"),Color("7c8b85")]
 var materials:Dictionary={}
 var detail_batches:Dictionary={}
 var active_building:Node3D
+
+func access_profile(b:Dictionary)->Dictionary:
+	# The measured rigid mecha is wider than its 2.10 m collision capsule.
+	# Widen the house's internal passages, preserving its original footprint/ramp.
+	var result:Dictionary={"width":b.door_width,"height":b.door_height,"kind":b.access}
+	if b.access=="player_only":
+		var blue:bool=int(b.get("style",{}).get("palette",0)) in [3,6]
+		result.width=maxf(float(b.door_width),3.36824901406764+(.20 if blue else .55))
+		result.height=minf(float(b.height)-.12,maxf(float(b.door_height),3.02 if blue else 3.22))
+		result.kind="compact_blue" if blue else "robot_home"
+	return result
 
 func material(key:String,color:Color,texture:="",tile:=1.0)->StandardMaterial3D:
 	if not materials.has(key):
@@ -109,7 +120,8 @@ func build_path(parent:Node3D,b:Dictionary)->void:
 func build(root:Node3D,b:Dictionary)->void:
 	active_building=root
 	var ew:float=b.width;var ed:float=b.depth;var h:float=b.height
-	var w:float=ew-.4;var dw:float=b.door_width;var dh:float=b.door_height
+	var passage:Dictionary=access_profile(b)
+	var w:float=ew-.4;var dw:float=passage.width;var dh:float=passage.height
 	var style:Dictionary=b.get("style",{})
 	var palette:int=int(style.get("palette",0))%WALL_COLORS.size()
 	var roof_palette:int=int(style.get("roof_palette",0))%ROOF_COLORS.size()
@@ -132,6 +144,8 @@ func build(root:Node3D,b:Dictionary)->void:
 		finish_build(root);return
 	var windows:=category(root,"Windows");var doors:=category(root,"Doors");var accents:=category(root,"FacadeDetails")
 	doors.set_meta("functional","permanently open passage");doors.set_meta("clear_width",dw);doors.set_meta("clear_height",dh)
+	doors.set_meta("clearance_profile",passage.kind)
+	root.set_meta("robot_passage",passage)
 	var side:float=(w-dw)/2
 	var front_holes:Array=[{"x":0.0,"width":dw,"bottom":0.0,"height":dh,"kind":"door"}]
 	if side>1.2:
@@ -151,7 +165,7 @@ func build(root:Node3D,b:Dictionary)->void:
 	part(doors,"Threshold",Vector3(dw,.035,.32),Vector3(0,-.0175,front-.06),base)
 	if b.has("support_footprint"):
 		var ramps:=category(root,"Ramps")
-		var ramp:=part(ramps,"EntranceRamp",Vector3(dw,.08,1.2),Vector3(0,-.10,ed/2+.6),floor_mat);ramp.rotation.x=atan2(.12,1.2)
+		var ramp:=part(ramps,"EntranceRamp",Vector3(b.door_width,.08,1.2),Vector3(0,-.10,ed/2+.6),floor_mat);ramp.rotation.x=atan2(.12,1.2)
 	var rooms:=category(root,"Interiors")
 	part(rooms,"PartitionLeft",Vector3(side,h,.2),Vector3(-(dw+side)/2,h/2,0),wall)
 	part(rooms,"PartitionRight",Vector3(side,h,.2),Vector3((dw+side)/2,h/2,0),wall)

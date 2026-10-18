@@ -1,0 +1,31 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_02/Building_03/FacadeDetails/@StaticBody3D@515/@MeshInstance3D@517" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+PASS actual robot can fuse in the unchanged parking spawn
+PASS all 71 front passages, partitions and rooms fit measured crouched mecha width: []
+PASS yellow houses provide more clearance than compact blue houses
+HOUSE yellow local=(0.000107, 0.000942, -1.293556) min_height=3.11901606023312 pressure=0.63292176561547 contacts={ &"Izq": { "point": (4.756783, 3.546, -242.7987), "normal": (0.0, -1.0, 0.0), "weight": 0.57764771580696, "kind": "ceiling" } } hands={ "Izq": 0.00231787096709 }
+PASS real fused controller enters yellow house and crosses its partition
+PASS real yellow posture stays above floor and below ceiling
+PASS real yellow approach automatically compresses body and reduces pace
+ARM yellow shoulder=(4.803662, 2.390365, -242.7352) elbow=(4.559749, 3.042075, -242.783) hand=(4.754867, 3.454832, -242.7982) upper_rest=(-0.06, -0.16, 0.035) lower_rest=(0.000002, -0.105, 0.045) scale=(3.998701, 3.998768, 3.998701)
+PASS free hand reaches actual yellow ceiling using arm IK
+PASS real yellow exit restores full mecha height
+HOUSE blue local=(0.000641, 0.000942, -1.288574) min_height=2.91901566982269 pressure=0.72795316461006 contacts={ &"Izq": { "point": (-241.1938, 3.546, -221.4378), "normal": (0.0, -1.0, 0.0), "weight": 0.5776476928821, "kind": "ceiling" } } hands={ "Izq": 0.00242903828621 }
+PASS real fused controller enters blue house and crosses its partition
+PASS real blue posture stays above floor and below ceiling
+PASS real blue approach automatically compresses body and reduces pace
+ARM blue shoulder=(-241.1809, 2.395084, -221.4424) elbow=(-241.187, 3.056562, -221.6635) hand=(-241.1942, 3.454771, -221.4398) upper_rest=(-0.06, -0.16, 0.035) lower_rest=(0.000002, -0.105, 0.045) scale=(3.998534, 3.998768, 3.998534)
+PASS free hand reaches actual blue ceiling using arm IK
+PASS real blue exit restores full mecha height
+PASS blue entrance requires a visibly deeper crouch than yellow entrance
+WALL contacts={ "Izq": { "point": (-237.6276, 2.63556, -218.2648), "normal": (-1.0, 0.0, 0.000269), "weight": 1.0, "kind": "wall" } } hands={ "Izq": 0.00003968434248 }
+PASS mecha braces a hand against the actual nearby house wall
+PASS wall and ceiling hand contacts preserve planted procedural feet
+PASS cannon still activates in a confined house
+PASS contact IK yields both arms to combat and cannon deployment
+PASS open air releases contact poses and pressure smoothly
+PASS squeezing never shrinks the physical mecha width
+RESULT 20/20 real house confinement checks

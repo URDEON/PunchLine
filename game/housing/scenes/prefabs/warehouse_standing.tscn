@@ -413,8 +413,13 @@ source_transforms = Array[Transform3D]([Transform3D(0.1, 0, 0, 0, 0.8, 0, 0, 0, 
 
 [node name="warehouse_standing" type="Node3D"]
 metadata/access = "mecha_standing"
+metadata/robot_passage = {
+"height": 4.3,
+"kind": "mecha_standing",
+"width": 4.06825
+}
 metadata/window_count = 8
-metadata/architecture_revision = "architecture-2.1"
+metadata/architecture_revision = "architecture-2.2-confinement"
 metadata/style = {
 "chimney": true,
 "furniture_side": 1.0,
@@ -822,6 +827,7 @@ multimesh = SubResource("MultiMesh_j1pgq")
 metadata/functional = "permanently open passage"
 metadata/clear_width = 4.06825
 metadata/clear_height = 4.3
+metadata/clearance_profile = "mecha_standing"
 
 [node name="Threshold" type="StaticBody3D" parent="Doors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0175, 3.95266)

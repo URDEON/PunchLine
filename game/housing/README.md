@@ -90,6 +90,10 @@ conserva la primera toma y la procedencia del perfil dimensional utilizado.
 
 Los robots base tienen cápsula de 2 m y anchos de 0,64 / 0,88 / 0,80 / 0,92 m.
 El mecha fusionado tiene cápsula de **4 m × 2,10 m** y mínimo configurado de 2,70 m.
+Las viviendas amarillas ahora dejan pasos de 3,92 × 3,22 m; las azules, de
+3,57 × 3,02 m. Ambos tabiques y entradas admiten al mecha agachado. El robot recoge
+los brazos, inclina el cuerpo y apoya las manos en techo/paredes detectados por física.
+[Dimensiones, reacción procedural y pruebas de esta corrección](docs/confinement.md).
 Bajo techo de 3 m se midió una cápsula de 2,90 m y una envolvente visual de unos 2,46 m.
 Los portones usan 3,20 m libres y 4,07 m de ancho, considerando la envolvente visual medida,
 no solo los 2,10 m físicos. El almacén deja 4,30 m de altura libre. Márgenes: 30 cm sobre
@@ -98,7 +102,7 @@ la altura agachada medida y 35 cm por lado sobre la anchura de diseño.
 La prueba real encontró un atasco: el sensor existente saltaba un dintel fino al consultar
 solo el extremo del avance. `scripts/robot_clearance.gd` ahora consulta puntos intermedios
 del trayecto y espera 0,15 s de espacio libre antes de expandir la cápsula. Conserva su anchura,
-las consultas de volumen, el rig/IK y el formato de snapshots existente. La compresión física
+las consultas de volumen y el rig/IK. Los snapshots incluyen altura, presión y contactos. La compresión física
 anticipada evita penetración; la articulación visual y recuperación mantienen sus transiciones.
 No escala el personaje ni desactiva colisiones para cruzar. La ocupación antes de la fusión
 sigue validándose en el controlador original.
@@ -116,6 +120,8 @@ Evidencia en `docs/evidence/`, generada en esta sesión, no tomada de informes a
 | Jugador real y comprobaciones de arquetipos | 8/8; almacén por consultas físicas, estrechez por ShapeCast |
 | Regresión existente de postura de los cuatro chasis y fusión | 37/37 |
 | Dos procesos host/cliente ENet reales | 10/10; ambos procesos finalizan con código 0 |
+| Casas amarillas/azules con mecha real y 71 pasos medidos | 20/20; entrada, techo, pared, cañón y salida |
+| Contactos procedurales en host/cliente ENet | 13/13; ambos procesos finalizan con código 0 |
 | Menú, configuración de mundo, ajustes, extras, selección y combate | 13/13 |
 | Importación de editor y escenas de ambos proyectos | Correctas |
 | Render gráfico OpenGL 4.5 / Mesa llvmpipe | Capturas reales del terreno, exterior, ventanas, menú y juego |
@@ -129,7 +135,8 @@ por las 71 construcciones.
 Las capturas `before_*.png` y `after_*.png` documentan la corrección con render real, usando
 Xvfb y Mesa llvmpipe. `after_gameplay.png` usa el juego original, sus luces, personaje y HUD.
 [Exterior corregido](docs/evidence/after_house.png) · [Vista por ventanas](docs/evidence/after_window.png).
-La evidencia de esta revisión está en `docs/evidence/architecture_v2/`.
+La evidencia inicial de arquitectura está en `docs/evidence/architecture_v2/`.
+La corrección posterior de accesos del mecha y contactos está en `docs/evidence/confinement/`.
 
 Los archivos `performance_none.json` y `performance_district.json` corresponden a la entrega
 anterior de geometría simple y se conservan como referencia histórica. No caracterizan
@@ -149,6 +156,8 @@ GODOT=/workspace/godot441/Godot_v4.4.1-stable_linux.x86_64
 /workspace/punchline-tools/bin/python -m unittest discover -s district_housing/tests -v
 /workspace/punchline-tools/bin/python district_housing/tools/validate_district.py
 "$GODOT" --headless --path game --script housing/qa/pilot_test.gd
+"$GODOT" --headless --path game --script housing/qa/confinement_test.gd
+python3 game/housing/qa/run_confinement_network.py
 "$GODOT" --headless --path game --script housing/qa/archetype_checks.gd
 "$GODOT" --headless --path game --script housing/qa/architecture_test.gd
 "$GODOT" --headless --path game --script housing/qa/frontend_test.gd

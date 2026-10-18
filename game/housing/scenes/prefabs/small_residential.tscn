@@ -28,31 +28,31 @@ script = ExtResource("2_u8fme")
 source_transforms = Array[Transform3D]([Transform3D(7.29026, 0, 0, 0, 0.12, 0, 0, 0, 8.19922, 0, -0.06, 0)])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_qvlhi"]
-size = Vector3(0.582566, 3.4, 0.25)
+size = Vector3(0.275, 3.4, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6myy"]
-size = Vector3(1.55, 1, 0.25)
+size = Vector3(0.936007, 1, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_a4e54"]
-size = Vector3(1.55, 1.15, 0.25)
+size = Vector3(0.936007, 1.15, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_d1r68"]
-size = Vector3(0.582566, 3.4, 0.25)
+size = Vector3(0.275, 3.4, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_unwxh"]
-size = Vector3(1.46, 1.2, 0.25)
+size = Vector3(3.91825, 0.18, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_clmm2"]
-size = Vector3(0.582566, 3.4, 0.25)
+size = Vector3(0.275, 3.4, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bs15s"]
-size = Vector3(1.55, 1, 0.25)
+size = Vector3(0.936007, 1, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_o7moe"]
-size = Vector3(1.55, 1.15, 0.25)
+size = Vector3(0.936007, 1.15, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ubl4u"]
-size = Vector3(0.582566, 3.4, 0.25)
+size = Vector3(0.275, 3.4, 0.25)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_yvskt"]
 size = Vector3(1.04147, 3.4, 0.25)
@@ -132,7 +132,7 @@ transform_format = 1
 instance_count = 30
 mesh = SubResource("BoxMesh_nh8la")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(0.582566, 0, 0, 0, 3.4, 0, 0, 0, 0.25, -3.15385, 1.7, 3.77461), Transform3D(1.55, 0, 0, 0, 1, 0, 0, 0, 0.25, -2.08757, 0.5, 3.77461), Transform3D(1.55, 0, 0, 0, 1.15, 0, 0, 0, 0.25, -2.08757, 2.825, 3.77461), Transform3D(0.582566, 0, 0, 0, 3.4, 0, 0, 0, 0.25, -1.02128, 1.7, 3.77461), Transform3D(1.46, 0, 0, 0, 1.2, 0, 0, 0, 0.25, 0, 2.8, 3.77461), Transform3D(0.582566, 0, 0, 0, 3.4, 0, 0, 0, 0.25, 1.02128, 1.7, 3.77461), Transform3D(1.55, 0, 0, 0, 1, 0, 0, 0, 0.25, 2.08757, 0.5, 3.77461), Transform3D(1.55, 0, 0, 0, 1.15, 0, 0, 0, 0.25, 2.08757, 2.825, 3.77461), Transform3D(0.582566, 0, 0, 0, 3.4, 0, 0, 0, 0.25, 3.15385, 1.7, 3.77461), Transform3D(-1.04147, 0, -2.18557e-08, 0, 3.4, 0, 9.10481e-08, 0, -0.25, 2.9244, 1.7, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 0.95, 0, 1.31134e-07, 0, -0.25, 1.65366, 0.475, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 1.15, 0, 1.31134e-07, 0, -0.25, 1.65366, 2.825, -3.77461), Transform3D(-1.80733, 0, -2.18557e-08, 0, 3.4, 0, 1.58002e-07, 0, -0.25, 0, 1.7, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 0.95, 0, 1.31134e-07, 0, -0.25, -1.65366, 0.475, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 1.15, 0, 1.31134e-07, 0, -0.25, -1.65366, 2.825, -3.77461), Transform3D(-1.04147, 0, -2.18557e-08, 0, 3.4, 0, 9.10481e-08, 0, -0.25, -2.9244, 1.7, -3.77461), Transform3D(-5.02596e-08, 0, -0.25, 0, 3.4, 0, 1.14981, 0, -1.09278e-08, -3.32013, 1.7, -3.32471), Transform3D(-6.99382e-08, 0, -0.25, 0, 0.95, 0, 1.6, 0, -1.09278e-08, -3.32013, 0.475, -1.94981), Transform3D(-6.99382e-08, 0, -0.25, 0, 1.15, 0, 1.6, 0, -1.09278e-08, -3.32013, 2.825, -1.94981), Transform3D(-1.00519e-07, 0, -0.25, 0, 3.4, 0, 2.29961, 0, -1.09278e-08, -3.32013, 1.7, 0), Transform3D(-6.99382e-08, 0, -0.25, 0, 0.95, 0, 1.6, 0, -1.09278e-08, -3.32013, 0.475, 1.94981), Transform3D(-6.99382e-08, 0, -0.25, 0, 1.15, 0, 1.6, 0, -1.09278e-08, -3.32013, 2.825, 1.94981), Transform3D(-5.02596e-08, 0, -0.25, 0, 3.4, 0, 1.14981, 0, -1.09278e-08, -3.32013, 1.7, 3.32471), Transform3D(-5.02596e-08, 0, 0.25, 0, 3.4, 0, -1.14981, 0, -1.09278e-08, 3.32013, 1.7, 3.32471), Transform3D(-6.99382e-08, 0, 0.25, 0, 0.95, 0, -1.6, 0, -1.09278e-08, 3.32013, 0.475, 1.94981), Transform3D(-6.99382e-08, 0, 0.25, 0, 1.15, 0, -1.6, 0, -1.09278e-08, 3.32013, 2.825, 1.94981), Transform3D(-1.00519e-07, 0, 0.25, 0, 3.4, 0, -2.29961, 0, -1.09278e-08, 3.32013, 1.7, 0), Transform3D(-6.99382e-08, 0, 0.25, 0, 0.95, 0, -1.6, 0, -1.09278e-08, 3.32013, 0.475, -1.94981), Transform3D(-6.99382e-08, 0, 0.25, 0, 1.15, 0, -1.6, 0, -1.09278e-08, 3.32013, 2.825, -1.94981), Transform3D(-5.02596e-08, 0, 0.25, 0, 3.4, 0, -1.14981, 0, -1.09278e-08, 3.32013, 1.7, -3.32471)])
+source_transforms = Array[Transform3D]([Transform3D(0.275, 0, 0, 0, 3.4, 0, 0, 0, 0.25, -3.30763, 1.7, 3.77461), Transform3D(0.936007, 0, 0, 0, 1, 0, 0, 0, 0.25, -2.70213, 0.5, 3.77461), Transform3D(0.936007, 0, 0, 0, 1.15, 0, 0, 0, 0.25, -2.70213, 2.825, 3.77461), Transform3D(0.275, 0, 0, 0, 3.4, 0, 0, 0, 0.25, -2.09662, 1.7, 3.77461), Transform3D(3.91825, 0, 0, 0, 0.18, 0, 0, 0, 0.25, 0, 3.31, 3.77461), Transform3D(0.275, 0, 0, 0, 3.4, 0, 0, 0, 0.25, 2.09662, 1.7, 3.77461), Transform3D(0.936007, 0, 0, 0, 1, 0, 0, 0, 0.25, 2.70213, 0.5, 3.77461), Transform3D(0.936007, 0, 0, 0, 1.15, 0, 0, 0, 0.25, 2.70213, 2.825, 3.77461), Transform3D(0.275, 0, 0, 0, 3.4, 0, 0, 0, 0.25, 3.30763, 1.7, 3.77461), Transform3D(-1.04147, 0, -2.18557e-08, 0, 3.4, 0, 9.10481e-08, 0, -0.25, 2.9244, 1.7, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 0.95, 0, 1.31134e-07, 0, -0.25, 1.65366, 0.475, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 1.15, 0, 1.31134e-07, 0, -0.25, 1.65366, 2.825, -3.77461), Transform3D(-1.80733, 0, -2.18557e-08, 0, 3.4, 0, 1.58002e-07, 0, -0.25, 0, 1.7, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 0.95, 0, 1.31134e-07, 0, -0.25, -1.65366, 0.475, -3.77461), Transform3D(-1.5, 0, -2.18557e-08, 0, 1.15, 0, 1.31134e-07, 0, -0.25, -1.65366, 2.825, -3.77461), Transform3D(-1.04147, 0, -2.18557e-08, 0, 3.4, 0, 9.10481e-08, 0, -0.25, -2.9244, 1.7, -3.77461), Transform3D(-5.02596e-08, 0, -0.25, 0, 3.4, 0, 1.14981, 0, -1.09278e-08, -3.32013, 1.7, -3.32471), Transform3D(-6.99382e-08, 0, -0.25, 0, 0.95, 0, 1.6, 0, -1.09278e-08, -3.32013, 0.475, -1.94981), Transform3D(-6.99382e-08, 0, -0.25, 0, 1.15, 0, 1.6, 0, -1.09278e-08, -3.32013, 2.825, -1.94981), Transform3D(-1.00519e-07, 0, -0.25, 0, 3.4, 0, 2.29961, 0, -1.09278e-08, -3.32013, 1.7, 0), Transform3D(-6.99382e-08, 0, -0.25, 0, 0.95, 0, 1.6, 0, -1.09278e-08, -3.32013, 0.475, 1.94981), Transform3D(-6.99382e-08, 0, -0.25, 0, 1.15, 0, 1.6, 0, -1.09278e-08, -3.32013, 2.825, 1.94981), Transform3D(-5.02596e-08, 0, -0.25, 0, 3.4, 0, 1.14981, 0, -1.09278e-08, -3.32013, 1.7, 3.32471), Transform3D(-5.02596e-08, 0, 0.25, 0, 3.4, 0, -1.14981, 0, -1.09278e-08, 3.32013, 1.7, 3.32471), Transform3D(-6.99382e-08, 0, 0.25, 0, 0.95, 0, -1.6, 0, -1.09278e-08, 3.32013, 0.475, 1.94981), Transform3D(-6.99382e-08, 0, 0.25, 0, 1.15, 0, -1.6, 0, -1.09278e-08, 3.32013, 2.825, 1.94981), Transform3D(-1.00519e-07, 0, 0.25, 0, 3.4, 0, -2.29961, 0, -1.09278e-08, 3.32013, 1.7, 0), Transform3D(-6.99382e-08, 0, 0.25, 0, 0.95, 0, -1.6, 0, -1.09278e-08, 3.32013, 0.475, -1.94981), Transform3D(-6.99382e-08, 0, 0.25, 0, 1.15, 0, -1.6, 0, -1.09278e-08, 3.32013, 2.825, -1.94981), Transform3D(-5.02596e-08, 0, 0.25, 0, 3.4, 0, -1.14981, 0, -1.09278e-08, 3.32013, 1.7, -3.32471)])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_usfdb"]
 size = Vector3(7.29026, 0.22, 8.19922)
@@ -234,10 +234,10 @@ script = ExtResource("2_u8fme")
 source_transforms = Array[Transform3D]([Transform3D(7.29026, 0, 0, 0, 0.22, 0, 0, 0, 8.19922, 0, 3.51, 0), Transform3D(0.11, 0, 0, 0, 0.18, 0, 0, 0, 8.09922, -3.58513, 3.63, 0), Transform3D(0.11, 0, 0, 0, 0.18, 0, 0, 0, 8.09922, 3.58513, 3.63, 0)])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_33su0"]
-size = Vector3(1.46, 1.16, 0.025)
+size = Vector3(0.846007, 1.16, 0.025)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_c6mlx"]
-size = Vector3(1.46, 1.16, 0.025)
+size = Vector3(0.846007, 1.16, 0.025)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_n0ff5"]
 size = Vector3(1.41, 1.21, 0.025)
@@ -270,7 +270,7 @@ transform_format = 1
 instance_count = 8
 mesh = SubResource("BoxMesh_vsti4")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(1.46, 0, 0, 0, 1.16, 0, 0, 0, 0.025, -2.08757, 1.625, 3.77461), Transform3D(1.46, 0, 0, 0, 1.16, 0, 0, 0, 0.025, 2.08757, 1.625, 3.77461), Transform3D(-1.41, 0, -2.18557e-09, 0, 1.21, 0, 1.23266e-07, 0, -0.025, 1.65366, 1.6, -3.77461), Transform3D(-1.41, 0, -2.18557e-09, 0, 1.21, 0, 1.23266e-07, 0, -0.025, -1.65366, 1.6, -3.77461), Transform3D(-6.60042e-08, 0, -0.025, 0, 1.21, 0, 1.51, 0, -1.09278e-09, -3.32013, 1.6, -1.94981), Transform3D(-6.60042e-08, 0, -0.025, 0, 1.21, 0, 1.51, 0, -1.09278e-09, -3.32013, 1.6, 1.94981), Transform3D(-6.60042e-08, 0, 0.025, 0, 1.21, 0, -1.51, 0, -1.09278e-09, 3.32013, 1.6, 1.94981), Transform3D(-6.60042e-08, 0, 0.025, 0, 1.21, 0, -1.51, 0, -1.09278e-09, 3.32013, 1.6, -1.94981)])
+source_transforms = Array[Transform3D]([Transform3D(0.846007, 0, 0, 0, 1.16, 0, 0, 0, 0.025, -2.70213, 1.625, 3.77461), Transform3D(0.846007, 0, 0, 0, 1.16, 0, 0, 0, 0.025, 2.70213, 1.625, 3.77461), Transform3D(-1.41, 0, -2.18557e-09, 0, 1.21, 0, 1.23266e-07, 0, -0.025, 1.65366, 1.6, -3.77461), Transform3D(-1.41, 0, -2.18557e-09, 0, 1.21, 0, 1.23266e-07, 0, -0.025, -1.65366, 1.6, -3.77461), Transform3D(-6.60042e-08, 0, -0.025, 0, 1.21, 0, 1.51, 0, -1.09278e-09, -3.32013, 1.6, -1.94981), Transform3D(-6.60042e-08, 0, -0.025, 0, 1.21, 0, 1.51, 0, -1.09278e-09, -3.32013, 1.6, 1.94981), Transform3D(-6.60042e-08, 0, 0.025, 0, 1.21, 0, -1.51, 0, -1.09278e-09, 3.32013, 1.6, 1.94981), Transform3D(-6.60042e-08, 0, 0.025, 0, 1.21, 0, -1.51, 0, -1.09278e-09, 3.32013, 1.6, -1.94981)])
 
 [sub_resource type="BoxMesh" id="BoxMesh_sqmyu"]
 
@@ -279,7 +279,7 @@ transform_format = 1
 instance_count = 40
 mesh = SubResource("BoxMesh_sqmyu")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, -2.89757, 1.625, 3.95461), Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, -1.27757, 1.625, 3.95461), Transform3D(1.71, 0, 0, 0, 0.09, 0, 0, 0, 0.15, -2.08757, 0.965, 3.95461), Transform3D(1.71, 0, 0, 0, 0.09, 0, 0, 0, 0.15, -2.08757, 2.285, 3.95461), Transform3D(1.83, 0, 0, 0, 0.1, 0, 0, 0, 0.24, -2.08757, 0.9, 3.95461), Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, 1.27757, 1.625, 3.95461), Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, 2.89757, 1.625, 3.95461), Transform3D(1.71, 0, 0, 0, 0.09, 0, 0, 0, 0.15, 2.08757, 0.965, 3.95461), Transform3D(1.71, 0, 0, 0, 0.09, 0, 0, 0, 0.15, 2.08757, 2.285, 3.95461), Transform3D(1.83, 0, 0, 0, 0.1, 0, 0, 0, 0.24, 2.08757, 0.9, 3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, 2.43866, 1.6, -3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, 0.868663, 1.6, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, 1.65366, 0.915, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, 1.65366, 2.285, -3.95461), Transform3D(-1.78, 0, -2.09815e-08, 0, 0.1, 0, 1.55613e-07, 0, -0.24, 1.65366, 0.85, -3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, -0.868663, 1.6, -3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, -2.43866, 1.6, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, -1.65366, 0.915, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, -1.65366, 2.285, -3.95461), Transform3D(-1.78, 0, -2.09815e-08, 0, 0.1, 0, 1.55613e-07, 0, -0.24, -1.65366, 0.85, -3.95461), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, -2.78481), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, -1.11481), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 0.915, -1.94981), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 2.285, -1.94981), Transform3D(-8.21774e-08, 0, -0.24, 0, 0.1, 0, 1.88, 0, -1.04907e-08, -3.50013, 0.85, -1.94981), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, 1.11481), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, 2.78481), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 0.915, 1.94981), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 2.285, 1.94981), Transform3D(-8.21774e-08, 0, -0.24, 0, 0.1, 0, 1.88, 0, -1.04907e-08, -3.50013, 0.85, 1.94981), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, 2.78481), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, 1.11481), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 0.915, 1.94981), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 2.285, 1.94981), Transform3D(-8.21774e-08, 0, 0.24, 0, 0.1, 0, -1.88, 0, -1.04907e-08, 3.50013, 0.85, 1.94981), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, -1.11481), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, -2.78481), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 0.915, -1.94981), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 2.285, -1.94981), Transform3D(-8.21774e-08, 0, 0.24, 0, 0.1, 0, -1.88, 0, -1.04907e-08, 3.50013, 0.85, -1.94981)])
+source_transforms = Array[Transform3D]([Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, -3.20513, 1.625, 3.95461), Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, -2.19912, 1.625, 3.95461), Transform3D(1.09601, 0, 0, 0, 0.09, 0, 0, 0, 0.15, -2.70213, 0.965, 3.95461), Transform3D(1.09601, 0, 0, 0, 0.09, 0, 0, 0, 0.15, -2.70213, 2.285, 3.95461), Transform3D(1.21601, 0, 0, 0, 0.1, 0, 0, 0, 0.24, -2.70213, 0.9, 3.95461), Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, 2.19912, 1.625, 3.95461), Transform3D(0.09, 0, 0, 0, 1.39, 0, 0, 0, 0.13, 3.20513, 1.625, 3.95461), Transform3D(1.09601, 0, 0, 0, 0.09, 0, 0, 0, 0.15, 2.70213, 0.965, 3.95461), Transform3D(1.09601, 0, 0, 0, 0.09, 0, 0, 0, 0.15, 2.70213, 2.285, 3.95461), Transform3D(1.21601, 0, 0, 0, 0.1, 0, 0, 0, 0.24, 2.70213, 0.9, 3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, 2.43866, 1.6, -3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, 0.868663, 1.6, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, 1.65366, 0.915, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, 1.65366, 2.285, -3.95461), Transform3D(-1.78, 0, -2.09815e-08, 0, 0.1, 0, 1.55613e-07, 0, -0.24, 1.65366, 0.85, -3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, -0.868663, 1.6, -3.95461), Transform3D(-0.09, 0, -1.1365e-08, 0, 1.44, 0, 7.86805e-09, 0, -0.13, -2.43866, 1.6, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, -1.65366, 0.915, -3.95461), Transform3D(-1.66, 0, -1.31134e-08, 0, 0.09, 0, 1.45122e-07, 0, -0.15, -1.65366, 2.285, -3.95461), Transform3D(-1.78, 0, -2.09815e-08, 0, 0.1, 0, 1.55613e-07, 0, -0.24, -1.65366, 0.85, -3.95461), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, -2.78481), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, -1.11481), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 0.915, -1.94981), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 2.285, -1.94981), Transform3D(-8.21774e-08, 0, -0.24, 0, 0.1, 0, 1.88, 0, -1.04907e-08, -3.50013, 0.85, -1.94981), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, 1.11481), Transform3D(-3.93403e-09, 0, -0.13, 0, 1.44, 0, 0.09, 0, -5.68248e-09, -3.50013, 1.6, 2.78481), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 0.915, 1.94981), Transform3D(-7.6932e-08, 0, -0.15, 0, 0.09, 0, 1.76, 0, -6.55671e-09, -3.50013, 2.285, 1.94981), Transform3D(-8.21774e-08, 0, -0.24, 0, 0.1, 0, 1.88, 0, -1.04907e-08, -3.50013, 0.85, 1.94981), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, 2.78481), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, 1.11481), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 0.915, 1.94981), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 2.285, 1.94981), Transform3D(-8.21774e-08, 0, 0.24, 0, 0.1, 0, -1.88, 0, -1.04907e-08, 3.50013, 0.85, 1.94981), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, -1.11481), Transform3D(-3.93403e-09, 0, 0.13, 0, 1.44, 0, -0.09, 0, -5.68248e-09, 3.50013, 1.6, -2.78481), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 0.915, -1.94981), Transform3D(-7.6932e-08, 0, 0.15, 0, 0.09, 0, -1.76, 0, -6.55671e-09, 3.50013, 2.285, -1.94981), Transform3D(-8.21774e-08, 0, 0.24, 0, 0.1, 0, -1.88, 0, -1.04907e-08, 3.50013, 0.85, -1.94981)])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jlubl"]
 albedo_color = Color(0.341176, 0.258824, 0.215686, 1)
@@ -297,10 +297,10 @@ transform_format = 1
 instance_count = 32
 mesh = SubResource("BoxMesh_hothw")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, -3.05257, 1.625, 3.93461), Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, -1.12257, 1.625, 3.93461), Transform3D(0.045, 0, 0, 0, 1.25, 0, 0, 0, 0.055, -2.08757, 1.625, 3.93461), Transform3D(1.55, 0, 0, 0, 0.045, 0, 0, 0, 0.055, -2.08757, 1.65, 3.90461), Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, 1.12257, 1.625, 3.93461), Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, 3.05257, 1.625, 3.93461), Transform3D(0.045, 0, 0, 0, 1.25, 0, 0, 0, 0.055, 2.08757, 1.625, 3.93461), Transform3D(1.55, 0, 0, 0, 0.045, 0, 0, 0, 0.055, 2.08757, 1.65, 3.90461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, 2.59366, 1.6, -3.93461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, 0.713663, 1.6, -3.93461), Transform3D(-0.045, 0, -4.80825e-09, 0, 1.3, 0, 3.93403e-09, 0, -0.055, 1.65366, 1.6, -3.93461), Transform3D(-1.5, 0, -4.80825e-09, 0, 0.045, 0, 1.31134e-07, 0, -0.055, 1.65366, 1.626, -3.90461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, -0.713663, 1.6, -3.93461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, -2.59366, 1.6, -3.93461), Transform3D(-0.045, 0, -4.80825e-09, 0, 1.3, 0, 3.93403e-09, 0, -0.055, -1.65366, 1.6, -3.93461), Transform3D(-1.5, 0, -4.80825e-09, 0, 0.045, 0, 1.31134e-07, 0, -0.055, -1.65366, 1.626, -3.90461), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, -2.93981), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, -0.959805), Transform3D(-1.96701e-09, 0, -0.055, 0, 1.3, 0, 0.045, 0, -2.40413e-09, -3.48013, 1.6, -1.94981), Transform3D(-6.99382e-08, 0, -0.055, 0, 0.045, 0, 1.6, 0, -2.40413e-09, -3.45013, 1.626, -1.94981), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, 0.959805), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, 2.93981), Transform3D(-1.96701e-09, 0, -0.055, 0, 1.3, 0, 0.045, 0, -2.40413e-09, -3.48013, 1.6, 1.94981), Transform3D(-6.99382e-08, 0, -0.055, 0, 0.045, 0, 1.6, 0, -2.40413e-09, -3.45013, 1.626, 1.94981), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, 2.93981), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, 0.959805), Transform3D(-1.96701e-09, 0, 0.055, 0, 1.3, 0, -0.045, 0, -2.40413e-09, 3.48013, 1.6, 1.94981), Transform3D(-6.99382e-08, 0, 0.055, 0, 0.045, 0, -1.6, 0, -2.40413e-09, 3.45013, 1.626, 1.94981), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, -0.959805), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, -2.93981), Transform3D(-1.96701e-09, 0, 0.055, 0, 1.3, 0, -0.045, 0, -2.40413e-09, 3.48013, 1.6, -1.94981), Transform3D(-6.99382e-08, 0, 0.055, 0, 0.045, 0, -1.6, 0, -2.40413e-09, 3.45013, 1.626, -1.94981)])
+source_transforms = Array[Transform3D]([Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, -3.36013, 1.625, 3.93461), Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, -2.04412, 1.625, 3.93461), Transform3D(0.045, 0, 0, 0, 1.25, 0, 0, 0, 0.055, -2.70213, 1.625, 3.93461), Transform3D(0.936007, 0, 0, 0, 0.045, 0, 0, 0, 0.055, -2.70213, 1.65, 3.90461), Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, 2.04412, 1.625, 3.93461), Transform3D(0.23, 0, 0, 0, 1.34, 0, 0, 0, 0.07, 3.36013, 1.625, 3.93461), Transform3D(0.045, 0, 0, 0, 1.25, 0, 0, 0, 0.055, 2.70213, 1.625, 3.93461), Transform3D(0.936007, 0, 0, 0, 0.045, 0, 0, 0, 0.055, 2.70213, 1.65, 3.90461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, 2.59366, 1.6, -3.93461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, 0.713663, 1.6, -3.93461), Transform3D(-0.045, 0, -4.80825e-09, 0, 1.3, 0, 3.93403e-09, 0, -0.055, 1.65366, 1.6, -3.93461), Transform3D(-1.5, 0, -4.80825e-09, 0, 0.045, 0, 1.31134e-07, 0, -0.055, 1.65366, 1.626, -3.90461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, -0.713663, 1.6, -3.93461), Transform3D(-0.23, 0, -6.11959e-09, 0, 1.39, 0, 2.01072e-08, 0, -0.07, -2.59366, 1.6, -3.93461), Transform3D(-0.045, 0, -4.80825e-09, 0, 1.3, 0, 3.93403e-09, 0, -0.055, -1.65366, 1.6, -3.93461), Transform3D(-1.5, 0, -4.80825e-09, 0, 0.045, 0, 1.31134e-07, 0, -0.055, -1.65366, 1.626, -3.90461), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, -2.93981), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, -0.959805), Transform3D(-1.96701e-09, 0, -0.055, 0, 1.3, 0, 0.045, 0, -2.40413e-09, -3.48013, 1.6, -1.94981), Transform3D(-6.99382e-08, 0, -0.055, 0, 0.045, 0, 1.6, 0, -2.40413e-09, -3.45013, 1.626, -1.94981), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, 0.959805), Transform3D(-1.00536e-08, 0, -0.07, 0, 1.39, 0, 0.23, 0, -3.0598e-09, -3.48013, 1.6, 2.93981), Transform3D(-1.96701e-09, 0, -0.055, 0, 1.3, 0, 0.045, 0, -2.40413e-09, -3.48013, 1.6, 1.94981), Transform3D(-6.99382e-08, 0, -0.055, 0, 0.045, 0, 1.6, 0, -2.40413e-09, -3.45013, 1.626, 1.94981), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, 2.93981), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, 0.959805), Transform3D(-1.96701e-09, 0, 0.055, 0, 1.3, 0, -0.045, 0, -2.40413e-09, 3.48013, 1.6, 1.94981), Transform3D(-6.99382e-08, 0, 0.055, 0, 0.045, 0, -1.6, 0, -2.40413e-09, 3.45013, 1.626, 1.94981), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, -0.959805), Transform3D(-1.00536e-08, 0, 0.07, 0, 1.39, 0, -0.23, 0, -3.0598e-09, 3.48013, 1.6, -2.93981), Transform3D(-1.96701e-09, 0, 0.055, 0, 1.3, 0, -0.045, 0, -2.40413e-09, 3.48013, 1.6, -1.94981), Transform3D(-6.99382e-08, 0, 0.055, 0, 0.045, 0, -1.6, 0, -2.40413e-09, 3.45013, 1.626, -1.94981)])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_nrbkf"]
-size = Vector3(1.46, 0.035, 0.32)
+size = Vector3(3.91825, 0.035, 0.32)
 
 [sub_resource type="BoxMesh" id="BoxMesh_bmu3i"]
 
@@ -309,7 +309,7 @@ transform_format = 1
 instance_count = 3
 mesh = SubResource("BoxMesh_bmu3i")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(0.12, 0, 0, 0, 2.32, 0, 0, 0, 0.15, -0.79, 1.1, 3.93461), Transform3D(0.12, 0, 0, 0, 2.32, 0, 0, 0, 0.15, 0.79, 1.1, 3.93461), Transform3D(1.7, 0, 0, 0, 0.14, 0, 0, 0, 0.16, 0, 2.27, 3.93961)])
+source_transforms = Array[Transform3D]([Transform3D(0.12, 0, 0, 0, 3.34, 0, 0, 0, 0.15, -2.01912, 1.61, 3.93461), Transform3D(0.12, 0, 0, 0, 3.34, 0, 0, 0, 0.15, 2.01912, 1.61, 3.93461), Transform3D(4.15825, 0, 0, 0, 0.14, 0, 0, 0, 0.16, 0, 3.29, 3.93961)])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8dme"]
 albedo_color = Color(0.580392, 0.556863, 0.486275, 1)
@@ -327,7 +327,7 @@ transform_format = 1
 instance_count = 1
 mesh = SubResource("BoxMesh_lqd3s")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(1.46, 0, 0, 0, 0.035, 0, 0, 0, 0.32, 0, -0.0175, 3.83961)])
+source_transforms = Array[Transform3D]([Transform3D(3.91825, 0, 0, 0, 0.035, 0, 0, 0, 0.32, 0, -0.0175, 3.83961)])
 
 [sub_resource type="BoxMesh" id="BoxMesh_dne4o"]
 
@@ -345,7 +345,7 @@ transform_format = 1
 instance_count = 4
 mesh = SubResource("BoxMesh_je1sj")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(0.08, 0, 0, 0, 0.28, 0, 0, 0, 7.59922, -3.46513, 0.14, 0), Transform3D(2.71513, 0, 0, 0, 0.28, 0, 0, 0, 0.08, -2.08757, 0.14, 3.91961), Transform3D(0.08, 0, 0, 0, 0.28, 0, 0, 0, 7.59922, 3.46513, 0.14, 0), Transform3D(2.71513, 0, 0, 0, 0.28, 0, 0, 0, 0.08, 2.08757, 0.14, 3.91961)])
+source_transforms = Array[Transform3D]([Transform3D(0.08, 0, 0, 0, 0.28, 0, 0, 0, 7.59922, -3.46513, 0.14, 0), Transform3D(1.48601, 0, 0, 0, 0.28, 0, 0, 0, 0.08, -2.70213, 0.14, 3.91961), Transform3D(0.08, 0, 0, 0, 0.28, 0, 0, 0, 7.59922, 3.46513, 0.14, 0), Transform3D(1.48601, 0, 0, 0, 0.28, 0, 0, 0, 0.08, 2.70213, 0.14, 3.91961)])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ojen6"]
 size = Vector3(1.46, 0.08, 1.2)
@@ -360,10 +360,10 @@ script = ExtResource("2_u8fme")
 source_transforms = Array[Transform3D]([Transform3D(1.46, 0, 0, 0, 0.08, 0, 0, 0, 1.2, 0, -0.1, 4.69961)])
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1w8wk"]
-size = Vector3(2.71513, 3.4, 0.2)
+size = Vector3(1.48601, 3.4, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ihmmi"]
-size = Vector3(2.71513, 3.4, 0.2)
+size = Vector3(1.48601, 3.4, 0.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_0aba1"]
 size = Vector3(0.8, 0.12, 1.4)
@@ -406,7 +406,7 @@ transform_format = 1
 instance_count = 2
 mesh = SubResource("BoxMesh_85a1k")
 script = ExtResource("2_u8fme")
-source_transforms = Array[Transform3D]([Transform3D(2.71513, 0, 0, 0, 3.4, 0, 0, 0, 0.2, -2.08757, 1.7, 0), Transform3D(2.71513, 0, 0, 0, 3.4, 0, 0, 0, 0.2, 2.08757, 1.7, 0)])
+source_transforms = Array[Transform3D]([Transform3D(1.48601, 0, 0, 0, 3.4, 0, 0, 0, 0.2, -2.70213, 1.7, 0), Transform3D(1.48601, 0, 0, 0, 3.4, 0, 0, 0, 0.2, 2.70213, 1.7, 0)])
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x1p5e"]
 albedo_color = Color(0.584314, 0.454902, 0.317647, 1)
@@ -474,8 +474,13 @@ source_transforms = Array[Transform3D]([Transform3D(0.12, 0, 0, 0, 0.09, 0, 0, 0
 
 [node name="small_residential" type="Node3D"]
 metadata/access = "player_only"
+metadata/robot_passage = {
+"height": 3.22,
+"kind": "robot_home",
+"width": 3.91825
+}
 metadata/window_count = 8
-metadata/architecture_revision = "architecture-2.1"
+metadata/architecture_revision = "architecture-2.2-confinement"
 metadata/style = {
 "chimney": false,
 "furniture_side": 0.0,
@@ -509,55 +514,55 @@ multimesh = SubResource("MultiMesh_wnehg")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.77461)
 
 [node name="Pier_0" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.15385, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.30763, 1.7, 0)
 
 [node name="@CollisionShape3D@13" type="CollisionShape3D" parent="Walls/Front/Pier_0"]
 shape = SubResource("BoxShape3D_qvlhi")
 
 [node name="Below_1" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08757, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70213, 0.5, 0)
 
 [node name="@CollisionShape3D@14" type="CollisionShape3D" parent="Walls/Front/Below_1"]
 shape = SubResource("BoxShape3D_c6myy")
 
 [node name="Above_1" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08757, 2.825, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70213, 2.825, 0)
 
 [node name="@CollisionShape3D@15" type="CollisionShape3D" parent="Walls/Front/Above_1"]
 shape = SubResource("BoxShape3D_a4e54")
 
 [node name="Pier_2" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.02128, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.09662, 1.7, 0)
 
 [node name="@CollisionShape3D@16" type="CollisionShape3D" parent="Walls/Front/Pier_2"]
 shape = SubResource("BoxShape3D_d1r68")
 
 [node name="Above_3" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.8, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.31, 0)
 
 [node name="@CollisionShape3D@17" type="CollisionShape3D" parent="Walls/Front/Above_3"]
 shape = SubResource("BoxShape3D_unwxh")
 
 [node name="Pier_4" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.02128, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.09662, 1.7, 0)
 
 [node name="@CollisionShape3D@18" type="CollisionShape3D" parent="Walls/Front/Pier_4"]
 shape = SubResource("BoxShape3D_clmm2")
 
 [node name="Below_5" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08757, 0.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70213, 0.5, 0)
 
 [node name="@CollisionShape3D@19" type="CollisionShape3D" parent="Walls/Front/Below_5"]
 shape = SubResource("BoxShape3D_bs15s")
 
 [node name="Above_5" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08757, 2.825, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70213, 2.825, 0)
 
 [node name="@CollisionShape3D@20" type="CollisionShape3D" parent="Walls/Front/Above_5"]
 shape = SubResource("BoxShape3D_o7moe")
 
 [node name="Pier_6" type="StaticBody3D" parent="Walls/Front"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.15385, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.30763, 1.7, 0)
 
 [node name="@CollisionShape3D@21" type="CollisionShape3D" parent="Walls/Front/Pier_6"]
 shape = SubResource("BoxShape3D_ubl4u")
@@ -780,20 +785,20 @@ multimesh = SubResource("MultiMesh_lfv7g")
 
 [node name="Front_1" type="Node3D" parent="Windows"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.77461)
-metadata/aperture = Rect2(-2.86257, 1, 1.55, 1.25)
+metadata/aperture = Rect2(-3.17013, 1, 0.936007, 1.25)
 
 [node name="Glass" type="StaticBody3D" parent="Windows/Front_1"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08757, 1.625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70213, 1.625, 0)
 
 [node name="@CollisionShape3D@22" type="CollisionShape3D" parent="Windows/Front_1/Glass"]
 shape = SubResource("BoxShape3D_33su0")
 
 [node name="Front_2" type="Node3D" parent="Windows"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 3.77461)
-metadata/aperture = Rect2(1.31257, 1, 1.55, 1.25)
+metadata/aperture = Rect2(2.23412, 1, 0.936007, 1.25)
 
 [node name="Glass" type="StaticBody3D" parent="Windows/Front_2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08757, 1.625, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70213, 1.625, 0)
 
 [node name="@CollisionShape3D@23" type="CollisionShape3D" parent="Windows/Front_2/Glass"]
 shape = SubResource("BoxShape3D_c6mlx")
@@ -881,8 +886,9 @@ multimesh = SubResource("MultiMesh_f0a4i")
 
 [node name="Doors" type="Node3D" parent="."]
 metadata/functional = "permanently open passage"
-metadata/clear_width = 1.46
-metadata/clear_height = 2.2
+metadata/clear_width = 3.91825
+metadata/clear_height = 3.22
+metadata/clearance_profile = "robot_home"
 
 [node name="Threshold" type="StaticBody3D" parent="Doors"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0175, 3.83961)
@@ -938,13 +944,13 @@ multimesh = SubResource("MultiMesh_6bxd7")
 [node name="Interiors" type="Node3D" parent="."]
 
 [node name="PartitionLeft" type="StaticBody3D" parent="Interiors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08757, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.70213, 1.7, 0)
 
 [node name="@CollisionShape3D@53" type="CollisionShape3D" parent="Interiors/PartitionLeft"]
 shape = SubResource("BoxShape3D_1w8wk")
 
 [node name="PartitionRight" type="StaticBody3D" parent="Interiors"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08757, 1.7, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.70213, 1.7, 0)
 
 [node name="@CollisionShape3D@54" type="CollisionShape3D" parent="Interiors/PartitionRight"]
 shape = SubResource("BoxShape3D_ihmmi")

@@ -1,0 +1,11 @@
+test_all_accepted_footprints_and_routes (test_plan.PlannerTests.test_all_accepted_footprints_and_routes) ... ok
+test_bad_profile (test_plan.PlannerTests.test_bad_profile) ... ok
+test_missing_measurements_fail_closed (test_plan.PlannerTests.test_missing_measurements_fail_closed) ... ok
+test_positive_synthetic_layout (test_plan.PlannerTests.test_positive_synthetic_layout) ... ok
+test_reproducible (test_plan.PlannerTests.test_reproducible) ... ok
+test_source_coordinates (test_plan.PlannerTests.test_source_coordinates) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 10.949s
+
+OK

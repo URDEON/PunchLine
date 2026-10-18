@@ -237,6 +237,7 @@ func tick(delta: float) -> bool:
 		var speed := HEAVY_WALK_SPEED if game.input_pressed("walk") else HEAVY_SPEED
 		if game.block: speed *= .4
 		speed *= combat.movement_scale()*damage.speed_scale()
+		speed *= lerpf(1.0,.72,game.robot_clearance.pressure)
 		if game.stun > 0: direction = Vector3.ZERO; boost_time = 0
 		if boost_time > 0:
 			boost_time = maxf(0,boost_time-delta)

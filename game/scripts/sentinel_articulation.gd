@@ -11,6 +11,8 @@ var render_batches = preload("res://scripts/rigid_mesh_batch.gd").new()
 var last_deployment := -1.0
 var cannon_shoulder := Vector3.ZERO
 var cannon_elbow := Vector3.ZERO
+var confinement_state: Dictionary = {}
+var confinement = preload("res://scripts/mecha_confinement.gd").new()
 
 func setup(modules: Dictionary) -> void:
 	all_parts = modules.duplicate()
@@ -140,6 +142,7 @@ func plant_impact_legs(pose: Dictionary, root_y: float, grounded: bool) -> float
 
 func apply_pose(rotations: Dictionary, root_offset: Vector3, delta: float, immediate: bool = false) -> void:
 	if dead: return
+	confinement.adjust_pose(self,rotations)
 	root_offset.y -= crouch_weight*(4.0-2.7)/maxf(global_basis.y.length(),.1)
 	super.apply_pose(rotations,root_offset,delta,immediate)
 	if gait.initialized and procedural_blend > 0:
@@ -169,6 +172,7 @@ func apply_pose(rotations: Dictionary, root_offset: Vector3, delta: float, immed
 	# Rustwing remains folded within the sleeve until deployed; original meshes intact.
 	for part in cannon_transform.gun_parts: part.node.visible = deployment > .01
 	update_gaze(delta,immediate)
+	confinement.apply_hands(self,delta)
 	if not gait.initialized or procedural_blend <= 0: update_joint_caps()
 
 func muzzle() -> Vector3:

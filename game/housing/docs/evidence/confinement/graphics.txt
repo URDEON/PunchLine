@@ -1,0 +1,17 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:360)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_02/Building_03/FacadeDetails/@StaticBody3D@515/@MeshInstance3D@517" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+ENTRY palette=0 height=3.1194400280714 contacts={ "Der": { "point": (8.901434, 2.018224, -240.0377), "normal": (1.0, 0.0, 0.000437), "weight": 0.37448334487817, "kind": "wall" }, "Izq": { "point": (8.903145, 2.018224, -243.9559), "normal": (-1.0, 0.0, -0.000437), "weight": 0.37454712188201, "kind": "wall" } }
+CAPTURE res://housing/docs/evidence/confinement/yellow_entry.png status=0
+ENTRY palette=6 height=2.91944021880627 contacts={ "Der": { "point": (-243.7772, 1.898224, -216.5279), "normal": (1.0, 0.0, -0.000269), "weight": 0.73924341176012, "kind": "wall" }, "Izq": { "point": (-240.209, 1.898224, -216.5289), "normal": (-0.000269, 0.0, -1.0), "weight": 0.73924341176012, "kind": "wall" } }
+CAPTURE res://housing/docs/evidence/confinement/blue_entry.png status=0
+ROOF hands={ "Izq": 0.00275190733373 }
+CAPTURE res://housing/docs/evidence/confinement/blue_ceiling_contact.png status=0
+WALL hands={ "Izq": 0.00000667572021 }
+CAPTURE res://housing/docs/evidence/confinement/blue_wall_contact.png status=0
+RENDER_CONFINEMENT_DONE actual mecha and generated houses, no substituted models or poses

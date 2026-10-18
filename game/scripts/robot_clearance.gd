@@ -14,6 +14,8 @@ var shape_query := PhysicsShapeQueryParameters3D.new()
 var checks := 0
 var expansion_clear_time := 0.0
 var fused_before := false
+var contacts: Dictionary = {}
+var pressure := 0.0
 
 func setup(host: Node3D) -> void:
 	game = host
@@ -24,8 +26,10 @@ func setup(host: Node3D) -> void:
 func restore() -> void:
 	blend = 0; current_height = 0; target_height = 2; last_check = 0; expansion_clear_time = 0
 	capsule = null
+	contacts.clear(); pressure = 0
 	if is_instance_valid(game) and is_instance_valid(game.fusion.sequence) and game.fusion.sequence.articulation != null:
 		game.fusion.sequence.articulation.crouch_weight = 0
+		game.fusion.sequence.articulation.confinement_state = {}
 
 func collision_node() -> CollisionShape3D:
 	return game.robots.naoya.get("collision")
@@ -65,8 +69,54 @@ func tick(delta: float) -> void:
 	capsule.height = current_height
 	col.position.y = current_height*.5
 	blend = clampf((full_height-current_height)/maxf(.01,full_height-minimum),0,1)
+	if inspect_ahead: sample_contacts()
+	var wanted: float = blend*.65
+	for contact in contacts.values(): wanted = maxf(wanted,float(contact.weight))
+	pressure = lerpf(pressure,wanted,1-exp(-delta*9))
 	if fused and is_instance_valid(game.fusion.sequence) and game.fusion.sequence.articulation != null:
 		game.fusion.sequence.articulation.crouch_weight = blend
+		game.fusion.sequence.articulation.confinement_state = contact_state()
+
+func sample_contacts() -> void:
+	contacts.clear()
+	if not game.fusion.fused: return
+	var feet: Vector3 = game.player.global_position
+	# The assembled source rig faces the opposite axis to the player model.
+	# Sample from its actual shoulders so contacts reach the matching hand.
+	var art: Node3D = game.fusion.sequence.articulation
+	var right: Vector3 = art.global_basis.x.normalized()
+	var forward: Vector3 = art.global_basis.z.normalized()
+	for side in ["Der","Izq"]:
+		var sign_side := 1.0 if side=="Der" else -1.0
+		var best: Dictionary = {}
+		var closest := 2.35
+		for fraction in [.60,.76]:
+			for lead in [0.0,.48]:
+				var origin: Vector3 = feet+Vector3.UP*current_height*fraction
+				var direction: Vector3 = (right*sign_side+forward*lead).normalized()
+				var hit: Dictionary = contact_ray(origin,origin+direction*2.35)
+				if not hit.is_empty() and absf(hit.normal.y)<.45:
+					var distance: float = origin.distance_to(hit.position)
+					if distance<closest:
+						closest=distance
+						best={"point":hit.position,"normal":hit.normal,"weight":1-smoothstep(1.55,2.25,distance),"kind":"wall"}
+		if not best.is_empty() and best.weight>.01: contacts[side]=best
+	# An overhead ray supplies a palm target on the actual ceiling.
+	# Prefer the free left hand under a low roof.
+	var origin: Vector3 = feet-right*.80+forward*.15+Vector3.UP*.45
+	var roof: Dictionary = contact_ray(origin,origin+Vector3.UP*(full_height+.1))
+	if not roof.is_empty() and roof.normal.y<-.5:
+		var weight: float = clampf((full_height+.15-(roof.position.y-feet.y))/1.3,0,1)
+		if weight>.12 and not contacts.has("Izq"):
+			contacts.Izq={"point":roof.position,"normal":roof.normal,"weight":weight,"kind":"ceiling"}
+
+func contact_ray(from: Vector3,to: Vector3) -> Dictionary:
+	var query := PhysicsRayQueryParameters3D.create(from,to,1)
+	query.exclude=[game.player.get_rid()]; checks+=1
+	return game.get_world_3d().direct_space_state.intersect_ray(query)
+
+func contact_state() -> Dictionary:
+	return {"contacts":contacts.duplicate(true),"pressure":pressure,"compression":blend}
 
 func available_height(include_ahead: bool = true) -> float:
 	var feet: Vector3 = game.player.global_position
@@ -105,13 +155,16 @@ func apply_base_pose() -> void:
 	pass # Applied once by robot_procedural_motion after original animation.
 
 func snapshot() -> Dictionary:
-	return {"height":current_height,"full":full_height,"blend":blend}
+	return {"height":current_height,"full":full_height,"blend":blend,"contacts":contacts.duplicate(true),"pressure":pressure}
 
 func apply_snapshot(value: Dictionary) -> void:
 	current_height = float(value.get("height",2)); full_height = float(value.get("full",2))
 	blend = clampf(float(value.get("blend",0)),0,1)
+	contacts = value.get("contacts",{}).duplicate(true)
+	pressure = clampf(float(value.get("pressure",0)),0,1)
 	if is_instance_valid(game.fusion.sequence) and game.fusion.sequence.articulation != null:
 		game.fusion.sequence.articulation.crouch_weight = blend
+		game.fusion.sequence.articulation.confinement_state = contact_state()
 	var col := collision_node()
 	if is_instance_valid(col) and col.shape is CapsuleShape3D and current_height > .1:
 		col.shape.height = maxf(col.shape.radius*2,current_height); col.position.y = current_height*.5

@@ -1,0 +1,28 @@
+{
+  "created_utc": "2026-10-18T20:58:00.471043+00:00",
+  "godot": "4.4.1-stable",
+  "features": "20/20",
+  "network": "13/13",
+  "network_exits": [
+    0,
+    0
+  ],
+  "architecture": "11/11",
+  "pilot_regression": "14/14",
+  "spider_regression": "28/28",
+  "posture_regression": "37/37",
+  "planner_tests": "6/6",
+  "district_excluded_geometry_violations": 0,
+  "buildings": 71,
+  "windows": 568,
+  "graphics": "OpenGL 4.5 Mesa llvmpipe, four actual game captures",
+  "original_sources_preserved": [
+    "game/project.godot",
+    "game/housing/data/generated_plan.json",
+    "game/housing/data/district_lots.json",
+    "district_housing/data/generated_plan.json",
+    "district_housing/data/district_lots.json",
+    "district_housing/tools/layout_vector.geojson"
+  ],
+  "desktop_gpu_fps_measured": false
+}

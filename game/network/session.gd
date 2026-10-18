@@ -2,7 +2,7 @@ extends Node
 # Todos los RPC usan esta ruta estable; ningún cliente puede transmitir daño o posiciones.
 signal changed
 signal message(text: String)
-const PROTOCOL := "punchline-district-head-spider-1"
+const PROTOCOL := "punchline-district-confinement-2"
 const DEFAULT_PORT := 7777
 const MAX_PLAYERS := 3
 const PLAYER = preload("res://network/player.gd")
@@ -90,7 +90,7 @@ func hello(protocol: String, name_text: String, selected: int) -> void:
 	var id := multiplayer.get_remote_sender_id()
 	if id <= 1 or roster.has(id): return
 	if protocol != PROTOCOL or roster.size() >= MAX_PLAYERS:
-		disconnect_reason = "Usa la misma versión de PunchLine (District500 + Rustcrawler) que el anfitrión." if protocol != PROTOCOL else "La partida está completa (3/3)."
+		disconnect_reason = "Usa la misma versión de PunchLine (casas y postura procedural) que el anfitrión." if protocol != PROTOCOL else "La partida está completa (3/3)."
 		reject_join.rpc_id(id,disconnect_reason)
 		# Permitir que el motivo fiable llegue antes de cerrar ese par.
 		get_tree().create_timer(.35).timeout.connect(func() -> void:

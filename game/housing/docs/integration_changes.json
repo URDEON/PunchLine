@@ -25,6 +25,7 @@
     "scripts/punchline_map.gd",
     "scripts/robot_clearance.gd",
     "scripts/route_trial.gd",
+    "scripts/sentinel_articulation.gd",
     "scripts/settings_panel.gd",
     "scripts/stability_display.gd"
   ],
