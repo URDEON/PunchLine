@@ -1,0 +1,14 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS host opens real ENet session
+PASS host and client finish model loading over ENet
+PunchLine · módulos de fusión cargados: 112
+PASS authoritative robot starts real fusion
+PASS host enforces crouch under workshop roof
+PASS client renders fused actor from real snapshots
+PASS posture height matches on host and client
+PASS client collision capsule follows authoritative posture
+PASS client position tampering is replaced by server snapshots
+PASS host leaves doorway and restores standing posture
+PASS client receives standing recovery
+RESULT 10/10 host/client real ENet

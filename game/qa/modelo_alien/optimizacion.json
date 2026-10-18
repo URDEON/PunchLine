@@ -1,0 +1,14 @@
+{
+  "source": "/workspace/attachments/07bc84a7-c2fc-4f67-9c4b-961846ba5596/Meshy_AI_Celestial_Wanderer_1010065336_texture (1).glb",
+  "target_triangles": 12000,
+  "meshes": [
+    {
+      "vertices_before": 43204,
+      "triangles_before": 75028,
+      "vertices_after_blender": 6000,
+      "triangles_after": 12000,
+      "uv_layers": 1,
+      "materials": 1
+    }
+  ]
+}

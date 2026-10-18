@@ -1,0 +1,45 @@
+PUNCHLINE 0.9.24 — WINDOWS x86_64
+
+1. Descarga la carpeta Windows completa de Drive o el ZIP Windows Completo.
+2. Usa «Extraer todo». No ejecutes el juego desde dentro del ZIP.
+3. Abre la carpeta extraída y haz doble clic en PunchLine_0.9.24.exe.
+4. Conserva junto al EXE PunchLine_0.9.24.pck, los tres archivos Contenido_01,
+   Contenido_02 y Contenido_03.pck, y PunchLine_0.9.24_archivos.json.
+
+No necesitas instalar Godot, abrir una consola, unir partes ni ejecutar un CMD.
+El EXE y el PCK de esta entrega pertenecen a la misma exportación. No los mezcles
+con archivos de la 0.9.17, 0.9.21 o parches anteriores.
+
+INICIO
+Demo: laboratorio individual. Multijugador: crear/unirse con nombre y personaje.
+Ajustes: controles, cámara, audio e interfaz. Extras: galería del proyecto.
+ESC permite volver a las opciones o salir de la partida al menú principal.
+
+PRUEBA RÁPIDA
+- P abre personajes; Q hace dash. B abre emotes sin pausar la partida.
+- Mantén Ctrl para caminar. C alterna el lock si no lo reasignaste en Ajustes.
+- Acerca la cámara para primera persona.
+- Elige Robot, carga Ultimate mediante golpes y pulsa G para fusionar.
+- Pasa bajo una cubierta suficientemente alta para agacharte; al salir debe erguirse.
+- Mantén 1 para preparar el cañón y suelta para disparar.
+- Prueba daño modular, muerte y espera antes de reaparecer.
+
+MULTIJUGADOR GRATUITO (3 JUGADORES)
+Los tres usan esta misma versión. En red local se usa la IP local del anfitrión.
+Para jugar desde casas distintas puede usarse una red privada como Radmin VPN.
+El anfitrión pulsa Crear partida; los otros ingresan su IP y el mismo puerto UDP
+(7777 por defecto). No hay servidor público ni servicio de emparejamiento incluido.
+
+RENDIMIENTO
+En Pausa > Combate pulsa «Registrar rendimiento · 60 segundos», vuelve a jugar
+y activa la fusión. «Abrir registros de rendimiento» muestra el JSON resultante.
+Las mediciones de esta entrega son automáticas sin renderizado; no certifican
+los FPS que obtendrás con tu GPU ni sustituyen tu prueba visual en Windows.
+
+PROYECTO EDITABLE
+El ZIP Proyecto contiene project.godot, recursos, código y pruebas repetibles.
+En Drive el proyecto editable está en una carpeta separada, en tres ZIP normales
+con carpetas complementarias. Se extraen en la misma ubicación; no se concatenan.
+La entrega se exportó con Godot 4.4.1 y la plantilla Windows x86_64 de esa versión.
+Se incluye un informe de pruebas. La ejecución nativa de Windows queda pendiente
+de comprobar en tu equipo; este entorno ejecuta Godot 4.4.1 para Linux.

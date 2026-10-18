@@ -1,0 +1,22 @@
+{
+  "seed": 923,
+  "scope": "pilot",
+  "profile": {
+    "standing_height": 4.0,
+    "crouched_height": 2.0,
+    "width": 1.5,
+    "player_height": 1.8,
+    "player_width": 0.6,
+    "measurement_source": "SYNTHETIC TEST FIXTURE ONLY \u2014 not a PunchLine robot measurement"
+  },
+  "buildings": [],
+  "blockers": [
+    "lot_04: no validated mecha_crouch candidate found by heuristic search; no placement forced"
+  ],
+  "rejected": {
+    "if not boundary.union(sidewalks).buffer(.5).covers(route):": 10,
+    "if route.intersects(unary_union(layers['Roads'] + layers['Parking'])):": 7,
+    "if not available.covers(footprint) or footprint.intersects(forbidden):": 1
+  },
+  "source_sha256": "81a4b7135b2ae3ec2436259f1868ee55a0144aa53ca62f4f7a31b7a94524d2b1"
+}

@@ -1,0 +1,35 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS HUD original con identidad y cuatro habilidades
+PASS HUD remoto oculto
+PASS nombre editable estando conectado
+PASS renombrar actualiza el roster
+PASS habilidad 3 usa contacto y daño reales
+PASS habilidad 4 usa contacto y daño reales
+PASS Proyección guiada online con daño y cooldown
+PASS counter fallido cristaliza al usuario
+PASS cristalización oculta el 3D
+PASS un golpe rompe el vidrio y restaura el rig
+PASS counter correcto cristaliza al atacante
+PASS G activa transformación original
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/OnlineArena/Players/Player1/Controller/@Node3D@3769/@Node3D@5/@Node3D@3814/@MeshInstance3D@3815" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS G activa evolución original
+PASS dominio original activo con geometría real
+PASS K invoca Kogane
+PASS emote original activado
+PASS habilidad original de Stan
+PASS snapshot transmite habilidades, forma, emote y huesos
+PASS cliente recibe HUD y cooldowns reales
+PASS cliente conserva la animación real del rig
+PASS cliente muestra segunda forma
+PASS cliente construye interior y exterior del dominio
+PASS cliente mantiene exclusión 2D/3D al cristalizar
+PASS cliente restaura el 3D cuando se rompe el frame
+PASS paquete comprimido de tres jugadores se reconstruye en el cliente
+PASS habilidades y huesos caben dentro del límite de transferencia
+PASS vidrio desaparece por tiempo y restaura controles
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/OnlineArena/Players/Player3/@Node3D@4297/@Node3D@9901/@MeshInstance3D@9902" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS menú online no detiene la simulación de los demás
+RESULTADO 28/28

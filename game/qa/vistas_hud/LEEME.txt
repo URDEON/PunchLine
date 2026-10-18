@@ -1,0 +1,1 @@
+Vistas vectoriales de diseño exportadas desde el HUD actual. No son capturas del juego ni una prueba gráfica de Godot. Base/selector/fase1/fase2 al80%; vista50 al50%.

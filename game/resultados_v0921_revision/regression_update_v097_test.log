@@ -1,0 +1,85 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS 12 anclas explícitas y simulación real: mixamo/idle
+SKIN_METRICS { "clip": "mixamo/idle", "edge_ratio": 14.6715662876711, "diameter_m": 2.14762658919554, "strain": 0.00443197755961, "max_velocity": 8.1163387298584 }
+PASS malla y física finitas, sin explosión: mixamo/idle
+PASS vértices y triángulos sin estiramiento general: mixamo/idle
+PASS longitudes y escalas originales: mixamo/idle
+PASS recuperación y limpieza física: mixamo/idle
+PASS 12 anclas explícitas y simulación real: combat/Uppercut
+SKIN_METRICS { "clip": "combat/Uppercut", "edge_ratio": 11.2522708644468, "diameter_m": 2.39453937119904, "strain": 0.00443197755961, "max_velocity": 4.77629423141479 }
+PASS malla y física finitas, sin explosión: combat/Uppercut
+PASS vértices y triángulos sin estiramiento general: combat/Uppercut
+PASS longitudes y escalas originales: combat/Uppercut
+PASS recuperación y limpieza física: combat/Uppercut
+PASS 12 anclas explícitas y simulación real: extras/NinjaJump_Start
+SKIN_METRICS { "clip": "extras/NinjaJump_Start", "edge_ratio": 12.6501045186658, "diameter_m": 2.19505607927672, "strain": 0.00330995792426, "max_velocity": 4.85326671600342 }
+PASS malla y física finitas, sin explosión: extras/NinjaJump_Start
+PASS vértices y triángulos sin estiramiento general: extras/NinjaJump_Start
+PASS longitudes y escalas originales: extras/NinjaJump_Start
+PASS recuperación y limpieza física: extras/NinjaJump_Start
+PASS 12 anclas explícitas y simulación real: combat/Finisher
+SKIN_METRICS { "clip": "combat/Finisher", "edge_ratio": 10.0070297140519, "diameter_m": 2.33790977166315, "strain": 0.00336605890603, "max_velocity": 5.31214332580566 }
+PASS malla y física finitas, sin explosión: combat/Finisher
+PASS vértices y triángulos sin estiramiento general: combat/Finisher
+PASS longitudes y escalas originales: combat/Finisher
+PASS recuperación y limpieza física: combat/Finisher
+PASS 12 anclas explícitas y simulación real: UnarmedIdleAlert1
+SKIN_METRICS { "clip": "UnarmedIdleAlert1", "edge_ratio": 8.87642732614926, "diameter_m": 2.61955599138837, "strain": 0.01263056522705, "max_velocity": 5.05815553665161 }
+PASS malla y física finitas, sin explosión: UnarmedIdleAlert1
+PASS vértices y triángulos sin estiramiento general: UnarmedIdleAlert1
+PASS longitudes y escalas originales: UnarmedIdleAlert1
+PASS recuperación y limpieza física: UnarmedIdleAlert1
+PASS enemigo recupera sobre azotea: 0
+PASS 12 anclas explícitas y simulación real: UnarmedIdleAlert1
+SKIN_METRICS { "clip": "UnarmedIdleAlert1", "edge_ratio": 8.94772293585039, "diameter_m": 2.54413998796437, "strain": 0.00977850211127, "max_velocity": 3.80681228637695 }
+PASS malla y física finitas, sin explosión: UnarmedIdleAlert1
+PASS vértices y triángulos sin estiramiento general: UnarmedIdleAlert1
+PASS longitudes y escalas originales: UnarmedIdleAlert1
+PASS recuperación y limpieza física: UnarmedIdleAlert1
+PASS enemigo recupera sobre azotea: 1
+PASS 12 anclas explícitas y simulación real: UnarmedIdleAlert1
+SKIN_METRICS { "clip": "UnarmedIdleAlert1", "edge_ratio": 8.65145668399338, "diameter_m": 2.48013698031761, "strain": 0.01348297959032, "max_velocity": 4.49978685379028 }
+PASS malla y física finitas, sin explosión: UnarmedIdleAlert1
+PASS vértices y triángulos sin estiramiento general: UnarmedIdleAlert1
+PASS longitudes y escalas originales: UnarmedIdleAlert1
+PASS recuperación y limpieza física: UnarmedIdleAlert1
+PASS enemigo recupera sobre azotea: 2
+PASS exactamente dos fotogramas delanteros
+PASS fotograma sigue posición y rumbo: 0
+PASS silueta plana y tenue: 0
+PASS fotograma sigue posición y rumbo: 1
+PASS silueta plana y tenue: 1
+PASS rastro usa vidrio y silueta, sin clon 3D
+PASS cancelar limpia fotogramas y rastro
+PASS rueda mantiene juego activo y crea rig de preview
+PASS vidrio por shader y preview sin fondo opaco
+PASS preview mueve huesos mientras el juego continúa
+PASS vista previa reproduce clip real: 1
+PASS vista previa reproduce clip real: 2
+PASS vista previa reproduce clip real: 3
+PASS vista previa reproduce clip real: 4
+PASS vista previa reproduce clip real: 5
+PASS vista previa reproduce clip real: 6
+PASS vista previa reproduce clip real: 7
+PASS vista previa reproduce clip real: 8
+PASS desafío nuevo funciona sobre el rig principal
+PASS gesto finito devuelve locomoción automáticamente
+PASS distrito con ventanas instanciadas y siete estaciones
+PASS puerta interactiva accesible con E
+PASS puerta se abre físicamente
+PASS modo nocturno cambia iluminación real
+PASS plataforma de impulso responde en el suelo
+PASS impulso produce salto físico real
+PASS golpe frontal rompe un vidrio del mapa
+PASS rotura elimina la colisión
+PASS vidrio roto no recibe otro golpe
+PASS golpe posterior también rompe vidrio
+PASS consola rearma visual y colisión
+PASS M1 real rompe el vidrio en la ventana de contacto
+PASS tecla E real rearma vidrio desde consola cercana
+PASS estación configura guardia del NPC real
+PASS rueda adaptable: (1280, 720)
+PASS rueda adaptable: (640, 360)
+PASS rueda adaptable: (360, 640)
+RESULTADO 75/75

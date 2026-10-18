@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="32" viewBox="0 0 256 32">
+<path d="M32 8 L232 8 L224 24 L24 24 Z" fill="#03090C" fill-opacity="0.85"/>
+<rect x="40" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="56" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="72" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="88" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="104" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="120" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="136" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="152" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="168" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="184" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="200" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+<rect x="216" y="21" width="1" height="3" fill="#18B8D0" fill-opacity="0.3"/>
+</svg>

@@ -1,0 +1,122 @@
+NAOYA v0.9 — SOLICITUD COMPLETA DE REVISIÓN Y DESARROLLO PARA CODEX
+
+VERSIÓN BASE
+Utiliza la versión Naoya_0.9_IMPORTAR_GODOT.zip que ya te proporcioné. Antes de editar nada, revisa la organización real del proyecto Godot y conserva las funciones que ya trabajan correctamente. Trabaja en una copia/nueva versión, nunca sobreescribas la base sin respaldo. Mi dibujo del HUD y el archivo Demo HUD.md son referencias para la interfaz. El dibujo manda en la geometría y distribución; Demo HUD.md confirma que las teclas 1–4 activan habilidades, Q cambia al siguiente personaje y el azul significa cooldown.
+
+OBJETIVO GENERAL
+Quiero que la experiencia sea mucho menos tosca, más fluida y expresiva. En este momento los golpes, las transformaciones, el audio, la interfaz y los modelos no transmiten la calidad que puede lograr un juego 3D en Godot. No quiero que la solución sea poner esferas, círculos y brillos genéricos: necesito animaciones, poses, buenos modelos, efectos bien sincronizados, un combate comprensible y un HUD fiel a mi boceto.
+
+1. HABILIDAD 1 — AUTOAPUNTADO REAL, DIRECCIÓN CON CÁMARA Y DASH ESQUIVABLE
+La habilidad 1 es demasiado difícil de acertar. Por «lock-on» NO me refiero al sistema manual de fijar objetivo con el clic de la rueda del mouse: me refiero a autoapuntado integrado en la propia habilidad, como un aimbot interno de juego. No debe ser necesario seleccionar manualmente a nadie antes de activarla.
+
+- Al activar el 1, localizar automáticamente un enemigo válido dentro de un rango y ángulo razonables; priorizar al que está más cerca del centro de la cámara.
+- Comprobar alcance y línea de visión: no fijar objetivos detrás de paredes ni atravesar objetos sólidos.
+- Seguir actualizando la posición y velocidad del objetivo durante el desplazamiento; dirigir a Naoya hacia él con corrección continua y giro suavizado, no teletransportarlo ni girarlo bruscamente.
+- El jugador también debe poder influir en la trayectoria con la cámara mientras dura la habilidad.
+- Aumentar la velocidad progresivamente durante la ejecución de la habilidad. Evitar desplazamientos erráticos al perder el objetivo.
+- Sin objetivo válido, ejecutar la habilidad en la dirección de la cámara de forma normal.
+- Facilitar mucho acertar, pero NO garantizar el golpe: el enemigo debe poder esquivar usando un dash bien sincronizado JUSTO antes de recibir el impacto.
+- Para que la evasión sea justa, separar claramente la fase de aproximación de la ventana del impacto. El autoapuntado debe dejar de corregir la trayectoria en una breve ventana final de compromiso (ajustable), para que el dash de último momento realmente pueda esquivar el golpe.
+- No volver a fijar instantáneamente al objetivo después de que este lo esquive con éxito; no permitir que el hitbox lo persiga sin límite.
+- Considerar la esquiva válida por posición/hitbox y, si el sistema ya tiene una ventana de invulnerabilidad de dash, respetarla. No inventar invulnerabilidad permanente.
+- Proponer tiempos y distancias iniciales como parámetros exportados ajustables, documentarlos y probarlos; no fijar valores irreversibles sin validación.
+- Mejorar los golpes finales del 1: actualmente son lentos, poco distinguibles y carecen de impacto. Necesitan poses, intervalos, anticipación y efectos claramente legibles.
+
+VARIANTE ESPECIAL POR PROXIMIDAD
+Cuando Naoya active el 1 estando muy cerca de un enemigo, ejecutar una variante especial diferenciada:
+- Detectar al enemigo a corta distancia.
+- Inmovilizarlo brevemente dentro de la secuencia y respetar el estado del combate.
+- Hacer que Naoya trace un recorrido circular alrededor de él.
+- Aplicar una ráfaga de golpes consecutivos con animaciones separadas, impactos, cámara y sonidos sincronizados.
+- Rematar con un golpe final y recuperar correctamente el control.
+- Evitar atravesar geometría, realizar golpes infinitos, dejar personajes bloqueados o multiplicar injustamente el daño.
+- La ventana de esquiva con dash debe funcionar para el impacto de aproximación que inicia la habilidad: si se esquiva a tiempo, no debe activarse gratis la secuencia completa.
+
+2. COUNTER Y TÉCNICA DE FOTOGRAMAS
+- El estado de congelación «frame» del Counter debe durar 5 segundos, con inicio y fin claramente visibles.
+- Cuando un enemigo o el propio jugador quede atrapado en frame, representarlo visualmente como un personaje bidimensional dentro de un fotograma, como si fuera una imagen plana de su pose capturada, haciendo alusión a la técnica de proyección de Naoya.
+- NO basta con dejar el modelo 3D inmóvil detrás de un rectángulo. Investigar una técnica viable en Godot, por ejemplo capturar/renderizar una pose a textura, usar un billboard o una representación 2D equivalente dentro del espacio 3D.
+- Mantener colisiones y lógica coherentes durante el estado. Al terminar, restaurar modelo, animación, controles y efectos sin duplicar personajes ni dejar errores.
+- La técnica debe funcionar de manera consistente sobre jugador y dummies/enemigos cuando corresponda.
+
+3. REDISEÑO DEL HUD — FIDELIDAD AL BOCETO ADJUNTO
+El HUD actual me parece feo y no se parece lo suficiente al boceto que entregué. No quiero simplemente recolorear tarjetas ni colocar cuatro rectángulos en fila. Quiero que la silueta y la organización se acerquen verdaderamente al dibujo, con una implementación que se vea limpia en pantalla de juego 16:9.
+
+ARRIBA A LA IZQUIERDA
+- Retrato circular del personaje, como en mi boceto, integrado al selector de personaje. Para este personaje, mostrar a Kogane o la imagen correspondiente cuando se determine el retrato definitivo.
+- Cuatro iconos de estados circulares encima de la barra y sus pequeños indicadores inferiores, colocados como en el dibujo.
+- Barra principal dividida en segmentos poligonales alargados, no una barra rectangular convencional. Cada segmento se rompe/se marca visualmente cuando se vacía, manteniendo la lectura clara de la salud.
+- Mantener el conjunto compacto, alineado y coherente con el grosor de trazo y las proporciones del dibujo.
+
+ABAJO A LA DERECHA
+- Cuatro fichas de habilidad conectadas con bordes poligonales angulares e irregulares, siguiendo la estructura exacta de mi dibujo, NO una cuadrícula uniforme.
+- Habilidad 1 «Proyección»: tarjeta superior con ilustración de un personaje y fotogramas o paneles fragmentados de su desplazamiento; mostrar número 1.
+- Habilidad 2 «Counter»: tarjeta inferior izquierda; ilustrar al personaje frente a un enemigo encerrado en un fotograma plano. No dibujar simplemente un efecto de rotura decorativo sobre este counter. Mostrar número 2.
+- Habilidad 3 «Golpe veloz»: tarjeta inferior central; mostrar al personaje ejecutando un golpe rápido y líneas/notas de movimiento como en el boceto. Mostrar número 3.
+- Habilidad 4 «Patada»: tarjeta derecha; figura simple en pose de patada, mostrar número 4.
+- Conservar los nombres visibles, las teclas en las pequeñas esquinas y las siluetas con dibujos sencillos; no reemplazar mis monitos por ilustraciones detalladas o imágenes generativas que cambien el concepto.
+- Cuando una habilidad entre en cooldown, AZUL es el indicador principal en su tarjeta; mantener visibles nombre y dibujo.
+- Conservar la conexión y pequeños espacios/separadores entre los polígonos tal como en el esquema, sin piezas que se monten indebidamente unas sobre otras.
+- Las habilidades 1–4 se activan con sus números y Q cambia de personaje, conforme al Demo HUD.md.
+- El HUD debe ajustarse a resoluciones 16:9 y otras relaciones sin perder la geometría ni cortar información. Debe ser funcional con las señales/estados reales del gameplay, no una imagen estática.
+- Si hace falta, crear un Control personalizado dibujando polígonos con _draw(), o usar recursos/vector/texturas. Priorizar coincidencia geométrica con mi referencia por encima de efectos decorativos.
+
+4. MODELOS 3D Y ANIMACIONES
+- Los personajes requieren mejores modelos con anatomía y cara visibles, no maniquíes sin expresión.
+- Revisar rig, esqueleto, compatibilidad de animaciones y transiciones con AnimationTree.
+- Mejorar animaciones de ataque, desplazamiento, salto, dash, bloqueo, caídas, recuperación y transformaciones; evitar brazos levantados de forma accidental y poses robóticas.
+- Las transformaciones se sienten demasiado básicas, casi como transiciones HTML, pese a estar hechas en Godot. Necesito cambios corporales, poses y fases diferenciadas, cámara/sonido sincronizados, no solo escalado, esferas o brillos.
+- Si hacen falta modelos externos, NO inventes que los tienes: dame los enlaces exactos de recursos adecuados y una lista del formato, rig y licencia requerida para que yo los descargue y te los entregue antes de integrarlos.
+
+5. BLOQUEO EN MOVIMIENTO, M1 Y RAGDOLL
+- Al caminar bloqueando, el personaje ahora queda rígido como si flotara. Quiero brazos protegiendo rostro/torso mientras las piernas caminan y el cuerpo se balancea naturalmente. Usar mezcla de animaciones superior/inferior si el rig lo permite.
+- Los M1/clic izquierdo no deben golpear enemigos tumbados. Respetar estados de knockdown y recuperación.
+- Preservar las variantes existentes del cuarto M1, incluido golpe normal, uppercut y downslam si ya están implementados, y evitar romper los combos actuales.
+- Implementar un sistema ragdoll realista o híbrido para caídas fuertes: físicas del esqueleto/PhysicalBoneSimulator3D o técnica compatible con el rig disponible, activar al caer, reaccionar a fuerza/dirección y pasar después a una recuperación animada. Si el rig actual no es apto, explicar el bloqueo y preparar primero el rig necesario.
+- Impedir conflictos entre ragdoll, hitboxes, bloqueo, ataques y animaciones.
+
+6. DOMINIO
+- El dominio debe verse ESFÉRICO desde fuera, como una estructura tridimensional reconocible.
+- Desde dentro debe sentirse como estar en una cúpula, no en una sala cuadrada.
+- El suelo interior debe ser redondo/circular, no un cuadrado.
+- Crear entrada y salida coherentes, visibilidad correcta dentro/fuera, colisiones y cámara estables.
+- Mejorar ambiente, materiales, iluminación y efectos sin depender de una esfera luminosa genérica ni sacrificar demasiado rendimiento.
+
+7. SONIDO Y FEEDBACK DE IMPACTOS
+- Los sonidos de golpes parecen antiguos y poco convincentes, como golpear un coco. Reemplazarlos por impactos más definidos.
+- Diferenciar impactos ligeros, fuertes, Counter, bloqueos, remates y golpes de alta velocidad.
+- Sincronizar los sonidos con el frame de contacto y usar variaciones para evitar repeticiones idénticas.
+- Incorporar sonido propio al efecto de fotograma 2D, movimiento y dominio.
+- Rebalancear volúmenes y evitar saturación y recursos sin licencias verificadas.
+
+8. TRANSFORMACIONES Y ERROR DE FASES
+- Si el personaje muere teniendo la ultimate disponible, actualmente pasa directamente a la segunda fase y se salta la primera. Esto no es lo que quiero.
+- Revisar la máquina de estados de las fases y corregir la progresión para que la primera fase no se salte de forma accidental.
+- Como esto podría ser comportamiento ya programado en la versión anterior, identificar la condición precisa antes de cambiarla. Proponer una regla clara para la evolución por muerte y conservar la intención original sin adelantar fases injustificadamente.
+- Restablecer correctamente barras, control, aspecto, habilidades y animaciones después de morir o transformarse.
+
+9. DUMMIES, ARENA DE PRUEBAS Y MAPA
+- Añadir o separar claramente los modos de dummy: pasivo quieto, bloqueador, atacante estacionario (puede atacar pero NO perseguir), atacante perseguidor y, si es posible, dummy que use esquivas.
+- Poder cambiar el modo desde controles de prueba claros.
+- Mejorar el mapa como laboratorio con espacios para probar distancia, combos, obstáculos, paredes, knockdown/ragdoll, dominio, persecución y batallas con varios enemigos.
+- Cuidar spawns, reinicios, colisiones y límites del mapa.
+
+10. BALANCE Y PROFUNDIDAD
+- Ahora el daño general es demasiado alto. Ajustar valores con una tabla legible de daño por M1, habilidad, combo, transformación, Counter y dominio.
+- Revisar cooldowns, alcance, recuperación, inmovilizaciones, escalado de daño de combos y posibilidades de defensa.
+- El autoapuntado fuerte del 1 debe compensarse con la posibilidad real de esquivar en el último instante mediante dash. No debe ser un ataque que garantice el golpe por seguir al rival eternamente.
+- Kogane necesita más identidad y presencia: proponer interacciones, reacciones, animaciones y mecánicas que se integren con el juego y no sean solo decoración.
+- Ampliar la variedad de decisiones de combate para que jugar únicamente con este personaje no se vuelva plano.
+
+11. MÉTODO DE TRABAJO Y ENTREGABLES
+- Primero inspecciona los archivos y señala de forma concreta qué ya existe, qué está incompleto y qué hay que desarrollar desde cero. No afirmes que probaste mecánicas o viste resultados si no los ejecutaste.
+- Crea una lista de pendientes clasificada por criticidad, dificultad, dependencias y versión recomendada.
+- Recomiendo priorizar: v0.9.1 jugabilidad/autoapuntado/esquiva/balance/fases; v0.9.2 HUD fiel al boceto; v0.9.3 animaciones, modelos, sonido y ragdoll; y posteriores iteraciones para dominio/mapa/profundidad. Ajusta el orden si detectas dependencias técnicas distintas.
+- Trabaja de forma incremental: analiza, modifica, ejecuta pruebas, entrega la versión, indica cómo comprobarla y espera feedback antes de cambios de gran escala.
+- Agrega pruebas automatizadas para las reglas verificables: selección del objetivo, paredes, dash justo antes del impacto, ausencia de autoapuntado, activación de combo cercano, duración de frame de 5 s, estados de knockdown, fases de transformación y modos de dummy.
+- Lo visual debe probarse visualmente: si no puedes ejecutar Godot con gráficos, sé explícito y pide capturas o video en lugar de declarar que quedó perfecto.
+- Mantén rendimiento razonable, evita errores, no rompas el proyecto ni sustituyas mecánicas existentes por placeholders.
+- Entrega changelog, lista de pruebas realizadas, limitaciones y recursos exactos que necesites que yo descargue.
+
+RESULTADO ESPERADO
+Un juego 3D en Godot mucho más satisfactorio: la habilidad 1 debe ser fácil de conectar gracias al autoapuntado dinámico, pero esquivable con un dash preciso al final; el Counter debe hacer visible la técnica de fotogramas; los personajes deben sentirse vivos; el dominio debe ser una cúpula/esfera; el combate debe estar balanceado, y el HUD debe reproducir fielmente mi dibujo con las cuatro habilidades poligonales, estados, retrato y vida segmentada.

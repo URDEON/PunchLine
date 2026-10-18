@@ -1,0 +1,30 @@
+{
+  "source": "Rust_Vanguard_original.glb",
+  "body_parts": {
+    "Pie_Der": 376,
+    "Pie_Izq": 380,
+    "Pantorrilla_Der": 338,
+    "Pantorrilla_Izq": 338,
+    "Rodilla_Der": 193,
+    "Rodilla_Izq": 160,
+    "Muslo_Der": 221,
+    "Muslo_Izq": 221,
+    "Pelvis": 740,
+    "Torso_Abdomen": 413,
+    "Torso_Pecho": 511,
+    "Hombro_Der": 191,
+    "Hombro_Izq": 234,
+    "BrazoSuperior_Der": 185,
+    "BrazoSuperior_Izq": 174,
+    "Antebrazo_Der": 196,
+    "Antebrazo_Izq": 173,
+    "Mano_Der": 124,
+    "Mano_Izq": 131,
+    "Cabeza": 158,
+    "Antena_Der": 14,
+    "Antena_Izq": 14
+  },
+  "total_triangles": 5485,
+  "scale_in_meters_if_4m": 4.708046637600833,
+  "note": "Seccion por centroides triangulares; revisar cortes en Blender antes de usar para rig final."
+}

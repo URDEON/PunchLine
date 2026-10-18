@@ -1,0 +1,19 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS cliente abre B usando suelo replicado, sin requerir física local
+PASS emote jugador 2 ejecutado por autoridad en el jugador correcto
+PASS emote del invitado se incluye en snapshot
+PunchLine · módulos de fusión cargados: 112
+PASS fusión online preparada
+PASS vidrio de Naoya afecta mega incluso durante su M1 protegido
+PASS cristalización interrumpe el ataque sin alterar protección contra M1
+PASS autoridad mantiene cañón mientras bit de entrada está pulsado
+PASS se permite caminar durante despliegue online
+PASS snapshot contiene transformación y fase de carga
+PunchLine · módulos de fusión cargados: 112
+PASS réplica construye Junkyard con sus piezas originales
+PASS réplica muestra mismo cañón desplegado y láser
+PASS cliente no simula segundo ragdoll autoritativo
+PASS soltar online dispara y replica cooldown de dos segundos
+PASS desarme de muerte se replica al cliente
+RESULTADO 14/14

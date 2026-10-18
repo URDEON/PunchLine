@@ -1,0 +1,86 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS mapa PunchLine es el escenario predeterminado
+PASS colisiones reales de terreno, edificios y mobiliario
+PASS dos puntos de aparición junto a la plaza
+PASS aparición fuera de paredes y sobre suelo 0
+PASS aparición fuera de paredes y sobre suelo 1
+PASS aparición fuera de paredes y sobre suelo 2
+PASS aparición fuera de paredes y sobre suelo 3
+PASS aparición fuera de paredes y sobre suelo 4
+PASS aparición fuera de paredes y sobre suelo 5
+PASS aparición fuera de paredes y sobre suelo 6
+PASS aparición fuera de paredes y sobre suelo 7
+PASS aparición fuera de paredes y sobre suelo 8
+PASS aparición fuera de paredes y sobre suelo 9
+PASS aparición fuera de paredes y sobre suelo 10
+PASS aparición fuera de paredes y sobre suelo 11
+PASS aparición fuera de paredes y sobre suelo 12
+PASS aparición fuera de paredes y sobre suelo 13
+PASS aparición fuera de paredes y sobre suelo 14
+PASS aparición fuera de paredes y sobre suelo 15
+PASS reapariciones aleatorias utilizan ambos puntos
+PASS enemigo situado dentro de la plaza
+PASS enemigo situado dentro de la plaza
+PASS enemigo situado dentro de la plaza
+PASS frente visual coincide con avance: 0
+PASS raíz común de piernas y torso: 0
+PASS locomoción mueve piernas con clips originales: 0
+PASS activa ragdoll propio: 0
+PASS todos los cuerpos forman una sola cadena: 0
+PASS pies independientes unidos al final de la pierna: 0
+PASS piernas unidas al Body durante la física: 0
+PASS recuperación completa y controles: 0
+PASS torso recuperado sin aplastarse: 0
+PASS habilidades 1 y 2 tienen poses y clips distintos: 0
+PASS rueda de emotes no pausa combate: 0
+PASS IA enemiga golpea mientras eliges un emote: 0
+PASS selector tiene apertura gradual: 0
+PASS cierre conserva pausa hasta acabar animación: 0
+PASS cierre devuelve control: 0
+PASS frente visual coincide con avance: 1
+PASS raíz común de piernas y torso: 1
+PASS locomoción mueve piernas con clips originales: 1
+PASS activa ragdoll propio: 1
+PASS todos los cuerpos forman una sola cadena: 1
+PASS pies independientes unidos al final de la pierna: 1
+PASS piernas unidas al Body durante la física: 1
+PASS recuperación completa y controles: 1
+PASS torso recuperado sin aplastarse: 1
+PASS habilidades 1 y 2 tienen poses y clips distintos: 1
+PASS rueda de emotes no pausa combate: 1
+PASS IA enemiga golpea mientras eliges un emote: 1
+PASS selector tiene apertura gradual: 1
+PASS cierre conserva pausa hasta acabar animación: 1
+PASS cierre devuelve control: 1
+PASS frente visual coincide con avance: 2
+PASS raíz común de piernas y torso: 2
+PASS locomoción mueve piernas con clips originales: 2
+PASS activa ragdoll propio: 2
+PASS todos los cuerpos forman una sola cadena: 2
+PASS pies independientes unidos al final de la pierna: 2
+PASS piernas unidas al Body durante la física: 2
+PASS recuperación completa y controles: 2
+PASS torso recuperado sin aplastarse: 2
+PASS habilidades 1 y 2 tienen poses y clips distintos: 2
+PASS rueda de emotes no pausa combate: 2
+PASS IA enemiga golpea mientras eliges un emote: 2
+PASS selector tiene apertura gradual: 2
+PASS cierre conserva pausa hasta acabar animación: 2
+PASS cierre devuelve control: 2
+PASS frente visual coincide con avance: 3
+PASS raíz común de piernas y torso: 3
+PASS locomoción mueve piernas con clips originales: 3
+PASS activa ragdoll propio: 3
+PASS todos los cuerpos forman una sola cadena: 3
+PASS pies independientes unidos al final de la pierna: 3
+PASS piernas unidas al Body durante la física: 3
+PASS recuperación completa y controles: 3
+PASS torso recuperado sin aplastarse: 3
+PASS habilidades 1 y 2 tienen poses y clips distintos: 3
+PASS rueda de emotes no pausa combate: 3
+PASS IA enemiga golpea mientras eliges un emote: 3
+PASS selector tiene apertura gradual: 3
+PASS cierre conserva pausa hasta acabar animación: 3
+PASS cierre devuelve control: 3
+RESULTADO 83/83

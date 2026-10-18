@@ -1,0 +1,10 @@
+{
+  "original": "assets/characters/alien/Alien_Naoya_Rig_Combat.glb",
+  "bones": 53,
+  "weighted_meshes": 1,
+  "auxiliary_unskinned_meshes": 1,
+  "reparented": false,
+  "weights_recalculated": false,
+  "export": "glTF Embedded (JSON with embedded buffers and images)",
+  "reason": "standalone ragdoll test source; main player retains validated GLB"
+}

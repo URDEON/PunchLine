@@ -1,0 +1,41 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS rig y tres NPC importados
+PASS base1 crea dos fotogramas móviles
+PASS base1 avanza automaticamente
+PASS avance conserva como máximo dos fotogramas
+PASS base1 sale de recovery
+PASS fin de proyección limpia el cuadro móvil
+PASS sin objetivo termina sin castigo de ruta
+PASS fallo limpia cuadros
+PASS counter evita golpe en ventana
+PASS counter inflige8 y congela
+PASS animacion recuperada tras congelacion
+PASS counter tardio recibe dano
+PASS G transforma gusano 60s
+PASS carga evolucion multiplica1.5
+PASS fase1 bloquea movimientos evolucionados
+PASS embestida fase1 aplica18 una sola vez
+PASS impacto carga evolucion
+PASS G evoluciona y renueva45s
+PASS renacimiento fase1 con60HP y evolucion cero
+PASS tentaculos golpe6+12
+PASS tentaculos finalizan sin bloqueo de estado
+PASS aceleracion atraviesa guardia y aplica26 una vez
+PASS dominio se activa14s una vez
+PASS dominio teletransporta a arena separada
+PASS dominio no dana al inmovil
+PASS dominio penaliza movimiento atacante
+PASS dominio devuelve jugador al terminar14s
+PASS dominio devuelve NPC
+PASS dominio usado no se repite
+PASS morir restaura arena y forma humana
+PASS expiracion cancela habilidad y restaura humano
+PASS proyecciones conecta rafaga18 con colision real
+PASS counter no cubre espalda
+PASS ataque interrumpe preparacion dominio
+PASS dominio exige tiempo para14s completos
+PASS G no cancela gratuitamente habilidad activa
+PASS G funciona al estar libre
+PASS nueva transformacion recupera dominio
+RESULT 38/38 OK

@@ -1,0 +1,22 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO HUD del boceto · retrato, estados, salud segmentada y fichas conectadas
+PASS HUD muestra habilidades y salud completas
+DEMO Laboratorio · vida73 y energía62 para comprobar segmentos y lectura
+PASS segmento vacío se marca y lectura coincide conHP
+DEMO Counter contra ataque real · cabecera azul y cooldown visible
+PASS Counter activa frame y cabecera de cooldown
+DEMO P · lista bajo el retrato: Naoya, Robot y Coming Soon · combate pausado sin reiniciar recursos
+PASS P abre selector y detiene reloj real
+DEMO Alt · clic en el triángulo relleno · lista bajo el retrato
+PASS clic automatizado en triángulo abre dropdown real
+PASS clic automatizado eligeNaoya y reanuda
+DEMO Esc · menú de pruebas, ajustes y controles
+PASS menú de ajustes mantiene pausa
+PASS ajuste reduce el HUD mientras menú conserva tamaño
+DEMO Laboratorio · fase1 · solo Embestida disponible
+PASS fase1 distingue habilidades bloqueadas
+DEMO Laboratorio · evolución100 · habilidades de fase2
+PASS fase2 cambia fichas según estado real
+DEMO Demostración terminada · acciones automatizadas
+DEMO RESULT 10/10

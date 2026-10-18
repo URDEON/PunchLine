@@ -1,0 +1,63 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS 1 conecta18 contra quieto a1.2m/-49°
+PASS 1 conecta18 contra quieto a1.2m/-45°
+PASS 1 conecta18 contra quieto a1.2m/-30°
+PASS 1 conecta18 contra quieto a1.2m/-15°
+PASS 1 conecta18 contra quieto a1.2m/+0°
+PASS 1 conecta18 contra quieto a1.2m/+15°
+PASS 1 conecta18 contra quieto a1.2m/+30°
+PASS 1 conecta18 contra quieto a1.2m/+45°
+PASS 1 conecta18 contra quieto a1.2m/+49°
+PASS 1 conecta18 contra quieto a1.8m/-49°
+PASS 1 conecta18 contra quieto a1.8m/-45°
+PASS 1 conecta18 contra quieto a1.8m/-30°
+PASS 1 conecta18 contra quieto a1.8m/-15°
+PASS 1 conecta18 contra quieto a1.8m/+0°
+PASS 1 conecta18 contra quieto a1.8m/+15°
+PASS 1 conecta18 contra quieto a1.8m/+30°
+PASS 1 conecta18 contra quieto a1.8m/+45°
+PASS 1 conecta18 contra quieto a1.8m/+49°
+PASS 1 conecta18 contra quieto a2.2m/-49°
+PASS 1 conecta18 contra quieto a2.2m/-45°
+PASS 1 conecta18 contra quieto a2.2m/-30°
+PASS 1 conecta18 contra quieto a2.2m/-15°
+PASS 1 conecta18 contra quieto a2.2m/+0°
+PASS 1 conecta18 contra quieto a2.2m/+15°
+PASS 1 conecta18 contra quieto a2.2m/+30°
+PASS 1 conecta18 contra quieto a2.2m/+45°
+PASS 1 conecta18 contra quieto a2.2m/+49°
+PASS 1 conecta18 contra quieto a4.0m/-49°
+PASS 1 conecta18 contra quieto a4.0m/-45°
+PASS 1 conecta18 contra quieto a4.0m/-30°
+PASS 1 conecta18 contra quieto a4.0m/-15°
+PASS 1 conecta18 contra quieto a4.0m/+0°
+PASS 1 conecta18 contra quieto a4.0m/+15°
+PASS 1 conecta18 contra quieto a4.0m/+30°
+PASS 1 conecta18 contra quieto a4.0m/+45°
+PASS 1 conecta18 contra quieto a4.0m/+49°
+PASS 1 conecta18 contra quieto a8.0m/-49°
+PASS 1 conecta18 contra quieto a8.0m/-45°
+PASS 1 conecta18 contra quieto a8.0m/-30°
+PASS 1 conecta18 contra quieto a8.0m/-15°
+PASS 1 conecta18 contra quieto a8.0m/+0°
+PASS 1 conecta18 contra quieto a8.0m/+15°
+PASS 1 conecta18 contra quieto a8.0m/+30°
+PASS 1 conecta18 contra quieto a8.0m/+45°
+PASS 1 conecta18 contra quieto a8.0m/+49°
+PASS preparación gira gradualmente hacia el blanco lateral
+PASS preparación gira sin teletransportar ni adelantar al jugador
+PASS 1 cercano conecta sobre blanco lateral y rompe vidrio al primer golpe válido
+PASS rumbo lateral queda fijo al comprometerse aunque cambie cámara
+PASS dash lateral final aún evita1 cercano sin retención gratuita
+PASS selección sigue excluyendo blanco a-55° fuera del cono
+PASS selección sigue excluyendo blanco a+55° fuera del cono
+PASS embestida evolucionada cercana lateral conecta22 una vez
+PASS avance real conserva estelas visibles en movimiento
+PASS ráfaga estacionaria no acumula siluetas superpuestas
+PASS avance y detención mantienen como máximo cuatro estelas
+PASS estelas se eliminan después de la acción
+PASS recorrido cercano físico sí deja estelas al desplazarse
+PASS reiniciar laboratorio limpia las estelas anteriores
+PASS desactivar efectos quita estelas y mantiene contactos reales
+RESULT 60/60 OK

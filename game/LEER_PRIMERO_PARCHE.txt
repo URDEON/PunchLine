@@ -1,0 +1,9 @@
+PUNCHLINE 0.9.21 - PARCHE EDITABLE
+
+1. Guarda una copia del proyecto original.
+2. Extrae este ZIP sobre una COPIA del proyecto editable 0.9.21, conservando carpetas.
+3. Elimina assets/environment/punchline_v54 en la copia si quieres quitar el mapa viejo.
+4. Importa project.godot con Godot 4.4.1, espera a que se importe el GLB.
+5. Revisa CAMBIOS_MAPA_Y_COMBATE_0.9.21_EXP.md antes de usarlo en online.
+
+NO COPIAR SOBRE UN EXE: estos archivos requieren exportacion real en Godot.

@@ -1,0 +1,65 @@
+{
+  "adapted_clips": [
+    "Melee_Hook",
+    "Melee_Hook_Rec",
+    "Idle_FoldArms_Loop",
+    "Yes"
+  ],
+  "alignment_yaw_degrees": 180,
+  "combat": [
+    {
+      "clip": "RightJab",
+      "contact": 0.1216,
+      "duration": 0.32,
+      "source": "UnarmedAttackR1",
+      "source_contact": 0.366666666666667
+    },
+    {
+      "clip": "LeftJab",
+      "contact": 0.1216,
+      "duration": 0.32,
+      "source": "UnarmedAttackL1",
+      "source_contact": 0.366666666666667
+    },
+    {
+      "clip": "Hook",
+      "contact": 0.1216,
+      "duration": 0.32,
+      "source": "Melee_Hook",
+      "source_contact": 0.283333333333333
+    },
+    {
+      "clip": "Finisher",
+      "contact": 0.1596,
+      "duration": 0.38,
+      "source": "UnarmedAttackL2",
+      "source_contact": 0.333333333333333
+    },
+    {
+      "clip": "Uppercut",
+      "contact": 0.1596,
+      "duration": 0.38,
+      "source": "UnarmedAttackR3",
+      "source_contact": 0.366666666666667
+    },
+    {
+      "clip": "Downslam",
+      "contact": 0.1596,
+      "duration": 0.38,
+      "source": "UnarmedAttackL3",
+      "source_contact": 0.433333333333333
+    },
+    {
+      "clip": "Kick",
+      "contact": 0.23,
+      "duration": 0.59,
+      "source": "UnarmedAttackKickR1",
+      "source_contact": 0.683333333333333
+    }
+  ],
+  "height_ratio": 1.45078588791934,
+  "mapped_bones": 52,
+  "root_motion": false,
+  "source_bones": 65,
+  "target_bones": 53
+}

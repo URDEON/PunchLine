@@ -1,0 +1,90 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS calzadas comparten tres materiales según tramo
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, -66.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, -42.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, -30.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, -18.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, -6.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, 6.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, 18.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, 30.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, 42.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (-54.0, 0.108, 66.0)
+PASS módulo de calle coincide con superficie caminable: (-42.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (-30.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (-18.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (-6.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (6.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (18.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (30.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (42.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, -54.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, -66.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, -42.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, -30.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, -18.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, -6.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, 6.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, 18.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, 30.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, 42.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (54.0, 0.108, 66.0)
+PASS módulo de calle coincide con superficie caminable: (-42.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (-30.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (-18.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (-6.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (6.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (18.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (30.0, 0.108, 54.0)
+PASS módulo de calle coincide con superficie caminable: (42.0, 0.108, 54.0)
+PASS asfalto y acera usan texturas reales distintas
+PASS asfalto y acera usan texturas reales distintas
+PASS asfalto y acera usan texturas reales distintas
+PASS fachada comparte iluminación con la arena
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS azotea visible coincide con colisión
+PASS rampa lateral fuera del bulevar: (-68.0, 0.0, 12.0)
+PASS rampa lateral fuera del bulevar: (68.0, 0.0, -32.0)
+PASS rampa lateral fuera del bulevar: (2.0, 0.0, 68.0)
+PASS sube andando a la azotea por el acceso lateral
+PASS fotografía congelada sin rig duplicado: -1
+PASS fotograma abarca cuerpo completo: -1
+PASS malla estática sin pesos ni vértices inválidos: -1
+PASS estado único y actor 3D oculto: -1
+PASS restauración idempotente: -1
+PASS fotograma liberado sin referencia activa: -1
+PASS fotografía congelada sin rig duplicado: 0
+PASS fotograma abarca cuerpo completo: 0
+PASS malla estática sin pesos ni vértices inválidos: 0
+PASS estado único y actor 3D oculto: 0
+PASS restauración idempotente: 0
+PASS fotograma liberado sin referencia activa: 0
+PASS fotografía congelada sin rig duplicado: 1
+PASS fotograma abarca cuerpo completo: 1
+PASS malla estática sin pesos ni vértices inválidos: 1
+PASS estado único y actor 3D oculto: 1
+PASS restauración idempotente: 1
+PASS fotograma liberado sin referencia activa: 1
+PASS fotografía congelada sin rig duplicado: 2
+PASS fotograma abarca cuerpo completo: 2
+PASS malla estática sin pesos ni vértices inválidos: 2
+PASS estado único y actor 3D oculto: 2
+PASS restauración idempotente: 2
+PASS fotograma liberado sin referencia activa: 2
+PASS fotografía congelada sin rig duplicado: 3
+PASS fotograma abarca cuerpo completo: 3
+PASS malla estática sin pesos ni vértices inválidos: 3
+PASS estado único y actor 3D oculto: 3
+PASS restauración idempotente: 3
+PASS fotograma liberado sin referencia activa: 3
+RESULTADO 87/87

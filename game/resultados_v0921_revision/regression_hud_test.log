@@ -1,0 +1,100 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS Q dash y P personaje son teclas independientes
+PASS cuatro fichas mantienen los nombres del boceto
+PASS los cuatro polígonos conservan separación sin montarse
+PASS silueta superior1, izquierda2, central3 y derecha4
+PASS salud100 marca segmentos vacíos y número real
+PASS salud80 marca segmentos vacíos y número real
+PASS salud50 marca segmentos vacíos y número real
+PASS salud0 marca segmentos vacíos y número real
+PASS daño real del enemigo actualiza vida del HUD
+PASS icono de guardia responde al bloqueo real
+PASS Q activa dash e icono de velocidad
+PASS icono de forma y barra anuncian energía completa
+PASS icono de caída responde al derribo
+PASS Counter real colorea solo cabecera azul durante cooldown
+PASS cooldown conserva nombre, tecla y segundos
+PASS cabecera vuelve a lista al terminar enfriamiento real
+PASS P abre selector y pausa combate
+PASS selector no consume cooldown ni tiempo del juego
+PASS selector incluye Naoya y Robot jugables y una casilla futura
+PASS elegir Naoya vuelve al combate sin reiniciar vida o habilidades
+PASS P permite cerrar su selector
+PASS Esc abre menú de pruebas desde juego
+PASS P abre lista desde otra pestaña
+PASS Esc devuelve al menú previo sin reanudar combate
+PASS segundo Esc cierra menú previo y recupera juego
+PASS reasignación actualiza acceso al triángulo y desactiva P anterior
+PASS tecla reasignada abre selector real
+PASS tecla de selector persiste en configuración
+PASS fase1 distingue habilidad disponible y bloqueadas
+PASS fase2 actualiza nombres, dibujos y disponibilidad
+PASS dominio explica tiempo mínimo insuficiente
+PASS dominio usado conserva señal propia
+PASS retratos y fichas caben en1280×720
+PASS salud y habilidades no se superponen en1280×720
+PASS estado de combate y botón menú no se montan en1280×720
+PASS nombres, teclas y cooldowns permanecen en pantalla en1280×720
+PASS menúcharacter cabe sin desbordamiento horizontal en1280×720
+PASS menútest cabe sin desbordamiento horizontal en1280×720
+PASS menúsettings cabe sin desbordamiento horizontal en1280×720
+PASS menúcontrols cabe sin desbordamiento horizontal en1280×720
+PASS scroll permite llegar al último control en1280×720
+PASS retratos y fichas caben en1920×1080
+PASS salud y habilidades no se superponen en1920×1080
+PASS estado de combate y botón menú no se montan en1920×1080
+PASS nombres, teclas y cooldowns permanecen en pantalla en1920×1080
+PASS menúcharacter cabe sin desbordamiento horizontal en1920×1080
+PASS menútest cabe sin desbordamiento horizontal en1920×1080
+PASS menúsettings cabe sin desbordamiento horizontal en1920×1080
+PASS menúcontrols cabe sin desbordamiento horizontal en1920×1080
+PASS scroll permite llegar al último control en1920×1080
+PASS retratos y fichas caben en1024×768
+PASS salud y habilidades no se superponen en1024×768
+PASS estado de combate y botón menú no se montan en1024×768
+PASS nombres, teclas y cooldowns permanecen en pantalla en1024×768
+PASS menúcharacter cabe sin desbordamiento horizontal en1024×768
+PASS menútest cabe sin desbordamiento horizontal en1024×768
+PASS menúsettings cabe sin desbordamiento horizontal en1024×768
+PASS menúcontrols cabe sin desbordamiento horizontal en1024×768
+PASS scroll permite llegar al último control en1024×768
+PASS retratos y fichas caben en640×720
+PASS salud y habilidades no se superponen en640×720
+PASS estado de combate y botón menú no se montan en640×720
+PASS nombres, teclas y cooldowns permanecen en pantalla en640×720
+PASS menúcharacter cabe sin desbordamiento horizontal en640×720
+PASS menútest cabe sin desbordamiento horizontal en640×720
+PASS menúsettings cabe sin desbordamiento horizontal en640×720
+PASS menúcontrols cabe sin desbordamiento horizontal en640×720
+PASS scroll permite llegar al último control en640×720
+PASS retratos y fichas caben en360×640
+PASS salud y habilidades no se superponen en360×640
+PASS estado de combate y botón menú no se montan en360×640
+PASS nombres, teclas y cooldowns permanecen en pantalla en360×640
+PASS menúcharacter cabe sin desbordamiento horizontal en360×640
+PASS menútest cabe sin desbordamiento horizontal en360×640
+PASS menúsettings cabe sin desbordamiento horizontal en360×640
+PASS menúcontrols cabe sin desbordamiento horizontal en360×640
+PASS scroll permite llegar al último control en360×640
+PASS retratos y fichas caben en640×360
+PASS salud y habilidades no se superponen en640×360
+PASS estado de combate y botón menú no se montan en640×360
+PASS nombres, teclas y cooldowns permanecen en pantalla en640×360
+PASS menúcharacter cabe sin desbordamiento horizontal en640×360
+PASS menútest cabe sin desbordamiento horizontal en640×360
+PASS menúsettings cabe sin desbordamiento horizontal en640×360
+PASS menúcontrols cabe sin desbordamiento horizontal en640×360
+PASS scroll permite llegar al último control en640×360
+PASS retratos y fichas caben en360×360
+PASS salud y habilidades no se superponen en360×360
+PASS estado de combate y botón menú no se montan en360×360
+PASS nombres, teclas y cooldowns permanecen en pantalla en360×360
+PASS menúcharacter cabe sin desbordamiento horizontal en360×360
+PASS menútest cabe sin desbordamiento horizontal en360×360
+PASS menúsettings cabe sin desbordamiento horizontal en360×360
+PASS menúcontrols cabe sin desbordamiento horizontal en360×360
+PASS scroll permite llegar al último control en360×360
+PASS configuración antigua conP no dispara personaje y habilidad a la vez
+PASS migración conserva ajustes y avisa del cambio de tecla
+RESULT 97/97 OK

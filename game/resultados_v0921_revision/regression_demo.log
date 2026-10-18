@@ -1,0 +1,22 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO 0.9.1.1 · autoapuntado integrado · sin fijación con la rueda
+PASS autoapuntado conecta18 contra objetivo lateral
+DEMO Ventana final de140ms · el dummy evita el impacto con dash real
+PASS dash final evita la habilidad sin invulnerabilidad nueva
+DEMO Variante cercana · contacto válido, órbita física y ráfaga limitada a18
+PASS secuencia cercana conecta18 y libera al enemigo
+DEMO Counter · detención5s y captura de pose2D
+PASS Counter responde a ataque real y activa frame
+DEMO Corrección 0.9.1.1 · girar cámara y usar1 sobre el blanco cercano congelado
+PASS 1 conecta18 sobre blanco cercano lateral después del Counter
+PASS frame termina sin bloquear animación
+DEMO M1 · combo reducido a23 de daño · remate normal conservado
+PASS combo real conserva remate y knockdown
+DEMO Laboratorio · cinco modos de dummy para cada NPC
+DEMO Laboratorio · HP1 y energía100 para comprobar muerte y renacimiento
+PASS muerte con barra llena comienza en fase1
+DEMO Laboratorio · evolución100 · fase2 exige pasar antes por fase1
+PASS evolución continúa desde fase1
+DEMO 0.9.1.1 terminada · acciones automatizadas sobre el juego real
+DEMO RESULT 9/9

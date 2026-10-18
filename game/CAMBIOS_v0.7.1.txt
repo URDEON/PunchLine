@@ -1,0 +1,38 @@
+NAOYA BASE v0.7.1 — RIG FIELD POLISH
+
+OBJETIVO
+Cerrar la primera migración de rig sin tocar la lógica jugable que ya funciona.
+
+CAMBIOS
+1. NPC CON RIG HUMANOIDE
+- Azul, dorado y rojo ahora instancian Unarmed.glb igual que el jugador.
+- El maniquí procedural sigue oculto como fallback.
+- Azul: UnarmedIdleAlert1.
+- Dorado: UnarmedBlock y UnarmedBlockGetHit1.
+- Rojo: UnarmedRunForward y clips distintos de M1 según el combo.
+- Knockdown/stun usan clips del pack sin cambiar la lógica de ragdoll/stun existente.
+
+2. DASH FRONTAL CORREGIDO
+- Se dejó de usar UnarmedBoost1 para el dash frontal porque su silueta levanta demasiado un brazo y parece un ataque.
+- El dash frontal usa UnarmedSprint acelerado mientras el desplazamiento real sigue controlado por DASH_SPEED/DASH_DURATION.
+- Dashes laterales y atrás conservan DodgeLeft/DodgeRight/DodgeBackward.
+
+3. COLOR PROVISIONAL
+- El GLB suministrado no contiene textura/baseColorTexture y su material importado queda blanco.
+- Se aplica un StandardMaterial3D por código sin modificar el GLB.
+- Jugador: tono claro frío.
+- NPC: azul / dorado / rojo, igual que los dummies originales.
+
+NO CAMBIADO
+- M1 y variantes.
+- Skill 3 y Skill 4.
+- Daño, hitboxes y cooldowns.
+- Cámara y Mira Lock.
+- Ultimate Forma 1 / Forma 2.
+- Movimiento físico y colisiones.
+
+PENDIENTE FUTURO
+- Textura/modelo definitivo para Naoya.
+- Materiales por partes (piel, ropa, cabello); el GLB actual es una sola malla/material.
+- Ragdoll físico por Skeleton3D.
+- Rig definitivo para NPC si se usan modelos diferentes por personaje.

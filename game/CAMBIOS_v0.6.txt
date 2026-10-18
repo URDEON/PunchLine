@@ -1,0 +1,80 @@
+NAOYA BASE v0.6 — COMBAT POLISH + BASE MOVESET EXPANSION
+Base: v0.5
+
+OBJETIVO
+Pulir la sensación del combate sin tocar el diseño de la Ultimate v0.5 y añadir primero habilidades de bajo riesgo técnico.
+
+1. ANIMACIONES MÁS SMOOTH
+- Se eliminó el reset visual a pose cero en cada frame para las animaciones normales.
+- Brazos, codos, piernas y torso ahora interpolan desde la pose anterior hacia la siguiente.
+- M1 usa anticipación corta -> impacto rápido -> recuperación.
+- El impacto real del M1 ocurre cerca del contacto visual, no al instante de pulsar clic.
+- Uppercut y downslam conservan sus reglas, pero tienen preparación/seguimiento más claros.
+- Bloqueo entra y sale de forma progresiva.
+- Dash mantiene velocidad y distancia, con transición corporal más fluida.
+- Salto distingue subida y caída con transiciones suaves.
+- Al aterrizar hay una compresión corta de piernas/torso.
+- Al salir de ragdoll el muñeco recupera la postura gradualmente.
+- El NPC atacante también interpola caminar, wind-up, golpe y recovery.
+
+2. REFACTOR DE IMPACTOS
+- Nueva función central perform_hit().
+- M1, cuarto M1 y skills 3/4 reutilizan daño, carga, stun, knockback, interrupción y muerte.
+- El muñeco bloqueador sigue bloqueando frontalmente.
+
+3. BALANCE DE CARGA
+- M1 normal: +2 carga al conectar.
+- 4.º M1: +3.5 carga al conectar.
+- Skill 3: +14 carga al conectar.
+- Skill 4: +12 carga al conectar.
+- La carga por recibir daño se mantiene como estaba en v0.5.
+- Transformado no se gana carga, igual que en v0.5.
+
+4. SKILL 3 — PROJECTION RUSH
+Tecla: 3
+Cooldown: 7 s
+Daño: 19
+Activación: desde el suelo en v0.6
+- Anticipación breve.
+- Aparece un frame frontal de Proyección.
+- Naoya avanza rápidamente hacia delante.
+- Termina con derechazo.
+- Knockback fuerte + stun corto; no ragdoll por defecto.
+- Si conecta: recovery corto (~0.24 s).
+- Si falla: recovery castigable (~0.42 s).
+- Recibir un golpe interrumpe la skill.
+
+5. SKILL 4 — PATADA MARCIAL
+Tecla: 4
+Cooldown: 6 s
+Daño: 17
+Activación: desde el suelo en v0.6
+- Pose de preparación con carga de cadera.
+- Patada lateral/rotacional estilizada, no patada frontal genérica.
+- Knockback + stun corto; no ragdoll por defecto.
+- Recovery ~0.30 s.
+- Recibir un golpe interrumpe la skill.
+
+6. HUD
+- 1 y 2 aparecen como PENDIENTE.
+- 3 Projection Rush y 4 Patada muestran LISTA o el cooldown restante.
+- Controles inferiores actualizados.
+
+7. ULTIMATE
+- Se conserva el sistema v0.5: G -> Forma 1; morir con barra llena -> Forma 2.
+- No se añadieron todavía habilidades exclusivas de Forma 1/2 ni dominio.
+
+PRUEBAS RECOMENDADAS
+1. Caminar, frenar, saltar y aterrizar: comprobar que las poses no hagan snap.
+2. Hacer M1 1-4 mirando los brazos/torso: el daño debería coincidir mejor con el contacto.
+3. Probar cuarto M1 en suelo, subiendo y cayendo: normal / uppercut / downslam.
+4. Pulsar 3 con un enemigo enfrente: debe aparecer frame, avanzar y golpear.
+5. Pulsar 3 sin enemigo: debe notarse un recovery más largo.
+6. Pulsar 4 cerca del enemigo: debe verse carga de cadera -> patada -> recovery.
+7. Mirar HUD: tras 3 debe contar desde ~7 s; tras 4 desde ~6 s.
+8. Comparar carga de Ultimate: una skill acertada debe aportar claramente más que un M1.
+9. Dejar que el NPC ataque mientras se usa 3 o 4: si conecta, debe interrumpir la skill.
+10. Probar Ultimate v0.5 para confirmar que sigue intacta.
+
+NOTA DE QA
+El entorno de edición usado para preparar esta entrega no incluye Godot, por lo que se hizo revisión estática del código y del paquete. La prueba final de sensación/animación debe hacerse ejecutando el proyecto en Godot 4.4+.

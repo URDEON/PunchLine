@@ -1,0 +1,17 @@
+{
+  "passed": true,
+  "seed": 923,
+  "buildings": 77,
+  "lots_in_source": 19,
+  "populated_lots": 17,
+  "crouch_workshops": 5,
+  "standing_warehouses": 1,
+  "excluded_geometry_violations": 0,
+  "setback_m": 2.5,
+  "clearance_m": 3.0,
+  "actual_ramp_box_extents_checked": true,
+  "virtual_road_seam_max_m": 0.5,
+  "zoning_overrides": [
+    "lot_05: explicit required mecha access takes precedence; add workshop_crouch to effective zoning (source preserved)"
+  ]
+}

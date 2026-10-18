@@ -1,0 +1,82 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS clic real en selector elige Robot y reanuda combate
+PASS inicia habilidad 0/1
+PASS daño real completo 0/1: 87.0
+PASS recuperación y cooldown 0/1
+PASS inicia habilidad 0/2
+PASS daño real completo 0/2: 86.0
+PASS recuperación y cooldown 0/2
+PASS inicia habilidad 0/3
+PASS daño real completo 0/3: 82.0
+PASS recuperación y cooldown 0/3
+PASS inicia habilidad 1/1
+PASS daño real completo 1/1: 77.0
+PASS recuperación y cooldown 1/1
+PASS inicia habilidad 1/2
+PASS daño real completo 1/2: 80.0
+PASS recuperación y cooldown 1/2
+PASS inicia habilidad 1/3
+PASS daño real completo 1/3: 84.0
+PASS recuperación y cooldown 1/3
+PASS inicia habilidad 2/1
+PASS daño real completo 2/1: 84.0
+PASS recuperación y cooldown 2/1
+PASS inicia habilidad 2/2
+PASS daño real completo 2/2: 86.0
+PASS recuperación y cooldown 2/2
+PASS inicia habilidad 2/3
+PASS daño real completo 2/3: 86.0
+PASS recuperación y cooldown 2/3
+PASS avance detecta contacto a 3.5 m
+PASS avance detecta contacto a 5.0 m
+PASS Mike activa guardia frontal real
+PASS guardia reforzada evita daño frontal
+PASS Mike contragolpea atacante dentro de ventana
+PASS counter fallido de Mike no activa penalización de Naoya
+PASS fuera de ventana el ataque recibido hace daño normal
+PASS Mike solo tiene dos habilidades
+PASS Robot no hereda transformación de Naoya
+PASS cuatro emotes propios Leela
+PASS reproduce emote 0/0
+PASS clip real del chasis 0/0
+PASS reproduce emote 0/1
+PASS clip real del chasis 0/1
+PASS reproduce emote 0/2
+PASS clip real del chasis 0/2
+PASS reproduce emote 0/3
+PASS clip real del chasis 0/3
+PASS eco reproduce rig correcto Leela
+PASS cuatro emotes propios Stan
+PASS reproduce emote 1/0
+PASS clip real del chasis 1/0
+PASS reproduce emote 1/1
+PASS clip real del chasis 1/1
+PASS reproduce emote 1/2
+PASS clip real del chasis 1/2
+PASS reproduce emote 1/3
+PASS clip real del chasis 1/3
+PASS eco reproduce rig correcto Stan
+PASS cuatro emotes propios George
+PASS reproduce emote 2/0
+PASS clip real del chasis 2/0
+PASS reproduce emote 2/1
+PASS clip real del chasis 2/1
+PASS reproduce emote 2/2
+PASS clip real del chasis 2/2
+PASS reproduce emote 2/3
+PASS clip real del chasis 2/3
+PASS eco reproduce rig correcto George
+PASS cuatro emotes propios Mike
+PASS reproduce emote 3/0
+PASS clip real del chasis 3/0
+PASS reproduce emote 3/1
+PASS clip real del chasis 3/1
+PASS reproduce emote 3/2
+PASS clip real del chasis 3/2
+PASS reproduce emote 3/3
+PASS clip real del chasis 3/3
+PASS eco reproduce rig correcto Mike
+PASS Naoya conserva emotes y animaciones originales
+PASS chasis ocultos suspenden sus animaciones
+RESULTADO 79/79

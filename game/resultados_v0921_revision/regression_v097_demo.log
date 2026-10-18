@@ -1,0 +1,21 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO 0.9.7 · Estación 24. Acciones automatizadas; preparativos de laboratorio indicados.
+DEMO B · vidrio transparente y vista previa del emote real
+PASS gesto de desafío retargeteado
+PASS gesto termina y devuelve locomoción
+DEMO Laboratorio: colocar al jugador junto a la puerta para probar E
+PASS puerta móvil con colisión
+DEMO Laboratorio: colocar al jugador en el paso de vidrio. M1 real rompe el panel.
+PASS M1 rompe el vidrio y retira su colisión
+DEMO Laboratorio: jugador sobre plataforma de impulso; E activa una trayectoria física
+PASS impulso y gravedad reales
+DEMO Laboratorio: derribo real desde la azotea · Jolt, articulaciones y rig intacto
+PASS simulación conserva el esqueleto
+PASS recuperación en azotea
+DEMO Habilidad 1 · dos vidrios delanteros y rastro plano de la pose actual
+PASS dos fotogramas de guía
+PASS proyección conserva ciclo y limpia guías
+DEMO Recorrido real por la rampa urbana · Ctrl caminar y carrera
+PASS eco registra movimiento y poses reales
+DEMO RESULT 10/10

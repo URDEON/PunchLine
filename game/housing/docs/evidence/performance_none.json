@@ -1,0 +1,11 @@
+{
+	"collision_shapes": 117,
+	"godot": "4.4.1-stable (official)",
+	"mode": "none",
+	"nodes": 751.0,
+	"physics_median_ms": 11.607,
+	"physics_p95_ms": 24.564,
+	"process_median_ms": 1.864,
+	"rendering": "headless dummy; GPU/render FPS not measured",
+	"samples": 180
+}

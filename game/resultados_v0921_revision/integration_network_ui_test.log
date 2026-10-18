@@ -1,0 +1,19 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS panel queda dentro de (360, 360)
+PASS crear/unirse accesibles en (360, 360)
+PASS panel queda dentro de (360, 640)
+PASS crear/unirse accesibles en (360, 640)
+PASS panel queda dentro de (640, 360)
+PASS crear/unirse accesibles en (640, 360)
+PASS panel queda dentro de (1280, 720)
+PASS crear/unirse accesibles en (1280, 720)
+PASS panel queda dentro de (1920, 1080)
+PASS crear/unirse accesibles en (1920, 1080)
+PASS IP vacía se rechaza antes de conectar
+PASS puerto inválido no crea partida
+PASS nombre se normaliza
+PASS nombre acepta escritura real, espacios, Ñ y P
+PASS escribir P no cierra el formulario ni captura el mouse
+PASS nombre persiste en el perfil
+RESULTADO 16/16

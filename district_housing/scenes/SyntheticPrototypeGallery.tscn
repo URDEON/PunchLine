@@ -1,0 +1,739 @@
+[gd_scene load_steps=80 format=3]
+
+[ext_resource type="Script" path="res://scripts/DistrictHousingGenerator.gd" id="1_htwu0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cxwt5"]
+albedo_color = Color(0.34, 0.36, 0.38, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_i40ep"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h6703"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wvsuh"]
+albedo_color = Color(0.67, 0.74, 0.7, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_kg8g6"]
+size = Vector3(10, 3.4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6nkm8"]
+size = Vector3(10, 3.4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_4b2op"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_4d05b"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_d4kbi"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0nqej"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_w8672"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_gkr35"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ie171"]
+size = Vector3(3.9, 3.4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7gfcp"]
+size = Vector3(3.9, 3.4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_haer3"]
+size = Vector3(3.9, 3.4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ckoyr"]
+size = Vector3(3.9, 3.4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nk0fg"]
+size = Vector3(2.2, 1.1, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_d0wdu"]
+size = Vector3(2.2, 1.1, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_l2m15"]
+size = Vector3(3.9, 3.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_86oq5"]
+size = Vector3(3.9, 3.4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_c66nw"]
+size = Vector3(3.9, 3.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_tfhfm"]
+size = Vector3(3.9, 3.4, 0.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xjml"]
+albedo_color = Color(0.12, 0.25, 0.32, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_fari4"]
+size = Vector3(2.5, 0.9, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n2wsu"]
+size = Vector3(2.5, 0.9, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vhjew"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0vgey"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_gkn7y"]
+albedo_color = Color(0.67, 0.74, 0.7, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_0dk1a"]
+size = Vector3(10, 4.9, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_myd38"]
+size = Vector3(10, 4.9, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2kecm"]
+size = Vector3(0.25, 4.9, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_x7p8o"]
+size = Vector3(0.25, 4.9, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_wtua8"]
+size = Vector3(0.25, 4.9, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_h2dy4"]
+size = Vector3(0.25, 4.9, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_foxd5"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8jgk2"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_u2hcu"]
+size = Vector3(3.9, 4.9, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e1o01"]
+size = Vector3(3.9, 4.9, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_t5yrc"]
+size = Vector3(3.9, 4.9, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3qe0s"]
+size = Vector3(3.9, 4.9, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nqr4f"]
+size = Vector3(2.2, 0.6, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_xp8g1"]
+size = Vector3(2.2, 0.6, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gq1nf"]
+size = Vector3(3.9, 4.9, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_pw1ca"]
+size = Vector3(3.9, 4.9, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_axxnm"]
+size = Vector3(3.9, 4.9, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2yx7g"]
+size = Vector3(3.9, 4.9, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybnov"]
+size = Vector3(2.5, 0.9, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_rt85a"]
+size = Vector3(2.5, 0.9, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nf8ju"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_25ld8"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjbe4"]
+albedo_color = Color(0.67, 0.74, 0.7, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_gdx1s"]
+size = Vector3(10, 3.4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_peys2"]
+size = Vector3(10, 3.4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_hw32c"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_m1yn4"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_frp8v"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8nseq"]
+size = Vector3(0.25, 3.4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_f73rp"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_s270o"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_58kle"]
+size = Vector3(4.35, 3.4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0ekor"]
+size = Vector3(4.35, 3.4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_pfuty"]
+size = Vector3(4.35, 3.4, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ngjrs"]
+size = Vector3(4.35, 3.4, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gv112"]
+size = Vector3(1.3, 1.1, 0.25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ov873"]
+size = Vector3(1.3, 1.1, 0.25)
+
+[sub_resource type="BoxMesh" id="BoxMesh_7dqoa"]
+size = Vector3(4.35, 3.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_f7ysp"]
+size = Vector3(4.35, 3.4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_2ihyu"]
+size = Vector3(4.35, 3.4, 0.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_odll6"]
+size = Vector3(4.35, 3.4, 0.2)
+
+[sub_resource type="BoxMesh" id="BoxMesh_nd7mt"]
+size = Vector3(2.5, 0.9, 0.03)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_c4gk2"]
+size = Vector3(2.5, 0.9, 0.03)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gqqtr"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_r4axl"]
+size = Vector3(10, 0.12, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_pvuif"]
+albedo_color = Color(0.68, 0.59, 0.43, 1)
+roughness = 0.85
+
+[sub_resource type="BoxMesh" id="BoxMesh_71wys"]
+size = Vector3(10, 3.4, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_qu03p"]
+size = Vector3(10, 3.4, 10)
+
+[sub_resource type="BoxMesh" id="BoxMesh_vvi7j"]
+size = Vector3(10, 0.25, 10)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_7j5ts"]
+size = Vector3(10, 0.25, 10)
+
+[node name="SyntheticPrototypeGallery" type="Node3D"]
+script = ExtResource("1_htwu0")
+metadata/warning = "Synthetic dimensions. Isolated test gallery, not district placements or actual robot measurements."
+
+[node name="workshop_crouch" type="Node3D" parent="."]
+metadata/access = "mecha_crouch"
+
+[node name="Floors" type="Node3D" parent="workshop_crouch"]
+
+[node name="Slab" type="StaticBody3D" parent="workshop_crouch/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+
+[node name="@MeshInstance3D@2" type="MeshInstance3D" parent="workshop_crouch/Floors/Slab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_i40ep")
+
+[node name="@CollisionShape3D@3" type="CollisionShape3D" parent="workshop_crouch/Floors/Slab"]
+shape = SubResource("BoxShape3D_h6703")
+
+[node name="Walls" type="Node3D" parent="workshop_crouch"]
+
+[node name="Back" type="StaticBody3D" parent="workshop_crouch/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -4.875)
+
+[node name="@MeshInstance3D@6" type="MeshInstance3D" parent="workshop_crouch/Walls/Back"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_kg8g6")
+
+[node name="@CollisionShape3D@7" type="CollisionShape3D" parent="workshop_crouch/Walls/Back"]
+shape = SubResource("BoxShape3D_6nkm8")
+
+[node name="Left" type="StaticBody3D" parent="workshop_crouch/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.875, 1.7, 0)
+
+[node name="@MeshInstance3D@8" type="MeshInstance3D" parent="workshop_crouch/Walls/Left"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_4b2op")
+
+[node name="@CollisionShape3D@9" type="CollisionShape3D" parent="workshop_crouch/Walls/Left"]
+shape = SubResource("BoxShape3D_4d05b")
+
+[node name="Right" type="StaticBody3D" parent="workshop_crouch/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.875, 1.7, 0)
+
+[node name="@MeshInstance3D@10" type="MeshInstance3D" parent="workshop_crouch/Walls/Right"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_d4kbi")
+
+[node name="@CollisionShape3D@11" type="CollisionShape3D" parent="workshop_crouch/Walls/Right"]
+shape = SubResource("BoxShape3D_0nqej")
+
+[node name="Roof" type="Node3D" parent="workshop_crouch"]
+
+[node name="RoofSlab" type="StaticBody3D" parent="workshop_crouch/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.525, 0)
+
+[node name="@MeshInstance3D@4" type="MeshInstance3D" parent="workshop_crouch/Roof/RoofSlab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_w8672")
+
+[node name="@CollisionShape3D@5" type="CollisionShape3D" parent="workshop_crouch/Roof/RoofSlab"]
+shape = SubResource("BoxShape3D_gkr35")
+
+[node name="Doors" type="Node3D" parent="workshop_crouch"]
+metadata/functional = "open passage; collision preserved on jambs and lintel"
+
+[node name="LeftJamb" type="StaticBody3D" parent="workshop_crouch/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.7, 4.875)
+
+[node name="@MeshInstance3D@12" type="MeshInstance3D" parent="workshop_crouch/Doors/LeftJamb"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_ie171")
+
+[node name="@CollisionShape3D@13" type="CollisionShape3D" parent="workshop_crouch/Doors/LeftJamb"]
+shape = SubResource("BoxShape3D_7gfcp")
+
+[node name="RightJamb" type="StaticBody3D" parent="workshop_crouch/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.7, 4.875)
+
+[node name="@MeshInstance3D@14" type="MeshInstance3D" parent="workshop_crouch/Doors/RightJamb"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_haer3")
+
+[node name="@CollisionShape3D@15" type="CollisionShape3D" parent="workshop_crouch/Doors/RightJamb"]
+shape = SubResource("BoxShape3D_ckoyr")
+
+[node name="Lintel" type="StaticBody3D" parent="workshop_crouch/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 4.875)
+
+[node name="@MeshInstance3D@16" type="MeshInstance3D" parent="workshop_crouch/Doors/Lintel"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_nk0fg")
+
+[node name="@CollisionShape3D@17" type="CollisionShape3D" parent="workshop_crouch/Doors/Lintel"]
+shape = SubResource("BoxShape3D_d0wdu")
+
+[node name="Interiors" type="Node3D" parent="workshop_crouch"]
+
+[node name="PartitionLeft" type="StaticBody3D" parent="workshop_crouch/Interiors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 1.7, 0)
+
+[node name="@MeshInstance3D@18" type="MeshInstance3D" parent="workshop_crouch/Interiors/PartitionLeft"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_l2m15")
+
+[node name="@CollisionShape3D@19" type="CollisionShape3D" parent="workshop_crouch/Interiors/PartitionLeft"]
+shape = SubResource("BoxShape3D_86oq5")
+
+[node name="PartitionRight" type="StaticBody3D" parent="workshop_crouch/Interiors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 1.7, 0)
+
+[node name="@MeshInstance3D@20" type="MeshInstance3D" parent="workshop_crouch/Interiors/PartitionRight"]
+material_override = SubResource("StandardMaterial3D_wvsuh")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_c66nw")
+
+[node name="@CollisionShape3D@21" type="CollisionShape3D" parent="workshop_crouch/Interiors/PartitionRight"]
+shape = SubResource("BoxShape3D_tfhfm")
+
+[node name="Windows" type="Node3D" parent="workshop_crouch"]
+
+[node name="BackWindow" type="StaticBody3D" parent="workshop_crouch/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -5.02)
+
+[node name="@MeshInstance3D@22" type="MeshInstance3D" parent="workshop_crouch/Windows/BackWindow"]
+material_override = SubResource("StandardMaterial3D_6xjml")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_fari4")
+
+[node name="@CollisionShape3D@23" type="CollisionShape3D" parent="workshop_crouch/Windows/BackWindow"]
+shape = SubResource("BoxShape3D_n2wsu")
+
+[node name="warehouse_standing" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 0)
+metadata/access = "mecha_standing"
+
+[node name="Floors" type="Node3D" parent="warehouse_standing"]
+
+[node name="Slab" type="StaticBody3D" parent="warehouse_standing/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+
+[node name="@MeshInstance3D@24" type="MeshInstance3D" parent="warehouse_standing/Floors/Slab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_vhjew")
+
+[node name="@CollisionShape3D@25" type="CollisionShape3D" parent="warehouse_standing/Floors/Slab"]
+shape = SubResource("BoxShape3D_0vgey")
+
+[node name="Walls" type="Node3D" parent="warehouse_standing"]
+
+[node name="Back" type="StaticBody3D" parent="warehouse_standing/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, -4.875)
+
+[node name="@MeshInstance3D@28" type="MeshInstance3D" parent="warehouse_standing/Walls/Back"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_0dk1a")
+
+[node name="@CollisionShape3D@29" type="CollisionShape3D" parent="warehouse_standing/Walls/Back"]
+shape = SubResource("BoxShape3D_myd38")
+
+[node name="Left" type="StaticBody3D" parent="warehouse_standing/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.875, 2.45, 0)
+
+[node name="@MeshInstance3D@30" type="MeshInstance3D" parent="warehouse_standing/Walls/Left"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_2kecm")
+
+[node name="@CollisionShape3D@31" type="CollisionShape3D" parent="warehouse_standing/Walls/Left"]
+shape = SubResource("BoxShape3D_x7p8o")
+
+[node name="Right" type="StaticBody3D" parent="warehouse_standing/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.875, 2.45, 0)
+
+[node name="@MeshInstance3D@32" type="MeshInstance3D" parent="warehouse_standing/Walls/Right"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_wtua8")
+
+[node name="@CollisionShape3D@33" type="CollisionShape3D" parent="warehouse_standing/Walls/Right"]
+shape = SubResource("BoxShape3D_h2dy4")
+
+[node name="Roof" type="Node3D" parent="warehouse_standing"]
+
+[node name="RoofSlab" type="StaticBody3D" parent="warehouse_standing/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5.025, 0)
+
+[node name="@MeshInstance3D@26" type="MeshInstance3D" parent="warehouse_standing/Roof/RoofSlab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_foxd5")
+
+[node name="@CollisionShape3D@27" type="CollisionShape3D" parent="warehouse_standing/Roof/RoofSlab"]
+shape = SubResource("BoxShape3D_8jgk2")
+
+[node name="Doors" type="Node3D" parent="warehouse_standing"]
+metadata/functional = "open passage; collision preserved on jambs and lintel"
+
+[node name="LeftJamb" type="StaticBody3D" parent="warehouse_standing/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 2.45, 4.875)
+
+[node name="@MeshInstance3D@34" type="MeshInstance3D" parent="warehouse_standing/Doors/LeftJamb"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_u2hcu")
+
+[node name="@CollisionShape3D@35" type="CollisionShape3D" parent="warehouse_standing/Doors/LeftJamb"]
+shape = SubResource("BoxShape3D_e1o01")
+
+[node name="RightJamb" type="StaticBody3D" parent="warehouse_standing/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 2.45, 4.875)
+
+[node name="@MeshInstance3D@36" type="MeshInstance3D" parent="warehouse_standing/Doors/RightJamb"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_t5yrc")
+
+[node name="@CollisionShape3D@37" type="CollisionShape3D" parent="warehouse_standing/Doors/RightJamb"]
+shape = SubResource("BoxShape3D_3qe0s")
+
+[node name="Lintel" type="StaticBody3D" parent="warehouse_standing/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.6, 4.875)
+
+[node name="@MeshInstance3D@38" type="MeshInstance3D" parent="warehouse_standing/Doors/Lintel"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_nqr4f")
+
+[node name="@CollisionShape3D@39" type="CollisionShape3D" parent="warehouse_standing/Doors/Lintel"]
+shape = SubResource("BoxShape3D_xp8g1")
+
+[node name="Interiors" type="Node3D" parent="warehouse_standing"]
+
+[node name="PartitionLeft" type="StaticBody3D" parent="warehouse_standing/Interiors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.05, 2.45, 0)
+
+[node name="@MeshInstance3D@40" type="MeshInstance3D" parent="warehouse_standing/Interiors/PartitionLeft"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_gq1nf")
+
+[node name="@CollisionShape3D@41" type="CollisionShape3D" parent="warehouse_standing/Interiors/PartitionLeft"]
+shape = SubResource("BoxShape3D_pw1ca")
+
+[node name="PartitionRight" type="StaticBody3D" parent="warehouse_standing/Interiors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.05, 2.45, 0)
+
+[node name="@MeshInstance3D@42" type="MeshInstance3D" parent="warehouse_standing/Interiors/PartitionRight"]
+material_override = SubResource("StandardMaterial3D_gkn7y")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_axxnm")
+
+[node name="@CollisionShape3D@43" type="CollisionShape3D" parent="warehouse_standing/Interiors/PartitionRight"]
+shape = SubResource("BoxShape3D_2yx7g")
+
+[node name="Windows" type="Node3D" parent="warehouse_standing"]
+
+[node name="BackWindow" type="StaticBody3D" parent="warehouse_standing/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -5.02)
+
+[node name="@MeshInstance3D@44" type="MeshInstance3D" parent="warehouse_standing/Windows/BackWindow"]
+material_override = SubResource("StandardMaterial3D_6xjml")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_ybnov")
+
+[node name="@CollisionShape3D@45" type="CollisionShape3D" parent="warehouse_standing/Windows/BackWindow"]
+shape = SubResource("BoxShape3D_rt85a")
+
+[node name="small_residential" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 18)
+metadata/access = "player_only"
+
+[node name="Floors" type="Node3D" parent="small_residential"]
+
+[node name="Slab" type="StaticBody3D" parent="small_residential/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+
+[node name="@MeshInstance3D@46" type="MeshInstance3D" parent="small_residential/Floors/Slab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_nf8ju")
+
+[node name="@CollisionShape3D@47" type="CollisionShape3D" parent="small_residential/Floors/Slab"]
+shape = SubResource("BoxShape3D_25ld8")
+
+[node name="Walls" type="Node3D" parent="small_residential"]
+
+[node name="Back" type="StaticBody3D" parent="small_residential/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, -4.875)
+
+[node name="@MeshInstance3D@50" type="MeshInstance3D" parent="small_residential/Walls/Back"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_gdx1s")
+
+[node name="@CollisionShape3D@51" type="CollisionShape3D" parent="small_residential/Walls/Back"]
+shape = SubResource("BoxShape3D_peys2")
+
+[node name="Left" type="StaticBody3D" parent="small_residential/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.875, 1.7, 0)
+
+[node name="@MeshInstance3D@52" type="MeshInstance3D" parent="small_residential/Walls/Left"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_hw32c")
+
+[node name="@CollisionShape3D@53" type="CollisionShape3D" parent="small_residential/Walls/Left"]
+shape = SubResource("BoxShape3D_m1yn4")
+
+[node name="Right" type="StaticBody3D" parent="small_residential/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.875, 1.7, 0)
+
+[node name="@MeshInstance3D@54" type="MeshInstance3D" parent="small_residential/Walls/Right"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_frp8v")
+
+[node name="@CollisionShape3D@55" type="CollisionShape3D" parent="small_residential/Walls/Right"]
+shape = SubResource("BoxShape3D_8nseq")
+
+[node name="Roof" type="Node3D" parent="small_residential"]
+
+[node name="RoofSlab" type="StaticBody3D" parent="small_residential/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.525, 0)
+
+[node name="@MeshInstance3D@48" type="MeshInstance3D" parent="small_residential/Roof/RoofSlab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_f73rp")
+
+[node name="@CollisionShape3D@49" type="CollisionShape3D" parent="small_residential/Roof/RoofSlab"]
+shape = SubResource("BoxShape3D_s270o")
+
+[node name="Doors" type="Node3D" parent="small_residential"]
+metadata/functional = "open passage; collision preserved on jambs and lintel"
+
+[node name="LeftJamb" type="StaticBody3D" parent="small_residential/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.825, 1.7, 4.875)
+
+[node name="@MeshInstance3D@56" type="MeshInstance3D" parent="small_residential/Doors/LeftJamb"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_58kle")
+
+[node name="@CollisionShape3D@57" type="CollisionShape3D" parent="small_residential/Doors/LeftJamb"]
+shape = SubResource("BoxShape3D_0ekor")
+
+[node name="RightJamb" type="StaticBody3D" parent="small_residential/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.825, 1.7, 4.875)
+
+[node name="@MeshInstance3D@58" type="MeshInstance3D" parent="small_residential/Doors/RightJamb"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_pfuty")
+
+[node name="@CollisionShape3D@59" type="CollisionShape3D" parent="small_residential/Doors/RightJamb"]
+shape = SubResource("BoxShape3D_ngjrs")
+
+[node name="Lintel" type="StaticBody3D" parent="small_residential/Doors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 4.875)
+
+[node name="@MeshInstance3D@60" type="MeshInstance3D" parent="small_residential/Doors/Lintel"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_gv112")
+
+[node name="@CollisionShape3D@61" type="CollisionShape3D" parent="small_residential/Doors/Lintel"]
+shape = SubResource("BoxShape3D_ov873")
+
+[node name="Interiors" type="Node3D" parent="small_residential"]
+
+[node name="PartitionLeft" type="StaticBody3D" parent="small_residential/Interiors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.825, 1.7, 0)
+
+[node name="@MeshInstance3D@62" type="MeshInstance3D" parent="small_residential/Interiors/PartitionLeft"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_7dqoa")
+
+[node name="@CollisionShape3D@63" type="CollisionShape3D" parent="small_residential/Interiors/PartitionLeft"]
+shape = SubResource("BoxShape3D_f7ysp")
+
+[node name="PartitionRight" type="StaticBody3D" parent="small_residential/Interiors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.825, 1.7, 0)
+
+[node name="@MeshInstance3D@64" type="MeshInstance3D" parent="small_residential/Interiors/PartitionRight"]
+material_override = SubResource("StandardMaterial3D_jjbe4")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_2ihyu")
+
+[node name="@CollisionShape3D@65" type="CollisionShape3D" parent="small_residential/Interiors/PartitionRight"]
+shape = SubResource("BoxShape3D_odll6")
+
+[node name="Windows" type="Node3D" parent="small_residential"]
+
+[node name="BackWindow" type="StaticBody3D" parent="small_residential/Windows"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -5.02)
+
+[node name="@MeshInstance3D@66" type="MeshInstance3D" parent="small_residential/Windows/BackWindow"]
+material_override = SubResource("StandardMaterial3D_6xjml")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_nd7mt")
+
+[node name="@CollisionShape3D@67" type="CollisionShape3D" parent="small_residential/Windows/BackWindow"]
+shape = SubResource("BoxShape3D_c4gk2")
+
+[node name="facade_only" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18, 0, 18)
+metadata/access = "inaccessible"
+
+[node name="Floors" type="Node3D" parent="facade_only"]
+
+[node name="Slab" type="StaticBody3D" parent="facade_only/Floors"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.06, 0)
+
+[node name="@MeshInstance3D@68" type="MeshInstance3D" parent="facade_only/Floors/Slab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_gqqtr")
+
+[node name="@CollisionShape3D@69" type="CollisionShape3D" parent="facade_only/Floors/Slab"]
+shape = SubResource("BoxShape3D_r4axl")
+
+[node name="Walls" type="Node3D" parent="facade_only"]
+
+[node name="SolidInaccessible" type="StaticBody3D" parent="facade_only/Walls"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.7, 0)
+
+[node name="@MeshInstance3D@72" type="MeshInstance3D" parent="facade_only/Walls/SolidInaccessible"]
+material_override = SubResource("StandardMaterial3D_pvuif")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_71wys")
+
+[node name="@CollisionShape3D@73" type="CollisionShape3D" parent="facade_only/Walls/SolidInaccessible"]
+shape = SubResource("BoxShape3D_qu03p")
+
+[node name="Roof" type="Node3D" parent="facade_only"]
+
+[node name="RoofSlab" type="StaticBody3D" parent="facade_only/Roof"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.525, 0)
+
+[node name="@MeshInstance3D@70" type="MeshInstance3D" parent="facade_only/Roof/RoofSlab"]
+material_override = SubResource("StandardMaterial3D_cxwt5")
+visibility_range_end = 180.0
+visibility_range_end_margin = 15.0
+mesh = SubResource("BoxMesh_vvi7j")
+
+[node name="@CollisionShape3D@71" type="CollisionShape3D" parent="facade_only/Roof/RoofSlab"]
+shape = SubResource("BoxShape3D_7j5ts")

@@ -1,0 +1,30 @@
+[
+  {
+    "model": "Junkyard_Sentinel.glb",
+    "parts": 112,
+    "triangles_before": 311756,
+    "triangles_after": 68488,
+    "materials_before": 112,
+    "materials_after": 1,
+    "atlas": [
+      2048,
+      4096
+    ],
+    "textures_native_pixels": true,
+    "ratio": 0.22
+  },
+  {
+    "model": "Rustwing_56_Original.glb",
+    "parts": 38,
+    "triangles_before": 132826,
+    "triangles_after": 39818,
+    "materials_before": 38,
+    "materials_after": 1,
+    "atlas": [
+      2048,
+      4096
+    ],
+    "textures_native_pixels": true,
+    "ratio": 0.3
+  }
+]

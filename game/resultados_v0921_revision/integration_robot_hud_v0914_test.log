@@ -1,0 +1,19 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS cuatro habilidades holográficas caben en (360, 360)
+PASS Ultimate conserva su valor al redimensionar (360, 360)
+PASS menú robótico cabe en (360, 360)
+PASS cuatro habilidades holográficas caben en (360, 640)
+PASS Ultimate conserva su valor al redimensionar (360, 640)
+PASS menú robótico cabe en (360, 640)
+PASS cuatro habilidades holográficas caben en (640, 360)
+PASS Ultimate conserva su valor al redimensionar (640, 360)
+PASS menú robótico cabe en (640, 360)
+PASS cuatro habilidades holográficas caben en (1280, 720)
+PASS Ultimate conserva su valor al redimensionar (1280, 720)
+PASS menú robótico cabe en (1280, 720)
+PASS cuatro habilidades holográficas caben en (1920, 1080)
+PASS Ultimate conserva su valor al redimensionar (1920, 1080)
+PASS menú robótico cabe en (1920, 1080)
+PASS cambiar a Naoya restaura estilo original
+RESULTADO 16/16

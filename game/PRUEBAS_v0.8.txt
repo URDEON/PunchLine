@@ -1,0 +1,26 @@
+PRUEBAS v0.8.0 — Godot 4.4.1 Linux
+
+37/37 comprobaciones automatizadas, código de salida 0.
+Se ejecuta la escena real con física y rig importado. Se preparan posiciones,
+vida y carga en el guion de QA para aislar cada escenario.
+
+Cobertura:
+- Importación de rig y tres NPC.
+- Ruta automática, fallo, recuperación, limpieza y ráfaga de 24 de daño.
+- Counter dentro/fuera de ventana, espalda, congelación y recuperación de animación.
+- G a Forma 1, bloqueo de slots 2–4, evolución x1,5 y G a Forma 2 con 45 s.
+- Renacimiento con 60 HP.
+- Embestida (23 una sola vez), tentáculos (8+16), aceleración (36 rompeguardia).
+- Arena de dominio, 14 s, daño al atacante y ausencia de daño al inmóvil.
+- Regreso del jugador y NPC, uso único, interrupción de preparación.
+- Muerte dentro de dominio, expiración durante habilidad, reset del siguiente ciclo.
+- G no cancela acciones activas; requisito temporal de dominio.
+
+Captura gráfica real con Godot Compatibility / Mesa llvmpipe y Xvfb.
+Se graban escenas automatizadas y una repetición del dash a x0,25, rotulada.
+Para demostrar la evolución se completa su barra desde el guion de QA.
+La protección temporal de la última toma permite observar los 14 s de la arena.
+Estas ayudas están solo en qa/demo.gd; F5 inicia la partida normal.
+
+La prueba demuestra la ejecución y las transiciones; el equilibrio final de PvP
+necesita partidas. Este prototipo todavía tiene NPC de laboratorio, sin multijugador.

@@ -1,0 +1,16 @@
+{
+  "bones": [
+    "Body",
+    "WingL",
+    "WingR",
+    "Tail"
+  ],
+  "weighted_vertices": {
+    "Body": 26505,
+    "WingL": 3209,
+    "WingR": 3323,
+    "Tail": 6176
+  },
+  "original_preserved": true,
+  "technique": "soft weights from actual wing/tail regions; head rigid"
+}

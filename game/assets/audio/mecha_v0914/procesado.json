@@ -1,0 +1,20 @@
+[
+  {
+    "file": "step_heavy_0.wav",
+    "walker_onset": 3.73,
+    "servo": "stride_t3_01.ogg",
+    "seconds": 1.1348333333333334
+  },
+  {
+    "file": "step_heavy_1.wav",
+    "walker_onset": 6.58,
+    "servo": "stride_t4_01.ogg",
+    "seconds": 1.4335416666666667
+  },
+  {
+    "file": "step_heavy_2.wav",
+    "walker_onset": 9.16,
+    "servo": "stride_t5_01.ogg",
+    "seconds": 1.72725
+  }
+]

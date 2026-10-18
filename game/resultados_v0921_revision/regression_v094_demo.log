@@ -1,0 +1,27 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO F + WASD · brazos en defensa y piernas en movimiento
+PASS guardia con desplazamiento real
+DEMO M1 · contacto ajustado y tercer golpe del nuevo pack
+PASS cuatro M1 mantienen daño y derribo
+DEMO 4 · patada sincronizada con el impacto real
+PASS patada mantiene daño
+DEMO 2 · counter ante ataque del NPC; vidrio y pose congelada 5 s
+PASS counter responde al ataque real
+PASS al finalizar regresa el NPC 3D
+DEMO K · Skull Wisp como Kogane; preparación del laboratorio: energía 100
+PASS Kogane muestra estado real de energía
+DEMO Preparación del laboratorio: evolución 100 · G pasa a fase2
+PASS evolución activada con sus transiciones
+DEMO Fase2 · vertical en reposo; cabeza delante y boca abajo al avanzar
+PASS reposo vertical con cabeza arriba
+DEMO W · postura horizontal durante el desplazamiento
+PASS movimiento horizontal
+PASS reposo vuelve a vertical
+DEMO 4 · dominio real con suelo y límite circulares
+PASS dominio se activa tras preparación
+PASS suelo circular sostiene al jugador
+DEMO Salida del dominio por su duración normal; regreso al escenario
+PASS dominio termina y limpia ambos escenarios
+DEMO Esc > Pruebas · nuevos botones de fotograma; acciones automatizadas
+DEMO RESULT 13/13

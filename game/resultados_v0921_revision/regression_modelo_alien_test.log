@@ -1,0 +1,89 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS personaje enviado cargado con AnimationPlayer
+PASS 53 huesos compatibles con rig de combate
+PASS malla vinculada al esqueleto
+PASS materiales del personaje conservados
+PASS textura 1K del ultimo modelo enviado cargada
+PASS mapa de normales cargado
+PASS presupuesto de geometria del personaje
+PASS vertices exportados dentro del presupuesto
+PASS cuatro influencias por vertice
+PASS todos los vertices tienen pesos finitos normalizados
+PASS todos los pesos apuntan a huesos existentes
+PASS geometria sin posiciones invalidas
+PASS costuras UV comparten pesos y no se separan al animar
+PASS clip conservado: UnarmedActivate
+PASS clip conservado: UnarmedAttackKickL1
+PASS clip conservado: UnarmedAttackKickR1
+PASS clip conservado: UnarmedAttackL1
+PASS clip conservado: UnarmedAttackL2
+PASS clip conservado: UnarmedAttackL3
+PASS clip conservado: UnarmedAttackR1
+PASS clip conservado: UnarmedAttackR2
+PASS clip conservado: UnarmedAttackR3
+PASS clip conservado: UnarmedBlock
+PASS clip conservado: UnarmedBlockBreak1
+PASS clip conservado: UnarmedBlockGetHit1
+PASS clip conservado: UnarmedBlockGetHit2
+PASS clip conservado: UnarmedBoost1
+PASS clip conservado: UnarmedDeath1
+PASS clip conservado: UnarmedDiveRollForward1
+PASS clip conservado: UnarmedDodgeBackward
+PASS clip conservado: UnarmedDodgeLeft
+PASS clip conservado: UnarmedDodgeRight
+PASS clip conservado: UnarmedFall
+PASS clip conservado: UnarmedGetHitB1
+PASS clip conservado: UnarmedGetHitF1
+PASS clip conservado: UnarmedGetHitL1
+PASS clip conservado: UnarmedGetHitR1
+PASS clip conservado: UnarmedGetup1
+PASS clip conservado: UnarmedIdle
+PASS clip conservado: UnarmedIdleAlert1
+PASS clip conservado: UnarmedIdleInjured
+PASS clip conservado: UnarmedJump
+PASS clip conservado: UnarmedKnockbackBack1
+PASS clip conservado: UnarmedKnockbackBack2
+PASS clip conservado: UnarmedKnockdown1
+PASS clip conservado: UnarmedLand
+PASS clip conservado: UnarmedPickup
+PASS clip conservado: UnarmedRevive1
+PASS clip conservado: UnarmedRollBackward
+PASS clip conservado: UnarmedRollForward
+PASS clip conservado: UnarmedRollLeft
+PASS clip conservado: UnarmedRollRight
+PASS clip conservado: UnarmedRunBackward
+PASS clip conservado: UnarmedRunBackwardLeft
+PASS clip conservado: UnarmedRunBackwardRight
+PASS clip conservado: UnarmedRunForward
+PASS clip conservado: UnarmedRunForwardLeft
+PASS clip conservado: UnarmedRunForwardRight
+PASS clip conservado: UnarmedRunLeft
+PASS clip conservado: UnarmedRunRight
+PASS clip conservado: UnarmedSprint
+PASS clip conservado: UnarmedStrafeBackward
+PASS clip conservado: UnarmedStrafeBackwardLeft
+PASS clip conservado: UnarmedStrafeBackwardRight
+PASS clip conservado: UnarmedStrafeForward
+PASS clip conservado: UnarmedStrafeForwardLeft
+PASS clip conservado: UnarmedStrafeForwardRight
+PASS clip conservado: UnarmedStrafeLeft
+PASS clip conservado: UnarmedStrafeRight
+PASS clip conservado: UnarmedStunned
+PASS clip conservado: UnarmedTurn180Left
+PASS clip conservado: UnarmedTurn180Right
+PASS clip conservado: UnarmedTurnLeft90
+PASS clip conservado: UnarmedTurnLeftLoop
+PASS clip conservado: UnarmedTurnRight90
+PASS clip conservado: UnarmedTurnRightLoop
+PASS clip conservado: UnarmedWalkInjured
+PASS pose real cambia en UnarmedIdleAlert1
+PASS pose real cambia en UnarmedRunForward
+PASS pose real cambia en UnarmedBlock
+PASS pose real cambia en UnarmedAttackR1
+PASS pose real cambia en UnarmedAttackKickR1
+PASS pose real cambia en UnarmedKnockdown1
+PASS pose real cambia en UnarmedGetup1
+PASS pose real cambia en dance/RunningMan
+PASS collider de movimiento conservado
+RESULTADO 86/86

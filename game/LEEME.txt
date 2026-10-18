@@ -1,0 +1,35 @@
+PUNCHLINE 0.9.21 — APOYOS Y DAÑO COHERENTE
+
+WINDOWS SIN GODOT
+1. Crea una carpeta NUEVA.
+2. Extrae PunchLine_0.9.21_Windows_1.zip y Windows_2.zip en la misma carpeta.
+3. Abre Terminal/PowerShell en esa carpeta y pega:
+
+cmd /c copy /b /y PunchLine_0.9.21.pck.001+PunchLine_0.9.21.pck.002 PunchLine_0.9.21.pck
+
+4. Abre PunchLine_0.9.21.exe; comprueba 0.9.21 en el inicio.
+No renombres partes, no abras el PCK y no uses un EXE anterior.
+Si se cierra, registra el arranque:
+.\PunchLine_0.9.21.exe --log-file .\arranque_0.9.21.log
+
+EDITABLE / PARCHE
+Extrae Proyecto_Completo.tar.xz en una carpeta NUEVA e importa project.godot.
+El parche se aplica sobre una COPIA del editable 0.9.20; no sobre un EXE/PCK.
+Los sonidos, mapas y modelos originales se mantienen. El nombre interno Naoya
+se conserva para migrar preferencias; el personaje es The Proyected.
+
+QUÉ PROBAR
+P > Robot: caminar/correr con los cuatro chasis en suelo plano y pendientes.
+Ajustes > Cámara > Apoyos de robots base permite comparar el ajuste con el original.
+B: emotes; Q: propulsión; Ctrl: caminar. El ajuste cede a esos movimientos y al ragdoll.
+Esc > Combate > Probar G: preparar Sentinel. G activa fusión durante una partida.
+C / clic central: lock; C se cambia en Ajustes > Teclas. V: primera persona.
+M1 al suelo: debe detenerse si pierde el miembro ejecutor durante la preparación.
+La habilidad 3 debe usar la pierna izquierda si perdió la derecha.
+Al morir desaparecen el láser y el punto de mira. Reaparición tras retirar restos.
+Todos los participantes online deben usar 0.9.21.
+
+Se ejecuta Godot 4.4.1 Linux del usuario y se comprueba el PCK exportado.
+La apariencia final, FPS/GPU y Windows/Godot 4.7.2 requieren prueba manual.
+No se incluye un video nuevo. Los videos de Extras están identificados como históricos.
+Ver ACTUALIZACION_0.9.21.md, RESULTADOS_0.9.21.md y qa/PRUEBA_MANUAL_0.9.21.md.

@@ -1,0 +1,162 @@
+[
+  {
+    "file": "m1_1.wav",
+    "source": "2026-10-12 01-24-33.wav",
+    "sha256_source": "25e12499da047fe96a6c5dc65dc8bdf9855b5a4c95c687ccede4ed798ada6aa6",
+    "start": 1.37,
+    "end": 1.81,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 63.56334448160535,
+    "correlation": 1.0
+  },
+  {
+    "file": "m1_2.wav",
+    "source": "2026-10-12 01-24-33.wav",
+    "sha256_source": "25e12499da047fe96a6c5dc65dc8bdf9855b5a4c95c687ccede4ed798ada6aa6",
+    "start": 1.89,
+    "end": 2.31,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 61.110739549839224,
+    "correlation": 1.0
+  },
+  {
+    "file": "m1_3.wav",
+    "source": "2026-10-12 01-24-33.wav",
+    "sha256_source": "25e12499da047fe96a6c5dc65dc8bdf9855b5a4c95c687ccede4ed798ada6aa6",
+    "start": 2.37,
+    "end": 2.7,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 68.11985663082437,
+    "correlation": 1.0
+  },
+  {
+    "file": "m1_4.wav",
+    "source": "2026-10-12 01-24-33.wav",
+    "sha256_source": "25e12499da047fe96a6c5dc65dc8bdf9855b5a4c95c687ccede4ed798ada6aa6",
+    "start": 2.76,
+    "end": 3.2,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 51.089892473118276,
+    "correlation": 1.0
+  },
+  {
+    "file": "rush.wav",
+    "source": "2026-10-12 01-34-44.wav",
+    "sha256_source": "8c7c43635a594cbb52c3db68219b098a0700d658819b5e9a981527bbb7d482cd",
+    "start": 1.1,
+    "end": 2.59,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 12.746773977196511,
+    "correlation": 0.9999999999999998
+  },
+  {
+    "file": "rush_alt.wav",
+    "source": "2026-10-12 01-24-19.wav",
+    "sha256_source": "2262ba4633f8c944d0d2d753c4947459b24bb19382c29939bd5a9fb7cc14d801",
+    "start": 1.48,
+    "end": 2.82,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 11.789975186104218,
+    "correlation": 0.9999999999999994
+  },
+  {
+    "file": "glass_enter.wav",
+    "source": "2026-10-12 01-24-56.wav",
+    "sha256_source": "a603bf34206b08f7a3edeff1317fb27145e8a80d5fb30fecf4cf8ddca7fe89a6",
+    "start": 3.04,
+    "end": 3.63,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 26.693033707865165,
+    "correlation": 1.0
+  },
+  {
+    "file": "dash.wav",
+    "source": "2026-10-12 01-25-23.wav",
+    "sha256_source": "7c13cfb8855fadb0e01e509ee2439abfcfd9a80585c833ac158d59e410b8ab33",
+    "start": 1.24,
+    "end": 1.89,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 32.049645868465426,
+    "correlation": 0.9999999999999989
+  },
+  {
+    "file": "block.wav",
+    "source": "2026-10-12 01-39-31.wav",
+    "sha256_source": "fbfeef5a601976af737b2294716ed4903ff346cfff089813ec3dedb35d106d02",
+    "start": 5.24,
+    "end": 5.72,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 33.81750889679714,
+    "correlation": 0.9999999999999968
+  },
+  {
+    "file": "evolved_accel.wav",
+    "source": "2026-10-12 01-26-26.wav",
+    "sha256_source": "f1f9503b1e2f93b27c297dd9ba86ddcd2317644f8feec023a9fcd8f92689f481",
+    "start": 1.25,
+    "end": 2.63,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 16.079052453468694,
+    "correlation": 0.9999999999999991
+  },
+  {
+    "file": "domain_open.wav",
+    "source": "2026-10-12 01-27-02.wav",
+    "sha256_source": "ed34c2ccb1bbf57d5d05437162932ee4b2c54585425f45d6ca0ca216a0c26eeb",
+    "start": 2.12,
+    "end": 3.62,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 18.100419047619045,
+    "correlation": 0.9999999999999984
+  },
+  {
+    "file": "domain_ambient.wav",
+    "source": "2026-10-12 01-27-02.wav",
+    "sha256_source": "ed34c2ccb1bbf57d5d05437162932ee4b2c54585425f45d6ca0ca216a0c26eeb",
+    "start": 7.45,
+    "end": 12.45,
+    "pitch": 1.0,
+    "processing": "recorte, mono 48 kHz, ganancia lineal; sin EQ ni capas",
+    "gain": 24.303631713554985,
+    "correlation": 0.9999999999999994
+  },
+  {
+    "file": "body_1.wav",
+    "source_punch": "hit03.mp3.flac",
+    "source_body": "wet_towel_on_body-08.flac",
+    "license": "CC0",
+    "processing": "contacto grabado + cuerpo grabado filtrado a 220 Hz, normalización y cola breve"
+  },
+  {
+    "file": "body_2.wav",
+    "source_punch": "hit10.mp3.flac",
+    "source_body": "wet_towel_on_body-15.flac",
+    "license": "CC0",
+    "processing": "contacto grabado + cuerpo grabado filtrado a 220 Hz, normalización y cola breve"
+  },
+  {
+    "file": "body_3.wav",
+    "source_punch": "hit13.mp3.flac",
+    "source_body": "wet_towel_on_body-18.flac",
+    "license": "CC0",
+    "processing": "contacto grabado + cuerpo grabado filtrado a 220 Hz, normalización y cola breve"
+  },
+  {
+    "file": "body_4.wav",
+    "source_punch": "hit21.mp3.flac",
+    "source_body": "wet_towel_on_body-24.flac",
+    "license": "CC0",
+    "processing": "contacto grabado + cuerpo grabado filtrado a 220 Hz, normalización y cola breve"
+  }
+]

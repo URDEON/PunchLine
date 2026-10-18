@@ -1,0 +1,29 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS 13 cuerpos físicos seleccionados
+PASS cuatro bisagras y ocho conos explícitos con restricciones reales; pelvis libre
+PASS PhysicalBoneSimulator activo real
+PHYSICS_BOUNDS 0.04348473995924 0.14030013978481 pelvis (1.256361, 0.133664, -0.583795)
+PASS posiciones y velocidades finitas
+PASS colisión con suelo y articulaciones contenidas
+PHYSICS_SPEED 0.03911209106445
+PASS sin vibración creciente tras 4 segundos
+POSE_DIAG B_Pelvis rendered (1.256361, 0.294811, -0.583795) simulated (1.256361, 0.133664, -0.583795) meter (0.0, 1.310748, 0.000925)
+POSE_DIAG B_Spine2 rendered (1.35014, 0.28766, -0.969748) simulated (1.350059, 0.126537, -0.969762) meter (0.0, 1.707174, -0.024606)
+POSE_DIAG B_Head rendered (1.411707, 0.295473, -1.302978) simulated (1.411628, 0.134362, -1.302989) meter (0.000001, 2.045198, 0.000566)
+POSE_DIAG B_L_UpperArm rendered (1.186996, 0.289227, -1.093259) simulated (1.186921, 0.128102, -1.093285) meter (-0.182817, 1.798425, -0.013454)
+POSE_DIAG B_L_Forearm rendered (0.99814, 0.232679, -1.059922) simulated (0.998068, 0.071566, -1.05994) meter (-0.382757, 1.798425, -0.013454)
+POSE_DIAG B_L_Thigh rendered (1.142316, 0.317075, -0.611919) simulated (1.142303, 0.155917, -0.611961) meter (-0.119552, 1.310749, 0.000925)
+POSE_DIAG B_L_Calf rendered (1.024356, 0.21901, -0.188553) simulated (1.024016, 0.05713, -0.188856) meter (-0.155539, 0.861919, 0.006041)
+POSE_DIAG B_L_Foot rendered (0.785573, 0.250288, 0.195009) simulated (0.786134, 0.090134, 0.195252) meter (-0.191508, 0.413229, 0.056038)
+POSE_DIAG B_R_UpperArm rendered (1.546371, 0.299004, -1.026631) simulated (1.546287, 0.137894, -1.026647) meter (0.182813, 1.798424, -0.013462)
+POSE_DIAG B_R_Forearm rendered (1.605697, 0.234826, -0.846802) simulated (1.605612, 0.073706, -0.846828) meter (0.382755, 1.798424, -0.013463)
+POSE_DIAG B_R_Thigh rendered (1.370407, 0.272546, -0.555672) simulated (1.370407, 0.111385, -0.555661) meter (0.119553, 1.310749, 0.000925)
+POSE_DIAG B_R_Calf rendered (1.420678, 0.214565, -0.111937) simulated (1.420683, 0.053448, -0.111891) meter (0.155541, 0.861896, 0.006041)
+POSE_DIAG B_R_Foot rendered (0.977009, 0.265871, -0.036877) simulated (0.977014, 0.104846, -0.036948) meter (0.191511, 0.413214, 0.056036)
+PASS pelvis sigue física con corrección visual de contacto y cadena anatómica finita
+PASS simulación se detiene y controlador recupera
+PASS recuperación sobre suelo
+PASS visual vuelve a controlador
+PASS mezcla de recuperación finaliza
+RESULTADO 11/11

@@ -1,0 +1,194 @@
+[
+  {
+    "source": "assets/characters/robots/George/color_1.png",
+    "target": "assets/characters/robots/George/color_1.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "4072c548b6f240726764908aec23389c78a0d4f5e3520cae06f1d487779a8e6f",
+    "source_bytes": 2327191,
+    "target_bytes": 1003716
+  },
+  {
+    "source": "assets/characters/robots/George/color_2.png",
+    "target": "assets/characters/robots/George/color_2.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "ae0f6942a3f1ffcba1920e6c49c420339c625952e9175e303626aa4b5eb2898c",
+    "source_bytes": 2287853,
+    "target_bytes": 953202
+  },
+  {
+    "source": "assets/characters/robots/George/color_3.png",
+    "target": "assets/characters/robots/George/color_3.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "19cd815036eae0d38a7f5ece2779a63e7420e8732f05112b6cecbc9a204af4bb",
+    "source_bytes": 2293339,
+    "target_bytes": 948824
+  },
+  {
+    "source": "assets/characters/robots/George/color_4.png",
+    "target": "assets/characters/robots/George/color_4.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "6fa1b8cc4edac729278f7d1ffb41d9bdae434082d1c419b10ded7f8954bc8134",
+    "source_bytes": 2223795,
+    "target_bytes": 973268
+  },
+  {
+    "source": "assets/characters/robots/Leela/color_1.png",
+    "target": "assets/characters/robots/Leela/color_1.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "ad1edf0145724241e9bbbce61e95865f6079b1e070066596b9284d48dc415ace",
+    "source_bytes": 2105595,
+    "target_bytes": 858300
+  },
+  {
+    "source": "assets/characters/robots/Leela/color_2.png",
+    "target": "assets/characters/robots/Leela/color_2.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "3ffc691f2f670a1007e6a80fb8296c2344a110677c23d5e3848a21fadfa53a0b",
+    "source_bytes": 2119513,
+    "target_bytes": 861902
+  },
+  {
+    "source": "assets/characters/robots/Leela/color_3.png",
+    "target": "assets/characters/robots/Leela/color_3.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "3387b4d7722965f5b95304180833da2b7009eb675e9e27ef3b610a1c471abc49",
+    "source_bytes": 2112579,
+    "target_bytes": 855332
+  },
+  {
+    "source": "assets/characters/robots/Leela/color_4.png",
+    "target": "assets/characters/robots/Leela/color_4.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "922515982d94d8654be62df42030972b7836c09dfe14686e7dbd6a41ac49d905",
+    "source_bytes": 2104256,
+    "target_bytes": 866438
+  },
+  {
+    "source": "assets/characters/robots/Mike/color_1.png",
+    "target": "assets/characters/robots/Mike/color_1.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "153a3c6b06086a34b298b2460c3caddd499f2838ecfc7b43128f3ac30cbfc1df",
+    "source_bytes": 2079846,
+    "target_bytes": 851924
+  },
+  {
+    "source": "assets/characters/robots/Mike/color_2.png",
+    "target": "assets/characters/robots/Mike/color_2.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "d77ab1baf5458b47fa80d855052665936bae1cbd48241ca19e0cb965d875598a",
+    "source_bytes": 2127049,
+    "target_bytes": 1192740
+  },
+  {
+    "source": "assets/characters/robots/Mike/color_3.png",
+    "target": "assets/characters/robots/Mike/color_3.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "bb6599ce6be2290c61bd23ccb6156b799b4b9ff5ac782097513d7c259f1726a9",
+    "source_bytes": 2180403,
+    "target_bytes": 1272544
+  },
+  {
+    "source": "assets/characters/robots/Mike/color_4.png",
+    "target": "assets/characters/robots/Mike/color_4.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "6d7235d1fa8607c71beeba8571ffd0da6cbf67c59557ff24a3c71eba1b3e1638",
+    "source_bytes": 2080582,
+    "target_bytes": 1158360
+  },
+  {
+    "source": "assets/characters/robots/Stan/color_1.png",
+    "target": "assets/characters/robots/Stan/color_1.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "8d4526f2ebc8560fd0d664ff9c32191de38669b20719fe99b0d26c45abdf7ba6",
+    "source_bytes": 1705146,
+    "target_bytes": 1020810
+  },
+  {
+    "source": "assets/characters/robots/Stan/color_2.png",
+    "target": "assets/characters/robots/Stan/color_2.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "4881274bc883e3cc1c9ea6c68569cf46fe74525be851bc084fadce471a1943d6",
+    "source_bytes": 1772082,
+    "target_bytes": 1060928
+  },
+  {
+    "source": "assets/characters/robots/Stan/color_3.png",
+    "target": "assets/characters/robots/Stan/color_3.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "006f8d0f13eff64c6c89e6c069814634650a02fbebd64b3ac8b3206e812bbf0d",
+    "source_bytes": 1726910,
+    "target_bytes": 738254
+  },
+  {
+    "source": "assets/characters/robots/Stan/color_4.png",
+    "target": "assets/characters/robots/Stan/color_4.webp",
+    "size": [
+      2048,
+      2048
+    ],
+    "identical_rgba": true,
+    "pixel_sha256": "a4d6867b6cdf4ca933e48330c927ab07977e474eb0049bc868a1d636ba1c7f9a",
+    "source_bytes": 1713456,
+    "target_bytes": 706530
+  }
+]

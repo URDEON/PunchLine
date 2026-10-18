@@ -1,0 +1,95 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS rig y tres NPC importados
+PASS base1 crea cinco cuadros
+PASS base1 avanza automaticamente
+PASS ruta completada limpia cuadros
+PASS base1 sale de recovery
+PASS ruta fallida cancela restantes
+PASS fallo limpia cuadros
+PASS counter evita golpe en ventana
+PASS counter inflige14 y congela
+PASS animacion recuperada tras congelacion
+PASS counter tardio recibe dano
+PASS G transforma gusano 60s
+PASS carga evolucion multiplica1.5
+PASS fase1 bloquea movimientos evolucionados
+PASS embestida fase1 aplica23 una sola vez
+PASS impacto carga evolucion
+PASS G evoluciona y renueva45s
+PASS renacimiento conservado con60HP
+PASS tentaculos golpe8+16
+PASS tentaculos finalizan sin bloqueo de estado
+PASS aceleracion atraviesa guardia y aplica36 una vez
+PASS dominio se activa14s una vez
+PASS dominio teletransporta a arena separada
+PASS dominio no dana al inmovil
+PASS dominio penaliza movimiento atacante
+PASS dominio devuelve jugador al terminar14s
+PASS dominio devuelve NPC
+PASS dominio usado no se repite
+PASS morir restaura arena y forma humana
+PASS expiracion cancela habilidad y restaura humano
+PASS proyecciones conecta rafaga24 con colision real
+PASS counter no cubre espalda
+PASS ataque interrumpe preparacion dominio
+PASS dominio exige tiempo para14s completos
+PASS G no cancela gratuitamente habilidad activa
+PASS G funciona al estar libre
+PASS nueva transformacion recupera dominio
+RESULT 37/37 OK
+
+
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS B inicia el emote
+PASS emote ocupa estado de accion
+PASS B cancela emote
+PASS M1 cancela emote y permite combatir
+PASS golpe cancela emote sin inmunidad
+PASS fase1 conserva humano al comenzar animacion
+PASS transformacion bloquea habilidad y M1
+PASS modelo cambia en el punto medio
+PASS transicion no consume duracion de ulti
+PASS fase1 termina sin bloqueo
+PASS fase2 tiene su propia transicion
+PASS tentaculos no aparecen antes de eclosion
+PASS fase2 despliega apendices y restaura escala
+PASS golpe interrumpe presentacion sin modelo invisible
+PASS habilidad1 deja siluetas
+PASS rastro persiste al terminar con limite de instancias
+PASS rastro se desvanece y elimina
+PASS Kogane perfil nanami
+PASS Kogane perfil gojo
+PASS Kogane perfil naoya
+PASS Kogane acompana teletransporte
+PASS reset limpia animaciones
+RESULTADO 22/22
+
+
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS Kogane comienza oculto
+PASS K invoca Kogane
+PASS K retira Kogane
+PASS Running Man instalado sobre rig de combate
+PASS baile tiene 53 huesos y cadera, loop cerrado
+PASS todas las pistas apuntan a huesos existentes
+PASS B inicia musica
+PASS baile y musica persisten mas de 2 segundos
+PASS pausa detiene musica y animacion
+PASS reanudar restaura musica y animacion
+PASS B corta baile y musica juntos
+PASS W cancela baile y musica
+PASS fase 1 tiene 7 huesos
+PASS fase 1 tiene pesos normalizados
+PASS fase 2 tiene 7 huesos
+PASS fase 2 tiene pesos normalizados
+PASS fase1 usa modelo worm enviado
+PASS cuerpo se deforma mediante huesos
+PASS evolucion tiene envoltura visible
+PASS envoltura rompe al desplegar fase2
+PASS fragmentos y humo se limpian
+PASS eventos de sonido ejecutados
+PASS respawn detiene baile y musica
+RESULTADO 23/23

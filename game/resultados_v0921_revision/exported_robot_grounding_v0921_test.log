@@ -1,0 +1,52 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS cadena real de Leela: 3 tramos
+PASS caminar mantiene control y contactos: Leela
+PASS consultas acotadas y pose corregida disponible: Leela
+PASS pies visuales unidos al extremo corregido: Leela
+PASS articulaciones sin estiramiento ni NaN: Leela
+PASS corrección real con límite de giro: Leela
+PASS apoyos sobre pendiente real: Leela
+PASS normal del terreno y longitudes conservadas en pendiente: Leela
+PASS emote conserva clip original sin IK: Leela
+PASS ragdoll recibe control exclusivo del esqueleto: Leela
+PASS opción permite restaurar locomoción original: Leela
+ROBOT_GROUNDING Leela { "samples": 802, "length_error": 0.00000268220901, "correction": 0.24, "contacts": 27 }
+PASS cadena real de Stan: 2 tramos
+PASS caminar mantiene control y contactos: Stan
+PASS consultas acotadas y pose corregida disponible: Stan
+PASS pies visuales unidos al extremo corregido: Stan
+PASS articulaciones sin estiramiento ni NaN: Stan
+PASS corrección real con límite de giro: Stan
+PASS apoyos sobre pendiente real: Stan
+PASS normal del terreno y longitudes conservadas en pendiente: Stan
+PASS emote conserva clip original sin IK: Stan
+PASS ragdoll recibe control exclusivo del esqueleto: Stan
+PASS opción permite restaurar locomoción original: Stan
+ROBOT_GROUNDING Stan { "samples": 870, "length_error": 0.00000262260437, "correction": 0.24, "contacts": 29 }
+PASS cadena real de George: 3 tramos
+PASS caminar mantiene control y contactos: George
+PASS consultas acotadas y pose corregida disponible: George
+PASS pies visuales unidos al extremo corregido: George
+PASS articulaciones sin estiramiento ni NaN: George
+PASS corrección real con límite de giro: George
+PASS apoyos sobre pendiente real: George
+PASS normal del terreno y longitudes conservadas en pendiente: George
+PASS emote conserva clip original sin IK: George
+PASS ragdoll recibe control exclusivo del esqueleto: George
+PASS opción permite restaurar locomoción original: George
+ROBOT_GROUNDING George { "samples": 838, "length_error": 0.00000506639481, "correction": 0.24, "contacts": 29 }
+PASS cadena real de Mike: 2 tramos
+PASS caminar mantiene control y contactos: Mike
+PASS consultas acotadas y pose corregida disponible: Mike
+PASS pies visuales unidos al extremo corregido: Mike
+PASS articulaciones sin estiramiento ni NaN: Mike
+PASS corrección real con límite de giro: Mike
+PASS apoyos sobre pendiente real: Mike
+PASS normal del terreno y longitudes conservadas en pendiente: Mike
+PASS emote conserva clip original sin IK: Mike
+PASS ragdoll recibe control exclusivo del esqueleto: Mike
+PASS opción permite restaurar locomoción original: Mike
+ROBOT_GROUNDING Mike { "samples": 850, "length_error": 0.00000393390656, "correction": 0.24, "contacts": 29 }
+PASS volver a The Proyected restaura su modificador propio
+RESULTADO 45/45

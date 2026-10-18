@@ -1,0 +1,218 @@
+{
+  "godot": "4.4.1",
+  "mecha": {
+    "capsule_width": 2.09999990463257,
+    "configured_minimum": 2.7,
+    "crouched_capsule_height": 2.89983749389648,
+    "crouched_visual": {
+      "horizontal_diameter": 3.36824901406764,
+      "min_relative": [
+        -1.28939819335938,
+        0.00191184587311,
+        -0.820582568645477
+      ],
+      "size": [
+        2.74801635742188,
+        2.45802330970764,
+        1.94769287109375
+      ],
+      "top_above_feet": 2.45993515558075
+    },
+    "max_ik_error": 9.28188057969237e-07,
+    "posture_blend": 0.846278863224703,
+    "rig": "ArticulacionMecanica: rigid modules, procedural hip/knee/ankle chain",
+    "roof_underside": 3.0,
+    "standing_capsule_height": 4.0,
+    "standing_visual": {
+      "horizontal_diameter": 3.192585819356,
+      "min_relative": [
+        -1.2984619140625,
+        0.00191033456940204,
+        -0.820582926273346
+      ],
+      "size": [
+        2.7474365234375,
+        3.55848932266235,
+        1.6260986328125
+      ],
+      "top_above_feet": 3.56039965723176
+    }
+  },
+  "notes": [
+    "Visual bounds are conservative transformed per-mesh AABBs for the rigid fused mecha.",
+    "Base robot visual bounds are CPU-skinned vertices in world space.",
+    "Dimensions measured in laboratory at x=400; District500 scene absent from source archives."
+  ],
+  "player": {
+    "height": 1.89999997615814,
+    "scale": [
+      1.0,
+      1.0,
+      1.0
+    ],
+    "width": 0.759999990463257
+  },
+  "robots": [
+    {
+      "capsule_width": 0.639999985694885,
+      "crouched_capsule_height": 1.44999992847443,
+      "crouched_visual": {
+        "horizontal_diameter": 1.67082401207997,
+        "min_relative": [
+          -0.516021728515625,
+          -0.00470216758549213,
+          -0.452363938093185
+        ],
+        "size": [
+          1.19851684570312,
+          1.88672518730164,
+          1.16413497924805
+        ],
+        "top_above_feet": 1.88202301971614
+      },
+      "name": "Leela",
+      "posture_blend": 0.785714350507728,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "standing_capsule_height": 2.0,
+      "standing_visual": {
+        "horizontal_diameter": 1.64393189986454,
+        "min_relative": [
+          -0.509765625,
+          -0.000164166558533907,
+          -0.432037472724915
+        ],
+        "size": [
+          1.1922607421875,
+          1.96050930023193,
+          1.13182437419891
+        ],
+        "top_above_feet": 1.9603451336734
+      }
+    },
+    {
+      "capsule_width": 0.879999995231628,
+      "crouched_capsule_height": 1.44944000244141,
+      "crouched_visual": {
+        "horizontal_diameter": 1.8882507763363,
+        "min_relative": [
+          -0.798553466796875,
+          -0.00174710946157575,
+          -0.4248868227005
+        ],
+        "size": [
+          1.65603637695312,
+          1.90978229045868,
+          0.907212495803833
+        ],
+        "top_above_feet": 1.9080351809971
+      },
+      "name": "Stan",
+      "posture_blend": 0.786514205592019,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "standing_capsule_height": 2.0,
+      "standing_visual": {
+        "horizontal_diameter": 1.86223282914469,
+        "min_relative": [
+          -0.818023681640625,
+          -0.00140261463820934,
+          -0.425097316503525
+        ],
+        "size": [
+          1.665283203125,
+          1.97442078590393,
+          0.833512425422668
+        ],
+        "top_above_feet": 1.97301817126572
+      }
+    },
+    {
+      "capsule_width": 0.800000011920929,
+      "crouched_capsule_height": 1.44944000244141,
+      "crouched_visual": {
+        "horizontal_diameter": 1.56140915094785,
+        "min_relative": [
+          -0.568084716796875,
+          -0.00428733322769403,
+          -0.373683154582977
+        ],
+        "size": [
+          1.23330688476562,
+          1.8685884475708,
+          0.95757645368576
+        ],
+        "top_above_feet": 1.86430111434311
+      },
+      "name": "George",
+      "posture_blend": 0.786514205592019,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "standing_capsule_height": 2.0,
+      "standing_visual": {
+        "horizontal_diameter": 1.54202137296117,
+        "min_relative": [
+          -0.5904541015625,
+          -0.000530015211552382,
+          -0.330692231655121
+        ],
+        "size": [
+          1.249755859375,
+          1.95821726322174,
+          0.903294086456299
+        ],
+        "top_above_feet": 1.95768724801019
+      }
+    },
+    {
+      "capsule_width": 0.920000016689301,
+      "crouched_capsule_height": 1.44944000244141,
+      "crouched_visual": {
+        "horizontal_diameter": 2.29265726363783,
+        "min_relative": [
+          -0.969635009765625,
+          -0.00538976211100817,
+          -0.488927125930786
+        ],
+        "size": [
+          2.01559448242188,
+          1.89307379722595,
+          1.09254574775696
+        ],
+        "top_above_feet": 1.88768403511494
+      },
+      "name": "Mike",
+      "posture_blend": 0.786514205592019,
+      "scale": [
+        1.0,
+        1.0,
+        1.0
+      ],
+      "standing_capsule_height": 2.0,
+      "standing_visual": {
+        "horizontal_diameter": 2.26174286172337,
+        "min_relative": [
+          -0.996307373046875,
+          -0.00341706606559455,
+          -0.488426715135574
+        ],
+        "size": [
+          2.0257568359375,
+          1.96984767913818,
+          1.00587773323059
+        ],
+        "top_above_feet": 1.96643061307259
+      }
+    }
+  ],
+  "source": "PunchLine 0.9.24 editable from user Drive"
+}

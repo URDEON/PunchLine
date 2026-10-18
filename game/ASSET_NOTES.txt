@@ -1,0 +1,4 @@
+Asset visual/animaciones integrado desde el archivo aportado por el usuario:
+RPG_Animations_GLB_FREE-0.1.0-2 (1).zip
+Archivo usado: Unarmed.glb
+Se eligió la variante in-place en vez de Unarmed_RM.glb para que el movimiento siga siendo controlado por CharacterBody3D.

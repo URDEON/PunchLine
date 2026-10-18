@@ -1,0 +1,14 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PunchLine · módulos de fusión cargados: 112
+PASS fusión autoritativa
+PASS anfitrión calcula apoyos en suelo real
+PASS snapshot transmite dos apoyos y velocidad
+PASS tres mechas mantienen el límite de estado de red
+PASS apoyos conservados al comprimir y decodificar
+PunchLine · módulos de fusión cargados: 112
+PASS cliente utiliza apoyos del anfitrión
+PASS réplica no lanza rayos ni simula física del anfitrión
+PASS pie apoyado coincide en ambos mundos
+PASS estado no finito no corrompe la pose
+RESULTADO 9/9

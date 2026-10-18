@@ -1,0 +1,15 @@
+{
+  "resolution": 1024,
+  "regions": {
+    "jacket": 103142,
+    "pants": 130664,
+    "hat": 8859,
+    "hoodie": 109694,
+    "shoes": 111967,
+    "hair": 8568,
+    "skin": 24834
+  },
+  "conservative_seams": true,
+  "uncertain_pixels": "original texture retained",
+  "selection": "UV triangles + world regions + skin hue; no global tint"
+}

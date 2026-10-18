@@ -1,0 +1,19 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO 0.9.6 · caminar con Ctrl, correr y salto nuevo
+PASS salto real termina en aterrizaje
+DEMO B · selector de emotes y baile sobre el rig original
+DEMO Kogane · órbita juguetona, comentario y retirada
+PASS desaparición de Kogane
+DEMO Azotea · ragdoll físico del jugador sin desarmar el rig
+PASS recuperación real sobre terreno elevado
+DEMO Ascensor · plataforma móvil con colisión
+PASS ascensor lleva al jugador
+DEMO Fase 2 · vertical al parar, cabeza delante al avanzar
+PASS fase 2 vuelve a reposo vertical
+DEMO Dominio · interior de 24 paneles y reloj de proyección
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/Laboratorio/DomainInterior/@Node3D@1196/@Node3D@1278/@Label3D@1282" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+DEMO Eco de ruta · registro de movimiento real por la rampa
+DEMO Menú de pausa · explorar, combate, configuración y controles
+DEMO RESULT 5/5

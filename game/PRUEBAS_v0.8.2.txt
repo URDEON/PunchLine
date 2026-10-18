@@ -1,0 +1,25 @@
+Godot 4.4.1 Linux — ejecución sin ventana.
+37 pruebas de combate +22 presentación +23 integración de assets/audio.
+La prueba de audio comprueba eventos/estado; no sustituye escucharlo.
+La prueba de retarget comprueba rutas/huesos/loop; no sustituye revisar el baile.
+Los rigs se comprueban por huesos, pesos y cambios de pose.
+
+No se pudo grabar ni evaluar visualmente esta versión: el entorno rechazó
+la escalación para iniciar Xvfb. No se reintentó saltar esa restricción.
+Pendientes de revisión visual: orientación/acabado de modelos, pies del
+baile, suavidad de piel y transparencias. No hay prueba Windows/Godot4.7.
+
+Instalar: extraer TODO el ZIP en carpeta nueva; importar project.godot;
+esperar la importación de recursos y pulsar F5. Project.godot está en la raíz
+con entradas explícitas de las carpetas para el importador de ZIP.
+
+Pruebas reproducibles:
+godot --headless --path . --script res://qa/combat_test.gd --fixed-fps 60
+godot --headless --path . --script res://qa/presentation_test.gd --fixed-fps 60
+godot --headless --path . --script res://qa/assets_test.gd --fixed-fps 60
+
+Demo gráfica (con ventana disponible):
+godot --path . --script res://qa/presentation_demo.gd --fixed-fps 20
+Para grabar añadir: --write-movie prueba.avi
+La demo prepara NPC/posiciones y carga para mostrar habilidades. El juego
+normal F5 no da carga automática, no ejecuta ataques solo y no tiene inmunidad QA.

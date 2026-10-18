@@ -1,0 +1,31 @@
+NAOYA v0.8.1 — EMOTE, KOGANE Y TRANSICIONES
+
+B: ejecuta/cancela Desafío, emote provisional usando UnarmedActivate.
+Solo humano, en suelo y libre. Movimiento/F/M1/Q/espacio/skills/G y daño
+cancelan el emote. No da invulnerabilidad ni altera cooldowns.
+
+Kogane: compañero visual flotante, sin colisión ni daño. Naoya lleva mandíbula,
+dientes, antenas, alas animadas y cola. Sigue giros y teletransportes del jugador.
+Perfiles visuales preparados: Naoya, Nanami con gafas y Gojo con venda.
+No hay selector de personajes ni personajes jugables adicionales en esta versión.
+Integración futura: presentation.set_character(id). Perfil desconocido usa Naoya.
+
+Habilidad 1: deja siluetas violetas de la pose actual en posiciones anteriores.
+Se aplica a Proyecciones y Embestida. Cada silueta dura 0.85 s y se desvanece;
+límite 12 simultáneas. No llevan física ni hacen daño. Headless solo comprueba
+su ciclo de vida; la pose de la malla se captura con el renderizador real.
+
+Ulti: fase1 tiene activación humana, anillos y aparición progresiva (1.25 s).
+Fase2 comprime la primera forma y despliega apéndices en la eclosión (1 s).
+El cambio de silueta ocurre a mitad de la animación. No se puede atacar/moverse
+mientras cambia. El reloj de la ulti comienza tras la transición.
+Los golpes hacen daño e interrumpen la presentación; se mantiene la forma
+activada y se restaura la escala. Muerte, reset y expiración limpian el estado.
+No se ha añadido inmunidad gratuita al transformar.
+
+Se conservan movimientos 1–4, counter, dominio 14 s, segunda fase y renacimiento.
+Los modelos siguen siendo provisionales: ver ASSETS_PARA_EDU.txt.
+
+QA: 37 pruebas de combate adaptadas para esperar transiciones y 22 de presentación.
+F5 NO activa automatismos ni da carga gratis. Los scripts qa sí preparan
+posiciones/carga para probar y grabar secuencias reproducibles.

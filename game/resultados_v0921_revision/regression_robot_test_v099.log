@@ -1,0 +1,54 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS segundo personaje habilitado
+PASS chasis activo: Leela
+PASS rig y física propia: Leela
+PASS M1 usa clip real del chasis: Leela
+PASS M1 real registra contacto: Leela
+PASS habilidad ausente no se activa: Leela
+PASS HUD según chasis: Leela
+PASS cristalización oculta robot: Leela
+PASS libera robot correcto: Leela
+PASS ragdoll acotado: Leela
+PASS ragdoll conserva longitudes y escalas del rig: Leela
+ROBOT_METRICS Leela speed=6.38642072677612 diameter=3.34022246018503 bodies=14
+PASS recuperación: Leela
+PASS chasis activo: Stan
+PASS rig y física propia: Stan
+PASS M1 usa clip real del chasis: Stan
+PASS M1 real registra contacto: Stan
+PASS habilidad ausente no se activa: Stan
+PASS HUD según chasis: Stan
+PASS cristalización oculta robot: Stan
+PASS libera robot correcto: Stan
+PASS ragdoll acotado: Stan
+PASS ragdoll conserva longitudes y escalas del rig: Stan
+ROBOT_METRICS Stan speed=6.28222274780273 diameter=2.8224987337997 bodies=12
+PASS recuperación: Stan
+PASS chasis activo: George
+PASS rig y física propia: George
+PASS M1 usa clip real del chasis: George
+PASS M1 real registra contacto: George
+PASS habilidad ausente no se activa: George
+PASS HUD según chasis: George
+PASS cristalización oculta robot: George
+PASS libera robot correcto: George
+PASS ragdoll acotado: George
+PASS ragdoll conserva longitudes y escalas del rig: George
+ROBOT_METRICS George speed=6.35806322097778 diameter=2.50151791415681 bodies=18
+PASS recuperación: George
+PASS chasis activo: Mike
+PASS rig y física propia: Mike
+PASS M1 usa clip real del chasis: Mike
+PASS M1 real registra contacto: Mike
+PASS habilidad ausente no se activa: Mike
+PASS HUD según chasis: Mike
+PASS cristalización oculta robot: Mike
+PASS libera robot correcto: Mike
+PASS ragdoll acotado: Mike
+PASS ragdoll conserva longitudes y escalas del rig: Mike
+ROBOT_METRICS Mike speed=6.2947244644165 diameter=3.29073621817906 bodies=12
+PASS recuperación: Mike
+PASS ocho reapariciones cambian chasis
+PASS restaura Naoya con rig original
+RESULTADO 47/47

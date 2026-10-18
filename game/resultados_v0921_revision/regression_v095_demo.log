@@ -1,0 +1,22 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO Reposo · idle.fbx del usuario, adaptado al rig original
+DEMO F + W · caminar con guardia; después W · correr
+DEMO Laboratorio · NPC cristalizado; cámaras del frente y espalda
+DEMO M1 real · un golpe rompe el vidrio y restaura 3D
+PASS golpe rompe vidrio real
+DEMO 2 · counter fallido cristaliza a Naoya; duración real de 5 s
+PASS penalización real de counter fallido
+PASS cinco segundos restauran controles
+DEMO Laboratorio · atacante real para comprobar derribo físico del jugador
+PASS combo del NPC activa PhysicalBoneSimulator
+PASS recuperación del jugador
+DEMO K · Kogane con aleteo, flotación e inclinación
+DEMO Laboratorio · galería con seis variantes del mismo GLB
+DEMO Laboratorio · fase2 vertical en reposo y boca abajo al avanzar
+DEMO 4 · dominio; F8 · cámara exterior, lateral y superior
+PASS inspección no cancela dominio
+DEMO Laboratorio · caída desde altura para activar Falling después de 4 s
+PASS caída prolongada real
+DEMO Prueba automatizada terminada · todos los sistemas ejecutados por Godot
+DEMO RESULT 7/7

@@ -1,0 +1,30 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS inicio tiene exactamente las cuatro opciones solicitadas
+PASS apagado en esquina superior izquierda
+PASS salir solicita confirmación sin cerrar la prueba
+PASS cinco secciones comparten una previsualización 3D real
+PASS controles y escena responden a sección video
+PASS controles y escena responden a sección audio
+PASS controles y escena responden a sección camera
+PASS controles y escena responden a sección interface
+PASS controles y escena responden a sección controls
+PASS reasignación del lock desde ajustes
+PASS tecla lock se guarda en preferencias
+PASS inicio cabe en (360, 360)
+PASS volver de ajustes accesible en (360, 360)
+PASS inicio cabe en (360, 640)
+PASS volver de ajustes accesible en (360, 640)
+PASS inicio cabe en (640, 360)
+PASS volver de ajustes accesible en (640, 360)
+PASS inicio cabe en (1280, 720)
+PASS volver de ajustes accesible en (1280, 720)
+PASS extras incluye arte, modelos y videos existentes
+PASS catálogo completo apunta a recursos disponibles
+PASS filtro de extras Arte
+PASS filtro de extras Modelos
+PASS filtro de extras Videos
+PASS video histórico inicia reproducción real
+PASS visor de modelos permite explorar sin cambiar solo
+PASS cerrar extras libera visor y video
+RESULTADO 27/27

@@ -1,0 +1,30 @@
+[
+  {
+    "model": "George",
+    "geometry_and_animation_identical": true,
+    "texture_pixels_identical": true,
+    "original_bytes": 5152038,
+    "runtime_bytes": 1094311
+  },
+  {
+    "model": "Leela",
+    "geometry_and_animation_identical": true,
+    "texture_pixels_identical": true,
+    "original_bytes": 3382594,
+    "runtime_bytes": 449125
+  },
+  {
+    "model": "Mike",
+    "geometry_and_animation_identical": true,
+    "texture_pixels_identical": true,
+    "original_bytes": 4423046,
+    "runtime_bytes": 859857
+  },
+  {
+    "model": "Stan",
+    "geometry_and_animation_identical": true,
+    "texture_pixels_identical": true,
+    "original_bytes": 3787080,
+    "runtime_bytes": 887537
+  }
+]

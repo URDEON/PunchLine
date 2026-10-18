@@ -1,0 +1,21 @@
+NAOYA 0.9 — VALIDACIÓN
+Godot 4.6.3 Linux / GL Compatibility
+Revalidado con el Godot 4.4.1 Linux x86_64 adjuntado por el usuario.
+
+combat_test: 37/37
+presentation_test: 22/22
+assets_test: 23/23
+polish_test: 25/25
+
+Total: 107/107.
+Demo automatizada sin renderizado: 11/11.
+Demo breve automatizada sin renderizado: 6/6.
+Godot adjuntado: 107/107 y demo completa 11/11, sin renderizado.
+Importación limpia finalizada con Godot 4.4.1; sin errores de script.
+El editor informa errores de sus listeners debido a la restricción del entorno.
+También informa cuatro errores "Parameter t is null" del renderer Dummy al guardar escenas.
+Los recursos cargan y assets_test aprueba 23/23; su imagen requiere revisión gráfica.
+Grabación y revisión gráfica: bloqueadas. AF_UNIX bind: errno=1, Operation not permitted.
+Xorg: Cannot establish any listening sockets.
+No se generó un MP4 ni se comprobó visualmente el juego.
+No se ha probado Windows ni rendimiento en el equipo del usuario.

@@ -1,0 +1,55 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS activa impacto físico: horizontal
+PASS impulso localizado: horizontal
+PASS giro inicial real acotado: horizontal
+PASS física estable y articulaciones activas: horizontal
+PASS malla unida durante impacto: horizontal
+PASS conserva huesos y restricciones: horizontal
+IMPACT_METRICS horizontal spin=(-3.392582, 4.948635, -0.037438) speed=12.6859703063965 angular=12.0000009536743 diameter=2.50104350465286 strain=0.00207573632539
+PASS recuperación sobre suelo: horizontal
+PASS activa impacto físico: uppercut
+PASS impulso localizado: uppercut
+PASS giro inicial real acotado: uppercut
+PASS física estable y articulaciones activas: uppercut
+PASS malla unida durante impacto: uppercut
+PASS conserva huesos y restricciones: uppercut
+IMPACT_METRICS uppercut spin=(5.811392, 0.337767, 1.453836) speed=12.2639284133911 angular=12.0000009536743 diameter=2.5017618029608 strain=0.00252454417952
+PASS recuperación sobre suelo: uppercut
+PASS activa impacto físico: downslam
+PASS impulso localizado: downslam
+PASS giro inicial real acotado: downslam
+PASS física estable y articulaciones activas: downslam
+PASS malla unida durante impacto: downslam
+PASS conserva huesos y restricciones: downslam
+IMPACT_METRICS downslam spin=(-6.0, 0.0, -0.0) speed=18.2969245910645 angular=12.0000009536743 diameter=2.48445143996001 strain=0.00207573632539
+PASS recuperación sobre suelo: downslam
+PASS ocho edificios y bulevares modulares
+PASS instancias reutilizan recursos compartidos
+PASS 256 fachadas conservadas en lotes de render compartidos
+PASS suelo ampliado con colisión: (-75.0, 0.0, 0.0)
+PASS suelo ampliado con colisión: (75.0, 0.0, 0.0)
+PASS suelo ampliado con colisión: (0.0, 0.0, 75.0)
+PASS suelo ampliado con colisión: (0.0, 0.0, -62.0)
+PASS ampliación conserva el foso real
+PASS azotea y colisión alineadas: (-68.0, 6.196, -14.0)
+PASS azotea y colisión alineadas: (-68.0, 6.196, 30.0)
+PASS azotea y colisión alineadas: (-68.0, 6.196, 50.0)
+PASS azotea y colisión alineadas: (68.0, 6.196, -14.0)
+PASS azotea y colisión alineadas: (68.0, 6.196, 30.0)
+PASS azotea y colisión alineadas: (68.0, 6.196, 50.0)
+PASS azotea y colisión alineadas: (-20.0, 6.196, 68.0)
+PASS azotea y colisión alineadas: (20.0, 6.196, 68.0)
+PASS camina por la calle sin obstáculos invisibles
+PASS visita de azotea aterriza sobre geometría real
+PASS cielo real de mañana
+PASS cielo real de noche
+PASS habilidad 1 reproduce la referencia sin cambiar tono
+PASS fuente de proyección acompaña al jugador
+PASS habilidad 3 conserva su audio sin duplicar la referencia de 1
+PASS M1 real usa contacto de referencia
+PASS cristalización tiene sonido de entrada
+PASS bloqueo evita daño y reproduce su sonido
+PASS mezcla de combate respeta volumen general de efectos
+PASS menú incorpora iconos Kenney
+RESULTADO 49/49

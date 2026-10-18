@@ -1,0 +1,22 @@
+{
+  "original_archives_sha256": {
+    "02_Personajes_y_Animaciones.zip": "8a370a15803843fab5598e9b77e6d82f570dcf075972a74b9224eb0752be6be8",
+    "03_Ciudad.zip": "7a43832cf2ee34cec4320d45667c2bfd95ee70c2e32b12933d7b13571c6474c3",
+    "01_Proyecto_y_Sistemas.zip": "40a3c1af2e3334d57f0d54ae983530fa0aed47040f05607ed71e9d830b231ffe"
+  },
+  "edited_original_code": [
+    "scripts/punchline_map.gd",
+    "scripts/robot_clearance.gd",
+    "scripts/punchline_interactions.gd",
+    "scripts/route_trial.gd",
+    "scripts/arena.gd",
+    "network/online_arena.gd"
+  ],
+  "removed_from_editable": [
+    "assets/environment/ruined_city",
+    "assets/environment/punchline_v54"
+  ],
+  "project_godot_preserved": true,
+  "original_archive_copies_preserved": "/workspace/punchline-source",
+  "missing_original_map": "District500.tscn and original Curbs/RoadMarkings/ParkingMarkings were not present in any supplied archive"
+}

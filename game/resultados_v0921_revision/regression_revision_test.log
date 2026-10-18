@@ -1,0 +1,63 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS selección prioriza centro de cámara sobre enemigo lateral más cercano
+PASS autoapuntado no requiere fijación manual
+PASS selección descarta muertos, derribados y objetivos detrás de cámara
+PASS alcance de selección limitado a18m
+PASS cono de cámara descarta objetivo fuera de50 grados
+PASS pared bloquea selección por línea de visión
+PASS habilidad no atraviesa pared ni daña al objetivo oculto
+PASS cuerpo mantiene colisión contra la pared
+PASS selección elige rival visible cuando el central está tras pared
+PASS velocidad aumenta progresivamente durante aproximación
+PASS sin objetivo la cámara puede dirigir la trayectoria
+PASS sin objetivo recupera el control sin castigo artificial
+PASS seguimiento actualiza posición y velocidad de objetivo que se desplaza
+PASS giro está limitado por velocidad angular
+PASS cámara influye en trayectoria manteniendo objetivo durante aproximación
+PASS aproximación entra en ventana de compromiso
+PASS cámara deja de corregir el rumbo durante compromiso
+PASS dash real del enemigo se inicia antes del contacto
+PASS dash final evita el impacto por posición e hitbox
+PASS esquiva no activa agarre ni ráfaga y recupera control
+PASS contacto normal aplica18 en impactos separados sin duplicación
+PASS ráfaga normal carga14 y devuelve control
+PASS variante cercana necesita contacto real antes de inmovilizar
+PASS variante cercana produce recorrido lateral físico alrededor del rival
+PASS variante cercana limita daño total a18 igual que la normal
+PASS final cercano libera inmovilización y control
+PASS variante cercana conserva compromiso previo
+PASS dash al aproximarse impide activar gratis la secuencia cercana
+PASS interrumpir habilidad libera al objetivo sin dejar bloqueos
+PASS órbita utiliza colisiones y no atraviesa el muro lateral
+PASS órbita obstruida termina y libera estados
+PASS bloqueo frontal evita contacto inicial y secuencia gratuita
+PASS perder objetivo no adquiere instantáneamente un reemplazo
+PASS Counter activa exactamente5s de frame y8 de daño
+PASS frame sigue activo hasta el final de los5s
+PASS frame termina y restaura animación después de5s
+PASS M1 real no daña enemigo derribado
+PASS M1 respeta ventana de recuperación del derribo
+PASS protección al levantarse termina y permite golpes posteriores
+PASS combo M1 conserva cuatro golpes y remate normal con23 de daño
+PASS cuarto M1 al subir conserva uppercut y derribo
+PASS cuarto M1 al caer conserva downslam y contacto real
+PASS muerte con ultimate renace fase1 y consume energía
+PASS G no evoluciona sin completar barra propia de fase1
+PASS evolución exige fase1 y100 de su barra
+PASS morir transformado vuelve aBASE sin regalar otra fase
+PASS progresión normal rechaza salto directo aFORM2
+PASS laboratorio prepara fase2 de forma explícita
+PASS habilidad evolucionada se activa después de terminar transición
+PASS dummy inicia dash real durante compromiso de habilidad evolucionada
+PASS habilidad1 evolucionada también admite esquiva final
+PASS habilidad1 evolucionada aplica22 una sola vez cuando conecta
+PASS atacante estacionario no persigue
+PASS atacante estacionario sí golpea cuando está a alcance
+PASS perseguidor mantiene comportamiento de acercarse
+PASS dummy evasor usa dash en compromiso y evita daño
+PASS laboratorio ofrece selector independiente para cada dummy
+PASS selectores cambian el dummy correspondiente sin mezclar referencias
+PASS dash conserva defensa posicional sin inventar invulnerabilidad permanente
+PASS reinicio limpia freeze, agarre y animación
+RESULT 60/60 OK

@@ -1,0 +1,15 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+STEP_DIAG 0.14 { "z": -5.49559831619263, "peak": 0.14299999177456, "stepped": true }
+PASS cruza escalón de 0.14 m
+PASS no salta más alto que el desnivel 0.14
+STEP_DIAG 0.3 { "z": -5.49587488174438, "peak": 0.30300000309944, "stepped": true }
+PASS cruza escalón de 0.3 m
+PASS no salta más alto que el desnivel 0.3
+STEP_DIAG 0.4 { "z": -5.49615144729614, "peak": 0.40299999713898, "stepped": true }
+PASS cruza escalón de 0.4 m
+PASS no salta más alto que el desnivel 0.4
+PASS mega de 4 m también cruza bordillo sin saltar
+PASS no trepa paredes de altura excesiva
+PASS no atraviesa techo al subir escalón
+RESULTADO 9/9

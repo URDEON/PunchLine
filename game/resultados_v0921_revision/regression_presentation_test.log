@@ -1,0 +1,26 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS B abre selector de emotes sin pausar
+PASS seleccionar inicia el emote
+PASS emote ocupa estado de accion
+PASS B cancela emote
+PASS M1 cancela emote y permite combatir
+PASS golpe cancela emote sin inmunidad
+PASS fase1 conserva humano al comenzar animacion
+PASS transformacion bloquea habilidad y M1
+PASS modelo cambia en el punto medio
+PASS transicion no consume duracion de ulti
+PASS fase1 termina sin bloqueo
+PASS fase2 tiene su propia transicion
+PASS tentaculos no aparecen antes de eclosion
+PASS fase2 despliega apendices y restaura escala
+PASS golpe interrumpe presentacion sin modelo invisible
+PASS habilidad1 deja siluetas
+PASS rastro persiste al terminar con limite de instancias
+PASS rastro se desvanece y elimina
+PASS Kogane perfil nanami
+PASS Kogane perfil gojo
+PASS Kogane perfil naoya
+PASS Kogane acompana teletransporte
+PASS reset limpia animaciones
+RESULTADO 23/23

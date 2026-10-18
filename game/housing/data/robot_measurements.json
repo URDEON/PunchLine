@@ -1,0 +1,218 @@
+{
+	"godot": "4.4.1",
+	"mecha": {
+		"capsule_width": 2.09999990463257,
+		"configured_minimum": 2.7,
+		"crouched_capsule_height": 2.89983749389648,
+		"crouched_visual": {
+			"horizontal_diameter": 3.22326362091498,
+			"min_relative": [
+				-0.803375244140625,
+				0.00191213947255164,
+				-1.18326449394226
+			],
+			"size": [
+				1.93972778320312,
+				2.45802545547485,
+				2.57427358627319
+			],
+			"top_above_feet": 2.45993759494741
+		},
+		"max_ik_error": 0.00000208722667593975,
+		"posture_blend": 0.846278863224703,
+		"rig": "ArticulacionMecanica: rigid modules, procedural hip/knee/ankle chain",
+		"roof_underside": 3.0,
+		"standing_capsule_height": 4.0,
+		"standing_visual": {
+			"horizontal_diameter": 3.24200560233051,
+			"min_relative": [
+				-0.86883544921875,
+				0.00191824079956859,
+				-1.19714117050171
+			],
+			"size": [
+				1.97494506835938,
+				3.55848121643066,
+				2.57102942466736
+			],
+			"top_above_feet": 3.56039945723023
+		}
+	},
+	"notes": [
+		"Visual bounds are conservative transformed per-mesh AABBs for the rigid fused mecha.",
+		"Base robot visual bounds are CPU-skinned vertices in world space.",
+		"Dimensions measured in laboratory at x=400; District500 scene absent from source archives."
+	],
+	"player": {
+		"height": 1.89999997615814,
+		"scale": [
+			1.0,
+			1.0,
+			1.0
+		],
+		"width": 0.759999990463257
+	},
+	"robots": [
+		{
+			"capsule_width": 0.639999985694885,
+			"crouched_capsule_height": 1.44999992847443,
+			"crouched_visual": {
+				"horizontal_diameter": 1.82549676914612,
+				"min_relative": [
+					-0.572662353515625,
+					-0.195221990346909,
+					-0.578648090362549
+				],
+				"size": [
+					1.27880859375,
+					1.57227098941803,
+					1.3027229309082
+				],
+				"top_above_feet": 1.37704899907112
+			},
+			"name": "Leela",
+			"posture_blend": 0.785714350507728,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"standing_capsule_height": 2.0,
+			"standing_visual": {
+				"horizontal_diameter": 1.73125912147588,
+				"min_relative": [
+					-0.45526123046875,
+					-0.000163574703037739,
+					-0.533951759338379
+				],
+				"size": [
+					1.18951416015625,
+					1.96050870418549,
+					1.25790071487427
+				],
+				"top_above_feet": 1.96034512948245
+			}
+		},
+		{
+			"capsule_width": 0.879999995231628,
+			"crouched_capsule_height": 1.44944000244141,
+			"crouched_visual": {
+				"horizontal_diameter": 1.87304093021733,
+				"min_relative": [
+					-0.396453857421875,
+					-0.0545193515717983,
+					-0.724708795547485
+				],
+				"size": [
+					1.0167236328125,
+					1.45030462741852,
+					1.57307195663452
+				],
+				"top_above_feet": 1.39578527584672
+			},
+			"name": "Stan",
+			"posture_blend": 0.786514205592019,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"standing_capsule_height": 2.0,
+			"standing_visual": {
+				"horizontal_diameter": 1.86565161851563,
+				"min_relative": [
+					-0.47125244140625,
+					-0.00140264793299139,
+					-0.772003889083862
+				],
+				"size": [
+					1.0260009765625,
+					1.97442090511322,
+					1.55819702148438
+				],
+				"top_above_feet": 1.97301825718023
+			}
+		},
+		{
+			"capsule_width": 0.800000011920929,
+			"crouched_capsule_height": 1.44944000244141,
+			"crouched_visual": {
+				"horizontal_diameter": 1.55299065255891,
+				"min_relative": [
+					-0.433380126953125,
+					-0.25465127825737,
+					-0.501299977302551
+				],
+				"size": [
+					1.00958251953125,
+					1.61935114860535,
+					1.18005216121674
+				],
+				"top_above_feet": 1.36469987034798
+			},
+			"name": "George",
+			"posture_blend": 0.786514205592019,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"standing_capsule_height": 2.0,
+			"standing_visual": {
+				"horizontal_diameter": 1.51618408714864,
+				"min_relative": [
+					-0.36395263671875,
+					-0.000530190765857697,
+					-0.544367253780365
+				],
+				"size": [
+					0.963165283203125,
+					1.95821750164032,
+					1.17095124721527
+				],
+				"top_above_feet": 1.95768731087446
+			}
+		},
+		{
+			"capsule_width": 0.920000016689301,
+			"crouched_capsule_height": 1.44944000244141,
+			"crouched_visual": {
+				"horizontal_diameter": 2.27218327494582,
+				"min_relative": [
+					-0.484710693359375,
+					-0.00366797484457493,
+					-0.888149440288544
+				],
+				"size": [
+					1.22344970703125,
+					1.38165390491486,
+					1.91467690467834
+				],
+				"top_above_feet": 1.37798593007028
+			},
+			"name": "Mike",
+			"posture_blend": 0.786514205592019,
+			"scale": [
+				1.0,
+				1.0,
+				1.0
+			],
+			"standing_capsule_height": 2.0,
+			"standing_visual": {
+				"horizontal_diameter": 2.26872892490454,
+				"min_relative": [
+					-0.560516357421875,
+					-0.00341693894006312,
+					-0.924718797206879
+				],
+				"size": [
+					1.24859619140625,
+					1.96984755992889,
+					1.89423823356628
+				],
+				"top_above_feet": 1.96643062098883
+			}
+		}
+	],
+	"source": "PunchLine 0.9.24 editable from user Drive"
+}

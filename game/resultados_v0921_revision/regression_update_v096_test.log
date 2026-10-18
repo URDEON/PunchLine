@@ -1,0 +1,69 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS rig unido, 53 huesos y longitudes intactas desde mixamo/idle
+PASS física finita y sin impulso creciente desde mixamo/idle
+PASS recuperación del controlador desde mixamo/idle
+PASS rig unido, 53 huesos y longitudes intactas desde combat/Uppercut
+PASS física finita y sin impulso creciente desde combat/Uppercut
+PASS recuperación del controlador desde combat/Uppercut
+PASS rig unido, 53 huesos y longitudes intactas desde extras/NinjaJump_Start
+PASS física finita y sin impulso creciente desde extras/NinjaJump_Start
+PASS recuperación del controlador desde extras/NinjaJump_Start
+PASS rig unido, 53 huesos y longitudes intactas desde combat/Finisher
+PASS física finita y sin impulso creciente desde combat/Finisher
+PASS recuperación del controlador desde combat/Finisher
+PASS enemigo Y2K conserva huesos y longitudes
+PASS enemigo recupera sobre azotea real
+PASS enemigo Y2K conserva huesos y longitudes
+PASS enemigo recupera sobre azotea real
+PASS enemigo Y2K conserva huesos y longitudes
+PASS enemigo recupera sobre azotea real
+PASS cabeza -Z vertical en reposo
+PASS cabeza delante y torso boca abajo al moverse
+PASS reposo vertical se recupera con transición
+PASS Ctrl caminar a 2.4 m/s
+PASS soltar Ctrl devuelve carrera
+PASS zona real transitable: ramp
+PASS zona real transitable: roof
+PASS zona real transitable: pit
+PASS zona real transitable: lift
+PASS zona real transitable: boulevard
+PASS zona real transitable: district_roof
+PASS zona real transitable: plaza
+PASS ascensor transporta físicamente al jugador
+PASS Falling después de caída real de cuatro segundos
+PASS caída prolongada aterriza y reinicia contador
+PASS emote disponible: 1
+PASS clip real asignado al emote: 1
+PASS emote disponible: 2
+PASS clip real asignado al emote: 2
+PASS emote disponible: 3
+PASS clip real asignado al emote: 3
+PASS emote disponible: 4
+PASS clip real asignado al emote: 4
+PASS emote disponible: 5
+PASS clip real asignado al emote: 5
+PASS emote disponible: 6
+PASS clip real asignado al emote: 6
+PASS emote disponible: 7
+PASS clip real asignado al emote: 7
+PASS emote disponible: 8
+PASS clip real asignado al emote: 8
+PASS selector B mantiene combate activo y muestra rueda
+PASS selección devuelve control y reproduce baile
+PASS caminar cancela emote y música
+PASS Kogane termina órbita de invocación
+PASS comentario ligado al fallo real del counter
+PASS Kogane tiene desaparición completa
+PASS habilidad 1 tiene dos vidrios delanteros
+PASS vidrio sigue posición, altura y dirección
+PASS fin de habilidad limpia vidrio
+PASS dominio incluye 24 paneles de proyección
+PASS ambiente sonoro real del dominio
+PASS eco registra movimiento y huesos reales
+PASS desafío registra resultado al pasar seis puntos
+PASS eco reutiliza rig real del jugador
+PASS cancelación libera eco sin colisiones invisibles
+PASS menú responsive (1280, 720)
+PASS menú responsive (640, 360)
+RESULTADO 66/66

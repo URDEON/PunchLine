@@ -1,0 +1,53 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS recuperación física completa 0/0
+PASS Body recupera rotación original 0/0
+PASS recuperación física completa 0/1
+PASS Body recupera rotación original 0/1
+PASS guardia y postura de propulsión disponibles 0
+PASS recuperación física completa 1/0
+PASS Body recupera rotación original 1/0
+PASS recuperación física completa 1/1
+PASS Body recupera rotación original 1/1
+PASS guardia y postura de propulsión disponibles 1
+PASS recuperación física completa 2/0
+PASS Body recupera rotación original 2/0
+PASS recuperación física completa 2/1
+PASS Body recupera rotación original 2/1
+PASS guardia y postura de propulsión disponibles 2
+PASS recuperación física completa 3/0
+PASS Body recupera rotación original 3/0
+PASS recuperación física completa 3/1
+PASS Body recupera rotación original 3/1
+PASS guardia y postura de propulsión disponibles 3
+PunchLine · módulos de fusión cargados: 112
+PASS G conserva fusión de cuatro chasis
+PASS 112 piezas Junkyard y 31 piezas Rustwing de V8
+PASS hombro blanco y detalles originales conservan sus bisagras
+PASS mega conserva tamaño 4 m y 300 HP
+PASS hurtbox separado de huesos físicos capa 4
+PASS cañón mantenido inicia despliegue
+PASS mantener 1 no dispara automáticamente
+PASS láser y cañón desplegado mientras se apunta
+PASS el cañón permite caminar durante la carga
+PASS boca original alineada a trayectoria real
+PASS soltar dispara con 2 segundos de recarga
+PASS proyectil real hace daño y derriba
+PASS repliegue inverso devuelve forma base del brazo
+PASS cañón atraviesa cuerpos de ragdoll capa 4 y alcanza objetivo detrás
+PASS M1 pesado inicia preparación
+PASS M1 golpe al suelo aplica daño real y derribo
+HAND_DIAG (-17.09762, 0.453851, -0.85394) player (-16.0, 0.000365, 0.0)
+PASS mega cristalizable con representación 2D exclusiva
+PASS golpe rompe vidrio y restaura mega 3D
+PASS F muestra escudo frontal del mega
+PASS dash direccional (-1.0, 0.0, 0.0)
+PASS aterrizaje sin patinaje (-1.0, 0.0, 0.0)
+PASS dash direccional (1.0, 0.0, 0.0)
+PASS aterrizaje sin patinaje (1.0, 0.0, 0.0)
+PASS dash direccional (0.0, 0.0, 1.0)
+PASS aterrizaje sin patinaje (0.0, 0.0, 1.0)
+PASS aterrizajes generan polvo de impacto
+PASS suelo inexistente devuelve recarga
+PASS muerte desarma en grupos físicos acotados
+RESULTADO 48/48

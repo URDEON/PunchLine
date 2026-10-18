@@ -1,0 +1,7 @@
+ESTADO v0.8.2
+Ya se recibieron modelos, baile, música, vidrio y packs de sonido/partículas.
+No hace falta descargar más assets para esta actualización.
+
+Pendiente de comprobar visualmente: baile retargeteado, rigs básicos de
+criaturas y efectos. Kogane sigue siendo un modelo construido por código.
+Ver CAMBIOS_v0.8.2.txt para distinguir lo integrado de los packs solo revisados.

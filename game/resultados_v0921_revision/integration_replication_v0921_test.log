@@ -1,0 +1,23 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS apoyos autoritativos de Leela
+PASS snapshot contiene pose final de Leela
+PASS apoyos autoritativos de Stan
+PASS snapshot contiene pose final de Stan
+PASS apoyos autoritativos de George
+PASS snapshot contiene pose final de George
+PASS apoyos autoritativos de Mike
+PASS snapshot contiene pose final de Mike
+PunchLine · módulos de fusión cargados: 112
+PASS invitado inicia fusión
+PunchLine · módulos de fusión cargados: 112
+PASS réplica reutiliza su cápsula y no crea una por fotograma
+PASS cliente no duplica consultas ni mezcla IK con poses de red
+PASS láser real visible al preparar cañón
+PASS muerte oculta láser y punto de mira inmediatamente
+PASS estado tardío mantiene cuerpo desarmado y oculto
+PASS réplica tardía usa duración restante del despiece
+PASS réplica no reinicia espera de muerte de 3,85 s
+PASS replicar cadáver no restaura colisiones de personaje vivo
+PASS cambio de generación elimina despiece exterior anterior
+RESULTADO 18/18

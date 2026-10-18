@@ -1,0 +1,26 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO 0.9.8 / Distrito ampliado. Juego real; entradas y preparativos automatizados.
+DEMO Bulevar / caminar, correr y dash sobre la calle real
+PASS recorrido y dash físicos en bulevar
+DEMO Habilidad 1 / audio de la primera habilidad que adjuntaste; tono original
+PASS referencia reproducida por habilidad 1
+PASS habilidad termina y limpia fotogramas
+DEMO M1 / impacto horizontal, impulso en pelvis y recuperación
+PASS cuarto M1 y ragdoll real: horizontal
+PASS recuperación con rig unido: horizontal
+DEMO Uppercut / cuarto M1 durante el ascenso del salto; impulso en torso
+PASS cuarto M1 y ragdoll real: uppercut
+PASS recuperación con rig unido: uppercut
+DEMO Downslam / caída corta preparada; cuarto M1 real
+PASS cuarto M1 y ragdoll real: downslam
+PASS recuperación con rig unido: downslam
+DEMO Bloqueo / NPC ataca y el jugador mantiene guardia
+PASS bloqueo real con sonido de referencia
+DEMO Cristalización / cinco segundos; revisión visual de ambas caras
+PASS malla 3D oculta mientras dura el vidrio
+PASS restauración automática tras cinco segundos
+DEMO Azoteas / plataformas con colisión y pasarela conectada
+PASS azotea transitada por el controlador real
+DEMO Noche / skybox Kenney y ajustes de mezcla de combate
+DEMO RESULT 13/13

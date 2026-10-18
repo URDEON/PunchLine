@@ -1,0 +1,30 @@
+NAOYA BASE v0.7 — CHARACTER RIG PROTOTYPE
+
+OBJETIVO
+Reemplazar la capa visual del jugador por un personaje humanoide con Skeleton3D y animaciones reales, sin cambiar el gameplay de v0.6.
+
+CAMBIOS
+- Se integra assets/rpg_animations/Unarmed.glb (versión in-place / sin root motion).
+- El CharacterBody3D, collider, hitboxes, daño, cooldowns, cámara, Mira Lock y Ultimate siguen siendo los de v0.6.
+- El maniquí de cajas del jugador permanece oculto como fallback y como driver de orientación.
+- Animaciones conectadas: Idle/Alert, carrera y strafe direccional, salto, caída, aterrizaje, bloqueo, reacción al bloqueo, stun, dash, knockdown, levantarse, M1 y skills 3/4.
+- M1 1-4 usan clips distintos del pack. Uppercut/downslam usan clips provisionales del pack hasta tener animaciones específicas.
+- Skill 4 usa UnarmedAttackKickR1.
+- Skill 3 usa UnarmedAttackR3 mientras el desplazamiento sigue controlado por el código.
+- El GLB con root motion NO se usa para evitar doble desplazamiento.
+
+PRUEBAS IMPORTANTES EN GODOT
+1. F5: comprobar tamaño y orientación del personaje.
+2. WASD sin Mira Lock: debe correr mirando al movimiento.
+3. Clic rueda + WASD: comprobar strafes y caminar/correr atrás sin girar la espalda.
+4. Espacio: Jump -> Fall -> Land.
+5. F: Block y reacción al 4.º golpe bloqueado.
+6. Q: Boost/Dodge visual sin alterar distancia del dash.
+7. M1: cuatro clips distintos y daño con los mismos timings de v0.6.
+8. 3 y 4: Projection Rush y patada conservan daño/cooldown.
+9. Recibir 4.º golpe: Knockdown y transición de levantarse.
+
+NOTAS
+- Esta versión NO implementa todavía ragdoll físico por huesos. Usa el clip de knockdown como representación del estado de ragdoll existente.
+- Si el modelo se ve demasiado grande/pequeño, ajustar solo RIG_SCALE_ADJUST en scripts/main.gd.
+- Si el personaje mira al revés, el pack ya contiene corrección de orientación en su GLB; no se añadió una rotación extra para evitar doble giro.

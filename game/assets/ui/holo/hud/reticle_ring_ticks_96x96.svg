@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="96" viewBox="0 0 96 96">
+<circle cx="48" cy="48" r="28" fill="none" stroke="#5FEFFF" stroke-width="8" stroke-opacity="0.05"/>
+<circle cx="48" cy="48" r="28" fill="none" stroke="#5FEFFF" stroke-width="6" stroke-opacity="0.1"/>
+<circle cx="48" cy="48" r="28" fill="none" stroke="#5FEFFF" stroke-width="4" stroke-opacity="0.2"/>
+<circle cx="48" cy="48" r="28" fill="none" stroke="#5FEFFF" stroke-width="2"/>
+<path d="M48 8 V16 M48 80 V88 M8 48 H16 M80 48 H88" fill="none" stroke="#E6FFFF" stroke-width="8" stroke-opacity="0.05" stroke-linecap="square" stroke-linejoin="miter"/>
+<path d="M48 8 V16 M48 80 V88 M8 48 H16 M80 48 H88" fill="none" stroke="#E6FFFF" stroke-width="6" stroke-opacity="0.1" stroke-linecap="square" stroke-linejoin="miter"/>
+<path d="M48 8 V16 M48 80 V88 M8 48 H16 M80 48 H88" fill="none" stroke="#E6FFFF" stroke-width="4" stroke-opacity="0.2" stroke-linecap="square" stroke-linejoin="miter"/>
+<path d="M48 8 V16 M48 80 V88 M8 48 H16 M80 48 H88" fill="none" stroke="#E6FFFF" stroke-width="2" stroke-linecap="square" stroke-linejoin="miter"/>
+<circle cx="48" cy="48" r="3" fill="#E6FFFF"/>
+</svg>

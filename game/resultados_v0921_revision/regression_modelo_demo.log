@@ -1,0 +1,23 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+DEMO Modelo enviado · rig de combate · texturas originales
+PASS modelo con rig cargado
+DEMO WASD · movimiento y mezcla de locomoción
+PASS locomocion mueve al personaje real
+DEMO F · guardia y recuperación de la pose
+PASS guardia activa
+PASS guardia se libera
+DEMO Laboratorio: dummy pasivo delante · M1 real
+PASS M1 conserva contacto y daño
+DEMO 4 · patada con el rig del nuevo modelo
+PASS patada conserva el daño de la tabla actual
+DEMO Q · dash y vuelta a locomoción
+PASS dash mueve el cuerpo real
+DEMO B · Running Man sobre los mismos huesos
+PASS baile compatible con nuevo rig
+DEMO Laboratorio: energía 100 · G activa la transformación real
+PASS transformacion sustituye modelo en su momento
+DEMO Reset del laboratorio · retorno al personaje enviado
+PASS reset restaura el modelo
+DEMO Prueba del modelo terminada · acciones automatizadas
+DEMO RESULT 10/10

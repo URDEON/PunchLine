@@ -1,0 +1,51 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS standing real: idle.fbx importado y adaptado
+PASS reposo utiliza idle del paquete del usuario
+PASS mezcla direccional caminar/correr conserva guardia
+PASS ragdoll preparado en jugador sin rehacer pesos
+PASS física desactivada no bloquea rayos de habilidades
+PASS pose finita: mixamo/idle
+PASS pose finita: mixamo/running
+PASS pose finita: mixamo/walking
+PASS pose finita: mixamo/jump
+PASS pose finita: mixamo/Falling
+PASS pose finita: combat/MixamoCross
+PASS pose finita: combat/MixamoElbow
+PASS Falling no se activa antes de cuatro segundos
+PASS Falling activa tras caída continua real de cuatro segundos
+PASS Falling avanza sin reiniciar cada fotograma
+PASS aterrizar reinicia contador y recuperación
+PASS segundo M1 selecciona Cross sin cambiar daño
+PASS tercer M1 usa codo sólo a corta distancia
+PASS patada cercana usa FBX nuevo con duración compatible
+PASS impacto activa ragdoll físico del bandido
+PASS animador no compite con física
+PASS bandido recupera control tras derribo
+PASS jugador activa física y suspende animaciones
+PASS menú pausa posiciones físicas del ragdoll
+PASS reanudar menú no reactiva animador durante ragdoll
+PASS jugador recupera controlador y animaciones
+PASS aleteo modifica hueso real con pesos de ala
+PASS seis variantes simultáneas del mismo modelo
+PASS apariencia forzada reproducible 0
+PASS apariencia forzada reproducible 1
+PASS apariencia forzada reproducible 2
+PASS apariencia forzada reproducible 3
+PASS apariencia forzada reproducible 4
+PASS apariencia forzada reproducible 5
+PASS geometría compartida entre variantes
+PASS materiales independientes por enemigo
+PASS recolorar uno no modifica a los demás
+PASS piel independiente con tonos naturales
+PASS bandido rig compatible y animaciones existentes conservadas
+PASS semilla reproduce identidad de aparición inicial
+PASS reaparición asigna otra combinación reproducible
+PASS reaparición evita duplicar paleta existente en el grupo
+PASS máscara RGBA importada conserva canales de ropa sin premultiplicar
+PASS máscara de zapatillas, pelo y piel conserva tres regiones
+PASS inspector exterior se activa con dominio real
+PASS vista superior distingue volumen
+PASS barrera es esfera con diámetro consistente
+PASS salir del inspector conserva dominio y cámara normal
+RESULTADO 48/48

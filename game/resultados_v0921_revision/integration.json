@@ -1,0 +1,367 @@
+{
+  "automated": true,
+  "rendering": "headless",
+  "transport": "local_controller_harness",
+  "ok": true,
+  "results": [
+    {
+      "suite": "menu_revision_test",
+      "passed": 30,
+      "total": 30,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/menu_revision_test.gd"
+      ],
+      "log": "integration_menu_revision_test.log"
+    },
+    {
+      "suite": "network/ui_test",
+      "passed": 16,
+      "total": 16,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/network/ui_test.gd"
+      ],
+      "log": "integration_network_ui_test.log"
+    },
+    {
+      "suite": "network/full_local",
+      "passed": 28,
+      "total": 28,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/network/full_local.gd"
+      ],
+      "log": "integration_network_full_local.log"
+    },
+    {
+      "suite": "robot_hud_v0914_test",
+      "passed": 16,
+      "total": 16,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/robot_hud_v0914_test.gd"
+      ],
+      "log": "integration_robot_hud_v0914_test.log"
+    },
+    {
+      "suite": "update_v0916_test",
+      "passed": 48,
+      "total": 48,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/update_v0916_test.gd"
+      ],
+      "log": "integration_update_v0916_test.log"
+    },
+    {
+      "suite": "network_v0916_test",
+      "passed": 14,
+      "total": 14,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/network_v0916_test.gd"
+      ],
+      "log": "integration_network_v0916_test.log"
+    },
+    {
+      "suite": "terrain_v0916_test",
+      "passed": 9,
+      "total": 9,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/terrain_v0916_test.gd"
+      ],
+      "log": "integration_terrain_v0916_test.log"
+    },
+    {
+      "suite": "navigation_v0916_test",
+      "passed": 7,
+      "total": 7,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/navigation_v0916_test.gd"
+      ],
+      "log": "integration_navigation_v0916_test.log"
+    },
+    {
+      "suite": "update_v0917_test",
+      "passed": 56,
+      "total": 56,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/update_v0917_test.gd"
+      ],
+      "log": "integration_update_v0917_test.log"
+    },
+    {
+      "suite": "network_v0917_test",
+      "passed": 12,
+      "total": 12,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/network_v0917_test.gd"
+      ],
+      "log": "integration_network_v0917_test.log"
+    },
+    {
+      "suite": "locomotion_v0918_test",
+      "passed": 34,
+      "total": 34,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/locomotion_v0918_test.gd"
+      ],
+      "log": "integration_locomotion_v0918_test.log"
+    },
+    {
+      "suite": "locomotion_network_v0918_test",
+      "passed": 9,
+      "total": 9,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/locomotion_network_v0918_test.gd"
+      ],
+      "log": "integration_locomotion_network_v0918_test.log"
+    },
+    {
+      "suite": "joint_caps_v0918_test",
+      "passed": 1,
+      "total": 1,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/joint_caps_v0918_test.gd"
+      ],
+      "log": "integration_joint_caps_v0918_test.log"
+    },
+    {
+      "suite": "embodiment_v0919_test",
+      "passed": 84,
+      "total": 84,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "30",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/embodiment_v0919_test.gd"
+      ],
+      "retry": "embodiment_source2.log",
+      "observation": "AnimationPlayer observado en process_frame; mismo umbral de avance y deformaci\u00f3n",
+      "log": "integration_embodiment_v0919_test.log"
+    },
+    {
+      "suite": "embodiment_network_v0919_test",
+      "passed": 12,
+      "total": 12,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/embodiment_network_v0919_test.gd"
+      ],
+      "log": "integration_embodiment_network_v0919_test.log"
+    },
+    {
+      "suite": "update_v0920_test",
+      "passed": 33,
+      "total": 33,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/update_v0920_test.gd"
+      ],
+      "log": "integration_update_v0920_test.log"
+    },
+    {
+      "suite": "frontend_v0920_test",
+      "passed": 27,
+      "total": 27,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/frontend_v0920_test.gd"
+      ],
+      "log": "integration_frontend_v0920_test.log"
+    },
+    {
+      "suite": "damage_network_v0920_test",
+      "passed": 15,
+      "total": 15,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/damage_network_v0920_test.gd"
+      ],
+      "log": "integration_damage_network_v0920_test.log"
+    },
+    {
+      "suite": "stability_v0921_test",
+      "passed": 9,
+      "total": 9,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/stability_v0921_test.gd"
+      ],
+      "log": "integration_stability_v0921_test.log"
+    },
+    {
+      "suite": "robot_grounding_v0921_test",
+      "passed": 45,
+      "total": 45,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/robot_grounding_v0921_test.gd"
+      ],
+      "log": "integration_robot_grounding_v0921_test.log"
+    },
+    {
+      "suite": "replication_v0921_test",
+      "passed": 18,
+      "total": 18,
+      "ok": true,
+      "command": [
+        "/workspace/godot_adjuntado/ejecutable/Godot_v4.4.1-stable_linux.x86_64",
+        "--headless",
+        "--max-fps",
+        "120",
+        "--path",
+        "/workspace/naoya_v0_9_21",
+        "--script",
+        "res://qa/replication_v0921_test.gd"
+      ],
+      "log": "integration_replication_v0921_test.log"
+    }
+  ]
+}

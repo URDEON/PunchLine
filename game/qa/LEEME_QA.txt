@@ -1,0 +1,32 @@
+QA ACTUAL 0.9.3 — PRUEBA DE MODELO
+Estos guiones se ejecutan explícitamente, no al pulsar F5.
+python3 qa/repetir_pruebas_modelo.py --godot RUTA_GODOT --output CARPETA_NUEVA
+Incluye regresiones del combate, presentación, assets, HUD y skin del alien.
+La carpeta de resultados debe ser nueva para conservar registros anteriores.
+Resultados de esta entrega: qa/resultados_modelo/ y RESULTADOS_v0.9.3_MODELO.md.
+Demo nueva: RUTA_GODOT --path . --script res://qa/review_demo.gd -- --modelo --realtime
+Captura: qa/grabar_ffmpeg.py y GRABACION_REAL.md. Acciones automatizadas.
+La grabación gráfica sigue bloqueada por los sockets locales de Xorg.
+qa/modelo_alien/poses_blender/ contiene renders de Blender, no gameplay.
+qa/modelo_alien/herramientas/ conserva los scripts de preparación del modelo.
+El paquete separado MODELO_Y_RIG incluye el original, rig fuente y .blend editable.
+
+HISTORIAL QA 0.9.1
+Estos guiones solo se ejecutan explícitamente; no se cargan al pulsar F5.
+RESULTADOS_v0.9.1.md enumera las 167 comprobaciones y los comandos.
+revision_test.gd: selección, paredes, guiado, compromiso/dash, variante cercana,
+Counter 5 s, derribo/recuperación, fases, modos de NPC y limpieza.
+
+Demo de los cambios actuales sobre el juego real:
+RUTA_GODOT --path . --script res://qa/review_demo.gd -- --revision --realtime
+Coloca NPC y prepara cargas del laboratorio de forma explícita; no cambia daño,
+colisiones, invulnerabilidad o duración de estados para hacer pasar los casos.
+revision_demo.gd contiene ocho comprobaciones de esa demostración.
+
+Captura: ver GRABACION_REAL.md y grabar_ffmpeg.py (Xorg/FFmpeg, Linux).
+No se ha obtenido MP4 en el contenedor: bloqueo de conexiones locales.
+La ejecución --headless solo comprueba reglas, no calidad visual ni audio.
+
+demo.gd y presentation_demo.gd se conservan como guiones HISTÓRICOS de versiones
+anteriores; no son la demostración de 0.9.1. Sus preparaciones/cámara lenta son
+propias del laboratorio. Usar review_demo.gd --revision para los cambios actuales.

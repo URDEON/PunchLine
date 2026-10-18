@@ -1,0 +1,22 @@
+NAOYA BASE v0.7.2 — PULIDO DE CAMPO
+
+CAMBIOS
+1. AROS PARA LOS MUÑECOS
+- Cada NPC ahora tiene dos aros luminosos bajos sobre el suelo.
+- El color corresponde al muñeco: azul, dorado o rojo.
+- Los aros no afectan colisiones, daño ni movimiento.
+
+2. DASH FRONTAL
+- El dash hacia delante usa UnarmedRunForward en lugar de UnarmedSprint.
+- Se conserva el desplazamiento físico y su duración; solo cambia la animación visual.
+- Los dashes laterales y hacia atrás mantienen sus animaciones de esquiva.
+
+SE CONSERVA
+- Rig humanoide y colores provisionales del jugador y NPC.
+- Combos M1, variantes de cuarto golpe, habilidades y ultimate.
+- Daño, hitboxes, cooldowns, cámara, movimiento y colisiones.
+- IA, bloqueo, stun y knockdown de los muñecos.
+
+NOTA DE PRUEBA
+- Este paquete se preparó desde la base v0.7.1.
+- En esta sesión no estuvo disponible el ejecutable de Godot para volver a abrir la escena; los cambios requieren una comprobación visual en Godot 4.4+.

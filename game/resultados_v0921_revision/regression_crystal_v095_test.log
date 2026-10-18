@@ -1,0 +1,25 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS dos superficies y cámaras independientes para frente y espalda
+PASS texturas/materiales independientes de las caras
+PASS cada imagen visible desde su cara sin duplicación
+PASS frente del vidrio sigue orientación del actor
+PASS actor 3D oculto durante cristalización
+PASS un golpe válido hace daño una vez y rompe el vidrio
+PASS rotura restaura 3D y limpia referencia antes de aplicar knockback
+PASS un vidrio destruido no vuelve a romperse
+PASS fragmentos ligeros dispersados
+PASS residuos y vidrio desaparecen sin colisiones nuevas
+PASS M1 real rompe vidrio desde lado -1
+PASS M1 real rompe vidrio desde lado 1
+PASS vidrio permanece antes de cumplir cinco segundos
+PASS vidrio finaliza a cinco segundos sin golpe
+PASS counter fallido cristaliza a Naoya durante cinco segundos
+PASS penalización aplicada al jugador y no al enemigo
+PASS ataque real rompe penalización y conserva daño normal
+PASS golpe no deja superposición ni representación oculta
+PASS counter acertado conserva daño y cristaliza al atacante
+PASS fase2 en reposo vertical con cabeza arriba
+PASS fase2 cara hacia delante en reposo
+PASS cabeza delante y torso hacia suelo durante desplazamiento
+RESULTADO 22/22

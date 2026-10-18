@@ -1,0 +1,14 @@
+{
+  "original_triangles": 165316,
+  "optimized_triangles": 18000,
+  "vertices": 8926,
+  "bones": 53,
+  "uv_layers": 1,
+  "original_preserved": true,
+  "automatic_weights_only_new_enemy": true,
+  "unweighted_details_assigned": 0,
+  "weight_min": 0.9999998435378075,
+  "weight_max": 1.000000149011612,
+  "export": "glTF Embedded",
+  "source": "UrbanShadow_original.glb"
+}

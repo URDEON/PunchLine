@@ -1,0 +1,7 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS prefiere HUD guardado en 0.9.8
+PASS prefiere cámara guardada en 0.9.8
+PASS prefiere récord de 0.9.8
+PASS conserva datos actuales al reiniciar
+RESULTADO 4/4

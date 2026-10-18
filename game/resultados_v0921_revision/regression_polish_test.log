@@ -1,0 +1,28 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS rig original y mezcla de locomocion disponibles
+PASS arranque acelera sin salto instantaneo de velocidad
+PASS aceleracion alcanza velocidad objetivo
+PASS la mezcla sigue la velocidad real
+PASS frenado conserva continuidad
+PASS frenado termina sin deslizar indefinidamente
+PASS entrada anticipada encadena segundo M1
+PASS habilidad anticipada se ejecuta al terminar M1
+PASS salto en buffer se consume en suelo
+PASS rush inicia una rafaga con impactos separados
+PASS rush completo aplica14 dano y14 energia
+PASS rafaga termina sin bloquear el estado
+PASS downslam atraviesa guardia frontal
+PASS M1 no alcanza objetivos muy por encima del jugador
+PASS tecla reasignada activa la habilidad correcta
+PASS volumen cero silencia la mezcla
+PASS menu pausa simulacion y animaciones
+PASS ajustes se abren dentro del menu
+PASS continuar restaura juego y animaciones
+PASS HUD cabe en 1280x720
+PASS HUD cabe en 640x720
+PASS HUD cabe en 360x640
+PASS HUD cabe en 640x360
+PASS HUD cabe en 1920x1080
+PASS reinicio de laboratorio limpia forma y recursos
+RESULT 25/25 OK

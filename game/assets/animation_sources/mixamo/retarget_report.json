@@ -1,0 +1,193 @@
+[
+  {
+    "clip": "Cross_Punch",
+    "duration": 1.98333334922791,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "Elbow_Punching",
+    "duration": 1.64999997615814,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "Crouch_To_Stand",
+    "duration": 2.15000009536743,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "Falling",
+    "duration": 11.3833332061768,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": true,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "Kick_To_The_Groin",
+    "duration": 2.88333344459534,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "idle",
+    "duration": 8.33333301544189,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "walking",
+    "duration": 1.06666672229767,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "running",
+    "duration": 0.733333349227905,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "jump",
+    "duration": 2.20000004768372,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": true,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "left_strafe_walking",
+    "duration": 1.06666672229767,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "right_strafe_walking",
+    "duration": 1.06666672229767,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "left_strafe",
+    "duration": 0.699999988079071,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "right_strafe",
+    "duration": 0.666666686534882,
+    "horizontal_root_motion": false,
+    "loop": true,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "left_turn",
+    "duration": 1.66666662693024,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "right_turn",
+    "duration": 1.66666662693024,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "left_turn_90",
+    "duration": 0.933333337306976,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "clip": "right_turn_90",
+    "duration": 0.966666638851166,
+    "horizontal_root_motion": false,
+    "loop": false,
+    "mapped_bones": 52,
+    "pelvis_vertical_locked": false,
+    "source_bones": 65,
+    "target_bones": 53
+  },
+  {
+    "combat": "Cross",
+    "duration": 0.32,
+    "gameplay_contact": 0.1216,
+    "source": "Cross_Punch",
+    "source_contact": 1.15
+  },
+  {
+    "combat": "Elbow",
+    "duration": 0.32,
+    "gameplay_contact": 0.1216,
+    "source": "Elbow_Punching",
+    "source_contact": 0.8
+  },
+  {
+    "combat": "GroinKick",
+    "duration": 0.59,
+    "gameplay_contact": 0.23,
+    "source": "Kick_To_The_Groin",
+    "source_contact": 1.03333333333333
+  }
+]

@@ -1,0 +1,9 @@
+{
+  "standing_height": 4.0,
+  "crouched_height": 2.89983749389648,
+  "width": 3.36824901406764,
+  "player_height": 1.89999997615814,
+  "player_width": 0.759999990463257,
+  "collider_width": 2.09999990463257,
+  "measurement_source": "game/housing/data/robot_measurements_initial.json; real 0.9.24 fused capsule and conservative rigid-mesh AABB diagonal; later bone-cache-corrected base measurements in robot_measurements.json"
+}

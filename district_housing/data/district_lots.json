@@ -1,0 +1,1386 @@
+{
+  "schema_version": "1.0.0",
+  "project": "PunchLine",
+  "district": "District500",
+  "version_label": "Propuesta procedural sobre Distrito500, no niveles construidos",
+  "status": "configuracion_para_implementar_y_probar",
+  "source_of_truth": {
+    "geometry_file": "res://tools/layout_vector.geojson",
+    "godot_scene": "res://scenes/District500.tscn",
+    "source_layer": "Lots",
+    "coordinate_conversion": "x = (pixel_x - 625) * 0.4; z = (pixel_y - 625) * 0.4; y is vertical",
+    "units": "metres; x,z horizontal; y vertical",
+    "origin": "center of 500 x 500 m map",
+    "polygon_precision": "world-space polygons derived from actual GeoJSON source, rounded to 1 mm",
+    "important": "Source contains 19 macro-lots, not individual residential parcels. Subdivide lots geometrically before building."
+  },
+  "existing_map": {
+    "width_m": 500,
+    "length_m": 500,
+    "ground_road_y_m": 0.0,
+    "parking_y_m": 0.012,
+    "lots_y_m": 0.026,
+    "sidewalk_top_y_m": 0.16,
+    "keep_existing_scene_and_mappings": true,
+    "preserve_layers": [
+      "Roads",
+      "Parking",
+      "Lots",
+      "Sidewalks",
+      "Curbs",
+      "RoadMarkings",
+      "ParkingMarkings"
+    ],
+    "never_build_on_layers": [
+      "Roads",
+      "Parking",
+      "Sidewalks",
+      "Curbs",
+      "RoadMarkings",
+      "ParkingMarkings"
+    ],
+    "parking_protected_feature": "Parking_00",
+    "parking_protected_polygon_xz_m": [
+      [
+        -20.431,
+        -107.027
+      ],
+      [
+        -21.156,
+        -109.417
+      ],
+      [
+        -22.74,
+        -111.347
+      ],
+      [
+        -24.942,
+        -112.524
+      ],
+      [
+        -26.8,
+        -112.8
+      ],
+      [
+        -122.4,
+        -112.8
+      ],
+      [
+        -125.417,
+        -112.044
+      ],
+      [
+        -127.721,
+        -109.956
+      ],
+      [
+        -128.524,
+        -108.258
+      ],
+      [
+        -128.8,
+        -106.4
+      ],
+      [
+        -128.8,
+        49.2
+      ],
+      [
+        -128.044,
+        52.217
+      ],
+      [
+        -125.956,
+        54.521
+      ],
+      [
+        -124.258,
+        55.324
+      ],
+      [
+        -122.4,
+        55.6
+      ],
+      [
+        -87.6,
+        55.6
+      ],
+      [
+        -87.6,
+        64.0
+      ],
+      [
+        -42.4,
+        64.0
+      ],
+      [
+        -42.4,
+        55.6
+      ],
+      [
+        -26.173,
+        55.569
+      ],
+      [
+        -23.244,
+        54.521
+      ],
+      [
+        -21.479,
+        52.756
+      ],
+      [
+        -20.676,
+        51.058
+      ],
+      [
+        -20.4,
+        49.2
+      ]
+    ],
+    "parking_geometry_protected": true
+  },
+  "generation_defaults": {
+    "seed": 923,
+    "regenerate_only_if_seed_or_data_changes": true,
+    "generation_mode": "deterministic_by_lot",
+    "setback_to_lot_boundary_m": 2.5,
+    "footprint_clearance_between_buildings_m": 3.0,
+    "minimum_player_walkway_width_m": 1.5,
+    "minimum_street_access_walkway_width_m": 1.8,
+    "max_floors_by_zone": {
+      "viviendas": 2,
+      "mixto": 2
+    },
+    "exterior_density_target": "medio",
+    "interior_policy": "real_playable_and_enterable_only_for_selected_houses; simple_shell_others",
+    "roofs": "construct roof as separate node for camera visibility controls without disabling physical collisions",
+    "streaming_cull_distance_m": 120,
+    "use_multimesh_for_repeated_decoration": true,
+    "material_policy": "simple_materials_grouped_by_archetype_and_replaceable",
+    "destruction": "preserve existing PunchLine rules; do not invent gameplay destruction system"
+  },
+  "entrance_policy": {
+    "face_nearest_accessible_sidewalk_or_street": true,
+    "need_unobstructed_ramp_from_sidewalk": true,
+    "validate_path_to_entrance": true,
+    "no_entrance_behind_fences_or_through_other_structures": true,
+    "ramp_max_step_above_lot_surface_m": 0.15,
+    "sidewalk_lot_level_difference_m": 0.134
+  },
+  "robot_access": {
+    "character_rig": "MEASURE_FROM_PUNCHLINE_PROJECT",
+    "standing_height_m": null,
+    "crouched_height_m": null,
+    "minimum_passable_width_m": null,
+    "crouch_max_reduction_ratio": null,
+    "measure_from": "CollisionShape3D, rig IK joint limits, movement capsule, fused mecha variations",
+    "critical_note": "Never use invented constant body sizes. Measure and log the real robot standing/crouched height and collision radius before generating mecha entrances. If valid crouch pose or collision does not exist, implement/test that first.",
+    "wall_margin_each_side_m": 0.35,
+    "head_margin_m": 0.3,
+    "door_sizing": {
+      "player_only": "Door based on player collider; robots cannot pass without actual clearance.",
+      "mecha_crouch": "height >= actual crouched collider height + head_margin and < standing height where possible; width >= measured robot width + 2*wall_margin_each_side",
+      "mecha_standing": "height >= standing collider height + head_margin; width >= measured width + 2*wall_margin_each_side"
+    },
+    "check_full_indoor_route": "Doorway alone is insufficient. Door, hallway, turns and usable rooms must pass corresponding ShapeCast/clearance tests.",
+    "movement": "Detect low ceiling ahead using shape casts; smoothly bend legs/torso via IK/procedural joints and adjust physical collider synchronously; stand only when free space is confirmed.",
+    "safety_guards": [
+      "Do not scale entire mesh to pass",
+      "Do not disable collisions to pass",
+      "Do not allow stand-up in ceilings",
+      "Do not crouch when width cannot pass",
+      "Use hysteresis to prevent crouch oscillation",
+      "Enforce position and crouch state authoritatively in multiplayer"
+    ]
+  },
+  "archetypes": {
+    "small_residential": {
+      "interior": "optional",
+      "access": "player_only",
+      "floors": [
+        1,
+        2
+      ],
+      "description": "house for normal-sized characters"
+    },
+    "two_story_residential": {
+      "interior": "optional",
+      "access": "player_only",
+      "floors": [
+        2,
+        2
+      ],
+      "description": "2-story house, optional real stairs"
+    },
+    "corner_shop": {
+      "interior": "required",
+      "access": "player_only",
+      "floors": [
+        1,
+        2
+      ],
+      "description": "walk-in shop with compact rooms"
+    },
+    "workshop_crouch": {
+      "interior": "required",
+      "access": "mecha_crouch",
+      "floors": [
+        1,
+        1
+      ],
+      "description": "garage/workshop with entire interior clearance for crouched robot"
+    },
+    "commercial_hall": {
+      "interior": "required",
+      "access": "player_only",
+      "floors": [
+        1,
+        2
+      ],
+      "description": "shop with navigable real interior"
+    },
+    "warehouse_standing": {
+      "interior": "required",
+      "access": "mecha_standing",
+      "floors": [
+        1,
+        1
+      ],
+      "description": "large hall allowing standing robot with sufficient width"
+    },
+    "facade_only": {
+      "interior": "none",
+      "access": "inaccessible",
+      "floors": [
+        1,
+        2
+      ],
+      "description": "efficient solid shell for non-playable building"
+    }
+  },
+  "lot_summary": {
+    "total": 19,
+    "macro_lots_with_required_mecha_entry": 6,
+    "parking_preserved": true
+  },
+  "lots": [
+    {
+      "id": "lot_00",
+      "source_feature": "Lots_00",
+      "polygon_xz_m": [
+        [
+          -103.603,
+          -249.998
+        ],
+        [
+          -180.797,
+          -249.997
+        ],
+        [
+          -180.786,
+          -249.189
+        ],
+        [
+          -167.207,
+          -238.006
+        ],
+        [
+          -164.785,
+          -236.788
+        ],
+        [
+          -122.811,
+          -201.209
+        ],
+        [
+          -121.201,
+          -201.202
+        ],
+        [
+          -117.997,
+          -203.592
+        ],
+        [
+          -114.824,
+          -203.6
+        ],
+        [
+          -113.602,
+          -204.402
+        ]
+      ],
+      "center_xz_m": [
+        -133.787,
+        -232.39
+      ],
+      "area_m2": 2081.1,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_01",
+      "source_feature": "Lots_01",
+      "polygon_xz_m": [
+        [
+          -183.214,
+          -195.2
+        ],
+        [
+          -180.415,
+          -197.587
+        ],
+        [
+          -179.202,
+          -200.8
+        ],
+        [
+          -180.017,
+          -203.214
+        ],
+        [
+          -234.742,
+          -248.752
+        ],
+        [
+          -234.803,
+          -249.997
+        ],
+        [
+          -249.984,
+          -250.0
+        ],
+        [
+          -249.997,
+          -195.203
+        ]
+      ],
+      "center_xz_m": [
+        -223.533,
+        -216.473
+      ],
+      "area_m2": 2517.4,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_02",
+      "source_feature": "Lots_02",
+      "polygon_xz_m": [
+        [
+          -71.198,
+          -249.998
+        ],
+        [
+          -78.8,
+          -204.793
+        ],
+        [
+          -78.8,
+          -201.219
+        ],
+        [
+          -78.007,
+          -199.613
+        ],
+        [
+          -73.599,
+          -195.603
+        ],
+        [
+          17.587,
+          -195.2
+        ],
+        [
+          22.808,
+          -199.22
+        ],
+        [
+          23.6,
+          -201.215
+        ],
+        [
+          23.597,
+          -249.997
+        ]
+      ],
+      "center_xz_m": [
+        -25.994,
+        -222.438
+      ],
+      "area_m2": 5391.8,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 7,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_03",
+      "source_feature": "Lots_03",
+      "polygon_xz_m": [
+        [
+          -128.4,
+          -128.416
+        ],
+        [
+          -127.187,
+          -128.0
+        ],
+        [
+          -24.815,
+          -128.0
+        ],
+        [
+          -22.787,
+          -128.816
+        ],
+        [
+          -19.6,
+          -132.814
+        ],
+        [
+          -19.616,
+          -156.0
+        ],
+        [
+          -120.384,
+          -156.4
+        ],
+        [
+          -128.789,
+          -148.011
+        ]
+      ],
+      "center_xz_m": [
+        -73.831,
+        -142.025
+      ],
+      "area_m2": 3031.3,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_04",
+      "source_feature": "Lots_04",
+      "polygon_xz_m": [
+        [
+          40.812,
+          -109.697
+        ],
+        [
+          40.797,
+          -155.597
+        ],
+        [
+          -10.797,
+          -155.997
+        ],
+        [
+          -11.197,
+          -78.403
+        ],
+        [
+          66.397,
+          -78.003
+        ],
+        [
+          66.797,
+          -109.197
+        ]
+      ],
+      "center_xz_m": [
+        21.401,
+        -113.094
+      ],
+      "area_m2": 4825.6,
+      "zone": "mixto",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 14.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "corner_shop",
+        "workshop_crouch",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": true,
+        "requested_mecha_access": "mecha_crouch"
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_05",
+      "source_feature": "Lots_05",
+      "polygon_xz_m": [
+        [
+          -171.189,
+          60.387
+        ],
+        [
+          -167.202,
+          55.599
+        ],
+        [
+          -166.8,
+          -149.185
+        ],
+        [
+          -173.601,
+          -156.397
+        ],
+        [
+          -244.397,
+          -156.397
+        ],
+        [
+          -244.4,
+          61.584
+        ],
+        [
+          -173.619,
+          61.6
+        ]
+      ],
+      "center_xz_m": [
+        -205.787,
+        -47.447
+      ],
+      "area_m2": 16831.7,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 14,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": true,
+        "requested_mecha_access": "mecha_crouch"
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_06",
+      "source_feature": "Lots_06",
+      "polygon_xz_m": [
+        [
+          -126.786,
+          163.6
+        ],
+        [
+          25.197,
+          162.797
+        ],
+        [
+          25.197,
+          96.403
+        ],
+        [
+          -125.599,
+          96.403
+        ],
+        [
+          -133.2,
+          104.415
+        ],
+        [
+          -133.2,
+          156.778
+        ],
+        [
+          -131.19,
+          160.008
+        ]
+      ],
+      "center_xz_m": [
+        -53.81,
+        129.843
+      ],
+      "area_m2": 10534.0,
+      "zone": "mixto",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 8,
+        "min_plot_width_m": 14.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "commercial_hall",
+        "warehouse_standing",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": true,
+        "requested_mecha_access": "mecha_standing"
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_07",
+      "source_feature": "Lots_07",
+      "polygon_xz_m": [
+        [
+          -175.589,
+          95.614
+        ],
+        [
+          -244.397,
+          95.603
+        ],
+        [
+          -244.397,
+          164.797
+        ],
+        [
+          -175.216,
+          164.8
+        ],
+        [
+          -168.01,
+          157.211
+        ],
+        [
+          -168.0,
+          104.814
+        ]
+      ],
+      "center_xz_m": [
+        -206.628,
+        130.246
+      ],
+      "area_m2": 5223.3,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 5,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_08",
+      "source_feature": "Lots_08",
+      "polygon_xz_m": [
+        [
+          -134.0,
+          205.216
+        ],
+        [
+          -133.997,
+          246.797
+        ],
+        [
+          130.384,
+          246.8
+        ],
+        [
+          130.4,
+          204.415
+        ],
+        [
+          124.384,
+          198.0
+        ],
+        [
+          -126.384,
+          197.6
+        ]
+      ],
+      "center_xz_m": [
+        -1.895,
+        222.381
+      ],
+      "area_m2": 12906.9,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 12,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_09",
+      "source_feature": "Lots_09",
+      "polygon_xz_m": [
+        [
+          -244.397,
+          198.003
+        ],
+        [
+          -244.4,
+          249.584
+        ],
+        [
+          -168.003,
+          249.597
+        ],
+        [
+          -168.403,
+          203.201
+        ],
+        [
+          -174.415,
+          197.6
+        ]
+      ],
+      "center_xz_m": [
+        -206.411,
+        223.817
+      ],
+      "area_m2": 3929.4,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_10",
+      "source_feature": "Lots_10",
+      "polygon_xz_m": [
+        [
+          174.414,
+          -194.8
+        ],
+        [
+          243.997,
+          -195.203
+        ],
+        [
+          243.997,
+          -249.997
+        ],
+        [
+          166.003,
+          -249.997
+        ],
+        [
+          166.0,
+          -201.214
+        ],
+        [
+          169.986,
+          -196.416
+        ]
+      ],
+      "center_xz_m": [
+        205.116,
+        -222.606
+      ],
+      "area_m2": 4271.6,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_11",
+      "source_feature": "Lots_11",
+      "polygon_xz_m": [
+        [
+          54.003,
+          -249.997
+        ],
+        [
+          54.0,
+          -201.219
+        ],
+        [
+          55.211,
+          -198.79
+        ],
+        [
+          58.788,
+          -195.611
+        ],
+        [
+          61.213,
+          -194.8
+        ],
+        [
+          122.394,
+          -194.8
+        ],
+        [
+          127.999,
+          -195.602
+        ],
+        [
+          132.39,
+          -200.389
+        ],
+        [
+          132.397,
+          -249.997
+        ]
+      ],
+      "center_xz_m": [
+        93.195,
+        -222.593
+      ],
+      "area_m2": 4294.9,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 5,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_12",
+      "source_feature": "Lots_12",
+      "polygon_xz_m": [
+        [
+          48.803,
+          -155.997
+        ],
+        [
+          48.803,
+          -116.403
+        ],
+        [
+          72.734,
+          -116.4
+        ],
+        [
+          73.588,
+          -115.595
+        ],
+        [
+          73.203,
+          -58.003
+        ],
+        [
+          125.981,
+          -57.6
+        ],
+        [
+          129.98,
+          -59.59
+        ],
+        [
+          132.0,
+          -62.822
+        ],
+        [
+          132.0,
+          -148.387
+        ],
+        [
+          129.605,
+          -151.593
+        ],
+        [
+          124.386,
+          -156.0
+        ]
+      ],
+      "center_xz_m": [
+        96.513,
+        -111.038
+      ],
+      "area_m2": 6692.9,
+      "zone": "mixto",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 6,
+        "min_plot_width_m": 14.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "corner_shop",
+        "workshop_crouch",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": true,
+        "requested_mecha_access": "mecha_crouch"
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_13",
+      "source_feature": "Lots_13",
+      "polygon_xz_m": [
+        [
+          244.797,
+          -50.403
+        ],
+        [
+          244.797,
+          -155.997
+        ],
+        [
+          173.621,
+          -156.0
+        ],
+        [
+          170.79,
+          -154.386
+        ],
+        [
+          166.8,
+          -148.788
+        ],
+        [
+          166.8,
+          -57.219
+        ],
+        [
+          168.012,
+          -54.79
+        ],
+        [
+          173.214,
+          -50.4
+        ]
+      ],
+      "center_xz_m": [
+        205.97,
+        -103.19
+      ],
+      "area_m2": 8198.2,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 7,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_14",
+      "source_feature": "Lots_14",
+      "polygon_xz_m": [
+        [
+          66.384,
+          -72.0
+        ],
+        [
+          -3.597,
+          -71.997
+        ],
+        [
+          -3.2,
+          54.787
+        ],
+        [
+          -0.011,
+          58.786
+        ],
+        [
+          1.619,
+          59.6
+        ],
+        [
+          125.586,
+          59.6
+        ],
+        [
+          129.582,
+          56.414
+        ],
+        [
+          130.4,
+          53.987
+        ],
+        [
+          129.997,
+          -49.597
+        ],
+        [
+          66.897,
+          -49.612
+        ]
+      ],
+      "center_xz_m": [
+        60.318,
+        -1.47
+      ],
+      "area_m2": 16138.5,
+      "zone": "mixto",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 9,
+        "min_plot_width_m": 14.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "corner_shop",
+        "workshop_crouch",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": true,
+        "requested_mecha_access": "mecha_crouch"
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_15",
+      "source_feature": "Lots_15",
+      "polygon_xz_m": [
+        [
+          166.8,
+          54.384
+        ],
+        [
+          173.589,
+          60.79
+        ],
+        [
+          244.797,
+          60.797
+        ],
+        [
+          244.797,
+          -14.397
+        ],
+        [
+          172.814,
+          -14.4
+        ],
+        [
+          168.009,
+          -10.407
+        ],
+        [
+          166.4,
+          -7.988
+        ]
+      ],
+      "center_xz_m": [
+        205.95,
+        23.138
+      ],
+      "area_m2": 5840.1,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 5,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_16",
+      "source_feature": "Lots_16",
+      "polygon_xz_m": [
+        [
+          167.2,
+          102.422
+        ],
+        [
+          167.2,
+          157.186
+        ],
+        [
+          170.81,
+          161.607
+        ],
+        [
+          173.224,
+          163.2
+        ],
+        [
+          243.997,
+          163.197
+        ],
+        [
+          243.997,
+          96.003
+        ],
+        [
+          173.214,
+          96.4
+        ],
+        [
+          168.41,
+          100.391
+        ]
+      ],
+      "center_xz_m": [
+        205.863,
+        129.707
+      ],
+      "area_m2": 5112.7,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 5,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_17",
+      "source_feature": "Lots_17",
+      "polygon_xz_m": [
+        [
+          129.607,
+          158.785
+        ],
+        [
+          130.4,
+          157.181
+        ],
+        [
+          130.4,
+          102.819
+        ],
+        [
+          129.189,
+          100.39
+        ],
+        [
+          124.811,
+          96.41
+        ],
+        [
+          32.803,
+          96.403
+        ],
+        [
+          32.803,
+          163.197
+        ],
+        [
+          124.786,
+          162.8
+        ]
+      ],
+      "center_xz_m": [
+        81.342,
+        129.704
+      ],
+      "area_m2": 6469.6,
+      "zone": "mixto",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 5,
+        "min_plot_width_m": 14.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "corner_shop",
+        "workshop_crouch",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": true,
+        "requested_mecha_access": "mecha_crouch"
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    },
+    {
+      "id": "lot_18",
+      "source_feature": "Lots_18",
+      "polygon_xz_m": [
+        [
+          167.2,
+          204.419
+        ],
+        [
+          167.203,
+          249.597
+        ],
+        [
+          244.397,
+          249.597
+        ],
+        [
+          243.997,
+          198.403
+        ],
+        [
+          172.789,
+          198.409
+        ],
+        [
+          168.413,
+          201.989
+        ]
+      ],
+      "center_xz_m": [
+        205.828,
+        224.107
+      ],
+      "area_m2": 3927.9,
+      "zone": "viviendas",
+      "allow_buildings": true,
+      "plot_subdivision": {
+        "enabled": true,
+        "target_buildings_max": 4,
+        "min_plot_width_m": 11.0
+      },
+      "permitted_archetypes": [
+        "small_residential",
+        "two_story_residential",
+        "facade_only"
+      ],
+      "access_distribution": {
+        "require_one_mecha_building": false,
+        "requested_mecha_access": null
+      },
+      "notes": "Propuesta de zonificación; el polígono refleja la geometría existente, no una vivienda individual."
+    }
+  ]
+}

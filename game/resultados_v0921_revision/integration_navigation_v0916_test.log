@@ -1,0 +1,11 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS salida individual vuelve al menú principal
+PASS salida online funciona aunque la sesión retire al actor del árbol
+PunchLine · módulos de fusión cargados: 112
+PASS demo G completa el ensamblaje nuevo
+PASS demo G reinicia sin perder piezas originales
+PASS demo G vuelve al menú sin softlock
+PASS taller V8 carga ambas fuentes originales
+PASS taller V8 permite volver con Esc
+RESULTADO 7/7

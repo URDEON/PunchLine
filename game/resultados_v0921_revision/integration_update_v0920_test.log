@@ -1,0 +1,38 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS nombre visible The Proyected
+PASS lock tiene acción configurable
+PASS tecla C alterna lock
+PASS reasignación de lock se utiliza en partida
+PASS locomoción de The Proyected conserva control y establece apoyos
+PASS pies de The Proyected anclados en apoyos reales (0.0000 m)
+PASS corrección humana no alarga las piernas (0.0000 m)
+PASS dos rayos como máximo y pose final disponible para red
+PASS IK humana cede ante ataques
+PASS modificador humano no toca los robots
+PunchLine · módulos de fusión cargados: 112
+PASS fusión preparada
+PASS sin lock la cabeza no sigue el ratón
+PASS lock reactiva mirada independiente
+PASS dos cierres del cuello conservan superficie interior
+PASS primera persona activa lente corporal
+PASS lente se dibuja sobre 3D y antes de cabina y HUD
+PASS lente puede desactivarse sin afectar HUD
+PASS tercera persona no aplica ojo de pez
+PASS impactos destruyen el brazo del cañón
+PASS brazo perdido bloquea habilidad 1 sin gastar recarga
+PASS brazo físico colisiona solo con mundo y tiene escala estable
+PASS brazo permanece más de 3,6 s mientras el robot vive
+PASS restos permanecen en el mundo en lugar de seguir al cuerpo
+PASS muñón contiene cables y chispas ligeras
+PASS pierna y brazo de apoyo tienen integridad independiente
+PASS pérdida de tren reduce movimiento y bloquea propulsión
+PASS falta de brazos inhabilita martillo y escudo
+PASS M1 utiliza solo la pierna intacta
+PASS 20% coincide exactamente con 60 de 300 HP
+PASS 18% activa alertas críticas reales
+PASS muerte de Sentinel inicia espera
+PASS no reaparece antes de desaparecer los restos
+PASS reaparición posterior a retirada de restos y módulos
+HUMAN_METRICS { "stance_error": 0.00004577886648, "segment_error": 0.00000739097595, "samples": 210 }
+RESULTADO 33/33

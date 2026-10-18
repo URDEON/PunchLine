@@ -1,0 +1,5 @@
+Archivo histórico de PunchLine. Clips de 8 segundos derivados de grabaciones reales de Godot de versiones anteriores ya presentes en el espacio de trabajo.
+mechas_v0914.ogv: Mechas_0.9.14.mp4, versión 0.9.14.
+proyeccion_v098.ogv: Naoya_v0.9.8_prueba_real.mp4, versión 0.9.8.
+Se redujeron a 480x270 y se retiró el audio para el visor Extras.
+No constituyen pruebas de los cambios de 0.9.20. No incluyen videos de referencia de otros juegos.

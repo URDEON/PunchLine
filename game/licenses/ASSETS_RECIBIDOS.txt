@@ -1,0 +1,36 @@
+Kenney Impact Sounds, Sci-fi Sounds y Particle Pack: CC0, licencias adjuntas.
+Recursos seleccionados de los ZIP proporcionados por Edu.
+
+Otros recursos proporcionados por el usuario:
+- Unarmed.glb: RPG Animations FREE del proyecto base.
+- HumanM@Dance02.fbx: Human Dance Animations FREE. Adaptación RunningMan.
+- monster-worm.zip y naoya-zenin-curse-form.zip: modelos/texturas.
+- 778608__blondpanda__glass_shards_impact_05.wav: blondpanda.
+- MP3 Guaynaa-ReBoTa recortado: audio de baile enviado por el usuario.
+Estos créditos identifican procedencia; no atribuyen CC0 a estos otros archivos.
+No se incorporó código de Godot-VFX, ShardShatter ni Breakable Glass Custom.
+
+v0.9: dash_swish.ogg y guard_tap.ogg son recortes con fundidos de los sonidos
+Kenney CC0 ya incluidos. ui_click.wav es un sonido sintetizado original.
+Los iconos SVG de la interfaz se dibujan desde código original. La paleta
+por vértices modifica la presentación del rig, conservando el GLB fuente.
+
+v0.9.3 — Prueba de modelo:
+- Alien elegido por Edu: Meshy_AI_Celestial_Wanderer_1010065336_texture (1).glb.
+  Generación de modelo atribuida a Meshy por el usuario; metadatos del último
+  GLB indican Tripo. Modelo y texturas enviados por el usuario, sin descarga
+  de otra biblioteca. Fuentes: https://www.meshy.ai/ y https://www.tripo3d.ai/.
+  SHA-256 del último original:
+  9b26bfc61f0c17e686fe329d73c5663ace18a844ab73db2bb6af49033938ec35
+- Alien_Naoya_Rig_Combat.glb: adaptación para este proyecto. Reducción de
+  geometría, orientación/escala, rig y skin preparados con Blender 4.3.2;
+  53 huesos y 64 animaciones del Unarmed.glb original del juego.
+  Texturas de color y normales conservadas byte por byte del último envío.
+  Estos créditos no atribuyen CC0 al modelo, texturas ni pack de animación.
+- Meshy indica atribución CC BY 4.0 para contenido generado con su plan Free:
+  https://help.meshy.ai/en/articles/15696428-what-is-included-on-the-free-plan
+  https://creativecommons.org/licenses/by/4.0/
+  Esa referencia no determina por sí sola la licencia de las nuevas texturas
+  procesadas por otro servicio; el envío no incluía un archivo LICENSE.
+- Renders de poses: Blender, modelo anterior con los clips del pack existente.
+  Herramientas de preparación y pruebas: desarrolladas para este proyecto.

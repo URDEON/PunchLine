@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://scenes/GeneratedHousing.tscn" id="1"]
+[ext_resource type="Script" path="res://scripts/Preview.gd" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/District500.tscn" id="3"]
+[node name="HousingPreview" type="Node3D"]
+script = ExtResource("2")
+[node name="DistrictHousing" parent="." instance=ExtResource("1")]
+[node name="District500" parent="." instance=ExtResource("3")]
+[node name="Sun" type="DirectionalLight3D" parent="."]
+rotation_degrees = Vector3(-65,-25,0)
+shadow_enabled = true
+[node name="Camera" type="Camera3D" parent="."]
+position = Vector3(0,400,180)
+rotation_degrees = Vector3(-70,0,0)
+current = true
+far = 1000.0

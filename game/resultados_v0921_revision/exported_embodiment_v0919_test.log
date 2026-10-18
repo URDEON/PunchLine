@@ -1,0 +1,89 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS emote 0 aceptado para Leela
+PASS clip original avanza: Leela / 0
+PASS Dance deforma realmente huesos de Leela
+PASS emote 1 aceptado para Leela
+PASS clip original avanza: Leela / 1
+PASS emote 2 aceptado para Leela
+PASS clip original avanza: Leela / 2
+PASS emote 3 aceptado para Leela
+PASS clip original avanza: Leela / 3
+PASS emote 0 aceptado para Stan
+PASS clip original avanza: Stan / 0
+PASS Dance deforma realmente huesos de Stan
+PASS emote 1 aceptado para Stan
+PASS clip original avanza: Stan / 1
+PASS emote 2 aceptado para Stan
+PASS clip original avanza: Stan / 2
+PASS emote 3 aceptado para Stan
+PASS clip original avanza: Stan / 3
+PASS emote 0 aceptado para George
+PASS clip original avanza: George / 0
+PASS Dance deforma realmente huesos de George
+PASS emote 1 aceptado para George
+PASS clip original avanza: George / 1
+PASS emote 2 aceptado para George
+PASS clip original avanza: George / 2
+PASS emote 3 aceptado para George
+PASS clip original avanza: George / 3
+PASS emote 0 aceptado para Mike
+PASS clip original avanza: Mike / 0
+PASS Dance deforma realmente huesos de Mike
+PASS emote 1 aceptado para Mike
+PASS clip original avanza: Mike / 1
+PASS emote 2 aceptado para Mike
+PASS clip original avanza: Mike / 2
+PASS emote 3 aceptado para Mike
+PASS clip original avanza: Mike / 3
+PunchLine · módulos de fusión cargados: 112
+PASS fusión para cámara y marcha
+PASS cabeza excluida solo de la cámara local
+PASS cuerpo visible en primera persona: Torso_Pecho
+PASS cuerpo visible en primera persona: Pelvis
+PASS cuerpo visible en primera persona: BrazoSuperior_Der
+PASS cuerpo visible en primera persona: BrazoSuperior_Izq
+PASS cuerpo visible en primera persona: Muslo_Der
+PASS cuerpo visible en primera persona: Muslo_Izq
+PASS cuerpo visible en primera persona: Pie_Der
+PASS cuerpo visible en primera persona: Pie_Izq
+PASS juntas mecánicas visibles junto al cuerpo
+PASS ojos siguen cabeza delante de la placa del pecho, dentro del volumen del controlador
+PASS giro corto de mirada deja caderas estables
+PASS cabeza sigue yaw y pitch de la vista
+PASS cuerpo acompaña giros que exceden el cuello
+PASS límites del cuello sin torsiones extremas
+PASS al mirar abajo la cámara apunta al cuerpo visible
+PASS tercera persona restaura cabeza y capas originales
+PASS pasos siguen desplazamiento real: forward
+PASS sin cruce de pies ni estiramiento: forward
+PASS strafe conserva cuerpo frente a mira: forward
+PASS pasos siguen desplazamiento real: right
+PASS sin cruce de pies ni estiramiento: right
+PASS strafe conserva cuerpo frente a mira: right
+PASS pasos siguen desplazamiento real: left
+PASS sin cruce de pies ni estiramiento: left
+PASS strafe conserva cuerpo frente a mira: left
+PASS pasos siguen desplazamiento real: back
+PASS sin cruce de pies ni estiramiento: back
+PASS strafe conserva cuerpo frente a mira: back
+PASS balanceo lateral se distingue de marcha frontal
+DIRECTIONAL_METRICS {"back":{"ankle_separation":1.07806384563446,"arm_z_range":0.00803166441619396,"segment_error":0.00000131681730408673,"stride_alignment":0.999999552965164},"forward":{"ankle_separation":1.07946765422821,"arm_z_range":0.0092875249683857,"segment_error":0.000000899951999144832,"stride_alignment":1.0},"left":{"ankle_separation":0.289993286132812,"arm_z_range":0.387075513601303,"segment_error":0.00000167444517273907,"stride_alignment":1.0},"right":{"ankle_separation":0.289993286132812,"arm_z_range":0.387047439813614,"segment_error":0.000001078765933471,"stride_alignment":0.999999443689982}}
+PASS Sentinel inicia baile propio sin AnimationPlayer ficticio
+PASS baile mueve pecho, pelvis y brazos del Sentinel
+PASS baile mantiene apoyo y controlador quietos
+PASS mover cancela el baile y recupera locomoción
+PASS gesto Sentinel 1
+PASS gesto no despliega cañón: 1
+PASS gesto termina automáticamente: 1
+PASS gesto Sentinel 2
+PASS gesto no despliega cañón: 2
+PASS gesto termina automáticamente: 2
+PASS gesto Sentinel 3
+PASS gesto no despliega cañón: 3
+PASS gesto termina automáticamente: 3
+PASS baile puede reiniciarse
+PASS M1 permite interrumpir emote
+PASS ataque cancela el emote sin bloquear combate
+PASS aturdimiento cancela el emote
+RESULTADO 84/84

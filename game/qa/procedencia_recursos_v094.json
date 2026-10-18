@@ -1,0 +1,20 @@
+[
+  {
+    "project_path": "assets/characters/alien/Alien_Naoya_Rig_Combat.glb",
+    "original_bytes_preserved": true,
+    "sha256": "a70e083712cba5dd37368c5b23f47f01308e6ed1a17b278f5991a7c6759f46fa",
+    "bytes": 4387472
+  },
+  {
+    "project_path": "assets/companions/SkullWisp.glb",
+    "original_bytes_preserved": true,
+    "sha256": "d3bd2d79d0451ad2f4dc487063045923870f87f0c480d2b2c460e49dd61f3ae2",
+    "bytes": 1692480
+  },
+  {
+    "project_path": "assets/projection/GlassPane.glb",
+    "original_bytes_preserved": true,
+    "sha256": "0a4a352a45ace8e9c7fa3c26f5fdb073c85edff4d5ff711ee99557828e864cdc",
+    "bytes": 474996
+  }
+]

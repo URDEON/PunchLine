@@ -1,0 +1,77 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS HUD inicial80% para reducir ocupación
+PASS retrato no contiene etiquetaP·PJ
+PASS triángulo dorado completamente relleno y área clicable precisa
+PASS Alt libera cursor para alcanzar el triángulo
+PASS cursor libre no gira cámara al recorrer HUD
+PASS clic GUI real en triángulo abre lista sin menú central
+PASS lista tiene Naoya, Robot y Coming Soon
+PASS Naoya y Robot disponibles; casilla futura no seleccionable
+PASS lista anclada debajo del retrato y triángulo
+PASS clicComingSoon conserva pausa, recursos y selección
+PASS segundo clic cierra lista y respetaAlt todavía pulsado
+PASS soltarAlt solicita captura del mouse para cámara
+PASS clic fuera cierra dropdown
+PASS Enter seleccionaNaoya desde el teclado
+PASS seleccionarNaoya con clic mantenido no disparaM1 al cerrar
+PASS soltar clic permite volver a atacar
+PASS M1 vuelve a funcionar después de soltar clic de selección
+PASS Ajustes ofrece50–100%
+PASS deslizador reduce HUD en vivo sin achicar menú
+PASS tamaño elegido se guarda en disco
+PASS recarga de preferencias restaura tamañoHUD
+PASS P abre lista desde Ajustes
+PASS Esc de lista conserva la pestaña y pausa previas
+PASS Esc del menú permite continuar
+PASS HUD cabe en1280×720 a50%
+PASS dropdown cabe en1280×720 a50%
+PASS HUD cabe en1280×720 a80%
+PASS dropdown cabe en1280×720 a80%
+PASS HUD cabe en1280×720 a100%
+PASS dropdown cabe en1280×720 a100%
+PASS HUD cabe en1920×1080 a50%
+PASS dropdown cabe en1920×1080 a50%
+PASS HUD cabe en1920×1080 a80%
+PASS dropdown cabe en1920×1080 a80%
+PASS HUD cabe en1920×1080 a100%
+PASS dropdown cabe en1920×1080 a100%
+PASS HUD cabe en1024×768 a50%
+PASS dropdown cabe en1024×768 a50%
+PASS HUD cabe en1024×768 a80%
+PASS dropdown cabe en1024×768 a80%
+PASS HUD cabe en1024×768 a100%
+PASS dropdown cabe en1024×768 a100%
+PASS HUD cabe en360×640 a50%
+PASS dropdown cabe en360×640 a50%
+PASS HUD cabe en360×640 a80%
+PASS dropdown cabe en360×640 a80%
+PASS HUD cabe en360×640 a100%
+PASS dropdown cabe en360×640 a100%
+PASS HUD cabe en640×360 a50%
+PASS dropdown cabe en640×360 a50%
+PASS HUD cabe en640×360 a80%
+PASS dropdown cabe en640×360 a80%
+PASS HUD cabe en640×360 a100%
+PASS dropdown cabe en640×360 a100%
+PASS HUD cabe en360×360 a50%
+PASS dropdown cabe en360×360 a50%
+PASS HUD cabe en360×360 a80%
+PASS dropdown cabe en360×360 a80%
+PASS HUD cabe en360×360 a100%
+PASS dropdown cabe en360×360 a100%
+PASS fase1 utiliza dibujo de criatura: worm_charge
+PASS fase1 utiliza dibujo de criatura: worm_tendrils
+PASS fase1 utiliza dibujo de criatura: worm_speed
+PASS fase1 utiliza dibujo de criatura: worm_domain
+PASS dibujos de fase1 no habilitan habilidades de fase2
+PASS evolución real cambia a fase2
+PASS fase2 cambia silueta y dibujo de habilidad1
+PASS fase2 cambia silueta y dibujo de habilidad2
+PASS fase2 cambia silueta y dibujo de habilidad3
+PASS fase2 cambia silueta y dibujo de habilidad4
+PASS volver a humano restaura cuatro dibujos del boceto
+PASS reasignarAlt se rechaza para conservar acceso al cursor
+PASS Esc cancela reasignación reservada y conserva dash
+PASS Qdash yPselector conservados tras ajustes y fases
+RESULT 74/74 OK

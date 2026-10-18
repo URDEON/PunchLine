@@ -1,0 +1,14 @@
+v0.8.0
+- Añadidos Proyecciones y Counter a la forma humana.
+- Añadido ciclo de evolución Forma 1 -> Forma 2 con carga x1,5 y G.
+- Conservado el renacimiento automático por muerte en BASE con carga completa.
+- Añadidos Embestida, Tentáculos, Aceleración y Dominio.
+- Dominio real de 14 s en otra arena, posiciones de regreso y limpieza al morir.
+- Cuatro slots en Forma 2; solo Embestida en Forma 1 según el diseño recuperado.
+- Daño con preparación, contacto, guardia, recuperación y cooldown por movimiento.
+- Barrido de impactos para embestidas rápidas y daño único por blanco.
+- Formas malditas provisionales procedurales, partículas geométricas y estelas.
+- Ajustados iluminación, color humano y resolución de aros.
+- Corregida actualización de velocidad de animación al compartir clip entre correr y dash.
+- Se partió de la copia limpia de v0.7.2, sin el dash automático usado en pruebas.
+- Los nuevos sistemas están separados en scripts/combat_moves.gd; main.gd conserva el combate previo.

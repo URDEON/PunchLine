@@ -1,0 +1,13 @@
+Validado en Godot 4.4.1 Linux, sin ventana: 37/37 combate y 22/22 presentación.
+No se pudo iniciar pantalla virtual: sockets bloqueados y escalación rechazada.
+No hay video ni revisión visual de esta versión.
+
+Para jugar: extraer ZIP en carpeta nueva, importar project.godot y F5.
+Para la demo automática con interfaz gráfica:
+godot --path . --script res://qa/presentation_demo.gd --fixed-fps 20
+Para grabar: añadir --write-movie prueba.avi
+La demo dura unos 27 s. Prepara posiciones y carga para mostrar los cambios;
+no cambia el modo normal. Las capturas quedan en user://, la carpeta de datos de Godot del proyecto.
+
+Los resultados antiguos incluidos corresponden a v0.8.0. RESULTADOS_QA.txt
+contiene los resultados actuales. No se ha probado en Windows/Godot 4.7.

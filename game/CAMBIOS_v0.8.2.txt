@@ -1,0 +1,60 @@
+NAOYA v0.8.2 — ASSETS, BAILE, KOGANE Y TRANSFORMACIONES
+
+CONTROLES NUEVOS
+B: Running Man con la música enviada. B vuelve a cancelarlo. También lo
+cancelan movimiento, bloqueo, salto, dash, ataques, habilidades y recibir daño.
+El baile se repite hasta cancelarlo; no da inmunidad y solo funciona humano,
+en suelo y libre de acciones. Esc pausa la animación y el audio.
+K: invocar/retirar Kogane cuando el personaje está libre. Inicia oculto.
+
+BAILE
+Se usó HumanM@Dance02 (Running Man) del pack Human Dance Animations FREE.
+51 huesos se adaptaron por correspondencia y delta respecto a la pose de
+reposo; los otros 2 conservan su reposo. Animación horneada a 60 muestras/s,
+con longitud de huesos del rig Unarmed y rebote vertical escalado. Se elimina
+la traslación horizontal de la cadera. Loop cerrado. No sustituye el rig de
+combate ni cambia los clips originales. La adaptación se realiza offline
+con tools/retarget_dance.gd; assets/dance/retarget.json registra el mapeo.
+No se afirma que se haya usado el normalizador BoneMap nativo: se conserva
+el rig existente y se exporta una AnimationLibrary adaptada a sus huesos.
+La música empieza y se detiene junto con el emote; no se ha hecho sincronía
+manual de cada paso con el beat musical.
+
+MODELOS
+Fase1: monster-worm enviado. Fase2: naoya-zenin-curse-form enviado.
+Se normalizó orientación/tamaño y se generó un rig básico de 7 huesos por
+cuerpo con pesos suaves para ondulación y embestida. Conservan sus texturas.
+Es rigging procedural básico, no un rig artístico completo de mandíbula y
+apéndices. La fase2 conserva tentáculos procedurales del prototipo.
+Los modelos humanos y las animaciones de combate originales se conservan.
+
+TRANSFORMACIONES
+Humano a forma: caída con UnarmedDeath1, carga, estallido, humo verdoso y
+aparición progresiva en 2 segundos, siguiendo el video enviado.
+Forma1 a forma2: envoltura, contracción y ruptura con fragmentos, despliegue
+en 1.6 segundos. El reloj de la ulti comienza al terminar. El daño interrumpe
+la presentación sin dejar modelos invisibles; no se añade inmunidad nueva.
+Se conservan G para ambas fases y renacimiento al morir con carga completa.
+
+KOGANE
+Compañero visual construido por código con alas/cola animadas. Solo aparece
+al invocarlo con K. Los perfiles Naoya, Nanami y Gojo siguen preparados para
+un selector de personajes futuro; actualmente solo Naoya es jugable.
+
+EFECTOS Y AUDIO
+Cuadros con panel semitransparente, fragmentos al terminar la congelación,
+rastro violeta de poses congeladas, partículas Kenney para humo e impactos.
+Fragmentos visuales sin colisión: no atascan personajes ni modifican golpes.
+Audio de impactos, bloqueo, dash, transformación, invocación y vidrio.
+Voces simultáneas limitadas a 12 y efectos con límites/limpieza automática.
+Se pausa el audio y las animaciones con Esc. Se detienen voces al cerrar.
+
+PACKS REVISADOS
+Kenney Impact Sounds, Sci-fi Sounds y Particle Pack: se incorporan recursos
+seleccionados y licencias. Godot-VFX-main se orienta a 2D/Godot4.5 y no se
+activa en este proyecto3D/Godot4.4. Los plugins ShardShatter y Breakable Glass
+se revisaron; los cuadros usan fragmentos propios ligeros sin física.
+
+VALIDACIÓN
+Ver RESULTADOS_QA.txt y PRUEBAS_v0.8.2.txt. No hay grabación/revisión gráfica
+nueva: la pantalla virtual está bloqueada por permisos del entorno.

@@ -1,0 +1,62 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS primera persona alinea cuerpo aunque el lock manual esté apagado
+PASS M1 y habilidades salen hacia la mira en primera persona
+PASS Naoya primera persona sin colisión del modelo propio
+PASS altura de ojos real de Naoya
+PASS tercera persona restaura capas del cuerpo
+PASS escudo frontal base Leela
+PASS escudo se apaga al soltar guardia 0
+PASS primera persona chasis 0
+PASS escudo frontal base Stan
+PASS escudo se apaga al soltar guardia 1
+PASS primera persona chasis 1
+PASS escudo frontal base George
+PASS escudo se apaga al soltar guardia 2
+PASS primera persona chasis 2
+PASS escudo frontal base Mike
+PASS escudo se apaga al soltar guardia 3
+PASS primera persona chasis 3
+EYE_HEIGHTS 1.7 [1.53664135932922, 1.72404670715332, 1.51246476173401, 1.72625398635864]
+PASS ojos distinguen la geometría de las variantes
+PunchLine · módulos de fusión cargados: 112
+PASS fusión con recursos optimizados
+RENDER_STATS { "instances": 37, "surfaces": 37, "triangles": 68908, "materials": { -9223371997780638243: true, -9223371746139169095: true, -9223371747296797055: true, -9223371747280019838: true } }
+PASS cuerpo conserva silueta con menos de 80.000 triángulos
+PASS agrupación rígida reduce superficies visibles
+PASS atlas compartido reduce cambios de material
+PASS 112 piezas originales de montaje y bisagras conservadas
+PASS ojos del mecha a 3,52 m
+PASS cabina exclusiva del mecha en primera persona
+PASS bastidor de cabina 3D local en una sola superficie
+PASS cabina usa telemetría real sin capturar entradas
+PASS cabina se oculta al salir de primera persona
+PASS reposo sin acumulación de rotación tras cachear cañón
+PASS galería: SENTINEL / ACERO PESADO
+PASS galería: THE PROYECTED / PROYECCIÓN
+PASS galería: STAN / IMPACTO
+PASS galería: ESTUDIO / CAÑÓN SENTINEL
+PASS galería: LEELA / MOVILIDAD
+PASS galería: MIKE / DEFENSA
+PASS galería: ESTUDIO / PROYECCIÓN
+PASS galería: GEORGE / ALCANCE
+PASS galería: THE PROYECTED / FOTOGRAMAS
+PASS galería: ESTUDIO / CONTRAATAQUE
+PASS galería: ESTUDIO / IMPULSO
+PASS galería: SENTINEL / CAÑÓN
+PASS galería: SENTINEL / MARTILLO
+PASS galería: SENTINEL / PISOTÓN
+PASS galería: SENTINEL / ARIETE
+PASS galería: EVOLUCIÓN / DOMINIO
+PASS galería: EVOLUCIÓN / TENTÁCULOS
+PASS galería: LEELA / TALÓN
+PASS galería: STAN / PRENSA
+PASS galería: MIKE / BASTIÓN
+PASS galería: GEORGE / IMPULSO
+PASS galería: FOTOGRAMA / MODELO
+PASS galería: FORMA 1 / MODELO
+PASS galería: FORMA 2 / MODELO
+PASS galería: KOGANE / MODELO
+PASS solo un personaje 3D residente en la galería
+PASS transición de galería animada
+RESULTADO 56/56

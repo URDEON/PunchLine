@@ -1,0 +1,17 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS invitado 2 inicia su emote sin modificar anfitrión
+PASS emote de invitado avanza el clip real
+PASS snapshot del invitado incluye huesos y estado del emote
+PunchLine · módulos de fusión cargados: 112
+PASS invitado activa Sentinel
+PASS primera persona online conserva pitch de mirada hacia arriba
+PASS baile procedural del Sentinel del invitado
+PASS snapshot transporta mirada y reloj del emote
+PASS tres jugadores siguen dentro del límite de estado
+PunchLine · módulos de fusión cargados: 112
+PASS réplica muestra el mismo emote del Sentinel
+PASS emote replicado no duplica consultas físicas
+PASS fin de emote y mirada independiente replicados
+PASS máscara de cabeza del cliente no modifica otro actor
+RESULTADO 12/12

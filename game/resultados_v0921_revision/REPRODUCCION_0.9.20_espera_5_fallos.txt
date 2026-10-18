@@ -1,0 +1,16 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PunchLine · módulos de fusión cargados: 112
+PASS M1 comienza con brazo derecho
+FAIL perder brazo ejecutor cancela M1 antes del contacto
+PunchLine · módulos de fusión cargados: 112
+PASS M1 pisotón comienza
+FAIL perder pierna ejecutora cancela pisotón
+PunchLine · módulos de fusión cargados: 112
+PASS perder brazo opuesto no cancela el puño intacto
+PunchLine · módulos de fusión cargados: 112
+FAIL sísmico elige pierna izquierda si falta la derecha
+FAIL no hay pasos de una pierna destruida
+PASS junta de tobillo no flota tras perder tren inferior
+FAIL reiniciar transformación libera despiece exterior al actor
+RESULTADO 4/9

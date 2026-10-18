@@ -1,0 +1,63 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS guardia conserva desplazamiento real
+PASS piernas siguen animándose al caminar con guardia
+PASS cadencia acompaña velocidad lenta de guardia
+PASS guardia camina hacia back
+PASS guardia camina hacia left
+PASS guardia camina hacia right
+PASS salir de guardia no corta la pose del brazo
+PASS clip UAL2 adaptado: Melee_Hook
+PASS rotaciones válidas sin escala ni deformación de reposo: Melee_Hook
+PASS clip UAL2 adaptado: Melee_Hook_Rec
+PASS rotaciones válidas sin escala ni deformación de reposo: Melee_Hook_Rec
+PASS clip UAL2 adaptado: Idle_FoldArms_Loop
+PASS rotaciones válidas sin escala ni deformación de reposo: Idle_FoldArms_Loop
+PASS clip UAL2 adaptado: Yes
+PASS rotaciones válidas sin escala ni deformación de reposo: Yes
+PASS ventana visual conservada: RightJab
+PASS ventana visual conservada: LeftJab
+PASS ventana visual conservada: Hook
+PASS ventana visual conservada: Finisher
+PASS ventana visual conservada: Uppercut
+PASS ventana visual conservada: Downslam
+PASS ventana visual conservada: Kick
+PASS tercer M1 utiliza el hook nuevo en combate real
+PASS fase2 en reposo vertical, cabeza arriba
+PASS cara de fase2 hacia delante en reposo
+PASS fase2 se vuelve horizontal al desplazarse
+PASS cabeza, no cola, sigue avance al moverse
+PASS detenerse recupera reposo vertical solicitado en0.9.6
+PASS fotograma conserva inmovilización de cinco segundos
+PASS captura de pose en World3D independiente
+PASS representación sustituida por un plano y el actor 3D oculto
+PASS panel original sin marcos ni fragmentos añadidos
+PASS Material Override aplicado al MeshInstance3D importado
+PASS centro del vidrio con transparencia solicitada
+PASS NPC inmóvil hasta la parte final de los cinco segundos
+PASS liberación restaura modelo y animación del NPC
+PASS captura, viewport y panel eliminados al finalizar
+PASS repetir fotograma libera captura anterior y conserva duración mayor
+PASS reiniciar NPC atrapado restaura representación y animación
+PASS muerte de NPC atrapado limpia su fotograma
+PASS fotograma del jugador impide iniciar acciones
+PASS moverse, saltar, dash y habilidad bloqueados durante captura
+PASS pausa conserva el tiempo restante del fotograma
+PASS reanudar no libera la pose antes de tiempo
+PASS al liberar el jugador recupera 3D y movimiento
+PASS fotograma del jugador no deja recursos residuales
+PASS reinicio del laboratorio limpia un fotograma activo
+PASS fotograma encuadra fase2 horizontal y oculta 3D
+PASS liberar fase2 recupera representación 3D
+PASS Skull Wisp sustituye a Kogane
+PASS Kogane avisa de transformación disponible
+PASS Kogane reacciona a vida real baja
+PASS Kogane muestra el tiempo de inmovilización real
+PASS dominio despliega barrera en el mundo exterior
+PASS suelo circular coincide con su colisión
+PASS límite circular con colisiones reales
+PASS suelo sostiene al jugador cerca del borde diagonal
+PASS Kogane cuenta el tiempo del dominio activo
+PASS salir de fase2 limpia interior y barrera exterior
+SKIP imagen y transparencia: renderer Dummy no genera píxeles
+RESULTADO 59/59

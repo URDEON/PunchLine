@@ -1,0 +1,81 @@
+{
+  "user_choice": "Conservar este personaje tal como está",
+  "source": {
+    "file": "Meshy_AI_Celestial_Wanderer_1010065336_texture (1).glb",
+    "bytes": 2270552,
+    "sha256": "9b26bfc61f0c17e686fe329d73c5663ace18a844ab73db2bb6af49033938ec35",
+    "generator": "Tripo",
+    "triangles": 75028,
+    "vertices_exported": 43204,
+    "skins": 0,
+    "joints": 0,
+    "animations": 0,
+    "images": [
+      {
+        "name": "Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_normal",
+        "mimeType": "image/jpeg",
+        "size": [
+          1024,
+          1024
+        ],
+        "bytes": 144210,
+        "sha256": "32bdf05d83c33f62249ce01e955a6e3ae1422c458579898524bc9b0c33864b3b"
+      },
+      {
+        "name": "Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_basecolor",
+        "mimeType": "image/jpeg",
+        "size": [
+          1024,
+          1024
+        ],
+        "bytes": 291888,
+        "sha256": "185183a2ba2faeb542ab0c746f9fc86f6ec364ff5df1c15bba0dff17f80ebf1d"
+      }
+    ]
+  },
+  "integrated": {
+    "file": "Alien_Naoya_Rig_Combat.glb",
+    "bytes": 4387472,
+    "sha256": "a70e083712cba5dd37368c5b23f47f01308e6ed1a17b278f5991a7c6759f46fa",
+    "generator": "Khronos glTF Blender I/O v4.3.47",
+    "triangles": 12000,
+    "vertices_exported": 8770,
+    "skins": 1,
+    "joints": 53,
+    "animations": 64,
+    "images": [
+      {
+        "name": "Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_normal",
+        "mimeType": "image/jpeg",
+        "size": [
+          1024,
+          1024
+        ],
+        "bytes": 144210,
+        "sha256": "32bdf05d83c33f62249ce01e955a6e3ae1422c458579898524bc9b0c33864b3b"
+      },
+      {
+        "name": "Meshy_AI_Celestial_Wanderer_1010065336_texture_glb_basecolor",
+        "mimeType": "image/jpeg",
+        "size": [
+          1024,
+          1024
+        ],
+        "bytes": 291888,
+        "sha256": "185183a2ba2faeb542ab0c746f9fc86f6ec364ff5df1c15bba0dff17f80ebf1d"
+      }
+    ]
+  },
+  "original_image_bytes_preserved": true,
+  "tools": {
+    "blender": "4.3.2",
+    "engine": "4.4.1.stable.official.49a5bc7b6",
+    "engine_sha256": "54215149d52efb1d653a3dec39d0993587bdf5daa2c56e787b5ee88417fb1339"
+  },
+  "original_source_skeleton": {
+    "file": "assets/rpg_animations/Unarmed.glb",
+    "sha256": "899b84f57e723fba2be70ac60214fb0c6d36b684ebbabc60339f9c38fa0e872b"
+  },
+  "renders": "Blender poses, not game screenshots",
+  "recording_status": "blocked: Xorg cannot establish local listening sockets"
+}
