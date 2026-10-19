@@ -1,18 +1,21 @@
 # PunchLine
 
-Proyecto editable de PunchLine **0.9.27** con District500 y **77 edificios procedurales**.
-Suelo visible y texturizado, casas con tejados y detalles, interiores y ventanas con vistas.
-Se conservan las 71 construcciones anteriores y se añaden tres edificios de tres plantas
-y tres de cuatro, con escaleras, interiores y balcones transitables.
+Proyecto editable de PunchLine **0.9.28**, con el juego completo y District500.
+Semillas que cambian la distribución, viviendas con patios, tiendas y edificios de hasta cuatro plantas.
+La configuración predeterminada genera **87 edificios**, 186 árboles y pasto con viento.
 
-La araña tiene primera persona sin superposición, tercera persona ajustable y salto desde superficies.
+Rustcrawler conserva el modelo de referencia con cuerpo rígido a escala de la cabeza,
+seis patas procedurales, salto y cámaras ajustables. **T** cambia visión nocturna, térmica y rayos X.
+Casas destructibles por ataques del mecha, sincronizadas en multijugador, y nuevos sonidos
+de pasos, impactos y ensamblaje extraídos de las grabaciones enviadas.
 
-Niebla volumétrica nativa con **Forward+** y pasto procedural con viento en las zonas verdes.
-Calidad del pasto e intensidad de niebla ajustables en **AJUSTES → IMAGEN**.
+**AJUSTES → IMAGEN** incluye presets Rendimiento, Equilibrado y Alto, con iluminación,
+vegetación, sombras, niebla volumétrica y efectos.
 
 Abrir **game/project.godot** con Godot 4.4.1 y una GPU compatible con Vulkan.
 La ciudad anterior fue retirada.
 
+- [Novedades, controles y pruebas de 0.9.28](game/housing/docs/update_v0928.md)
 - [Niebla volumétrica y pasto](game/housing/docs/greenery.md)
 - [Semillas, cabeza araña y controles](game/housing/docs/rustcrawler.md)
 - [Casas para el mecha y contactos procedurales](game/housing/docs/confinement.md)

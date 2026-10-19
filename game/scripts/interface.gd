@@ -643,12 +643,12 @@ func tick(delta: float) -> void:
 	combo_life = maxf(0,combo_life-delta)
 	if game.fusion.spider.active():
 		var spider:Node3D=game.fusion.spider
-		phase_text.text="RUSTCRAWLER"
-		energy_text.text="%d / 50 HP · %s RECONECTAR CERCA DEL MECHA" % [int(game.hp),game.preferences.key_name("interact")]
+		phase_text.text="RUSTCRAWLER · "+["NORMAL","NOCTURNA","TÉRMICA","RAYOS X"][spider.vision_mode]
+		energy_text.text="%d / 50 HP · %s RECONECTAR · %s VISIÓN" % [int(game.hp),game.preferences.key_name("interact"),game.preferences.key_name("spider_vision")]
 		cards[0].panel.set_state("Escaneo",game.preferences.key_name("ability1"),"spider_scan",spider.scan_cd,10.0,spider.mode!="spider","Detecta señales a 25 m durante 6 s",spider.scan_time>0)
 		cards[1].panel.set_state("Camuflaje",game.preferences.key_name("ability2"),"spider_cloak",spider.cloak_cd,16.0,spider.mode!="spider","8 s de camuflaje; se rompe con daño o escaneo",spider.cloak_time>0)
 		cards[2].panel.hide();cards[3].panel.hide()
-		hint.text="WASD · %s saltar · V cámara · Rueda distancia · %s reconectar · 1 escaneo · 2 camuflaje" % [game.preferences.key_name("jump"),game.preferences.key_name("interact")]
+		hint.text="WASD · %s saltar · V cámara · T visión · Rueda distancia · %s reconectar · 1 escaneo · 2 camuflaje" % [game.preferences.key_name("jump"),game.preferences.key_name("interact")]
 	status.text = "%d IMPACTOS  /  %.0f DAÑO" % [combo_hits,combo_damage] if combo_life > 0 else ("GUARDIA" if game.block else ("RECUPERANDO" if game.stun > 0 else "DASH  "+("LISTO" if game.dash_cd <= 0 else "%.1f s" % game.dash_cd)))
 	if game.ult_msg_time > 0: status.text = game.ult_msg
 	elif game.fusion.spider.active():status.text="RUSTCRAWLER / cabeza separada · %s para reconectar cerca del mecha" % game.preferences.key_name("interact")

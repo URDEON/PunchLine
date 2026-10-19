@@ -1047,6 +1047,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if fusion.spider.interact():return
 			arena.urban.interact(); return
 		if fusion.spider.active():
+			if event.is_action_pressed("spider_vision"):fusion.spider.cycle_vision()
 			if event.is_action_pressed("jump"):fusion.spider.request_jump()
 			for slot in range(1,3):
 				if event.is_action_pressed("ability"+str(slot)):fusion.spider.ability(slot)

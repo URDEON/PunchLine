@@ -7,7 +7,7 @@ var values := {
 	"master": 0.85, "sfx": 0.85, "music": 0.55, "sensitivity": 1.0,
 	"fov": 75.0, "shake": 0.35, "effects": true, "hints": true,
 	"hold_attack": true, "fps": false, "quality": 1, "hud_scale": 0.8,
-	"grass_quality":2, "grass_wind":.55, "fog_amount":.35,
+	"graphics_preset":1,"debris_enabled":true, "grass_quality":2, "grass_wind":.55, "fog_amount":.35,
 	"camera_distance": 5.5, "kogane_comments": true, "ambient": 0.35,
 	"procedural_gait": true, "human_grounding": true, "robot_grounding": true, "body_lens": .14, "combat": 1.0, "reference_audio": true, "legacy_map": false
 }
@@ -15,7 +15,7 @@ var bindings := {
 	"forward": KEY_W, "back": KEY_S, "left": KEY_A, "right": KEY_D,
 	"jump": KEY_SPACE, "block": KEY_F, "dash": KEY_Q, "character": KEY_P, "walk": KEY_CTRL,
 	"ability1": KEY_1, "ability2": KEY_2, "ability3": KEY_3,
-	"ability4": KEY_4, "transform": KEY_G, "emote": KEY_B, "kogane": KEY_K, "interact": KEY_E, "lock": KEY_C
+	"ability4": KEY_4, "transform": KEY_G, "emote": KEY_B, "kogane": KEY_K, "interact": KEY_E, "lock": KEY_C, "spider_vision":KEY_T
 }
 const FILE := "user://preferences_v09.cfg"
 
@@ -97,6 +97,13 @@ func apply() -> void:
 	if is_instance_valid(game.interface) and game.interface.screen != null:
 		game.interface.resize()
 
+func set_preset(preset:int)->void:
+	values.graphics_preset=clampi(preset,0,2)
+	values.quality=values.graphics_preset
+	values.grass_quality=[1,2,3][values.graphics_preset]
+	values.fog_amount=[.18,.35,.48][values.graphics_preset]
+	values.debris_enabled=values.graphics_preset>0
+	apply();save()
 func set_value(key: String, value: Variant) -> void:
 	values[key] = value
 	apply()

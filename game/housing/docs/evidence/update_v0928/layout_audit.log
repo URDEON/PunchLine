@@ -1,0 +1,11 @@
+PASS {'seed': '923', 'density': 0, 'buildings': 76, 'shops': 13, 'yards': 21, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': '923', 'density': 2, 'buildings': 87, 'shops': 24, 'yards': 24, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': 'Bosque 42', 'density': 0, 'buildings': 77, 'shops': 15, 'yards': 24, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': 'Bosque 42', 'density': 2, 'buildings': 85, 'shops': 16, 'yards': 28, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': 'Bosque 43', 'density': 0, 'buildings': 78, 'shops': 17, 'yards': 20, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': 'Bosque 43', 'density': 2, 'buildings': 84, 'shops': 10, 'yards': 29, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': 'Distrito nuevo', 'density': 0, 'buildings': 78, 'shops': 12, 'yards': 28, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': 'Distrito nuevo', 'density': 2, 'buildings': 79, 'shops': 17, 'yards': 26, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': '-17', 'density': 0, 'buildings': 77, 'shops': 15, 'yards': 17, 'storeys': [1, 2, 3.0, 4.0]}
+PASS {'seed': '-17', 'density': 2, 'buildings': 84, 'shops': 21, 'yards': 23, 'storeys': [1, 2, 3.0, 4.0]}
+RESULT all 10 independent layouts pass

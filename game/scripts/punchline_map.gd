@@ -7,31 +7,37 @@ var game: Node3D
 var scene: Node3D
 var housing: Node3D
 var ambience: Node3D
+var destruction: Node3D
 var collision_count := 0
 var height_adjustments := 0
 var player_spawns: Array[Marker3D] = []
 var enemy_spawns: Array[Marker3D] = []
 var rng := RandomNumberGenerator.new()
 var spawn_index := 0
+var world_settings:Dictionary={}
+var layout_hash:=""
 
 func setup(host: Node3D) -> void:
     game = host
     var config=preload("res://scripts/world_config.gd")
-    var settings:Dictionary=config.DEFAULTS.duplicate() if "session" in game else config.current()
+    var settings:Dictionary=game.world_settings if "session" in game else config.current()
+    world_settings=config.normalized(settings)
     var plan:Dictionary=config.make_plan(settings)
+    layout_hash=JSON.stringify(plan).sha256_text()
     rng.seed = 923
     scene = SCENE.instantiate()
     add_child(scene)
-    housing = preload("res://housing/scenes/GeneratedHousing.tscn").instantiate()
+    housing = preload("res://housing/scripts/DistrictHousingGenerator.gd").new();housing.name="DistrictHousing"
     if OS.get_environment("PUNCHLINE_HOUSING_MODE") == "none":
         housing.free(); housing = null
     else:
         add_child(housing)
-        if String(settings.seed)!="923" or int(settings.density)!=2:
-            housing.generate_plan(plan)
+        housing.generate_plan(plan)
         housing.set_meta("world_settings",settings)
     ambience=preload("res://scripts/district_ambience.gd").new();add_child(ambience)
     ambience.setup(plan if housing!=null else {"buildings":[]},settings,game.preferences.values)
+    destruction=preload("res://scripts/district_destruction.gd").new();add_child(destruction)
+    destruction.setup(self,bool(settings.get("destructible",true)))
     var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/vector_meshes.json"))
     for point in data.spawns.slice(0,3):
         player_spawns.append(marker("Jugador",Vector3(point[0],.1,point[1])))
@@ -82,3 +88,14 @@ func finalize() -> void:
     if not is_inside_tree(): return
     place_enemies()
     respawn()
+
+func rebuild_world(settings:Dictionary)->void:
+    world_settings=preload("res://scripts/world_config.gd").normalized(settings)
+    var plan:Dictionary=preload("res://scripts/world_config.gd").make_plan(world_settings)
+    layout_hash=JSON.stringify(plan).sha256_text()
+    for node in [destruction,ambience]:
+        if is_instance_valid(node):remove_child(node);node.free()
+    if housing!=null:
+        housing.set_meta("plan_hash","");housing.generate_plan(plan);housing.set_meta("world_settings",world_settings)
+    ambience=preload("res://scripts/district_ambience.gd").new();add_child(ambience);ambience.setup(plan,world_settings,game.preferences.values)
+    destruction=preload("res://scripts/district_destruction.gd").new();add_child(destruction);destruction.setup(self,bool(world_settings.destructible))

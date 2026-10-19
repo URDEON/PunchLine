@@ -2,7 +2,7 @@
 extends Node3D
 ## Editable geometric architecture. All detail stays in the validated building envelope.
 @export_file("*.json") var plan_path:="res://housing/data/generated_plan.json"
-const REVISION:="architecture-2.3-multistorey"
+const REVISION:="architecture-2.4-seeded-destructible"
 const WALL_COLORS:=[Color("e5d7b7"),Color("d2ae88"),Color("b9c6b1"),Color("c2cfce"),Color("cba28e"),Color("d8d0bc"),Color("b5c4ca"),Color("eadfcb")]
 const ROOF_COLORS:=[Color("b56b4d"),Color("925247"),Color("676d70"),Color("a37451"),Color("7c8b85")]
 var materials:Dictionary={}
@@ -43,11 +43,13 @@ func visual(parent:Node3D,label:String,size:Vector3,at:Vector3,mat:Material)->Me
 
 func part(parent:Node3D,label:String,size:Vector3,at:Vector3,mat:Material)->StaticBody3D:
 	var body:=StaticBody3D.new();body.name=label;body.position=at;parent.add_child(body)
-	if is_instance_valid(active_building) and mat!=null:detail(parent,size,at,mat)
+	if is_instance_valid(active_building) and mat!=null:
+		var ref:Dictionary=detail(parent,size,at,mat)
+		detail_batches[ref.key].parts.append({"body":body,"index":ref.index})
 	else:visual(body,"Mesh",size,Vector3.ZERO,mat)
 	var col:=CollisionShape3D.new();var shape:=BoxShape3D.new();shape.size=size;col.shape=shape;body.add_child(col);return body
 
-func detail(parent:Node3D,size:Vector3,at:Vector3,mat:Material,rotation:=Vector3.ZERO)->void:
+func detail(parent:Node3D,size:Vector3,at:Vector3,mat:Material,rotation:=Vector3.ZERO)->Dictionary:
 	# Repeated trim uses one draw per material per category; transforms remain editable.
 	var target:Node3D=parent
 	if is_instance_valid(active_building):
@@ -55,8 +57,9 @@ func detail(parent:Node3D,size:Vector3,at:Vector3,mat:Material,rotation:=Vector3
 	var transform:=Transform3D(Basis.from_euler(rotation).scaled(size),at)
 	transform=relative_transform(parent,target)*transform
 	var key:String=str(target.get_instance_id())+":"+str(mat.get_instance_id())
-	if not detail_batches.has(key):detail_batches[key]={"parent":target,"material":mat,"transforms":[]}
+	if not detail_batches.has(key):detail_batches[key]={"parent":target,"material":mat,"transforms":[],"parts":[]}
 	detail_batches[key].transforms.append(transform)
+	return {"key":key,"index":detail_batches[key].transforms.size()-1}
 
 func relative_transform(node:Node3D,ancestor:Node3D)->Transform3D:
 	# Baking starts in SceneTree._initialize, before nodes necessarily enter the tree.
@@ -69,12 +72,17 @@ func relative_transform(node:Node3D,ancestor:Node3D)->Transform3D:
 	return result
 
 func flush_details()->void:
+	var serial:=0
 	for key in detail_batches:
 		var group:Dictionary=detail_batches[key]
 		var node:=MultiMeshInstance3D.new();node.name="TrimBatch";node.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF;node.multimesh=load(get_script().resource_path.get_base_dir()+"/BakedMultiMesh.gd").new();node.multimesh.transform_format=MultiMesh.TRANSFORM_3D
 		node.multimesh.mesh=box_mesh(Vector3.ONE);node.multimesh.instance_count=group.transforms.size();node.material_override=group.material
 		var saved:Array[Transform3D]=[];saved.assign(group.transforms);node.multimesh.source_transforms=saved
 		node.visibility_range_end=250;node.visibility_range_end_margin=15;group.parent.add_child(node)
+		node.set_meta("destruction_batch",serial)
+		for part in group.parts:
+			part.body.set_meta("destruction_batch",serial);part.body.set_meta("destruction_index",part.index)
+		serial+=1
 	detail_batches.clear()
 
 func finish_build(root:Node3D)->void:
@@ -194,14 +202,29 @@ func build(root:Node3D,b:Dictionary)->void:
 		if shop:awning(accents,w,front,h,dark,roof_palette)
 		else:detail(accents,Vector3(w,.15,.64),Vector3(0,h-.1,front+.30),dark)
 	if shop:
-		var sign_node:=Label3D.new();sign_node.name="ShopSign";sign_node.text=["ALMACÉN","PANADERÍA","CAFÉ","TALLER DE BARRIO"][int(style.get("sign",0))%4]
+		var sign_node:=Label3D.new();sign_node.name="ShopSign";sign_node.text=b.get("shop_name",["ALMACÉN","PANADERÍA","CAFÉ","TALLER DE BARRIO"][int(style.get("sign",0))%4])
 		sign_node.font_size=48;sign_node.pixel_size=.006;sign_node.position=Vector3(0,h-.35,front+.11);sign_node.modulate=Color("fff1cf");sign_node.outline_size=5;sign_node.outline_modulate=Color("34453b");accents.add_child(sign_node)
 	furnish(rooms,w,back,front,dw,h,workshop,shop,style)
+	if float(b.get("yard_depth",0))>0:build_yard(root,b,dark,floor_mat)
 	finish_build(root)
 	var count:=0
 	for opening in windows.get_children():
 		if opening.has_meta("aperture"):count+=1
 	root.set_meta("window_count",count);root.set_meta("architecture_revision",REVISION);root.set_meta("style",style)
+
+func build_yard(root:Node3D,b:Dictionary,wood:Material,floor_mat:Material)->void:
+	var yard:=category(root,"Courtyard");var w:float=b.width;var d:float=b.yard_depth
+	var back:float=-b.depth/2;var rear:float=back-d+.2
+	var paving:=material("patio_pavers",Color("b3ad9a"),"pavers",1)
+	part(yard,"Patio",Vector3(3.8,.07,2.8),Vector3(-w*.16,-.075,back-1.5),paving)
+	for side in [-1.0,1.0]:
+		part(yard,"GardenSideFence",Vector3(.10,.8,d),Vector3(side*(w/2+.2),.27,back-d/2),wood)
+		part(yard,"BackFence",Vector3((w-4.2)/2,.8,.10),Vector3(side*(w+4.2)/4,.27,rear),wood)
+	part(yard,"GardenBench",Vector3(1.6,.12,.45),Vector3(w*.20,.30,back-1.2),wood)
+	for x in [w*.20-.6,w*.20+.6]:part(yard,"BenchLeg",Vector3(.1,.35,.35),Vector3(x,.1,back-1.2),wood)
+	part(yard,"PatioTable",Vector3(.9,.09,.9),Vector3(-w*.16,.60,back-1.6),wood)
+	part(yard,"TableSupport",Vector3(.16,.6,.16),Vector3(-w*.16,.26,back-1.6),wood)
+	root.set_meta("yard_depth",d)
 
 func wall_with_openings(parent:Node3D,windows:Node3D,label:String,at:Vector3,yaw:float,length:float,height:float,holes:Array,wall:Material,trim:Material,dark:Material,style:Dictionary)->void:
 	var group:=category(parent,label);group.position=at;group.rotation.y=yaw

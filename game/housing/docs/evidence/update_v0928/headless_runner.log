@@ -1,0 +1,6 @@
+feature_test True RESULT 28/28 world and real head-spider checks
+systems_test True RESULT 221/221 systems checks
+combat_test True RESULT 5/5 real combat-to-building checks
+multistorey_test True RESULT 29/29 actual multi-storey building checks
+frontend_test True RESULT 17/17 launcher, menu navigation, character selector and gameplay
+camera_jump_test True RESULT 26/26 camera and jump checks

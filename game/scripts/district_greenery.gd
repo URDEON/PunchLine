@@ -1,6 +1,6 @@
 extends RefCounted
 ## Decorative placements use the vector lots; protected surfaces and access routes are masks.
-const CELL:=.90
+const CELL:=.70
 const CHUNK:=16.0
 const CLEARANCE:=.50
 var lots:Array=[]
@@ -77,7 +77,7 @@ func prepare(plan:Dictionary,seed_text:String)->void:
 		elif feature.layer in ["Roads","Parking","Sidewalks"]:add_mask(rings,CLEARANCE)
 	var generator=preload("res://housing/scripts/DistrictHousingGenerator.gd").new()
 	for b in plan.get("buildings",[]):
-		add_mask([polygon(b.get("validated_envelope",b.support_footprint))],.70)
+		add_mask([polygon(b.get("plot_footprint",b.get("validated_envelope",b.support_footprint)))],.70)
 		for tri in b.get("path_triangles",[]):add_mask([polygon(tri)],.60)
 		# Old narrow paths must still leave the widened mecha door and porch clear.
 		var a:=Vector2(b.entry[0],b.entry[1]);var end:=Vector2(b.sidewalk[0],b.sidewalk[1])

@@ -1,0 +1,228 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_12/SeedBuilding_02/FacadeDetails/@MultiMeshInstance3D@9544" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS runtime district registers destructible parts for all 87 seeded buildings
+PASS seeded district has physical trees in green lots
+PASS tree 1 clears buildings and protected access
+PASS tree 2 clears buildings and protected access
+PASS tree 3 clears buildings and protected access
+PASS tree 4 clears buildings and protected access
+PASS tree 5 clears buildings and protected access
+PASS tree 6 clears buildings and protected access
+PASS tree 7 clears buildings and protected access
+PASS tree 8 clears buildings and protected access
+PASS tree 9 clears buildings and protected access
+PASS tree 10 clears buildings and protected access
+PASS tree 11 clears buildings and protected access
+PASS tree 12 clears buildings and protected access
+PASS tree 13 clears buildings and protected access
+PASS tree 14 clears buildings and protected access
+PASS tree 15 clears buildings and protected access
+PASS tree 16 clears buildings and protected access
+PASS tree 17 clears buildings and protected access
+PASS tree 18 clears buildings and protected access
+PASS tree 19 clears buildings and protected access
+PASS tree 20 clears buildings and protected access
+PASS tree 21 clears buildings and protected access
+PASS tree 22 clears buildings and protected access
+PASS tree 23 clears buildings and protected access
+PASS tree 24 clears buildings and protected access
+PASS tree 25 clears buildings and protected access
+PASS tree 26 clears buildings and protected access
+PASS tree 27 clears buildings and protected access
+PASS tree 28 clears buildings and protected access
+PASS tree 29 clears buildings and protected access
+PASS tree 30 clears buildings and protected access
+PASS tree 31 clears buildings and protected access
+PASS tree 32 clears buildings and protected access
+PASS tree 33 clears buildings and protected access
+PASS tree 34 clears buildings and protected access
+PASS tree 35 clears buildings and protected access
+PASS tree 36 clears buildings and protected access
+PASS tree 37 clears buildings and protected access
+PASS tree 38 clears buildings and protected access
+PASS tree 39 clears buildings and protected access
+PASS tree 40 clears buildings and protected access
+PASS tree 41 clears buildings and protected access
+PASS tree 42 clears buildings and protected access
+PASS tree 43 clears buildings and protected access
+PASS tree 44 clears buildings and protected access
+PASS tree 45 clears buildings and protected access
+PASS tree 46 clears buildings and protected access
+PASS tree 47 clears buildings and protected access
+PASS tree 48 clears buildings and protected access
+PASS tree 49 clears buildings and protected access
+PASS tree 50 clears buildings and protected access
+PASS tree 51 clears buildings and protected access
+PASS tree 52 clears buildings and protected access
+PASS tree 53 clears buildings and protected access
+PASS tree 54 clears buildings and protected access
+PASS tree 55 clears buildings and protected access
+PASS tree 56 clears buildings and protected access
+PASS tree 57 clears buildings and protected access
+PASS tree 58 clears buildings and protected access
+PASS tree 59 clears buildings and protected access
+PASS tree 60 clears buildings and protected access
+PASS tree 61 clears buildings and protected access
+PASS tree 62 clears buildings and protected access
+PASS tree 63 clears buildings and protected access
+PASS tree 64 clears buildings and protected access
+PASS tree 65 clears buildings and protected access
+PASS tree 66 clears buildings and protected access
+PASS tree 67 clears buildings and protected access
+PASS tree 68 clears buildings and protected access
+PASS tree 69 clears buildings and protected access
+PASS tree 70 clears buildings and protected access
+PASS tree 71 clears buildings and protected access
+PASS tree 72 clears buildings and protected access
+PASS tree 73 clears buildings and protected access
+PASS tree 74 clears buildings and protected access
+PASS tree 75 clears buildings and protected access
+PASS tree 76 clears buildings and protected access
+PASS tree 77 clears buildings and protected access
+PASS tree 78 clears buildings and protected access
+PASS tree 79 clears buildings and protected access
+PASS tree 80 clears buildings and protected access
+PASS tree 81 clears buildings and protected access
+PASS tree 82 clears buildings and protected access
+PASS tree 83 clears buildings and protected access
+PASS tree 84 clears buildings and protected access
+PASS tree 85 clears buildings and protected access
+PASS tree 86 clears buildings and protected access
+PASS tree 87 clears buildings and protected access
+PASS tree 88 clears buildings and protected access
+PASS tree 89 clears buildings and protected access
+PASS tree 90 clears buildings and protected access
+PASS tree 91 clears buildings and protected access
+PASS tree 92 clears buildings and protected access
+PASS tree 93 clears buildings and protected access
+PASS tree 94 clears buildings and protected access
+PASS tree 95 clears buildings and protected access
+PASS tree 96 clears buildings and protected access
+PASS tree 97 clears buildings and protected access
+PASS tree 98 clears buildings and protected access
+PASS tree 99 clears buildings and protected access
+PASS tree 100 clears buildings and protected access
+PASS tree 101 clears buildings and protected access
+PASS tree 102 clears buildings and protected access
+PASS tree 103 clears buildings and protected access
+PASS tree 104 clears buildings and protected access
+PASS tree 105 clears buildings and protected access
+PASS tree 106 clears buildings and protected access
+PASS tree 107 clears buildings and protected access
+PASS tree 108 clears buildings and protected access
+PASS tree 109 clears buildings and protected access
+PASS tree 110 clears buildings and protected access
+PASS tree 111 clears buildings and protected access
+PASS tree 112 clears buildings and protected access
+PASS tree 113 clears buildings and protected access
+PASS tree 114 clears buildings and protected access
+PASS tree 115 clears buildings and protected access
+PASS tree 116 clears buildings and protected access
+PASS tree 117 clears buildings and protected access
+PASS tree 118 clears buildings and protected access
+PASS tree 119 clears buildings and protected access
+PASS tree 120 clears buildings and protected access
+PASS tree 121 clears buildings and protected access
+PASS tree 122 clears buildings and protected access
+PASS tree 123 clears buildings and protected access
+PASS tree 124 clears buildings and protected access
+PASS tree 125 clears buildings and protected access
+PASS tree 126 clears buildings and protected access
+PASS tree 127 clears buildings and protected access
+PASS tree 128 clears buildings and protected access
+PASS tree 129 clears buildings and protected access
+PASS tree 130 clears buildings and protected access
+PASS tree 131 clears buildings and protected access
+PASS tree 132 clears buildings and protected access
+PASS tree 133 clears buildings and protected access
+PASS tree 134 clears buildings and protected access
+PASS tree 135 clears buildings and protected access
+PASS tree 136 clears buildings and protected access
+PASS tree 137 clears buildings and protected access
+PASS tree 138 clears buildings and protected access
+PASS tree 139 clears buildings and protected access
+PASS tree 140 clears buildings and protected access
+PASS tree 141 clears buildings and protected access
+PASS tree 142 clears buildings and protected access
+PASS tree 143 clears buildings and protected access
+PASS tree 144 clears buildings and protected access
+PASS tree 145 clears buildings and protected access
+PASS tree 146 clears buildings and protected access
+PASS tree 147 clears buildings and protected access
+PASS tree 148 clears buildings and protected access
+PASS tree 149 clears buildings and protected access
+PASS tree 150 clears buildings and protected access
+PASS tree 151 clears buildings and protected access
+PASS tree 152 clears buildings and protected access
+PASS tree 153 clears buildings and protected access
+PASS tree 154 clears buildings and protected access
+PASS tree 155 clears buildings and protected access
+PASS tree 156 clears buildings and protected access
+PASS tree 157 clears buildings and protected access
+PASS tree 158 clears buildings and protected access
+PASS tree 159 clears buildings and protected access
+PASS tree 160 clears buildings and protected access
+PASS tree 161 clears buildings and protected access
+PASS tree 162 clears buildings and protected access
+PASS tree 163 clears buildings and protected access
+PASS tree 164 clears buildings and protected access
+PASS tree 165 clears buildings and protected access
+PASS tree 166 clears buildings and protected access
+PASS tree 167 clears buildings and protected access
+PASS tree 168 clears buildings and protected access
+PASS tree 169 clears buildings and protected access
+PASS tree 170 clears buildings and protected access
+PASS tree 171 clears buildings and protected access
+PASS tree 172 clears buildings and protected access
+PASS tree 173 clears buildings and protected access
+PASS tree 174 clears buildings and protected access
+PASS tree 175 clears buildings and protected access
+PASS tree 176 clears buildings and protected access
+PASS tree 177 clears buildings and protected access
+PASS tree 178 clears buildings and protected access
+PASS tree 179 clears buildings and protected access
+PASS tree 180 clears buildings and protected access
+PASS tree 181 clears buildings and protected access
+PASS tree 182 clears buildings and protected access
+PASS tree 183 clears buildings and protected access
+PASS tree 184 clears buildings and protected access
+PASS tree 185 clears buildings and protected access
+PASS tree 186 clears buildings and protected access
+PASS preset 0 preserves authoritative tree collision
+PASS preset 0 applies grass density and ambient occlusion
+PASS preset 1 preserves authoritative tree collision
+PASS preset 1 applies grass density and ambient occlusion
+PASS preset 2 preserves authoritative tree collision
+PASS preset 2 applies grass density and ambient occlusion
+PASS mecha-scale damage removes actual masonry collision
+PASS damage removes the matching batched wall geometry
+PASS duplicate damage packets are idempotent
+PASS late-join state carries removed wall health
+PASS broken opening removes nearby decorative trim
+PASS heavy structural damage collapses the whole building
+PASS collapsed building disables every collider including pitched roofs and bounds visual rubble
+PASS new-world reset restores original geometry and collision
+PASS world destructibility option disables gameplay damage
+PASS provided recording plays for mecha_step_0
+PASS provided recording plays for mecha_step_1
+PASS provided recording plays for mecha_step_2
+PASS provided recording plays for mecha_armor
+PASS provided recording plays for mecha_crash
+PASS provided recording plays for mecha_servo_1
+PASS provided recording plays for mecha_servo_2
+PASS provided recording plays for mecha_servo_3
+PunchLine · módulos de fusión cargados: 112
+PASS actual fusion starts before vision checks
+PASS actual head ejects
+PASS rigid original Rustcrawler core fits measured installed head
+PASS bounded IK preserves central armour and rigid segment lengths
+PASS first person excludes all thirteen rigid owner sections
+PASS T cycles camera into VISIÓN NOCTURNA
+PASS T cycles camera into TÉRMICA
+PASS T cycles camera into RAYOS X
+PASS thermal and X-ray use actual isolated actor geometry
+PASS normal camera restores after cycling all modes
+SYSTEM_STATS buildings=87 parts=9768 trees=186 grass=193397
+RESULT 221/221 systems checks

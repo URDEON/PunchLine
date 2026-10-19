@@ -26,6 +26,7 @@ var streams := {
 	"mecha_servo_2":preload("res://assets/audio/mecha_v0914/servo_sweep_02.ogg"),
 	"mecha_servo_3":preload("res://assets/audio/mecha_v0914/servo_sweep_03.ogg"),
 	"mecha_armor":preload("res://assets/audio/mecha_v0914/armor_hit_01.ogg"),
+	"mecha_crash":preload("res://assets/audio/mecha_v0914/armor_hit_01.ogg"),
 	"mecha_power":preload("res://assets/audio/mecha_v0914/power_t3_loop.ogg"),
 	"fusion_thruster":preload("res://assets/audio/thrusterFire_000.ogg"),
 	"fusion_latch":preload("res://assets/audio/impactMetal_light_000.ogg"),
@@ -44,6 +45,15 @@ var streams := {
 	"checkpoint":preload("res://assets/audio/v096/checkpoint.wav"),
 	"recover":preload("res://assets/audio/v096/recovery.wav")
 }
+const MECHA_REFERENCES={
+ "mecha_step_0":preload("res://assets/audio/mecha_v0928/step_heavy_0.wav"),
+ "mecha_step_1":preload("res://assets/audio/mecha_v0928/step_heavy_1.wav"),
+ "mecha_step_2":preload("res://assets/audio/mecha_v0928/step_heavy_2.wav"),
+ "mecha_armor":preload("res://assets/audio/mecha_v0928/armor_impact_0.wav"),
+ "mecha_crash":preload("res://assets/audio/mecha_v0928/armor_impact_1.wav"),
+ "mecha_servo_1":preload("res://assets/audio/mecha_v0928/servo_assembly_0.wav"),
+ "mecha_servo_2":preload("res://assets/audio/mecha_v0928/servo_assembly_1.wav"),
+ "mecha_servo_3":preload("res://assets/audio/mecha_v0928/servo_assembly_2.wav")}
 func setup(host: Node3D) -> void:
 	game = host
 	mecha_dust = preload("res://scripts/mecha_dust.gd").new(); add_child(mecha_dust)
@@ -97,6 +107,7 @@ func damage_number(pos: Vector3, damage: float) -> void:
 	effects.append({"node":text,"life":0.55,"number":true})
 func sound(id: String, pos: Vector3, volume: float = 0.0) -> void:
 	var selected: Dictionary = audio_bank.choose(id,bool(game.preferences.values.reference_audio))
+	if bool(game.preferences.values.reference_audio) and MECHA_REFERENCES.has(id):selected={"stream":MECHA_REFERENCES[id],"pitch":1.0,"reference":true}
 	if (not streams.has(id) and selected.is_empty()) or float(cooldowns.get(id,0)) > 0:
 		return
 	cooldowns[id] = 0.06 if id != "glass" else 0.12

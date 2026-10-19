@@ -43,6 +43,12 @@ var voice_index := 0
 var numbers: Array[Dictionary] = []
 var telemetry := {"rendered_players":0}
 
+var world_settings:Dictionary=preload("res://scripts/world_config.gd").current()
+var seed_field:LineEdit
+var density_field:OptionButton
+var night_field:CheckButton
+var destructible_field:CheckButton
+
 func _ready() -> void:
 	name = "OnlineArena"
 	add_child(preferences); preferences.setup(self)
@@ -50,7 +56,7 @@ func _ready() -> void:
 	map = preload("res://scripts/punchline_map.gd").new(); map.name = "PunchLine"; add_child(map)
 	# Colisiones y materiales del mismo recurso editable utilizado en la 0.9.10.
 	map.setup(self)
-	var sunlight := DirectionalLight3D.new(); sunlight.rotation_degrees = Vector3(-55,-30,0)
+	var sunlight := DirectionalLight3D.new(); sunlight.name="ArenaSun"; sunlight.rotation_degrees = Vector3(-55,-30,0)
 	sunlight.light_color = Color("fff0dc"); sunlight.light_energy = 1.05; sunlight.shadow_enabled = true; add_child(sunlight)
 	var world := WorldEnvironment.new(); world.environment = Environment.new()
 	world.environment.background_mode = Environment.BG_SKY
@@ -60,7 +66,7 @@ func _ready() -> void:
 	sky_material.filter = true; sky.sky_material = sky_material; world.environment.sky = sky
 	world.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	world.environment.ambient_light_color = Color("a7bbd4"); world.environment.ambient_light_energy = .42; add_child(world)
-	map.ambience.configure_environment(world.environment,false)
+	map.ambience.configure_environment(world.environment,bool(world_settings.night))
 	camera = Camera3D.new(); camera.current = true; camera.near = .12; camera.fov = preferences.values.fov
 	camera.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF; add_child(camera)
 	camera.position = Vector3(0,20,36); camera.look_at(Vector3.ZERO)
@@ -145,7 +151,17 @@ func build_ui() -> void:
 	column.add_child(label("IP del anfitrión · Radmin VPN o red local",13)); ip_field = LineEdit.new(); ip_field.placeholder_text = "Ejemplo: 26.12.34.56"; column.add_child(ip_field)
 	var port_row := HBoxContainer.new(); column.add_child(port_row); port_row.add_child(label("Puerto UDP",13))
 	port_field = SpinBox.new(); port_field.min_value = 1024; port_field.max_value = 65535; port_field.value = session.DEFAULT_PORT; port_row.add_child(port_field)
+	column.add_child(label("MUNDO DEL ANFITRIÓN",17))
+	seed_field=LineEdit.new();seed_field.text=String(world_settings.seed);seed_field.max_length=48;seed_field.placeholder_text="Semilla";column.add_child(seed_field)
+	column.add_child(button("SEMILLA ALEATORIA",func()->void:
+		if not session.active and not session.connecting:seed_field.text=str(randi_range(1,2147483647))))
+	density_field=OptionButton.new()
+	for text in ["Espaciado","Equilibrado","Completo"]:density_field.add_item(text)
+	density_field.selected=int(world_settings.density);column.add_child(density_field)
+	night_field=CheckButton.new();night_field.text="Mundo nocturno";night_field.button_pressed=bool(world_settings.night);column.add_child(night_field)
+	destructible_field=CheckButton.new();destructible_field.text="Edificios destructibles";destructible_field.button_pressed=bool(world_settings.destructible);column.add_child(destructible_field)
 	host_button = button("CREAR PARTIDA",func() -> void:
+		preload("res://scripts/world_config.gd").select({"seed":seed_field.text,"density":density_field.selected,"night":night_field.button_pressed,"destructible":destructible_field.button_pressed})
 		var error: Error = session.host_game(name_field.text,character_choice.selected,int(port_field.value))
 		if error != OK: message_text = "No se pudo crear: "+error_string(error); refresh_ui())
 	column.add_child(host_button)
@@ -176,6 +192,7 @@ func refresh_ui() -> void:
 	name_field.editable = true; rename_button.visible = session.active; ip_field.editable = not busy; port_field.editable = not busy
 	resume_button.visible = session.actors.has(session.local_id())
 	character_button.visible = resume_button.visible; leave_button.visible = busy
+	seed_field.editable=not busy;density_field.disabled=busy;night_field.disabled=busy;destructible_field.disabled=busy
 	status_label.text = message_text
 	var lines := PackedStringArray()
 	for spec in session.roster.values():
@@ -228,6 +245,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			MOUSE_BUTTON_WHEEL_DOWN: zoom = minf(10,zoom+.4)
 	elif event is InputEventKey and event.pressed and not event.echo:
 		if event.is_action_pressed("interact"):session.local_action("interact");return
+		if event.is_action_pressed("spider_vision"):session.local_action("vision");return
 		if event.is_action_pressed("jump"): session.local_action("jump")
 		if event.is_action_pressed("dash"): session.local_action("dash")
 		for slot in range(1,5):
@@ -309,3 +327,10 @@ func load_nickname() -> String:
 	return ""
 func save_nickname(value: String) -> void:
 	var config := ConfigFile.new(); config.set_value("profile","nickname",value); config.save("user://online_profile.cfg")
+
+func configure_world(settings:Dictionary)->void:
+	world_settings=preload("res://scripts/world_config.gd").normalized(settings)
+	if map.world_settings!=world_settings:map.rebuild_world(world_settings)
+	map.ambience.configure_environment(get_node("ArenaEnvironment").environment,bool(world_settings.night))
+	if seed_field!=null:
+		seed_field.text=String(world_settings.seed);density_field.selected=int(world_settings.density);night_field.button_pressed=world_settings.night;destructible_field.button_pressed=world_settings.destructible

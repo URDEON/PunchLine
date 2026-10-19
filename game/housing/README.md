@@ -5,6 +5,13 @@ El juego individual y el multijugador cargan el mismo District500 y los mismos e
 Los controles y el motor físico se conservan. Desde **0.9.27** se usa **Forward+ / Vulkan**
 por elección del usuario para niebla volumétrica nativa. No se exportó un ejecutable.
 
+**Versión vigente: 0.9.28.** [Novedades, controles y validación](docs/update_v0928.md).
+El juego genera ahora el distrito desde la semilla: por defecto, 87 edificios, 186 árboles
+y 193.397 grupos de pasto. El anfitrión comparte el mundo y la destrucción con los clientes.
+Las cantidades de 71/77 edificios descritas más abajo corresponden a los planes y escenas
+horneadas de procedencia; se conservan para inspección e historial. El runtime usa
+`seeded_district.gd` y `DistrictHousingGenerator.gd`, sin instanciar antes la escena horneada.
+
 ## Abrir y jugar
 
 Abrir **`game/project.godot` con Godot 4.4.1** y ejecutar el proyecto. El lanzador conserva

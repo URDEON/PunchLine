@@ -44,6 +44,8 @@ func local_id() -> int: return multiplayer.get_unique_id() if active else 0
 func host_game(name_text: String, selected: int, port: int = DEFAULT_PORT) -> Error:
 	if active or connecting: return ERR_ALREADY_IN_USE
 	if port < 1024 or port > 65535: return ERR_INVALID_PARAMETER
+	arena.configure_world(preload("res://scripts/world_config.gd").current())
+	if arena.map.destruction.revision>0:arena.map.destruction.reset_world()
 	var peer := ENetMultiplayerPeer.new()
 	var error := peer.create_server(port,MAX_PLAYERS-1,3)
 	if error != OK: message.emit("No se pudo abrir UDP %d: %s" % [port,error_string(error)]); return error
@@ -105,6 +107,7 @@ func hello(protocol: String, name_text: String, selected: int) -> void:
 			for spec in roster.values():
 				if int(spec.slot) == candidate: used = true
 			if not used: slot = candidate; break
+	configure_world.rpc_id(id,arena.map.world_settings)
 	for existing in roster: upsert_player.rpc_id(id,int(existing),roster[existing])
 	var spec := make_spec(id,clean_name(name_text),clampi(selected,0,1),slot,0,-1)
 	ready_peers.clear()
@@ -156,6 +159,7 @@ func roster_ready(generations: Dictionary) -> void:
 	for id in roster:
 		if not generations.has(id) or int(generations[id]) != int(roster[id].generation): return
 	ready_peers[sender] = true
+	district_state.rpc_id(sender,arena.map.destruction.state())
 	if OS.get_environment("NAOYA_NET_QA") == "1": print("ROSTER_READY ",sender," / ",roster.size())
 
 func peer_disconnected(id: int) -> void:
@@ -201,7 +205,7 @@ func request_action(sequence: int, action: String) -> void:
 	if is_host(): apply_action(multiplayer.get_remote_sender_id(),sequence,action)
 
 func apply_action(id: int, sequence: int, action: String) -> void:
-	if not actors.has(id) or action not in ["interact","attack","jump","dash","ability1","ability2","ability3","ability4","transform","kogane","lock","cannon_release","emote:0","emote:1","emote:2","emote:3","emote:4","emote:5","emote:6"]: return
+	if not actors.has(id) or action not in ["interact","vision","attack","jump","dash","ability1","ability2","ability3","ability4","transform","kogane","lock","cannon_release","emote:0","emote:1","emote:2","emote:3","emote:4","emote:5","emote:6"]: return
 	var actor: Node3D = actors[id]
 	if sequence <= actor.last_action_sequence: return
 	actor.last_action_sequence = sequence; actor.queue_action(action)
@@ -372,3 +376,16 @@ func robot_skill_effect(id: int,slot: int,point: Vector3,impact: bool,token: int
 @rpc("authority","call_local","reliable",0)
 func mecha_skill_effect(id: int,data: Dictionary) -> void:
 	if actors.has(id): actors[id].skill_vfx.mega_local(data)
+
+@rpc("authority","call_remote","reliable",0)
+func district_damage(packet:Dictionary)->void:
+	if active and not server:arena.map.destruction.apply_packet(packet,true)
+@rpc("authority","call_remote","reliable",0)
+func district_state(data:Dictionary)->void:
+	if active and not server:arena.map.destruction.accept_state(data)
+
+@rpc("authority","call_remote","reliable",0)
+func configure_world(settings:Dictionary)->void:
+	if active and not server:
+		arena.configure_world(settings)
+		if arena.map.destruction.revision>0:arena.map.destruction.reset_world()

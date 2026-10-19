@@ -4,11 +4,10 @@ Abrir `game/project.godot` con Godot 4.4.1. Desde 0.9.27 el proyecto usa Forward
 o de texto, elegir densidad y día/noche, y confirmar **CREAR MUNDO Y JUGAR**. El botón
 ALEATORIA propone otra semilla. Se recuerda la última configuración en `user://world.cfg`.
 
-La semilla controla las variantes, dimensiones de casas y selección de edificios. Los
-centros y las calles conservan District500. Las dimensiones se reducen dentro de las
-envolventes verificadas y se conservan los seis accesos medidos de mecha. La misma semilla
-y densidad producen el mismo resultado en esta versión de Godot. La configuración afecta
-a DEMO; multijugador conserva el distrito común, independiente de las preferencias locales.
+Desde **0.9.28**, la semilla cambia posiciones, variantes, tipos y dimensiones de las casas.
+Las calles conservan District500 y se mantienen los seis accesos medidos de mecha.
+La misma semilla y densidad producen el mismo resultado. En multijugador, el anfitrión
+comparte su configuración con todos los clientes. Véase [0.9.28](update_v0928.md).
 La generación se ejecuta dentro de Godot, sin Python en el equipo del jugador.
 
 ## Expulsar la cabeza
@@ -24,6 +23,7 @@ se arrodilla, baja torso y brazos, apaga el motor y pierde luz gradualmente.
 | Espacio | Saltar desde suelo, pared o techo; sin doble salto |
 | V | Alternar primera y tercera persona |
 | Rueda | Regular la distancia de la cámara |
+| T | Normal, visión nocturna, térmica y rayos X |
 | 1 | Escáner de personajes a 25 m: señales visibles durante 6 s, recarga de 10 s |
 | 2 | Camuflaje de 8 s, recarga de 16 s; pulsar otra vez para desactivarlo |
 | E cerca o encima del mecha | Reconectar la cabeza y reactivar el Sentinel |
@@ -45,8 +45,9 @@ El protocolo cambia: anfitrión y clientes deben usar esta entrega.
 
 El GLB adjunto se conserva en `assets/characters/rustcrawler/Rustcrawler.glb`. Sus UVs,
 texturas y geometría se mantienen. El rig original tenía los reposos en cero y no
-proporcionaba una animación utilizable. `rustcrawler_rig.gd` construye una piel de 13 huesos:
-un cuerpo y dos articulaciones por cada una de las seis patas, con IK y trípodes alternos.
+proporcionaba una animación utilizable. Desde 0.9.28, `rustcrawler_rig.gd` separa la armadura en trece secciones rígidas:
+un cuerpo y dos articulaciones por cada pata, con IK limitada y trípodes alternos.
+El cuerpo se ajusta al volumen de la cabeza instalada y no se deforma con las patas.
 Los apoyos se consultan contra colisiones y se mantienen en coordenadas del mundo.
 
 Desde 0.9.26, la cámara respeta V y la rueda igual que el mecha y gira con la superficie.

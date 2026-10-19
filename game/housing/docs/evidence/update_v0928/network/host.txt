@@ -1,0 +1,41 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/SpiderNetworkTest/OnlineArena/PunchLine/DistrictHousing/GeneratedBuildings/lot_11/SeedBuilding_02/Interiors/@MultiMeshInstance3D@8256" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS host opens real ENet spider session
+PASS starting a new server clears previous world destruction
+PASS host and client finish actual model loading
+PASS host seed, density, night and destructibility replace different client settings
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/SpiderNetworkTest/OnlineArena/PunchLine/DistrictDestruction/LocalRubble/@MeshInstance3D@12294" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS real ENet damage removes the same wall and collider on both peers
+PASS client cannot apply authoritative building damage
+PASS new session config clears stale client damage even with the same seed
+PASS late-join full state restores previously destroyed geometry and collision
+PunchLine · módulos de fusión cargados: 112
+PASS host performs actual robot fusion
+PASS E ejection is authoritative and replicated
+PASS client receives separate 50 HP spider pool
+PASS client collider keeps spider size instead of mecha clearance height
+PASS client hides parked mecha head
+PASS vision input and camera mode replicate authoritatively
+PASS camouflage state replicates from host
+PASS scanner state and cloak cancellation replicate
+PASS client position and HP tampering overwritten by authoritative snapshots
+PASS nearby reconnection restores mecha on both peers
+PASS mecha health pool and full collider restored on client
+PASS spider destruction enters original authoritative player death flow
+PASS normal respawn completes after spider death
+PunchLine · módulos de fusión cargados: 112
+PASS remote player's actual robot can also fuse
+PASS remote client E input creates its own authoritative spider
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player411241794/Controller/@Label3D@12293" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS remote spider camera supports the full first-person pitch range
+PASS remote owner cycles all three vision modes through server input
+PASS remote owner's eye camera excludes only its own spider mesh
+PASS remote owner switches to third person and adjusts camera distance
+PASS remote jump input is simulated on host and replicated to owner
+PASS authoritative remote spider lands and reattaches
+PASS remote client E input reconnects through host validation
+RESULT 30/30 host/client real ENet

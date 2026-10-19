@@ -1,0 +1,40 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS same text seed reproduces the complete runtime plan
+PASS different seeds change architecture and building dimensions
+PASS density changes the selected house count
+PASS six measured mecha houses retain size and position across seeds
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_12/SeedBuilding_02/FacadeDetails/@MultiMeshInstance3D@9544" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+PASS real mecha fusion starts
+PASS E action ejects the real mecha head
+PASS head unfolds into controllable spider with 50 HP
+PASS supplied mesh uses six procedural two-bone legs
+PASS original head removed and mecha kneels dormant
+PASS parked mecha remains in the world while head moves
+PASS spider uses its own physical collider and surface movement
+PASS camouflage activates with duration and cooldown
+PASS damage reduces spider health and breaks camouflage
+PASS scanner pulse starts with cooldown
+PASS scanner cannot bypass its cooldown
+PASS remote reattachment rejected
+SURFACE 24 position=(600.0, 0.301399, -2.825) up=(0.0, 0.0, 1.0)
+SURFACE 49 position=(600.0, 2.611323, -2.825) up=(0.0, 0.0, 1.0)
+SURFACE 74 position=(600.0, 3.825, -0.885456) up=(0.0, -1.0, 0.0)
+SURFACE 99 position=(600.0, 3.825, 1.424469) up=(0.0, -1.0, 0.0)
+PASS continuous movement climbs from floor onto real wall
+PASS continuous movement transitions from wall onto underside of ceiling
+PASS spider stays below ceiling without crossing its collider
+PASS spider can also walk on the roof surface
+HOUSE_CLIMB (5.497391, 4.26499, 0.0) normal=(0.227071, 0.973878, -0.000007)
+PASS continuous movement climbs a generated house wall onto its actual pitched roof
+PASS nearby head can reconnect along clear path
+RETURN_DIAGNOSTIC position=(-97.70008, 0.037163, -62.4) mecha=(-97.70008, 0.012163, -64.6) head=(-97.28402, 2.237058, -64.40155) height=4.0 notice=RECONEXIÓN / restableciendo el núcleo del Sentinel
+PASS reattachment restores active mecha and original health pool
+PASS reattachment restores original collider and gravity
+PASS head visible again after reconnection
+PASS head can eject again after reconnection cooldown
+PASS losing 50 HP enters the original player death state
+PASS normal player respawn completes after spider destruction
+RESULT 28/28 world and real head-spider checks

@@ -1,0 +1,11 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_12/SeedBuilding_02/FacadeDetails/@MultiMeshInstance3D@9544" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+PASS production fusion enters combat state
+PASS real hammer input starts against generated wall
+PASS hammer animation contact destroys physical house wall
+PASS real cannon deployment starts
+PASS released physical cannon projectile damages generated building
+RESULT 5/5 real combat-to-building checks

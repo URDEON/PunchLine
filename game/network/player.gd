@@ -114,6 +114,7 @@ func simulate(delta: float) -> void:
 		if hp <= 0: break
 		if action=="interact":fusion.spider.interact();continue
 		if fusion.spider.active():
+			if action=="vision":fusion.spider.cycle_vision()
 			if action=="jump":fusion.spider.request_jump()
 			if action in ["ability1","ability2"]:fusion.spider.ability(int(action.trim_prefix("ability")))
 			continue

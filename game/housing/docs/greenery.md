@@ -1,4 +1,7 @@
-# Niebla volumétrica y pasto — 0.9.27
+# Niebla volumétrica y pasto — introducidos en 0.9.27
+
+**Actualización 0.9.28:** [árboles, pasto renovado, iluminación y presets](update_v0928.md).
+Las cantidades de esta página corresponden a la entrega 0.9.27.
 
 Abrir **game/project.godot con Godot 4.4.1**. El usuario eligió cambiar de GL Compatibility
 a **Forward+** para utilizar niebla volumétrica nativa. El juego necesita una GPU y un

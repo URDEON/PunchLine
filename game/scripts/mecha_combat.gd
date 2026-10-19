@@ -111,9 +111,10 @@ func tick(delta: float) -> void:
 		ram_contact()
 		for i in range(game.player.get_slide_collision_count()):
 			if absf(game.player.get_slide_collision(i).get_normal().y) < .5:
+				game.arena.punchline.destruction.damage_area(game.player.get_slide_collision(i).get_position(),2.1,float(current.damage)*2,direction)
 				ram_finished = true
 				game.skill_vfx.mega_event("crash",game.player.global_position+direction,direction,current.id,revision)
-				game.feedback.sound("mecha_armor",game.player.global_position,1)
+				game.feedback.sound("mecha_crash",game.player.global_position,1)
 				break
 	if elapsed >= float(current.duration): current.clear(); game.attack_anim = 0
 
@@ -163,6 +164,7 @@ func ground_attack() -> void:
 		var unblockable: bool = int(current.slot) in [2,3] and flat.length() < 1.5
 		game.perform_hit(enemy,float(current.damage),0,radial,float(current.force),float(current.vertical),.6,float(current.ragdoll),false,unblockable,"downslam")
 	game.arena.urban.hit_props(center,direction)
+	game.arena.punchline.destruction.damage_area(center+Vector3.UP*.5,float(current.radius),float(current.damage)*2,direction)
 
 func refund_ground() -> void:
 	var slot: int = current.get("slot",0)
@@ -233,7 +235,7 @@ func tick_projectiles(delta: float) -> void:
 
 func explode(shot: Dictionary, point: Vector3) -> void:
 	game.skill_vfx.mega_event("explosion",point,shot.direction,"cannon",shot.serial)
-	game.feedback.sound("heavy",point,1); game.feedback.sound("mecha_armor",point,0); shake(point,1)
+	game.feedback.sound("heavy",point,1); game.feedback.sound("mecha_crash",point,0); shake(point,1)
 	for enemy in game.enemies:
 		var center: Vector3 = preload("res://scripts/combat_geometry.gd").point(enemy,point)
 		var offset := center-point
@@ -243,6 +245,7 @@ func explode(shot: Dictionary, point: Vector3) -> void:
 		var damage: float = float(shot.profile.damage)*lerpf(1,.75,clampf(offset.length()/2.8,0,1))
 		game.perform_hit(enemy,damage,0,radial,shot.profile.force,shot.profile.vertical,.65,shot.profile.ragdoll,false,false,"heavy")
 	game.arena.urban.hit_props(point,shot.direction)
+	game.arena.punchline.destruction.damage_area(point,2.8,float(shot.profile.damage)*1.8,shot.direction)
 
 func shake(point: Vector3, strength: float) -> void:
 	if game.online_session() != null: game.online_session().fusion_step.rpc(point,strength,revision)

@@ -1,0 +1,14 @@
+{
+  "seed": "923",
+  "instances": 193397,
+  "lots_with_grass": 19,
+  "violations": {
+    "outside_green_inset": 0,
+    "on_roads_sidewalks_parking": 0,
+    "under_buildings_or_ramps": 0,
+    "on_paths": 0,
+    "in_widened_door_routes": 0
+  },
+  "input_sha256": "c5139d17e5192ef05a34d1e5bba88d1c6aa3600ef8a2211599b5ad61fecffcf1",
+  "passed": true
+}

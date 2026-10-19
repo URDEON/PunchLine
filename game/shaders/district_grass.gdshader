@@ -3,8 +3,8 @@ render_mode cull_disabled;
 uniform float wind_strength : hint_range(0.0,1.0) = .55;
 uniform float fade_start = 42.0;
 uniform float fade_end = 58.0;
-uniform vec3 root_color : source_color = vec3(.16,.25,.075);
-uniform vec3 tip_color : source_color = vec3(.48,.62,.22);
+uniform vec3 root_color : source_color = vec3(.105,.17,.042);
+uniform vec3 tip_color : source_color = vec3(.28,.38,.11);
 void vertex() {
 	vec3 world=(MODEL_MATRIX*vec4(VERTEX,1.0)).xyz;
 	float distance_to_eye=distance(world,CAMERA_POSITION_WORLD);

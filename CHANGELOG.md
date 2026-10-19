@@ -1,5 +1,17 @@
 # Cambios de PunchLine
 
+## 0.9.28
+
+- Rustcrawler rígido con su geometría original, escala ajustada a la cabeza e IK de alcance limitado.
+- Visión nocturna, térmica y rayos X con T, también en multijugador.
+- Semillas que generan distribuciones distintas; 87 edificios con semilla 923, comercios, patios y apartamentos de hasta cuatro plantas.
+- Configuración del mundo compartida por el anfitrión y opción de edificios destructibles.
+- Daño de ataques del mecha: piezas y colisiones se rompen, colapso estructural y estado para nuevos jugadores.
+- Cielo físico, iluminación nocturna, ACES, SSAO/SSIL, pasto renovado y árboles por semilla.
+- Presets Rendimiento, Equilibrado y Alto con ajustes de luz, vegetación y efectos.
+- Ocho sonidos de pasos, impactos y ensamblaje procedentes de los tres vídeos enviados.
+- Carga directa de geometría procedural y límite físico ampliado para el distrito mayor.
+
 ## 0.9.27
 
 - Renderizado Forward+ para niebla volumétrica nativa, por elección del usuario.

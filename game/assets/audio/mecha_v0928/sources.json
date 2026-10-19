@@ -1,0 +1,69 @@
+{
+  "source": "User-supplied desktop recordings of mechanical audio references (2026-10-18); decoded mono, trimmed, normalized and faded. Original recordings are not bundled.",
+  "clips": [
+    {
+      "file": "step_heavy_0.wav",
+      "recording": "2026-10-18 23-28-47.mkv",
+      "start_seconds": 3.57,
+      "duration_seconds": 1.04,
+      "gain": 3.5278154681139755,
+      "recording_sha256": "212a683e7f0c86cc1e94d7d11e33508ac252bd84ca8eed0b7a84c20c5bf512a7"
+    },
+    {
+      "file": "step_heavy_1.wav",
+      "recording": "2026-10-18 23-28-47.mkv",
+      "start_seconds": 5.17,
+      "duration_seconds": 1.04,
+      "gain": 3.7000142308239647,
+      "recording_sha256": "212a683e7f0c86cc1e94d7d11e33508ac252bd84ca8eed0b7a84c20c5bf512a7"
+    },
+    {
+      "file": "step_heavy_2.wav",
+      "recording": "2026-10-18 23-28-47.mkv",
+      "start_seconds": 6.83,
+      "duration_seconds": 1.04,
+      "gain": 3.8846556103391605,
+      "recording_sha256": "212a683e7f0c86cc1e94d7d11e33508ac252bd84ca8eed0b7a84c20c5bf512a7"
+    },
+    {
+      "file": "armor_impact_0.wav",
+      "recording": "2026-10-18 23-33-03.mkv",
+      "start_seconds": 4.04,
+      "duration_seconds": 1.15,
+      "gain": 4,
+      "recording_sha256": "88e97022b07ffe84787b92e2fa7bd7911244d18a312fdb43a94b240bef3ce047"
+    },
+    {
+      "file": "armor_impact_1.wav",
+      "recording": "2026-10-18 23-33-03.mkv",
+      "start_seconds": 7.02,
+      "duration_seconds": 1.32,
+      "gain": 2.4031795914594696,
+      "recording_sha256": "88e97022b07ffe84787b92e2fa7bd7911244d18a312fdb43a94b240bef3ce047"
+    },
+    {
+      "file": "servo_assembly_0.wav",
+      "recording": "2026-10-18 23-34-39.mkv",
+      "start_seconds": 1.2,
+      "duration_seconds": 1.95,
+      "gain": 4,
+      "recording_sha256": "a619bf7400d25bfe4043b828cd11e449a6d9d9104f451b8c151f9769977ed1bc"
+    },
+    {
+      "file": "servo_assembly_1.wav",
+      "recording": "2026-10-18 23-34-39.mkv",
+      "start_seconds": 3.84,
+      "duration_seconds": 1.95,
+      "gain": 3.833112192245319,
+      "recording_sha256": "a619bf7400d25bfe4043b828cd11e449a6d9d9104f451b8c151f9769977ed1bc"
+    },
+    {
+      "file": "servo_assembly_2.wav",
+      "recording": "2026-10-18 23-34-39.mkv",
+      "start_seconds": 7.07,
+      "duration_seconds": 2.12,
+      "gain": 3.83933845245127,
+      "recording_sha256": "a619bf7400d25bfe4043b828cd11e449a6d9d9104f451b8c151f9769977ed1bc"
+    }
+  ]
+}

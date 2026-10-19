@@ -106,7 +106,7 @@ func spider_overlay(game:Node3D,camera:Camera3D,first_person:=true)->void:
 	var source:Node3D=game.fusion.spider.rig
 	if is_instance_valid(source) and visual_id!=source.get_instance_id():
 		restore();visual_id=source.get_instance_id()
-		# This skin is a single mesh. Exclude it only from its owner's eye camera;
+		# Exclude the head and its rigid legs only from their owner's eye camera;
 		# portraits, shadows and other players still see the complete spider.
 		for mesh in source.find_children("*","GeometryInstance3D",true,false):
 			masked.append([mesh,mesh.layers]);mesh.layers=(mesh.layers & ~1)|SELF_LAYER

@@ -36,6 +36,8 @@ var return_start:=Vector3.ZERO
 var is_replica:=false
 var last_scan_revision:=-1
 var energy_materials:Array=[]
+var vision_mode:=0
+var vision:Node
 
 func setup(controller:Node3D)->void:
 	fusion=controller;game=fusion.game;name="HeadSpider"
@@ -44,6 +46,10 @@ func invisible()->bool:return mode=="spider" and cloak_time>0
 func local_view()->bool:
 	return game.online_session()==null or game.peer_id==game.session.local_id()
 func tell(message:String)->void:game.ult_msg=message;game.ult_msg_time=3
+func cycle_vision()->void:
+	if mode!="spider":return
+	vision_mode=(vision_mode+1)%4
+	tell("CÁMARA / "+preload("res://scripts/spider_vision.gd").LABELS[vision_mode])
 func interact()->bool:
 	if not fusion.fused:return false
 	if mode=="attached":return eject()
@@ -52,10 +58,13 @@ func interact()->bool:
 
 func make_visual()->void:
 	if is_instance_valid(rig):return
-	rig=preload("res://scripts/rustcrawler_rig.gd").new();rig.name="Rustcrawler";add_child(rig);rig.scale=Vector3.ONE*1.6
+	rig=preload("res://scripts/rustcrawler_rig.gd").new();rig.name="Rustcrawler"
+	rig.source_head=fusion.sequence.articulation.pivots.Cabeza
+	add_child(rig)
 func use_spider_collider()->void:
-	if collider==null:collider=CapsuleShape3D.new();collider.radius=.25;collider.height=.58
-	game.robots.naoya.collision.shape=collider;game.robots.naoya.collision.position=Vector3.UP*.32
+	if collider==null:collider=CapsuleShape3D.new()
+	collider.radius=rig.body_radius;collider.height=maxf(collider.radius*2,rig.visual_height)
+	game.robots.naoya.collision.shape=collider;game.robots.naoya.collision.position=Vector3.UP*(collider.height/2+.02)
 	game.player.motion_mode=CharacterBody3D.MOTION_MODE_FLOATING
 	game.player.up_direction=normal
 	if is_instance_valid(fusion.hurt_area):fusion.hurt_area.collision_layer=0
@@ -67,10 +76,12 @@ func eject()->bool:
 	mecha_height=game.robots.naoya.collision.shape.height
 	forward=game.facing_forward().normalized();normal=Vector3.UP;previous_yaw=game.yaw
 	start_position=head.global_position+forward*.7
+	make_visual()
 	# Do not eject a collider into a roof or masonry.
-	var test:=SphereShape3D.new();test.radius=.31
-	var query:=PhysicsShapeQueryParameters3D.new();query.shape=test;query.transform.origin=start_position+Vector3.UP*.32;query.collision_mask=1;query.exclude=[game.player.get_rid()]
-	if not game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():tell("CABEZA / salida obstruida");return false
+	var test:=CapsuleShape3D.new();test.radius=rig.body_radius;test.height=maxf(test.radius*2,rig.visual_height)
+	var query:=PhysicsShapeQueryParameters3D.new();query.shape=test;query.transform.origin=start_position+Vector3.UP*(test.height/2+.02);query.collision_mask=1;query.exclude=[game.player.get_rid()]
+	if not game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():
+		rig.queue_free();rig=null;tell("CABEZA / salida obstruida");return false
 	fusion.combat.interrupted();fusion.boost_time=0;game.dash_time=0;game.block=false
 	game.attack_buffer=0;game.ability_buffer=0;game.jump_buffer=0
 	view_manager().restore();head.hide();fusion.sequence.set_engine_active(false)
@@ -246,7 +257,7 @@ func restore_energy()->void:
 func update_visual(delta:float)->void:
 	if not is_instance_valid(rig):return
 	rig.global_position=game.player.global_position
-	rig.global_basis=game.player.global_basis*Basis(Vector3.UP,PI).scaled(Vector3.ONE*1.6)
+	rig.global_basis=game.player.global_basis*Basis(Vector3.UP,PI)
 	rig.tick(delta,game.player,normal,game.player.velocity.length()>.2,smoothstep(0,.65,elapsed) if mode=="ejecting" else (1-smoothstep(.3,.8,elapsed) if mode=="returning" else 1.0),airborne)
 	rig.camouflage(cloak_time>0)
 
@@ -351,7 +362,12 @@ func camera_update(camera:Camera3D,delta:float)->void:
 	camera.global_position=eye
 	camera.global_basis=Basis.looking_at(view,normal)
 	camera.near=.035 if first_person else .08;camera.fov=float(game.preferences.values.fov)
+	if not is_instance_valid(vision):
+		vision=preload("res://scripts/spider_vision.gd").new();add_child(vision);vision.setup(game,camera)
+	vision.update(vision_mode,delta)
 func cleanup()->void:
+	if is_instance_valid(vision):vision.release();vision.queue_free()
+	vision=null
 	restore_energy()
 	clear_scan()
 	if is_instance_valid(rig):rig.queue_free()
@@ -361,7 +377,7 @@ func view_manager()->RefCounted:
 	return game.session.arena.camera_view if "session" in game else game.camera_view
 func update_portrait()->void:
 	if not local_view() or not is_instance_valid(game.interface.identity):return
-	if active() and is_instance_valid(rig):game.interface.identity.set_robot_portrait(rig,1.6,-1,1.1)
+	if active() and is_instance_valid(rig):game.interface.identity.set_robot_portrait(rig,1.0,-1,rig.visual_height)
 	elif is_instance_valid(fusion.sequence):game.interface.identity.set_robot_portrait(fusion.sequence._fusion_root,fusion.sequence._fusion_root.scale.x,-1,4.0)
 func reset()->void:
 	if active():
@@ -369,8 +385,9 @@ func reset()->void:
 		view_manager().restore()
 	cleanup();mode="attached";cloak_time=0;scan_time=0;dormant=0;fall_speed=0;scan_cd=0;cloak_cd=0;return_cd=0
 	airborne=false;air_velocity=Vector3.ZERO;detach_time=0;game.jump_buffer=0
+	vision_mode=0
 func snapshot()->Dictionary:
-	return {"mode":mode,"elapsed":elapsed,"origin":mecha_origin,"yaw":mecha_yaw,"mecha_hp":mecha_hp,"mecha_height":mecha_height,"normal":normal,"forward":forward,"heading_yaw":previous_yaw,"airborne":airborne,"dormant":dormant,"scan_time":scan_time,"scan_cd":scan_cd,"scan_revision":scan_revision,"cloak_time":cloak_time,"cloak_cd":cloak_cd}
+	return {"mode":mode,"elapsed":elapsed,"origin":mecha_origin,"yaw":mecha_yaw,"mecha_hp":mecha_hp,"mecha_height":mecha_height,"normal":normal,"forward":forward,"heading_yaw":previous_yaw,"airborne":airborne,"vision_mode":vision_mode,"dormant":dormant,"scan_time":scan_time,"scan_cd":scan_cd,"scan_revision":scan_revision,"cloak_time":cloak_time,"cloak_cd":cloak_cd}
 func accept(data:Dictionary,delta:float)->void:
 	var incoming:String=data.get("mode","attached")
 	if incoming=="attached":
@@ -378,7 +395,7 @@ func accept(data:Dictionary,delta:float)->void:
 		return
 	is_replica=true
 	var new_head:bool=not active()
-	for key in ["mode","elapsed","mecha_hp","mecha_height","normal","forward","airborne","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
+	for key in ["mode","elapsed","mecha_hp","mecha_height","normal","forward","airborne","vision_mode","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
 		if data.has(key):set(key,data[key])
 	previous_yaw=float(data.get("heading_yaw",0))
 	mecha_origin=data.get("origin",Vector3.ZERO);mecha_yaw=float(data.get("yaw",0))

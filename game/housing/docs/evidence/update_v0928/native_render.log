@@ -1,0 +1,26 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_12/SeedBuilding_02/FacadeDetails/@MultiMeshInstance3D@9544" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+CAPTURE district_trees_grass_day
+CAPTURE vegetation_close
+CAPTURE vegetation_night
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/Laboratorio/@CharacterBody3D@14040/RigVisualHolder/Alien_Naoya_Rig_Combat/Armature/Skeleton3D/AlienCharacter" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PunchLine · módulos de fusión cargados: 112
+CAPTURE spider_reference_scale
+CAPTURE spider_walking_rigid_armour
+CAPTURE spider_first_person
+CAPTURE vision_normal
+CAPTURE vision_night
+CAPTURE vision_thermal_visible
+CAPTURE vision_thermal_occluded
+THERMAL_PIXELS visible=105 occluded=0
+CAPTURE vision_xray_occluded
+XRAY_PIXELS occluded_target=665
+CAPTURE seeded_house_and_yard
+CAPTURE house_before_damage
+CAPTURE destructible_wall_opening
+CAPTURE collapsed_building
+RENDER_RESULT native Forward+; rigid reference mesh; 4 camera modes; masked owner; tree/grass lighting; destruction

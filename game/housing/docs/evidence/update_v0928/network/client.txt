@@ -1,0 +1,11 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/SpiderNetworkTest/OnlineArena/PunchLine/DistrictHousing/GeneratedBuildings/lot_12/SeedBuilding_01/Interiors/@MultiMeshInstance3D@8112" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/SpiderNetworkTest/OnlineArena/PunchLine/DistrictHousing/GeneratedPaths/lot_17_SeedBuilding_02" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PunchLine · módulos de fusión cargados: 112
+PunchLine · módulos de fusión cargados: 112
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player411241794/FusionController/@Node3D@25244/Fusion_Final_2x/Despiece_Rust_Vanguard/ROOT/ARM_RIGHT_shoulder_corrected_forward_axis/ONE_DOT_WHITE_SHOULDER_ACTUAL_HINGE/ONE_DOT_ACTUAL_WHITE_SHOULDER_tripo_part_10/tripo_part_10" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS client received completion after authoritative snapshots

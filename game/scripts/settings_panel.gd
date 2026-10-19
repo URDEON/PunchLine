@@ -9,7 +9,7 @@ var awaiting:=""
 var key_button:Button
 var notice:Label
 var fade:Tween
-const LABELS:={"forward":"Avanzar","back":"Retroceder","left":"Izquierda","right":"Derecha","jump":"Saltar","walk":"Caminar","block":"Bloquear","dash":"Dash","character":"Personaje","ability1":"Habilidad 1","ability2":"Habilidad 2","ability3":"Habilidad 3","ability4":"Habilidad 4","transform":"Transformación","emote":"Emotes","kogane":"Kogane","interact":"Interactuar","lock":"Lock / mirada independiente"}
+const LABELS:={"spider_vision":"Visión de la araña","forward":"Avanzar","back":"Retroceder","left":"Izquierda","right":"Derecha","jump":"Saltar","walk":"Caminar","block":"Bloquear","dash":"Dash","character":"Personaje","ability1":"Habilidad 1","ability2":"Habilidad 2","ability3":"Habilidad 3","ability4":"Habilidad 4","transform":"Transformación","emote":"Emotes","kogane":"Kogane","interact":"Interactuar","lock":"Lock / mirada independiente"}
 func skin()->StyleBoxFlat:
  var box:=StyleBoxFlat.new();box.bg_color=Color("102632");box.border_color=Color("467987");box.set_border_width_all(1);box.border_width_bottom=4;box.shadow_color=Color(0,0,0,.35);box.shadow_size=6;box.shadow_offset=Vector2(3,4);box.set_corner_radius_all(5);box.set_content_margin_all(10);return box
 func button(text:String,callback:Callable)->Button:
@@ -39,9 +39,14 @@ func show_category(id:String)->void:
  notice.text={"video":"Luz, suavizado y presentación. Vista 3D interactiva.","audio":"Mezcla por canales; las barras representan el volumen elegido.","camera":"La lente corporal es exclusiva de la primera persona del Sentinel.","interface":"Escala, animación y ayudas; los cambios se guardan al instante.","controls":"Selecciona una acción y pulsa una tecla. C / clic central: lock por defecto."}[id]
  match id:
   "video":
+   caption("Calidad general · luz, vegetación y efectos")
+   var preset:=OptionButton.new();preset.name="graphics_preset";fields.add_child(preset)
+   for title in ["Rendimiento","Equilibrado","Alto"]:preset.add_item(title)
+   preset.selected=int(preferences.values.graphics_preset);preset.item_selected.connect(func(value:int)->void:preferences.set_preset(value);show_category("video"))
+   toggle("debris_enabled","Escombros visuales")
    toggle("fullscreen","Pantalla completa");toggle("vsync","Sincronización vertical");toggle("fps","Mostrar FPS")
    var quality:=OptionButton.new();quality.name="quality";fields.add_child(quality)
-   for title in ["Rendimiento / sin MSAA","Equilibrado / MSAA 2×","Calidad / MSAA 4×"]:quality.add_item(title)
+   for title in ["Sin MSAA","MSAA 2×","MSAA 4×"]:quality.add_item(title)
    quality.selected=int(preferences.values.quality);quality.item_selected.connect(func(value:int)->void:preferences.set_value("quality",value))
    toggle("effects","Partículas y estelas")
    caption("Pasto en zonas verdes")
