@@ -114,6 +114,11 @@ func impact_local(slot: int,point: Vector3) -> void:
 		ground_burst(ground,.7,tint)
 
 func mega_local(data: Dictionary) -> void:
+	if data.stage=="critical_blast":
+		var blast:=preload("res://scripts/critical_blast.gd").new()
+		game.get_parent().add_child(blast);blast.global_position=data.point;blast.wave.position.y=-data.point.y+.12
+		dust.crown(data.point-Vector3.UP*1.4,4.0);dust.puff(data.point,4.0)
+		game.fusion.impulse(data.point,2.5);return
 	if data.stage == "land":
 		if enabled(): dust.crown(data.point,1.05); dust.puff(data.point,1.1)
 		return

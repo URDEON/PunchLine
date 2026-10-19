@@ -16,6 +16,9 @@ var ambience: AudioStreamPlayer
 var audio_bank := preload("res://scripts/combat_audio_bank.gd").new()
 var audio_events: Array[Dictionary] = []
 var ambient_reference := false
+var foot_contacts:Dictionary={}
+var contact_clock:=0.0
+var robot_contacts:Dictionary={}
 var mecha_dust: Node3D
 var ui_streams := {"click":preload("res://assets/audio/v098/ui/click1.ogg"),"open":preload("res://assets/audio/v098/ui/switch1.ogg"),"close":preload("res://assets/audio/v098/ui/click2.ogg"),"hover":preload("res://assets/audio/v098/ui/rollover1.ogg")}
 var streams := {
@@ -46,9 +49,9 @@ var streams := {
 	"recover":preload("res://assets/audio/v096/recovery.wav")
 }
 const MECHA_REFERENCES={
- "mecha_step_0":preload("res://assets/audio/mecha_v0928/step_heavy_0.wav"),
- "mecha_step_1":preload("res://assets/audio/mecha_v0928/step_heavy_1.wav"),
- "mecha_step_2":preload("res://assets/audio/mecha_v0928/step_heavy_2.wav"),
+ "mecha_step_0":preload("res://assets/audio/mecha_v0929/step_contact_0.wav"),
+ "mecha_step_1":preload("res://assets/audio/mecha_v0929/step_contact_1.wav"),
+ "mecha_step_2":preload("res://assets/audio/mecha_v0929/step_contact_2.wav"),
  "mecha_armor":preload("res://assets/audio/mecha_v0928/armor_impact_0.wav"),
  "mecha_crash":preload("res://assets/audio/mecha_v0928/armor_impact_1.wav"),
  "mecha_servo_1":preload("res://assets/audio/mecha_v0928/servo_assembly_0.wav"),
@@ -110,7 +113,7 @@ func sound(id: String, pos: Vector3, volume: float = 0.0) -> void:
 	if bool(game.preferences.values.reference_audio) and MECHA_REFERENCES.has(id):selected={"stream":MECHA_REFERENCES[id],"pitch":1.0,"reference":true}
 	if (not streams.has(id) and selected.is_empty()) or float(cooldowns.get(id,0)) > 0:
 		return
-	cooldowns[id] = 0.06 if id != "glass" else 0.12
+	cooldowns[id] = .18 if id=="block" else (.12 if id=="glass" else .06)
 	var voice := pool[cursor]
 	for candidate in pool:
 		if not candidate.playing:
@@ -123,7 +126,7 @@ func sound(id: String, pos: Vector3, volume: float = 0.0) -> void:
 	var combat := not selected.is_empty()
 	voice.bus = "Combat" if combat else "SFX"
 	voice.unit_size = 8.0 if combat else 4.0
-	voice.volume_db = (-8.0 if combat else -10.0)+volume
+	voice.volume_db = (-8.0 if combat else -10.0)+volume+(-12.0 if id=="block" else 0.0)
 	voice.pitch_scale = float(selected.pitch) if combat else rng.randf_range(0.97,1.03)
 	voice.set_meta("event_id",id)
 	var follow: Node3D
@@ -134,7 +137,7 @@ func sound(id: String, pos: Vector3, volume: float = 0.0) -> void:
 				if pos.distance_to(enemy.body.global_position) < .2: follow = enemy.body; break
 	voice.set_meta("follow_source",follow)
 	voice.play()
-	audio_events.append({"id":id,"stream":voice.stream.resource_path,"pitch":voice.pitch_scale,"bus":voice.bus,"position":pos})
+	audio_events.append({"id":id,"stream":voice.stream.resource_path,"pitch":voice.pitch_scale,"bus":voice.bus,"position":pos,"volume_db":voice.volume_db,"time":contact_clock})
 	if audio_events.size() > 64: audio_events.pop_front()
 	played += 1
 	if id in ["heavy","burst","glass"]: duck = 0.22
@@ -216,14 +219,36 @@ func crystal_break(panel_transform: Transform3D, size: Vector2, impact: bool) ->
 		var spread := 1.0 if impact else 0.32
 		effects.append({"node":shard,"life":0.8,"velocity":panel_transform.basis*Vector3(rng.randf_range(-3,3),rng.randf_range(0.5,3),rng.randf_range(-2,2))*spread,"spin":Vector3(rng.randf_range(-8,8),rng.randf_range(-8,8),0),"material":material})
 
+func planted_step(side:String,point:Vector3,heavy:bool)->bool:
+	if game.hp<=0 or game.player.velocity.slide(Vector3.UP).length()<.12:return false
+	var last:Dictionary=foot_contacts.get(side,{})
+	if not last.is_empty() and (contact_clock-float(last.time)<.30 or point.distance_to(last.point)<.12):return false
+	foot_contacts[side]={"time":contact_clock,"point":point}
+	var variant:int=played%3
+	sound("mecha_step_"+str(variant) if heavy else ("step" if side=="L" else "step2"),point,-3.0 if heavy else -12.0)
+	return true
+
+func robot_contacts_without_ik()->void:
+	if not game.player.is_on_floor() or game.dash_time>0 or game.attack_anim>0 or not game.robots.current.has("grounding"):robot_contacts.clear();return
+	var grounding:Node=game.robots.current.grounding
+	for side in grounding.feet:
+		var point:Vector3=grounding.foot_point(grounding.feet[side])
+		var query:=PhysicsRayQueryParameters3D.create(point+Vector3.UP*.25,point-Vector3.UP*.4,1|512);query.exclude=[game.player.get_rid()]
+		var hit:Dictionary=get_world_3d().direct_space_state.intersect_ray(query)
+		var contact:bool=not hit.is_empty() and hit.normal.y>.65 and point.y-hit.position.y<.11
+		if contact and not bool(robot_contacts.get(side,false)):planted_step(side,hit.position,true)
+		robot_contacts[side]=contact
+
 func tick(delta: float) -> void:
+	contact_clock+=delta
+	if game.robots.active and not game.fusion.busy() and not bool(game.preferences.values.robot_grounding):robot_contacts_without_ik()
 	for voice in pool:
 		if not voice.playing or not voice.has_meta("follow_source"): continue
 		var follow: Node3D = voice.get_meta("follow_source")
 		if voice.playing and is_instance_valid(follow): voice.global_position = follow.global_position
 	var distance: float = game.player.position.distance_to(last_step_position)
 	last_step_position = game.player.position
-	if not game.fusion.busy() and distance < 1.0 and game.player.is_on_floor() and game.dash_time <= 0 and game.skill_active == "" and not game.presentation.busy():
+	if not game.robots.active and not game.fusion.busy() and distance < 1.0 and game.player.is_on_floor() and game.dash_time <= 0 and game.skill_active == "" and not game.presentation.busy():
 		step_distance += distance
 		var stride := 1.05 if game.input_pressed("walk") or game.block else 1.9
 		if step_distance >= stride:

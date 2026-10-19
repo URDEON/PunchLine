@@ -43,6 +43,7 @@ var voice_index := 0
 var numbers: Array[Dictionary] = []
 var telemetry := {"rendered_players":0}
 
+var loading:=true
 var world_settings:Dictionary=preload("res://scripts/world_config.gd").current()
 var seed_field:LineEdit
 var density_field:OptionButton
@@ -50,12 +51,15 @@ var night_field:CheckButton
 var destructible_field:CheckButton
 
 func _ready() -> void:
-	name = "OnlineArena"
+	var loading_screen:=preload("res://scripts/world_loading.gd").new();add_child(loading_screen)
+	get_viewport().disable_3d=true
+	await get_tree().process_frame
+	name = "OnlineArena";process_priority=200;process_physics_priority=0
 	add_child(preferences); preferences.setup(self)
 	actor_root = Node3D.new(); actor_root.name = "Players"; add_child(actor_root)
 	map = preload("res://scripts/punchline_map.gd").new(); map.name = "PunchLine"; add_child(map)
 	# Colisiones y materiales del mismo recurso editable utilizado en la 0.9.10.
-	map.setup(self)
+	await map.setup_async(self,loading_screen)
 	var sunlight := DirectionalLight3D.new(); sunlight.name="ArenaSun"; sunlight.rotation_degrees = Vector3(-55,-30,0)
 	sunlight.light_color = Color("fff0dc"); sunlight.light_energy = 1.05; sunlight.shadow_enabled = true; add_child(sunlight)
 	var world := WorldEnvironment.new(); world.environment = Environment.new()
@@ -79,7 +83,7 @@ func _ready() -> void:
 	for index in range(8):
 		var voice := AudioStreamPlayer3D.new(); voice.bus = "Combat"; voice.max_distance = 40; voice.unit_size = 8; voice.volume_db = -8
 		add_child(voice); voices.append(voice)
-	build_ui(); refresh_ui(); startup_arguments.call_deferred()
+	build_ui(); refresh_ui();loading=false;get_viewport().disable_3d=false;loading_screen.finish();startup_arguments.call_deferred()
 
 func startup_arguments() -> void:
 	var args := OS.get_cmdline_user_args()
@@ -162,6 +166,7 @@ func build_ui() -> void:
 	destructible_field=CheckButton.new();destructible_field.text="Edificios destructibles";destructible_field.button_pressed=bool(world_settings.destructible);column.add_child(destructible_field)
 	host_button = button("CREAR PARTIDA",func() -> void:
 		preload("res://scripts/world_config.gd").select({"seed":seed_field.text,"density":density_field.selected,"night":night_field.button_pressed,"destructible":destructible_field.button_pressed})
+		await configure_world_async(preload("res://scripts/world_config.gd").current())
 		var error: Error = session.host_game(name_field.text,character_choice.selected,int(port_field.value))
 		if error != OK: message_text = "No se pudo crear: "+error_string(error); refresh_ui())
 	column.add_child(host_button)
@@ -212,6 +217,7 @@ func toggle_menu() -> void:
 	if menu_open: session.local_input(Vector2.ZERO,yaw,0)
 
 func _unhandled_input(event: InputEvent) -> void:
+	if loading:return
 	if event is InputEventKey and event.keycode == KEY_ALT and not menu_open and session.actors.has(session.local_id()):
 		var current: Node3D = session.actors[session.local_id()]
 		current.hud_cursor = event.pressed; Input.mouse_mode = current.hud_mouse_mode(); return
@@ -256,6 +262,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("emote"): actor.interface.toggle_emotes()
 
 func _physics_process(delta: float) -> void:
+	if loading:return
 	if not session.active: return
 	send_timer += delta
 	if send_timer >= 1.0/30.0:
@@ -265,6 +272,7 @@ func _physics_process(delta: float) -> void:
 		if not menu_open and session.actors.has(session.local_id()) and not session.actors[session.local_id()].menu_blocked and not session.actors[session.local_id()].interface.emote_wheel.visible:
 			axis = Input.get_vector("left","right","forward","back")
 			if Input.is_action_pressed("block"): flags |= 1
+			if Input.is_physical_key_pressed(KEY_G):flags |= 32
 			if Input.is_action_pressed("walk"): flags |= 2
 			if Input.is_action_pressed("ability1"): flags |= 8
 			if zoom <= .55: flags |= 16
@@ -272,6 +280,7 @@ func _physics_process(delta: float) -> void:
 		session.local_input(axis,yaw,flags,pitch)
 
 func _process(delta: float) -> void:
+	if loading:return
 	hit_flash = maxf(0,hit_flash-delta); hit_notice_time = maxf(0,hit_notice_time-delta)
 	hit_indicator.text = last_hit if hit_notice_time > 0 else ""
 	telemetry.rendered_players = session.actors.size()
@@ -334,3 +343,14 @@ func configure_world(settings:Dictionary)->void:
 	map.ambience.configure_environment(get_node("ArenaEnvironment").environment,bool(world_settings.night))
 	if seed_field!=null:
 		seed_field.text=String(world_settings.seed);density_field.selected=int(world_settings.density);night_field.button_pressed=world_settings.night;destructible_field.button_pressed=world_settings.destructible
+
+func configure_world_async(settings:Dictionary)->void:
+	var normalized:Dictionary=preload("res://scripts/world_config.gd").normalized(settings)
+	if map.world_settings==normalized:configure_world(normalized);return
+	loading=true
+	var loading_screen:=preload("res://scripts/world_loading.gd").new();add_child(loading_screen)
+	await get_tree().process_frame
+	world_settings=normalized
+	await map.rebuild_world_async(world_settings,loading_screen)
+	configure_world(world_settings)
+	loading=false;get_viewport().disable_3d=false;loading_screen.finish()

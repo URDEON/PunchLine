@@ -1,0 +1,16 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PASS real human controller enters, crosses rooms and exits lot_00/SeedBuilding_01
+PASS real human controller enters, crosses rooms and exits lot_01/SeedBuilding_01
+PASS real human controller enters, crosses rooms and exits lot_02/SeedBuilding_03
+PASS real human controller enters, crosses rooms and exits lot_04/SeedBuilding_03
+PASS real human controller enters, crosses rooms and exits lot_07/SeedBuilding_03
+PASS real human controller enters, crosses rooms and exits lot_08/SeedBuilding_02
+PASS real human controller enters, crosses rooms and exits lot_08/SeedBuilding_06
+PASS real human controller enters, crosses rooms and exits lot_08/SeedBuilding_10
+PASS real human controller enters, crosses rooms and exits lot_08/SeedBuilding_11
+PASS real human controller enters, crosses rooms and exits lot_13/SeedBuilding_02
+PASS access checked with the original human character
+RESULT 11/11 real human door and furnished-route checks

@@ -67,6 +67,8 @@ func build(g: Node3D,root: Node3D,b: Dictionary) -> void:
 		if level<int(b.storeys)-1:
 			staircase(g,stairs,y,metal,wood)
 			route.append_array([Vector3(-2.1,y+.025,2.5),Vector3(-2.1,y+HALF_RISE+.025,-4.15),Vector3(2.1,y+HALF_RISE+.025,-4.15),Vector3(2.1,y+FLOOR_STEP+.025,2.5)])
+		var furnished:Node3D=g.category(room,"FurnishedFrontRoom");furnished.position.y=y
+		g.furnish(furnished,13.6,1.1,front,float(b.door_width),CLEAR_HEIGHT,false,level==0,style)
 		var threshold: Node3D=g.part(doors,"Threshold" if level==0 else "UpperThreshold",Vector3(b.door_width,.035,.32),Vector3(0,y-.0175,front-.06),floor_mat)
 		threshold.set_meta("storey",level)
 		g.detail(doors,Vector3(b.door_width+.24,.12,.16),Vector3(0,y+b.door_height+.06,front+.03),wood)

@@ -1,4 +1,7 @@
 extends Node
+var pending_district:Array[Dictionary]=[]
+var world_configuring:=false
+var world_config_queue:Array[Dictionary]=[]
 # Todos los RPC usan esta ruta estable; ningún cliente puede transmitir daño o posiciones.
 signal changed
 signal message(text: String)
@@ -145,7 +148,7 @@ func upsert_player(id: int, spec: Dictionary) -> void:
 
 func acknowledge_roster() -> void:
 	if OS.get_environment("NAOYA_NET_QA") == "1": print("ACK_ATTEMPT ",local_id()," ",active," ",server," ",actors.keys()," peers ",multiplayer.get_peers())
-	if not active or server or not actors.has(local_id()) or not multiplayer.get_peers().has(1): return
+	if world_configuring or arena.loading or not active or server or not actors.has(local_id()) or not multiplayer.get_peers().has(1): return
 	var generations := {}
 	for id in roster: generations[id] = int(roster[id].generation)
 	roster_ready.rpc_id(1,generations)
@@ -189,7 +192,7 @@ func submit_input(sequence: int, axis: Vector2, view_yaw: float, flags: int, vie
 func apply_input(id: int, sequence: int, axis: Vector2, view_yaw: float, flags: int, view_pitch: float = -.24) -> void:
 	if not actors.has(id): return
 	var actor: Node3D = actors[id]
-	if sequence <= int(actor.input_state.seq) or not axis.is_finite() or not is_finite(view_yaw) or not is_finite(view_pitch) or flags < 0 or flags > 31:
+	if sequence <= int(actor.input_state.seq) or not axis.is_finite() or not is_finite(view_yaw) or not is_finite(view_pitch) or flags < 0 or flags > 63:
 		telemetry.rejected_inputs += 1; return
 	actor.pitch = clampf(view_pitch,-1.35,1.35) if flags & 16 != 0 else clampf(view_pitch,-1.05,.25)
 	actor.input_state = {"axis":axis.limit_length(1),"yaw":wrapf(view_yaw,-PI,PI),"flags":flags,"seq":sequence,"time":actor.clock}
@@ -268,6 +271,7 @@ func play_effect(kind: String, point: Vector3, source: int, target: int, damage:
 	if source == local_id() and damage > 0: arena.last_hit = "+%d" % int(damage); arena.hit_notice_time = .5
 
 func _physics_process(delta: float) -> void:
+	if arena==null or arena.loading:return
 	# El transporte y la carga inicial son fases diferentes. Importar varios rigs
 	# en un equipo lento no debe notificarse como fallo de IP/firewall a los 12 s.
 	if connecting and Time.get_ticks_msec()/1000.0-connect_started > (60.0 if active else 30.0):
@@ -379,13 +383,29 @@ func mecha_skill_effect(id: int,data: Dictionary) -> void:
 
 @rpc("authority","call_remote","reliable",0)
 func district_damage(packet:Dictionary)->void:
-	if active and not server:arena.map.destruction.apply_packet(packet,true)
+	if active and not server:
+		if arena.loading or world_configuring:pending_district.append({"state":false,"data":packet})
+		else:arena.map.destruction.apply_packet(packet,true)
 @rpc("authority","call_remote","reliable",0)
 func district_state(data:Dictionary)->void:
-	if active and not server:arena.map.destruction.accept_state(data)
+	if active and not server:
+		if arena.loading or world_configuring:pending_district.append({"state":true,"data":data})
+		else:arena.map.destruction.accept_state(data)
 
 @rpc("authority","call_remote","reliable",0)
 func configure_world(settings:Dictionary)->void:
-	if active and not server:
-		arena.configure_world(settings)
+	if not active or server:return
+	world_config_queue.append(settings.duplicate(true))
+	if world_configuring:return
+	world_configuring=true
+	var rebuilt:=false
+	while not world_config_queue.is_empty() and active and not server:
+		var next:Dictionary=world_config_queue.pop_front()
+		rebuilt=rebuilt or arena.map.world_settings!=preload("res://scripts/world_config.gd").normalized(next)
+		await arena.configure_world_async(next)
 		if arena.map.destruction.revision>0:arena.map.destruction.reset_world()
+	for packet in pending_district:
+		if packet.state:arena.map.destruction.accept_state(packet.data)
+		else:arena.map.destruction.apply_packet(packet.data,true)
+	pending_district.clear();world_configuring=false
+	if rebuilt:acknowledge_roster()

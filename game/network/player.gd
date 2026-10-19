@@ -59,6 +59,7 @@ func _ready() -> void:
 	add_child(robot_clearance); robot_clearance.setup(self)
 	add_child(performance_capture); performance_capture.setup(self)
 	add_child(fusion); fusion.setup(self)
+	add_child(self_destruct);self_destruct.setup(self)
 	add_child(skill_vfx); skill_vfx.setup(self)
 	if model_kind == 1:
 		locomotion_tree.active = false; rig_anim.active = false; rig_holder.hide()
@@ -76,9 +77,12 @@ func _ready() -> void:
 	interface.set_process_input(peer_id == session.local_id()); interface.visible = peer_id == session.local_id()
 	tag = Label3D.new(); player.add_child(tag); tag.position.y = 2.7; tag.billboard = BaseMaterial3D.BILLBOARD_ENABLED; tag.font_size = 28; tag.pixel_size = .006
 	model.rotation.y = float(metadata.yaw); yaw = model.rotation.y; camera_lock = true; sync_rig_transform()
+	if not session.is_host():
+		rig_holder.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF
+		player.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF
 	physical_ragdoll.set_process(session.is_host())
 	if model_kind == 1: robots.naoya.physical_ragdoll.set_process(session.is_host())
-	set_process_input(false); set_process_unhandled_input(false); process_priority = 150
+	set_process_input(false); set_process_unhandled_input(false); process_priority = 150;loading=false
 
 func _unhandled_input(_event: InputEvent) -> void: pass
 func _physics_process(_delta: float) -> void: pass
@@ -97,7 +101,7 @@ func grounded_for_actions() -> bool:
 
 func input_pressed(action: String) -> bool:
 	if clock-float(input_state.time) > .35: return false
-	return int(input_state.flags) & int({"block":1,"walk":2,"attack":4,"ability1":8}.get(action,0)) != 0
+	return int(input_state.flags) & int({"block":1,"walk":2,"attack":4,"ability1":8,"self_destruct":32}.get(action,0)) != 0
 func first_person_enabled() -> bool:
 	return clock-float(input_state.time) <= .35 and int(input_state.flags) & 16 != 0
 
@@ -111,8 +115,9 @@ func simulate(delta: float) -> void:
 	spawn_protection = maxf(0,spawn_protection-delta); held_time = maxf(0,held_time-delta)
 	yaw = float(input_state.yaw)
 	for action in action_queue:
-		if hp <= 0: break
+		if hp <= 0 or self_destruct.armed: break
 		if action=="interact":fusion.spider.interact();continue
+		if action=="lock":camera_lock=not camera_lock;continue
 		if fusion.spider.active():
 			if action=="vision":fusion.spider.cycle_vision()
 			if action=="jump":fusion.spider.request_jump()
@@ -123,7 +128,7 @@ func simulate(delta: float) -> void:
 		elif action == "jump": jump_buffer = .12
 		elif action == "dash": start_dash()
 		elif action.begins_with("ability"): buffered_ability = int(action.trim_prefix("ability")); ability_buffer = .16
-		elif action == "transform": moves.transform_input()
+		elif action == "transform" and not self_destruct.eligible(): moves.transform_input()
 		elif action == "kogane": presentation.toggle_kogane()
 		elif action == "lock": camera_lock = not camera_lock
 		elif action.begins_with("emote:"): presentation.start_emote(int(action.trim_prefix("emote:")))
@@ -208,6 +213,7 @@ func receive_hit(attacker: Node3D,profile: Dictionary) -> bool:
 	return true
 func on_player_death() -> void:
 	if not session.is_host():return
+	self_destruct.reset()
 	if fusion.spider.active():fusion.spider.destroy();return
 	death_timer=maxf(death_timer,3.85 if fusion.fused else 3.0)
 	if fusion.fused:fusion.break_apart()
@@ -242,6 +248,7 @@ func make_snapshot() -> Dictionary:
 	var full := {}
 	for key in ["max_hp","charge","form","ult_time","ult_duration","ult_msg","ult_msg_time","domain_used","skill_active","skill_phase","skill_timer","skill_dir","skill3_cd","skill4_cd","player_wakeup_protection","wakeup_anim","rush_hits","camera_lock"]: full[key] = get(key)
 	full["fusion"] = fusion.state()
+	full["self_destruct_state"]=self_destruct.state()
 	full["clearance"] = robot_clearance.snapshot()
 	full["moves"] = {"key":moves.key,"stage":moves.stage,"remaining":moves.remaining,"direction":moves.direction,"cooldowns":moves.cooldowns.duplicate(),"phase_charge":moves.phase_charge,"freeze":moves.player_freeze,"domain_time":moves.domain_time,"domain_center":moves.domain_center,"domain_saved":moves.domain_saved_player,"strike_revision":moves.projection.strike_revision,"strike_index":moves.projection.strike_index,"close_variant":moves.projection.close_variant}
 	full["robot"] = {"cooldowns":robots.cooldowns.duplicate(),"attack":robots.attack.duplicate(true),"elapsed":robots.elapsed,"guard":robots.guard_time,"counter":robots.counter_time,"response":robots.counter_response,"recovery":robots.counter_recovery,"revision":robots.revision,"sidestep":robots.sidestep_time,"sidestep_dir":robots.sidestep_direction}
@@ -295,7 +302,7 @@ func apply_streamed_pose(state: Dictionary,before: Dictionary,after: Dictionary,
 func apply_full_state(data: Dictionary) -> void:
 	var old_form := form
 	for key in data:
-		if key not in ["moves","robot","presentation","fusion","clearance"]: set(key,data[key])
+		if key not in ["moves","robot","presentation","fusion","clearance","self_destruct_state"]: set(key,data[key])
 	if old_form != form:
 		presentation.begin_transition(old_form)
 		presentation.show_form(form)
@@ -307,6 +314,7 @@ func apply_full_state(data: Dictionary) -> void:
 		var prediction: float = clampf(Time.get_ticks_msec()/1000.0-float(states[-1].received),0,.1)
 		fusion_data.elapsed = minf(11.5,float(fusion_data.elapsed)+prediction)
 	fusion.apply_state(fusion_data)
+	self_destruct.accept(data.get("self_destruct_state",{}))
 	if data.has("clearance") and not fusion.spider.active():
 		robot_clearance.apply_snapshot(data.clearance)
 		if fusion.fused: fusion.sync_hurtbox()

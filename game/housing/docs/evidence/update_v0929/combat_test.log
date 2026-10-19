@@ -1,0 +1,11 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PunchLine · módulos de fusión cargados: 112
+PASS production fusion enters combat state
+PASS real hammer input starts against generated wall
+PASS hammer animation contact destroys physical house wall
+PASS real cannon deployment starts
+PASS released physical cannon projectile damages generated building
+RESULT 5/5 real combat-to-building checks

@@ -43,18 +43,19 @@ func show_category(id:String)->void:
    var preset:=OptionButton.new();preset.name="graphics_preset";fields.add_child(preset)
    for title in ["Rendimiento","Equilibrado","Alto"]:preset.add_item(title)
    preset.selected=int(preferences.values.graphics_preset);preset.item_selected.connect(func(value:int)->void:preferences.set_preset(value);show_category("video"))
-   toggle("debris_enabled","Escombros visuales")
+   toggle("debris_enabled","Fragmentos y escombros pequeños")
    toggle("fullscreen","Pantalla completa");toggle("vsync","Sincronización vertical");toggle("fps","Mostrar FPS")
    var quality:=OptionButton.new();quality.name="quality";fields.add_child(quality)
    for title in ["Sin MSAA","MSAA 2×","MSAA 4×"]:quality.add_item(title)
    quality.selected=int(preferences.values.quality);quality.item_selected.connect(func(value:int)->void:preferences.set_value("quality",value))
    toggle("effects","Partículas y estelas")
-   caption("Pasto en zonas verdes")
+   caption("Hierba alta en zonas verdes")
    var grass:=OptionButton.new();grass.name="grass_quality";fields.add_child(grass)
    for title in ["Desactivado","Bajo / 36 m","Medio / 58 m","Alto / 78 m"]:grass.add_item(title)
    grass.selected=int(preferences.values.grass_quality);grass.item_selected.connect(func(value:int)->void:preferences.set_value("grass_quality",value))
    slider("grass_wind","Viento en el pasto",0,1,.05)
-   slider("fog_amount","Niebla volumétrica",0,1,.05)
+   toggle("fog_enabled","Niebla volumétrica · desactivar = Sin niebla")
+   slider("fog_amount","Densidad de niebla",0,1,.05)
   "audio":
    for pair in [["master","Volumen general"],["combat","Impactos de combate"],["sfx","Efectos"],["music","Música"],["ambient","Ambiente del dominio"]]:slider(pair[0],pair[1],0,1,.01)
    toggle("reference_audio","Sonidos de tus referencias")
@@ -65,6 +66,7 @@ func show_category(id:String)->void:
   "interface":
    slider("hud_scale","Escala del HUD",.5,1,.05);slider("ui_motion","Movimiento de menús",0,1,.05);toggle("hints","Ayuda de controles");toggle("kogane_comments","Comentarios de Kogane");toggle("hold_attack","Encadenar M1 al mantener clic")
   "controls":
+   caption("Robot en estado crítico: mantener G 3 s para autodestruirse")
    for action in preferences.bindings:
     var id_action:String=action;var row:=HBoxContainer.new();fields.add_child(row);var label:=Label.new();label.text=LABELS.get(action,action);label.size_flags_horizontal=Control.SIZE_EXPAND_FILL;label.add_theme_font_size_override("font_size",12);row.add_child(label)
     var node:=button(preferences.key_name(action),func()->void:pass);node.custom_minimum_size.x=90;row.add_child(node)

@@ -67,7 +67,9 @@ func _process_modification()->void:
   if planted:
    solve_chain(foot,target);foot.point=foot_point(foot);foot.error=foot.point.distance_to(target)
   var contacting:bool=planted and foot.error<.035
-  if contacting and not foot.contact:contacts+=1
+  if contacting and not foot.contact:
+   contacts+=1
+   game.feedback.planted_step("L" if foot==feet.L else "R",foot.ground,true)
   foot.contact=contacting
   for index in foot.bones:pose_cache[index]={"position":rig.get_bone_pose_position(index),"rotation":rig.get_bone_pose_rotation(index)}
  # Leela/George deforman los pies mediante controles IK independientes.

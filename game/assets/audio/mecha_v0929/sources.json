@@ -1,0 +1,10 @@
+{
+  "source": "../mecha_v0928/step_heavy_{0,1,2}.wav",
+  "trim_start_seconds": [
+    0.145,
+    0.245,
+    0.245
+  ],
+  "trim_end_seconds": 0.66,
+  "purpose": "One contact transient at the foot plant, no lead-in movement or silence. Original supplied recordings preserved."
+}

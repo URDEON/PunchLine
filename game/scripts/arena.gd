@@ -54,6 +54,13 @@ func setup(game: Node3D, floor_mesh: MeshInstance3D) -> void:
 	build_terrain(floor_mesh)
 	urban = preload("res://scripts/urban_arena.gd").new(); add_child(urban); urban.setup(game,self)
 
+func setup_async(game:Node3D,floor_mesh:MeshInstance3D,loading:CanvasLayer)->void:
+	host=game;laboratory=false;floor_mesh.get_parent().queue_free()
+	punchline=preload("res://scripts/punchline_map.gd").new();add_child(punchline)
+	await punchline.setup_async(game,loading)
+	urban=preload("res://scripts/punchline_interactions.gd").new();add_child(urban);urban.setup(game,self)
+	zones={"plaza":Vector3(-80,.15,-50),"boulevard":Vector3(-80,.15,-80),"fall":Vector3(-80,220,-50)}
+
 func wall(game: Node3D, position: Vector3, size: Vector3) -> void:
 	var body := StaticBody3D.new()
 	add_child(body)

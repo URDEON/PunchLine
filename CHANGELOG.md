@@ -1,5 +1,18 @@
 # Cambios de PunchLine
 
+## 0.9.29
+
+- Araña: colisión cilíndrica que contiene la armadura, barridos al cambiar de superficie, subida de bordes, aterrizaje desde techos y cámara libre con C/clic central en DEMO y online.
+- Caminata: 2.4 m/s, trípodes más lentos y predictivos; mallas rígidas, pies y cámara comparten la pose renderizada. Las réplicas animan las patas cada paso de física.
+- Audio: pisadas mecánicas breves disparadas al plantar el pie, sin repetición en reposo; escudo reducido 12 dB.
+- Autodestrucción crítica: aviso al 20 % de vida, G mantenida 3 s, alarma y apagado de 3 s, explosión de hasta 23 m, onda expansiva, daño, ragdoll y muerte/reaparición habitual. La autoridad de red valida el temporizador.
+- Carga animada por etapas: semilla en un hilo de trabajo, viviendas y hierba construidas por lotes; también al recibir otro mundo online.
+- Hierba de 0.52–1.045 m antes de variación de escala, 106 elementos de parque por defecto, nubes y opción persistente Sin niebla.
+- Interiores con cocina, camas, sofás, mesas, estantes, alfombras y luminarias cálidas. Diez casas predeterminadas incorporan puertas normales de 1.10 × 2.15 m; se preservan los accesos medidos del mecha y las torres.
+- Destrucción por celdas locales, materiales y grietas, conectividad estructural y capacidad de apoyo. Tejados y losas se desprenden físicamente; el derrumbe produce daño ambiental decidido por el host.
+- Escombros convexos con fricción, masa e impulso, fragmentos en reposo acotados y acumulaciones físicas de colapso iguales para todos los clientes. Agujeros, escombros y daño se reconstruyen para nuevas conexiones y se limpian al reiniciar.
+- Se serializa la recepción de mundos y se confirma el roster después de terminar su generación; el estado destruido no se pierde durante la carga.
+
 ## 0.9.28
 
 - Rustcrawler rígido con su geometría original, escala ajustada a la cabeza e IK de alcance limitado.

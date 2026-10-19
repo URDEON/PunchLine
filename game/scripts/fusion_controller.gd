@@ -304,17 +304,16 @@ func resolve_heavy_contact() -> void:
 func on_foot_contact(_side: String, point: Vector3) -> void:
 	if damage.missing(2 if _side == "Der" else 3):return
 	if replica or not fused or not game.player.is_on_floor() or game.moves.player_freeze > 0: return
-	if Vector2(game.player.velocity.x,game.player.velocity.z).length() < .12:
-		var actual_step: bool = is_instance_valid(sequence) and sequence.articulation != null and sequence.articulation.gait.initialized and _side in sequence.articulation.gait.contacts
-		if not actual_step: return
+	if Vector2(game.player.velocity.x,game.player.velocity.z).length()<.12:return
 	var ray := PhysicsRayQueryParameters3D.create(point+Vector3.UP*.22,point-Vector3.UP*.95,1)
 	ray.exclude = [game.player.get_rid()]
 	var ground := game.get_world_3d().direct_space_state.intersect_ray(ray)
 	if ground.is_empty() or ground.normal.dot(Vector3.UP) < .55: return
-	point = ground.position; step_index += 1
+	point=ground.position
+	if not game.feedback.planted_step(_side,point,true):return
+	step_index+=1
 	last_step_variant = (last_step_variant+1)%3
-	game.feedback.sound("mecha_step_"+str(last_step_variant),point,1)
-	game.feedback.sound("fusion_step",point,-5)
+	game.feedback.sound("fusion_step",point,-13)
 	sequence.dust.puff(point,.35,Color(.68,.63,.53),false)
 	if game.online_session() != null: game.online_session().fusion_step.rpc(point,.55,step_index)
 	else: impulse(point,.55)

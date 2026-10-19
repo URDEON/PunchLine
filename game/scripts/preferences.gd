@@ -7,7 +7,7 @@ var values := {
 	"master": 0.85, "sfx": 0.85, "music": 0.55, "sensitivity": 1.0,
 	"fov": 75.0, "shake": 0.35, "effects": true, "hints": true,
 	"hold_attack": true, "fps": false, "quality": 1, "hud_scale": 0.8,
-	"graphics_preset":1,"debris_enabled":true, "grass_quality":2, "grass_wind":.55, "fog_amount":.35,
+	"graphics_preset":1,"debris_enabled":true, "grass_quality":2, "grass_wind":.55, "fog_enabled":true,"fog_amount":.35,
 	"camera_distance": 5.5, "kogane_comments": true, "ambient": 0.35,
 	"procedural_gait": true, "human_grounding": true, "robot_grounding": true, "body_lens": .14, "combat": 1.0, "reference_audio": true, "legacy_map": false
 }

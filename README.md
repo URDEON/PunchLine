@@ -1,21 +1,28 @@
 # PunchLine
 
-Proyecto editable de PunchLine **0.9.28**, con el juego completo y District500.
+Proyecto editable de PunchLine **0.9.29**, con el juego completo y District500.
 Semillas que cambian la distribución, viviendas con patios, tiendas y edificios de hasta cuatro plantas.
-La configuración predeterminada genera **87 edificios**, 186 árboles y pasto con viento.
+La configuración predeterminada genera **87 edificios**, 186 árboles, hierba alta con viento y 106 decoraciones de parque.
 
 Rustcrawler conserva el modelo de referencia con cuerpo rígido a escala de la cabeza,
-seis patas procedurales, salto y cámaras ajustables. **T** cambia visión nocturna, térmica y rayos X.
-Casas destructibles por ataques del mecha, sincronizadas en multijugador, y nuevos sonidos
-de pasos, impactos y ensamblaje extraídos de las grabaciones enviadas.
+seis patas procedurales a menor cadencia, salto, colisión de cuerpo completo y cámaras ajustables.
+**C / clic central** libera la cámara de la araña. **T** cambia visión nocturna, térmica y rayos X.
+Destrucción localizada con grietas, pérdida de soporte, tejados que caen, daño por derrumbe
+y escombros físicos persistentes, sincronizada en multijugador. Pisadas por contacto real y escudo más suave.
+
+Con un 20 % de vida o menos, el robot desbloquea la autodestrucción: mantener **G durante 3 s**,
+alarma y apagado durante otros **3 s**, explosión con onda expansiva, daño y ragdoll.
+La creación del mundo muestra una pantalla de carga animada por etapas.
 
 **AJUSTES → IMAGEN** incluye presets Rendimiento, Equilibrado y Alto, con iluminación,
-vegetación, sombras, niebla volumétrica y efectos.
+vegetación, sombras, niebla volumétrica y efectos. **Sin niebla** se conserva al cambiar de preset.
+Nubes animadas y viviendas amuebladas; diez viviendas predeterminadas tienen puertas de tamaño humano.
 
 Abrir **game/project.godot** con Godot 4.4.1 y una GPU compatible con Vulkan.
 La ciudad anterior fue retirada.
 
-- [Novedades, controles y pruebas de 0.9.28](game/housing/docs/update_v0928.md)
+- [Novedades, controles y pruebas de 0.9.29](game/housing/docs/update_v0929.md)
+- [Investigación y sistema de destrucción](game/housing/docs/destruction_v0929.md)
 - [Niebla volumétrica y pasto](game/housing/docs/greenery.md)
 - [Semillas, cabeza araña y controles](game/housing/docs/rustcrawler.md)
 - [Casas para el mecha y contactos procedurales](game/housing/docs/confinement.md)

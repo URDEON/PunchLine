@@ -1,0 +1,85 @@
+{
+  "version": "0.9.29",
+  "passed": 185,
+  "total": 185,
+  "suites": [
+    {
+      "suite": "feature_test",
+      "passed": 29,
+      "total": 29
+    },
+    {
+      "suite": "camera_jump_test",
+      "passed": 26,
+      "total": 26
+    },
+    {
+      "suite": "camera_audio_test",
+      "passed": 10,
+      "total": 10
+    },
+    {
+      "suite": "critical_test",
+      "passed": 13,
+      "total": 13
+    },
+    {
+      "suite": "destruction_test",
+      "passed": 21,
+      "total": 21
+    },
+    {
+      "suite": "scenery_test",
+      "passed": 20,
+      "total": 20
+    },
+    {
+      "suite": "human_access_test",
+      "passed": 11,
+      "total": 11
+    },
+    {
+      "suite": "combat_test",
+      "passed": 5,
+      "total": 5
+    },
+    {
+      "suite": "multistorey_test",
+      "passed": 29,
+      "total": 29
+    },
+    {
+      "suite": "frontend_test",
+      "passed": 17,
+      "total": 17
+    },
+    {
+      "suite": "world_reset_test",
+      "passed": 3,
+      "total": 3
+    },
+    {
+      "suite": "thermal_surface_test",
+      "passed": 1,
+      "total": 1
+    }
+  ],
+  "network": {
+    "passed": 39,
+    "total": 39,
+    "host_exit": 0,
+    "client_exit": 0,
+    "transport": "two real local ENet peers / UDP 17969"
+  },
+  "total_checks": 224,
+  "layouts_audited": 10,
+  "native_renderer": "Forward+ Vulkan 1.4.305 / Mesa llvmpipe",
+  "native_captures": 12,
+  "clean_zip": {
+    "frontend_passed": 17,
+    "frontend_total": 17,
+    "initial_dummy_texture_diagnostics": 55,
+    "persistent_script_errors": 0,
+    "cached_reimport_errors": 0
+  }
+}

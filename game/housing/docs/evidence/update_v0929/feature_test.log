@@ -1,0 +1,47 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS same text seed reproduces the complete runtime plan
+PASS different seeds change architecture and building dimensions
+PASS density changes the selected house count
+PASS six measured mecha houses retain size and position across seeds
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PunchLine · módulos de fusión cargados: 112
+PASS real mecha fusion starts
+PASS E action ejects the real mecha head
+PASS head unfolds into controllable spider with 50 HP
+PASS supplied mesh uses six procedural two-bone legs
+PASS original head removed and mecha kneels dormant
+PASS parked mecha remains in the world while head moves
+PASS spider uses its own physical collider and surface movement
+PASS camouflage activates with duration and cooldown
+PASS damage reduces spider health and breaks camouflage
+PASS scanner pulse starts with cooldown
+PASS scanner cannot bypass its cooldown
+PASS remote reattachment rejected
+SURFACE 24 position=(600.0, 0.035, -1.0) up=(0.0, 1.0, 0.0)
+SURFACE 49 position=(600.0, 0.035, -1.999999) up=(0.0, 1.0, 0.0)
+SURFACE 74 position=(600.0, 1.155, -2.815) up=(0.0, 0.0, 1.0)
+SURFACE 99 position=(600.0, 2.154999, -2.815) up=(0.0, 0.0, 1.0)
+SURFACE 124 position=(600.0, 3.154998, -2.815) up=(0.0, 0.0, 1.0)
+SURFACE 149 position=(600.0, 3.815, -1.535001) up=(0.0, -1.0, 0.0)
+SURFACE 174 position=(600.0, 3.815, -0.535001) up=(0.0, -1.0, 0.0)
+SURFACE 199 position=(600.0, 3.815, 0.464999) up=(0.0, -1.0, 0.0)
+PASS complete armour volume stays clear throughout the floor/wall/ceiling route
+PASS continuous movement climbs from floor onto real wall
+PASS continuous movement transitions from wall onto underside of ceiling
+PASS spider stays below ceiling without crossing its collider
+PASS spider can also walk on the roof surface
+HOUSE_TRACE 0 at=(6.209831, -0.085, 0.0) normal=(0.0, 1.0, 0.0)
+HOUSE_TRACE 60 at=(5.634834, 2.794998, 0.0) normal=(1.0, 0.0, -0.00003)
+HOUSE_CLIMB (5.609657, 4.249083, -0.000015) normal=(0.227071, 0.973878, -0.000007)
+PASS continuous movement climbs a generated house wall onto its actual pitched roof
+PASS nearby head can reconnect along clear path
+RETURN_DIAGNOSTIC position=(-97.70008, 0.037163, -62.4) mecha=(-97.70008, 0.012163, -64.6) head=(-97.28402, 2.237058, -64.40155) height=4.0 notice=RECONEXIÓN / restableciendo el núcleo del Sentinel
+PASS reattachment restores active mecha and original health pool
+PASS reattachment restores original collider and gravity
+PASS head visible again after reconnection
+PASS head can eject again after reconnection cooldown
+PASS losing 50 HP enters the original player death state
+PASS normal player respawn completes after spider destruction
+RESULT 29/29 world and real head-spider checks

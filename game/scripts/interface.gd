@@ -583,6 +583,8 @@ func confirm_hit(damage: float) -> void:
 	hit_life = 0.14
 
 func tick(delta: float) -> void:
+	var critical_message:String=game.self_destruct.message()
+	if not critical_message.is_empty():game.ult_msg=critical_message;game.ult_msg_time=.2
 	health_text.text = "%d / %d" % [maxi(0,int(game.hp)),int(game.max_hp)]
 	if identity.holographic != game.robots.active:
 		identity.set_holographic(game.robots.active)

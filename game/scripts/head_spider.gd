@@ -1,7 +1,7 @@
 extends Node3D
 ## The authoritative player collider becomes the head. The parked chassis stays in world space.
 const MAX_HP:=50.0
-const SPEED:=4.5
+const SPEED:=2.4
 const RETURN_RANGE:=3.0
 var fusion:Node3D
 var game:Node3D
@@ -14,10 +14,13 @@ var mecha_height:=4.0
 var normal:=Vector3.UP
 var forward:=Vector3.FORWARD
 var previous_yaw:=0.0
+var view_forward:=Vector3.FORWARD
+var last_safe:=Transform3D.IDENTITY
+var blocked_transitions:=0
 var dormant:=0.0
 var rig:Node3D
 var parked:StaticBody3D
-var collider:CapsuleShape3D
+var collider:CylinderShape3D
 var scan_time:=0.0
 var scan_cd:=0.0
 var scan_revision:=0
@@ -60,25 +63,27 @@ func make_visual()->void:
 	if is_instance_valid(rig):return
 	rig=preload("res://scripts/rustcrawler_rig.gd").new();rig.name="Rustcrawler"
 	rig.source_head=fusion.sequence.articulation.pivots.Cabeza
+	rig.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF
 	add_child(rig)
+	process_priority=180
 func use_spider_collider()->void:
-	if collider==null:collider=CapsuleShape3D.new()
-	collider.radius=rig.body_radius;collider.height=maxf(collider.radius*2,rig.visual_height)
+	if collider==null:collider=CylinderShape3D.new()
+	collider.radius=rig.body_radius;collider.height=rig.visual_height+.025
 	game.robots.naoya.collision.shape=collider;game.robots.naoya.collision.position=Vector3.UP*(collider.height/2+.02)
 	game.player.motion_mode=CharacterBody3D.MOTION_MODE_FLOATING
 	game.player.up_direction=normal
 	if is_instance_valid(fusion.hurt_area):fusion.hurt_area.collision_layer=0
 func eject()->bool:
-	if fusion.cinematic or fusion.death_broken or game.hp<=0 or game.stun>0 or game.moves.player_freeze>0 or return_cd>0 or not game.player.is_on_floor() or fusion.boost_time>0:
+	if game.self_destruct.armed or fusion.cinematic or fusion.death_broken or game.hp<=0 or game.stun>0 or game.moves.player_freeze>0 or return_cd>0 or not game.player.is_on_floor() or fusion.boost_time>0:
 		tell("CABEZA / necesita apoyo y energía estabilizada");return false
 	var head:Node3D=fusion.sequence.articulation.pivots.Cabeza
 	mecha_origin=game.player.global_position;mecha_yaw=game.model.rotation.y;mecha_hp=game.hp
 	mecha_height=game.robots.naoya.collision.shape.height
-	forward=game.facing_forward().normalized();normal=Vector3.UP;previous_yaw=game.yaw
+	forward=game.facing_forward().normalized();normal=Vector3.UP;previous_yaw=game.yaw;view_forward=forward
 	start_position=head.global_position+forward*.7
 	make_visual()
 	# Do not eject a collider into a roof or masonry.
-	var test:=CapsuleShape3D.new();test.radius=rig.body_radius;test.height=maxf(test.radius*2,rig.visual_height)
+	var test:=CylinderShape3D.new();test.radius=rig.body_radius;test.height=maxf(.1,rig.visual_height)
 	var query:=PhysicsShapeQueryParameters3D.new();query.shape=test;query.transform.origin=start_position+Vector3.UP*(test.height/2+.02);query.collision_mask=1;query.exclude=[game.player.get_rid()]
 	if not game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():
 		rig.queue_free();rig=null;tell("CABEZA / salida obstruida");return false
@@ -91,7 +96,7 @@ func eject()->bool:
 	airborne=false;air_velocity=Vector3.ZERO;detach_time=0;fall_speed=0
 	update_portrait()
 	game.player.global_position=start_position;game.player.velocity=forward*2.0+Vector3.UP*1.4
-	use_spider_collider();game.player.reset_physics_interpolation()
+	use_spider_collider();last_safe=game.player.global_transform;game.player.reset_physics_interpolation()
 	tell("RUSTCRAWLER / 50 HP · 1 escanear · 2 camuflaje · E volver cerca del mecha")
 	game.feedback.sound("mecha_servo_2",mecha_origin,-5)
 	return true
@@ -105,13 +110,58 @@ func ray(from:Vector3,to:Vector3,extra:Array[RID]=[])->Dictionary:
 	var query:=PhysicsRayQueryParameters3D.create(from,to,1)
 	var excluded:Array[RID]=[game.player.get_rid()];excluded.append_array(extra);query.exclude=excluded
 	return game.get_world_3d().direct_space_state.intersect_ray(query)
-func turn_surface(wanted:Vector3)->void:
-	if wanted.length()<.9:return
+func pose_fits(pose:Transform3D)->bool:
+	var query:=PhysicsShapeQueryParameters3D.new();query.shape=collider
+	query.transform=pose*game.robots.naoya.collision.transform
+	query.collision_mask=1;query.margin=.008;query.exclude=[game.player.get_rid()]
+	return game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty()
+
+func try_surface(point:Vector3,wanted:Vector3)->bool:
+	if wanted.length()<.9 or collider==null:return false
 	var next:Vector3=wanted.normalized()
-	var rotation:Quaternion=Quaternion(forward,PI) if normal.dot(next)<-.95 else Quaternion(normal,next)
-	forward=rotation*forward;normal=next
-	forward=(forward-normal*forward.dot(normal)).normalized()
-	game.player.up_direction=normal
+	var rotation:=Quaternion(forward,PI) if normal.dot(next)<-.95 else Quaternion(normal,next)
+	var heading:Vector3=(rotation*forward).slide(next).normalized()
+	var end:=Transform3D(Basis(heading.cross(next),next,-heading).orthonormalized(),point+next*.035)
+	var start:Transform3D=game.player.global_transform
+	var angle:float=acos(clampf(normal.dot(next),-1,1))
+	# Test the whole armour at every point of the turn, including the swept path.
+	# Lift the centre around inside corners rather than pushing it through masonry.
+	var steps:int=maxi(1,maxi(ceili(angle/.13),ceili(start.origin.distance_to(end.origin)/.10)))
+	var lip_clearance:bool=angle<.1 and (end.origin-start.origin).dot(normal)>.025
+	if lip_clearance:steps=maxi(12,steps)
+	var offset:Vector3=game.robots.naoya.collision.position
+	var start_center:Vector3=start*offset;var end_center:Vector3=end*offset
+	var previous:Transform3D=start
+	for i in range(1,steps+1):
+		var t:float=float(i)/steps
+		var basis:Basis=Basis(start.basis.get_rotation_quaternion().slerp(end.basis.get_rotation_quaternion(),t))
+		var clearance:float=.16 if angle<.1 and (end.origin-start.origin).dot(normal)>.025 else 0.0
+		var lift:Vector3=(normal+next)*sin(PI*t)*minf(.25,angle*.16)+normal*sin(PI*t)*clearance
+		if normal.dot(next)<-.9:lift+=next*sin(PI*t)*.50
+		var center:Vector3=start_center.lerp(end_center,t)+lift
+		if lip_clearance:
+			var outward:Vector3=normal*((end_center-start_center).dot(normal)+.06)
+			var tangent:Vector3=(end_center-start_center).slide(normal)
+			if t<.35:center=start_center+outward*(t/.35)
+			elif t<.80:center=start_center+outward+tangent*((t-.35)/.45)
+			else:center=end_center+normal*.06*(1-(t-.80)/.20)
+		var candidate:=Transform3D(basis,center-basis*offset)
+		if not pose_fits(candidate):
+			set_meta("blocked_turn",{"stage":"overlap","pose":candidate,"normal":next});blocked_transitions+=1;return false
+		var sweep:=PhysicsShapeQueryParameters3D.new();sweep.shape=collider;sweep.transform=previous*game.robots.naoya.collision.transform
+		sweep.motion=(candidate*offset)-(previous*offset);sweep.collision_mask=1;sweep.margin=.004;sweep.exclude=[game.player.get_rid()]
+		var safe:PackedFloat32Array=game.get_world_3d().direct_space_state.cast_motion(sweep)
+		if safe[0]<.999:
+			set_meta("blocked_turn",{"stage":"sweep","pose":candidate,"normal":next,"fraction":safe[0]});blocked_transitions+=1;return false
+		previous=candidate
+	forward=heading;view_forward=(rotation*view_forward).slide(next).normalized();normal=next
+	game.player.up_direction=normal;game.player.global_transform=end
+	last_safe=end
+	return true
+
+func turn_surface(wanted:Vector3)->void:
+	try_surface(game.player.global_position-wanted.normalized()*.035,wanted)
+
 func axis()->Vector2:
 	if "input_state" in game:
 		return game.input_state.axis if game.clock-float(game.input_state.time)<=.35 else Vector2.ZERO
@@ -130,28 +180,49 @@ func move_airborne(delta:float,direction:Vector3)->void:
 		var hit:KinematicCollision3D=game.player.get_slide_collision(i)
 		var surface:Vector3=hit.get_normal()
 		if air_velocity.dot(surface)<-.1 and (detach_time<=0 or (surface.y>.7 and air_velocity.y<0)):
-			var rotation:Quaternion=Quaternion(forward,PI) if normal.dot(surface)<-.95 else Quaternion(normal,surface)
-			var heading:Vector3=rotation*forward
-			var basis:=Basis(heading.cross(surface).normalized(),surface,-heading).orthonormalized()
-			var point:Vector3=hit.get_position()+surface*.025
-			var query:=PhysicsShapeQueryParameters3D.new();query.shape=collider
-			query.transform=Transform3D(basis,point)*game.robots.naoya.collision.transform
-			query.collision_mask=1;query.exclude=[game.player.get_rid()]
-			# Pivot around the actual contact only if the reoriented capsule fits.
-			if game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():
+			if try_surface(hit.get_position(),surface):
 				airborne=false;air_velocity=Vector3.ZERO;fall_speed=0
-				turn_surface(surface);game.player.global_position=point
 				return
 		air_velocity=air_velocity.slide(surface)
 	game.player.velocity=air_velocity
 
+func step_over_lip(direction:Vector3,delta:float)->void:
+	# Slabs, curbs and stair lips are below the wall probes; lift by their measured
+	# height only after a vertical shape sweep proves the armour can clear them.
+	if normal.dot(Vector3.UP)<.9 or direction.length()<.1:return
+	var origin:Vector3=game.player.global_position
+	var ahead:Vector3=origin+direction*(collider.radius+.12)
+	var top:Dictionary=ray(ahead+normal*.30,ahead-normal*.02)
+	if top.is_empty() or top.normal.dot(normal)<.9:return
+	var rise:float=(top.position-origin).dot(normal)+.035
+	if rise<.06 or rise>.27:return
+	var pose:Transform3D=game.player.global_transform;pose.origin+=normal*rise
+	if not pose_fits(pose):return
+	var sweep:=PhysicsShapeQueryParameters3D.new();sweep.shape=collider;sweep.transform=game.player.global_transform*game.robots.naoya.collision.transform;sweep.motion=normal*rise;sweep.collision_mask=1;sweep.exclude=[game.player.get_rid()]
+	if game.get_world_3d().direct_space_state.cast_motion(sweep)[0]<.999:return
+	game.player.global_transform=pose
+
+func climb_lip(direction:Vector3)->bool:
+	if normal.dot(Vector3.UP)>.9:return false
+	var origin:Vector3=game.player.global_position
+	for advance in [.32,.46,.60]:
+		var point:Vector3=origin+direction*advance
+		var lip:Dictionary=ray(point+normal*.85,point-normal*.10)
+		if lip.is_empty() or lip.normal.dot(normal)<.85:continue
+		var out:float=(lip.position-origin).dot(normal)
+		if out>.025 and out<.30 and try_surface(lip.position,lip.normal):return true
+	return false
+
 func walk_surface(delta:float)->void:
 	var change:float=wrapf(game.yaw-previous_yaw,-PI,PI);previous_yaw=game.yaw
-	forward=forward.rotated(normal,change).normalized()
-	var right:Vector3=forward.cross(normal).normalized();var input:Vector2=axis()
-	var direction:Vector3=right*input.x-forward*input.y
+	view_forward=view_forward.rotated(normal,change).normalized()
+	if game.camera_lock:forward=view_forward
+	var right:Vector3=view_forward.cross(normal).normalized();var input:Vector2=axis()
+	var direction:Vector3=right*input.x-view_forward*input.y
 	if game.stun>0:direction=Vector3.ZERO
-	if direction.length()>.01:direction=direction.normalized()
+	if direction.length()>.01:
+		direction=direction.normalized()
+		if not game.camera_lock:forward=forward.slerp(direction,1-exp(-delta*12)).normalized()
 	var origin:Vector3=game.player.global_position
 	if not airborne and game.jump_buffer>0 and game.stun<=0:
 		var support:Dictionary=ray(origin+normal*.12,origin-normal*.16)
@@ -165,38 +236,43 @@ func walk_surface(delta:float)->void:
 		game.player.global_basis=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
 		return
 	if direction.length()>.1:
+		step_over_lip(direction,delta);origin=game.player.global_position
 		var front:Dictionary={}
 		# The inner probe sees narrow roof overhangs before the capsule wedges under them.
-		for offset in [.08,.32]:
-			front=ray(origin+normal*offset,origin+normal*offset+direction*.72)
+		for offset in [.48,.36,.08]:
+			front=ray(origin+normal*offset,origin+normal*offset+direction*(collider.radius+.14))
 			if not front.is_empty():break
 		if not front.is_empty() and front.normal.dot(direction)<-.3 and front.normal.dot(normal)<.95:
-			turn_surface(front.normal);game.player.global_position=front.position+normal*.035
-			right=forward.cross(normal).normalized();direction=(right*input.x-forward*input.y).normalized()
+			if try_surface(front.position,front.normal):
+				right=view_forward.cross(normal).normalized();direction=(right*input.x-view_forward*input.y).normalized()
 	var basis:=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
 	game.player.global_basis=basis
-	game.player.velocity=direction*SPEED-normal*(5.0+fall_speed)
+	game.player.velocity=direction*SPEED # FLOATING preserves slide speed; adhesion must not add tangential speed.
+	var before_move:Vector3=game.player.global_position
 	game.player.move_and_slide()
+	if direction.length()>.1 and game.player.global_position.distance_to(before_move)<SPEED*delta*.4:climb_lip(direction)
 	var support:Dictionary=ray(game.player.global_position+normal*.45,game.player.global_position-normal*.75)
 	if not support.is_empty():
 		fall_speed=0
-		turn_surface(support.normal)
-		game.player.global_position=support.position+normal*.025
+		try_surface(support.position,support.normal)
 	elif direction.length()>.1:
 		# Probe around a convex edge, e.g. wall -> roof, without teleporting through it.
 		var edge_origin:Vector3=game.player.global_position-normal*.18+direction*.48
 		var edge:Dictionary=ray(edge_origin,edge_origin-direction*1.0)
-		if not edge.is_empty():turn_surface(edge.normal);game.player.global_position=edge.position+normal*.025
+		if not edge.is_empty():
+			if not try_surface(edge.position,edge.normal):lose_support(delta)
 		else:lose_support(delta)
 	else:lose_support(delta)
-	game.player.global_basis=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
+	var pose:=Transform3D(Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized(),game.player.global_position)
+	if pose_fits(pose):game.player.global_transform=pose;last_safe=pose
+	elif pose_fits(last_safe):
+		game.player.global_transform=last_safe;game.player.velocity=Vector3.ZERO
+		if direction.length()>.1:climb_lip(direction)
 
 func lose_support(delta:float)->void:
 	# Once an edge has no supporting surface, ordinary world gravity takes over.
-	normal=Vector3.UP;game.player.up_direction=normal
-	forward=forward.slide(normal).normalized()
-	if forward.length()<.1:forward=Vector3.FORWARD
-	fall_speed=minf(35,fall_speed+24*delta)
+	airborne=true;detach_time=.08;air_velocity=game.player.velocity.slide(normal)-normal*.6
+	fall_speed=0
 
 func tick(delta:float)->void:
 	if not active():return
@@ -209,7 +285,7 @@ func tick(delta:float)->void:
 	if mode=="ejecting":
 		game.player.velocity+=Vector3.DOWN*16*delta;game.player.move_and_slide()
 		var hit:Dictionary=ray(game.player.global_position+Vector3.UP*.4,game.player.global_position-Vector3.UP*.15)
-		if not hit.is_empty() and elapsed>.3:game.player.global_position=hit.position+Vector3.UP*.025;game.player.velocity=Vector3.ZERO;mode="spider";elapsed=0
+		if not hit.is_empty() and elapsed>.3 and try_surface(hit.position,hit.normal):game.player.velocity=Vector3.ZERO;mode="spider";elapsed=0
 		elif elapsed>2.0:mode="spider";elapsed=0
 	elif mode=="spider":walk_surface(delta)
 	elif mode=="returning":
@@ -256,8 +332,6 @@ func restore_energy()->void:
 
 func update_visual(delta:float)->void:
 	if not is_instance_valid(rig):return
-	rig.global_position=game.player.global_position
-	rig.global_basis=game.player.global_basis*Basis(Vector3.UP,PI)
 	rig.tick(delta,game.player,normal,game.player.velocity.length()>.2,smoothstep(0,.65,elapsed) if mode=="ejecting" else (1-smoothstep(.3,.8,elapsed) if mode=="returning" else 1.0),airborne)
 	rig.camouflage(cloak_time>0)
 
@@ -338,7 +412,10 @@ func destroy()->void:
 func camera_update(camera:Camera3D,delta:float)->void:
 	var controls:Node3D=game.session.arena if "session" in game else game
 	var distance:float=controls.zoom
-	var heading:Vector3=forward.rotated(normal,wrapf(controls.yaw-previous_yaw,-PI,PI))
+	var heading:Vector3=view_forward.rotated(normal,wrapf(controls.yaw-previous_yaw,-PI,PI)).slide(normal).normalized()
+	if heading.length()<.01:heading=forward.slide(normal).normalized()
+	if heading.length()<.01:heading=Vector3.FORWARD.slide(normal).normalized()
+	if heading.length()<.01:heading=Vector3.RIGHT.slide(normal).normalized()
 	var pitch:float=clampf(controls.pitch,-1.35,1.35)
 	var view:Vector3=heading*cos(pitch)+normal*sin(pitch)
 	var origin:Vector3=game.player.get_global_transform_interpolated().origin
@@ -387,7 +464,7 @@ func reset()->void:
 	airborne=false;air_velocity=Vector3.ZERO;detach_time=0;game.jump_buffer=0
 	vision_mode=0
 func snapshot()->Dictionary:
-	return {"mode":mode,"elapsed":elapsed,"origin":mecha_origin,"yaw":mecha_yaw,"mecha_hp":mecha_hp,"mecha_height":mecha_height,"normal":normal,"forward":forward,"heading_yaw":previous_yaw,"airborne":airborne,"vision_mode":vision_mode,"dormant":dormant,"scan_time":scan_time,"scan_cd":scan_cd,"scan_revision":scan_revision,"cloak_time":cloak_time,"cloak_cd":cloak_cd}
+	return {"mode":mode,"elapsed":elapsed,"origin":mecha_origin,"yaw":mecha_yaw,"mecha_hp":mecha_hp,"mecha_height":mecha_height,"normal":normal,"forward":forward,"view_forward":view_forward,"heading_yaw":previous_yaw,"airborne":airborne,"vision_mode":vision_mode,"dormant":dormant,"scan_time":scan_time,"scan_cd":scan_cd,"scan_revision":scan_revision,"cloak_time":cloak_time,"cloak_cd":cloak_cd}
 func accept(data:Dictionary,delta:float)->void:
 	var incoming:String=data.get("mode","attached")
 	if incoming=="attached":
@@ -397,12 +474,19 @@ func accept(data:Dictionary,delta:float)->void:
 	var new_head:bool=not active()
 	for key in ["mode","elapsed","mecha_hp","mecha_height","normal","forward","airborne","vision_mode","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
 		if data.has(key):set(key,data[key])
-	previous_yaw=float(data.get("heading_yaw",0))
+	previous_yaw=float(data.get("heading_yaw",0));view_forward=data.get("view_forward",forward)
 	mecha_origin=data.get("origin",Vector3.ZERO);mecha_yaw=float(data.get("yaw",0))
 	make_visual();make_parked();prepare_energy();use_spider_collider()
 	if new_head:update_portrait()
 	game.player.global_basis=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
-	pose_chassis(delta);update_visual(delta)
+	pose_chassis(delta)
 	if scan_time>0 and scan_revision!=last_scan_revision:create_scan()
 	update_scan(delta)
+func _process(_delta:float)->void:
+	if not active() or not is_instance_valid(rig):return
+	var pose:Transform3D=game.player.global_transform if is_replica else game.player.get_global_transform_interpolated()
+	rig.global_transform=Transform3D(pose.basis*Basis(Vector3.UP,PI),pose.origin)
+	rig.render_contacts(1.0 if is_replica else Engine.get_physics_interpolation_fraction())
+func _physics_process(delta:float)->void:
+	if is_replica and active():update_visual(delta)
 func _exit_tree()->void:cleanup()

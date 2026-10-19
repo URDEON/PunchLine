@@ -170,6 +170,9 @@ func make(settings:Dictionary,source:Dictionary)->Dictionary:
      for i in range(0,indices.size(),3):paths.append(arrays(PackedVector2Array([piece[indices[i]],piece[indices[i+1]],piece[indices[i+2]]])))
    if not valid or paths.is_empty():continue
    placed+=1;b.id="SeedBuilding_%02d"%placed;b.entry=entry;b.path_triangles=paths
+   # Human-scale doorways are an explicit minority; measured mecha houses stay intact.
+   if b.storeys==1 and b.archetype in ["small_residential","courtyard_home","terrace_home"] and (seed_text+lot.id+b.id).sha256_text().substr(0,6).hex_to_int()%4==0:
+    b.access="human_only";b.door_width=1.10;b.door_height=2.15
    var footprint:=PackedVector2Array()
    for corner in [Vector2(-b.width/2,-b.depth/2),Vector2(b.width/2,-b.depth/2),Vector2(b.width/2,b.depth/2),Vector2(-b.width/2,b.depth/2)]:
     var p:Array=world_point(b,corner);footprint.append(Vector2(p[0],p[1]))
@@ -177,5 +180,5 @@ func make(settings:Dictionary,source:Dictionary)->Dictionary:
    b.validated_envelope=b.support_footprint.duplicate(true);b.plot_footprint=arrays(shape(b,.7,b.yard_depth))
    plan.buildings.append(b);occupied.append(item(shape(b,.7,b.yard_depth)))
    for triangle in paths:access_routes.append(item(poly(triangle)))
- plan.seed=seed_text;plan.seed_text=seed_text;plan.density=density;plan.revision="seeded-neighbourhood-1"
+ plan.seed=seed_text;plan.seed_text=seed_text;plan.density=density;plan.revision="seeded-neighbourhood-2-furnished"
  return plan

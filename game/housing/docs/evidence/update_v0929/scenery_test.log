@@ -1,0 +1,26 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PASS visible animated loading spans seed, houses, greenery, collisions and camera readiness
+PASS default district has tall geometric grass rather than short ground tufts
+PASS grass culling bounds contain the taller wind-blown blades
+PASS deterministic district includes park furniture, planters, stones, lamps and clouds
+PASS all park details clear roads, parking, buildings and measured access routes
+PASS Sin niebla disables ambient and volumetric fog together
+PASS graphics presets preserve explicit no-fog mode
+PASS quality changes preserve authoritative vegetation and park furniture collision
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human-only door keeps its normal physical width
+PASS human door variants coexist with the six preserved measured mecha houses
+PASS generated residential rooms include usable furniture and kitchen geometry
+SCENERY_COUNTS houses=87 humans=10 trees=186 grass=189184 decor=106
+RESULT 20/20 loading, vegetation, interiors and fog checks

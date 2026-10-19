@@ -121,7 +121,9 @@ var preview_time := 0.0
 var preview_animation := ""
 var block_recoil_time := 0.0
 var player_wakeup_protection := 0.0
+var loading:=true
 var camera_lock := false
+var self_destruct:Node3D=preload("res://scripts/self_destruct.gd").new()
 var human_motion: SkeletonModifier3D
 var landing_anim := 0.0
 var wakeup_anim := 0.0
@@ -694,6 +696,9 @@ func update_enemy_rig_animation(enemy: Dictionary) -> void:
 		play_enemy_rig_animation(enemy, "UnarmedIdleAlert1", 0.12, 1.0)
 
 func _ready() -> void:
+	var loading_screen:=preload("res://scripts/world_loading.gd").new();add_child(loading_screen)
+	get_viewport().disable_3d=true
+	await get_tree().process_frame
 	tuning = tuning.duplicate(true)
 	add_child(preferences)
 	preferences.setup(self)
@@ -708,7 +713,7 @@ func _ready() -> void:
 	floor_body.add_child(collider)
 
 	add_child(arena)
-	arena.setup(self,floor_mesh)
+	await arena.setup_async(self,floor_mesh,loading_screen)
 
 	var sun := DirectionalLight3D.new()
 	sun.name = "ArenaSun"
@@ -882,13 +887,15 @@ func _ready() -> void:
 	add_child(robot_clearance); robot_clearance.setup(self)
 	add_child(performance_capture); performance_capture.setup(self)
 	add_child(fusion); fusion.setup(self)
+	add_child(self_destruct);self_destruct.setup(self)
 	add_child(skill_vfx); skill_vfx.setup(self)
 	add_child(interface)
 	interface.setup(self)
 	ui.remove_child(crosshair)
 	interface.screen.add_child(crosshair)
 	update_camera(1.0)
-	if arena.punchline != null: arena.punchline.finalize()
+	if arena.punchline != null:await arena.punchline.finalize()
+	loading=false;get_viewport().disable_3d=false;loading_screen.finish()
 	# Diagnóstico opcional, inactivo por defecto y sin coste durante el juego normal.
 	if OS.get_environment("PUNCHLINE_PERF_TRACE") == "1":
 		var probe_path := "res://qa/perf_fusion_trace.gd"
@@ -901,6 +908,8 @@ func _ready() -> void:
 func set_paused(value: bool) -> void:
 	paused = value
 	fusion.damage.set_paused(value)
+	if is_instance_valid(arena.punchline.destruction):arena.punchline.destruction.set_paused(value)
+	self_destruct.alarm.stream_paused=value
 	if skill_vfx.dust != null: skill_vfx.dust.paused = value
 	if is_instance_valid(skill_vfx.jets):
 		for emitter in skill_vfx.jets.trails: emitter.speed_scale = 0 if value else 1
@@ -1021,7 +1030,9 @@ func hud_mouse_mode() -> int:
 	return Input.MOUSE_MODE_VISIBLE if paused or hud_cursor or (interface != null and interface.emote_wheel != null and interface.emote_wheel.visible) else Input.MOUSE_MODE_CAPTURED
 
 func _unhandled_input(event: InputEvent) -> void:
+	if loading:return
 	if hp<=0 and not (event is InputEventKey and event.keycode==KEY_ESCAPE): return
+	if self_destruct.armed and not (event is InputEventMouseMotion or (event is InputEventKey and event.keycode==KEY_ESCAPE)):return
 	if event.is_action_released("ability1") and fusion.fused: fusion.combat.release_cannon()
 	if not paused and domain_inspector.input(event): return
 	if event is InputEventKey and event.keycode == KEY_ALT and not event.echo:
@@ -1047,6 +1058,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if fusion.spider.interact():return
 			arena.urban.interact(); return
 		if fusion.spider.active():
+			if event.is_action_pressed("lock"):camera_lock=not camera_lock;crosshair.visible=camera_lock
 			if event.is_action_pressed("spider_vision"):fusion.spider.cycle_vision()
 			if event.is_action_pressed("jump"):fusion.spider.request_jump()
 			for slot in range(1,3):
@@ -1064,7 +1076,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			get_tree().reload_current_scene()
 		if event.is_action_pressed("jump"):
 			jump_buffer = 0.12
-		if event.is_action_pressed("transform"):
+		if event.is_action_pressed("transform") and not self_destruct.eligible():
 			moves.transform_input()
 		if event.is_action_pressed("dash") and dash_cd <= 0 and can_start_action():
 			start_dash()
@@ -1411,11 +1423,16 @@ func update_skill(delta: float) -> void:
 				cancel_skill()
 
 func _physics_process(delta: float) -> void:
+	if loading:return
 	if not input_pressed("attack"): hud_attack_requires_release = false
 	if paused:
 		return
 
 	if interface.emote_wheel.visible and (stun > 0 or player_ragdoll or moves.player_freeze > 0): interface.close_emotes()
+	if self_destruct.tick(delta):
+		clock+=delta;feedback.tick(delta);skill_vfx.tick(delta)
+		for enemy in enemies:update_enemy(enemy,delta)
+		interface.tick(delta);return
 	if fusion.tick(delta):
 		feedback.tick(delta); skill_vfx.tick(delta)
 		if not fusion.cinematic: presentation.tick(delta)
@@ -1579,6 +1596,7 @@ func _physics_process(delta: float) -> void:
 	skills_label.text = moves.hud_text()
 
 func _process(delta: float) -> void:
+	if loading:return
 	if not paused and is_instance_valid(camera): update_camera(delta)
 	if not paused: domain_inspector.update(delta)
 
@@ -1721,7 +1739,24 @@ func rebirth_phase1() -> void:
 	jump_buffer = 0
 	ult_msg = "RENACIMIENTO · FASE 1 · EVOLUCIÓN 0%"
 
+func receive_environment_hit(amount:float,direction:Vector3,point:Vector3)->void:
+	if hp<=0 or player_wakeup_protection>0 or fusion.cinematic:return
+	if "spawn_protection" in self and float(get("spawn_protection"))>0:return
+	if fusion.spider.active():fusion.spider.take_damage(amount);return
+	hp=maxf(0,hp-amount);block=false;stun=maxf(stun,.8)
+	if fusion.fused:fusion.damage.record(amount,point)
+	else:
+		player.velocity=direction*7+Vector3.UP*2;player_ragdoll=true;player_ragdoll_time=1.6
+		player_ragdoll_impact={"kind":"horizontal","direction":direction,"side":1.0}
+		if form=="BASE" and is_instance_valid(physical_ragdoll):physical_ragdoll.start(player.velocity,player_ragdoll_impact)
+	if online_session()!=null:online_session().effect("heavy",int(get("peer_id")),int(get("peer_id")),amount)
+	else:feedback.sound("heavy",point,-4)
+	if hp<=0:
+		if ult_ready():rebirth_phase1()
+		else:on_player_death()
+
 func on_player_death() -> void:
+	self_destruct.reset()
 	if fusion.spider.active():fusion.spider.destroy();return
 	if fusion.fused:
 		fusion.break_apart(); return
@@ -1748,6 +1783,7 @@ func ult_hud_text() -> String:
 	return "ULT %d%%" % int(charge)
 
 func respawn_player() -> void:
+	self_destruct.reset()
 	if fusion.busy(): fusion.reset()
 	route_trial.cancel()
 	preview_time = 0

@@ -13,6 +13,7 @@ var hips:Array[Vector3]=[]
 var knees:Array[Vector3]=[]
 var feet_rest:Array[Vector3]=[]
 var feet_world:Array[Vector3]=[]
+var previous_feet_world:Array[Vector3]=[]
 var starts:Array[Vector3]=[]
 var targets:Array[Vector3]=[]
 var progress:Array[float]=[]
@@ -22,11 +23,15 @@ var knee_parts:Array[MeshInstance3D]=[]
 var foot_parts:Array[MeshInstance3D]=[]
 var render_meshes:Array[MeshInstance3D]=[]
 var materials:Array=[]
+var physics_pose:=Transform3D.IDENTITY
+var folded:Array[Vector3]=[]
 var initialized:=false
 var phase:=0
 var faded:=false
 var previous_origin:=Vector3.ZERO
 var previous_normal:=Vector3.UP
+var step_count:=0
+var max_target_error:=0.0
 var max_reach_error:=0.0
 
 func _ready()->void:build()
@@ -63,7 +68,7 @@ func build()->void:
   hips.append(hip*fit);knees.append(knee*fit);feet_rest.append(end*fit)
   skeleton.add_bone("Hip"+str(i));skeleton.set_bone_parent(1+i*2,0);skeleton.set_bone_rest(1+i*2,Transform3D(Basis.IDENTITY,hips[i]))
   skeleton.add_bone("Knee"+str(i));skeleton.set_bone_parent(2+i*2,1+i*2);skeleton.set_bone_rest(2+i*2,Transform3D(Basis.IDENTITY,knees[i]-hips[i]))
-  feet_world.append(Vector3.ZERO);starts.append(Vector3.ZERO);targets.append(Vector3.ZERO);progress.append(1.0)
+  feet_world.append(Vector3.ZERO);previous_feet_world.append(Vector3.ZERO);starts.append(Vector3.ZERO);targets.append(Vector3.ZERO);progress.append(1.0)
  for t in range(0,indices.size(),3):
   var centroid:Vector3=(vertices[indices[t]]+vertices[indices[t+1]]+vertices[indices[t+2]])/3
   var section:=0
@@ -104,7 +109,7 @@ func build()->void:
   var shape:=SphereMesh.new();shape.radius=.036*fit;shape.height=shape.radius*2;shape.radial_segments=12;shape.rings=6
   visual(self,"HipJoint"+str(i),shape,bearing).position=hips[i]
   var joint:MeshInstance3D=visual(self,"KneeJoint"+str(i),shape,bearing);joint.position=knees[i];knee_parts.append(joint)
- visual_height=.66211*fit;body_radius=maxf(.22,maxf(head_bounds.size.x,head_bounds.size.z)*.48)
+ visual_height=.66211*fit;body_radius=maxf(.22,Vector2(head_bounds.size.x,head_bounds.size.z).length()*.5+.025)
  for render in render_meshes:
   var base:StandardMaterial3D=render.material_override
   materials.append({"mesh":render,"surface":-1,"base":base,"camo":camo_material(base)})
@@ -136,41 +141,49 @@ func solve_leg(index:int,wanted:Vector3)->void:
  knee_parts[index].position=bend
  max_reach_error=maxf(max_reach_error,absf(hip.distance_to(bend)-a)+absf(bend.distance_to(end)-b))
 func contact(index:int,body:CharacterBody3D,normal:Vector3,lead:=Vector3.ZERO)->Vector3:
- var ideal:Vector3=to_global(feet_rest[index])+lead
+ var ideal:Vector3=physics_pose*feet_rest[index]+lead
  var query:=PhysicsRayQueryParameters3D.create(ideal+normal*.5,ideal-normal*.65,1|512);query.exclude=[body.get_rid()]
  var hit:Dictionary=body.get_world_3d().direct_space_state.intersect_ray(query)
- return hit.position+hit.normal*.035 if not hit.is_empty() else ideal
+ var target:Vector3=hit.position+hit.normal*.035 if not hit.is_empty() and hit.normal.dot(normal)>.5 else ideal
+ # Retract a foot at wall junctions: a support ray alone can see through a corner.
+ var hip:Vector3=physics_pose*hips[index]
+ var obstruction:=PhysicsRayQueryParameters3D.create(hip,target,1);obstruction.exclude=[body.get_rid()]
+ var barrier:Dictionary=body.get_world_3d().direct_space_state.intersect_ray(obstruction)
+ return barrier.position+barrier.normal*.045 if not barrier.is_empty() and barrier.position.distance_to(target)>.055 else target
 func tick(delta:float,body:CharacterBody3D,normal:Vector3,moving:bool,unfold:=1.0,airborne:=false)->void:
  if skeleton==null:return
- max_reach_error=0
+ physics_pose=Transform3D(body.global_basis*Basis(Vector3.UP,PI),body.global_position)
+ max_reach_error=0;previous_feet_world.assign(feet_world)
  if airborne or unfold<.98:
+  folded.clear()
   for i in range(6):
-   solve_leg(i,Vector3(hips[i].x*.95,.18,hips[i].z).lerp(feet_rest[i],unfold if not airborne else .60))
+   folded.append(Vector3(hips[i].x*.95,.18,hips[i].z).lerp(feet_rest[i],unfold if not airborne else .60))
    progress[i]=1.0
   initialized=false;return
- var reset_contacts:bool=not initialized or global_position.distance_to(previous_origin)>.8 or normal.dot(previous_normal)<.8
- var lead:Vector3=body.velocity.slide(normal).limit_length(4.5)*.035
+ var reset_contacts:bool=not initialized or physics_pose.origin.distance_to(previous_origin)>.8 or normal.dot(previous_normal)<.8
+ var lead:Vector3=body.velocity.slide(normal).limit_length(2.4)*.085
  var ideals:Array[Vector3]=[]
  var stepping:=false
  for i in range(6):
   ideals.append(contact(i,body,normal,lead))
-  if reset_contacts:feet_world[i]=ideals[i];starts[i]=ideals[i];targets[i]=ideals[i];progress[i]=1.0
+  if reset_contacts:feet_world[i]=ideals[i];previous_feet_world[i]=ideals[i];starts[i]=ideals[i];targets[i]=ideals[i];progress[i]=1.0
   if progress[i]<1:stepping=true
  if not stepping:
   var need_step:=false
   for i in range(6):
-   if i%2==phase and feet_world[i].distance_to(ideals[i])>.12:need_step=true
+   if i%2==phase and feet_world[i].distance_to(ideals[i])>.145:need_step=true
   if need_step:
    for i in range(6):
     if i%2==phase:starts[i]=feet_world[i];targets[i]=ideals[i];progress[i]=0
-   phase=1-phase
- var duration:float=clampf(.30/maxf(.5,body.velocity.length()),.06,.16)
+   phase=1-phase;step_count+=1
+ var duration:float=clampf(.42/maxf(1.5,body.velocity.slide(normal).length()),.175,.26)
  for i in range(6):
   if progress[i]<1:
+   # Follow the predicted touchdown while swinging, before solving the current body pose.
+   targets[i]=targets[i].lerp(ideals[i],minf(1,delta*18))
    progress[i]=minf(1,progress[i]+delta/duration)
-   feet_world[i]=starts[i].lerp(targets[i],smoothstep(0,1,progress[i]))+normal*sin(progress[i]*PI)*.075
-  solve_leg(i,to_local(feet_world[i]))
- initialized=true;previous_origin=global_position;previous_normal=normal
+   feet_world[i]=starts[i].lerp(targets[i],smoothstep(0,1,progress[i]))+normal*sin(progress[i]*PI)*.095
+ initialized=true;previous_origin=physics_pose.origin;previous_normal=normal
 func camouflage(enabled:bool)->void:
  if faded==enabled:return
  faded=enabled
@@ -178,3 +191,9 @@ func camouflage(enabled:bool)->void:
   if entry.surface<0:entry.mesh.material_override=entry.camo if enabled else entry.base
   else:entry.mesh.set_surface_override_material(entry.surface,entry.camo if enabled else entry.base)
  for render in render_meshes:render.cast_shadow=GeometryInstance3D.SHADOW_CASTING_SETTING_OFF if enabled else GeometryInstance3D.SHADOW_CASTING_SETTING_ON
+
+func render_contacts(fraction:float)->void:
+ if not initialized:
+  for i in range(folded.size()):solve_leg(i,folded[i])
+  return
+ for i in range(6):solve_leg(i,to_local(previous_feet_world[i].lerp(feet_world[i],fraction)))

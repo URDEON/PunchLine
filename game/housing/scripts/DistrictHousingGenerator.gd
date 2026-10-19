@@ -2,7 +2,7 @@
 extends Node3D
 ## Editable geometric architecture. All detail stays in the validated building envelope.
 @export_file("*.json") var plan_path:="res://housing/data/generated_plan.json"
-const REVISION:="architecture-2.4-seeded-destructible"
+const REVISION:="architecture-2.5-furnished-human-doors"
 const WALL_COLORS:=[Color("e5d7b7"),Color("d2ae88"),Color("b9c6b1"),Color("c2cfce"),Color("cba28e"),Color("d8d0bc"),Color("b5c4ca"),Color("eadfcb")]
 const ROOF_COLORS:=[Color("b56b4d"),Color("925247"),Color("676d70"),Color("a37451"),Color("7c8b85")]
 var materials:Dictionary={}
@@ -115,14 +115,28 @@ func generate_plan(data:Dictionary)->Dictionary:
 		if previous:remove_child(previous);previous.free()
 	var container:=category(self,"GeneratedBuildings")
 	var paths:=category(self,"GeneratedPaths")
-	for b in data.buildings:
-		var lot:=container.get_node_or_null(NodePath(b.lot)) as Node3D
-		if not lot:lot=category(container,b.lot)
-		var building:=category(lot,b.id);building.position=Vector3(b.center[0],.146,b.center[1]);building.rotation.y=b.rotation
-		building.set_meta("access",b.access);building.set_meta("archetype",b.archetype);building.set_meta("entry",b.entry)
-		build(building,b)
-		build_path(paths,b)
+	for b in data.buildings:generate_building(container,paths,b)
 	set_meta("plan_hash",fingerprint);return data
+
+func generate_building(container:Node3D,paths:Node3D,b:Dictionary)->void:
+	var lot:=container.get_node_or_null(NodePath(b.lot)) as Node3D
+	if not lot:lot=category(container,b.lot)
+	var building:=category(lot,b.id);building.position=Vector3(b.center[0],.146,b.center[1]);building.rotation.y=b.rotation
+	building.set_meta("access",b.access);building.set_meta("archetype",b.archetype);building.set_meta("entry",b.entry)
+	build(building,b)
+	build_path(paths,b)
+
+func generate_plan_staged(data:Dictionary,loading:CanvasLayer)->void:
+	for label in ["GeneratedBuildings","GeneratedPaths"]:
+		var old:=get_node_or_null(NodePath(label))
+		if old:remove_child(old);old.free()
+	var container:=category(self,"GeneratedBuildings");var paths:=category(self,"GeneratedPaths")
+	for i in range(data.buildings.size()):
+		generate_building(container,paths,data.buildings[i])
+		if i%6==5:
+			loading.report(.25+.36*float(i+1)/data.buildings.size(),"Construyendo casas e interiores · %d / %d"%[i+1,data.buildings.size()])
+			await get_tree().process_frame
+	set_meta("plan_hash",(REVISION+JSON.stringify(data)).sha256_text())
 
 func build_path(parent:Node3D,b:Dictionary)->void:
 	var triangles:Array=b.get("path_triangles",[])
@@ -182,6 +196,12 @@ func build(root:Node3D,b:Dictionary)->void:
 	for sign_side in [-1.0,1.0]:detail(doors,Vector3(.12,dh+.12,.15),Vector3(sign_side*(dw/2+.06),dh/2,front+.035),dark)
 	detail(doors,Vector3(dw+.24,.14,.16),Vector3(0,dh+.07,front+.04),dark)
 	part(doors,"Threshold",Vector3(dw,.035,.32),Vector3(0,-.0175,front-.06),base)
+	if b.access=="human_only":
+		# A normal timber leaf, held fully open against the jamb, preserves the clear passage.
+		part(doors,"OpenHumanDoor",Vector3(.06,dh-.05,dw-.07),Vector3(dw/2+.04,(dh-.05)/2,front-dw/2),dark)
+		for y in [.38,dh-.38]:detail(doors,Vector3(.10,.16,.10),Vector3(dw/2+.04,y,front-.04),base)
+		detail(doors,Vector3(.10,.08,.12),Vector3(dw/2+.12,1.02,front-dw+.18),base)
+		doors.set_meta("functional","human-scale 1.10 × 2.15 m / leaf permanently open")
 	if b.has("support_footprint"):
 		var ramps:=category(root,"Ramps")
 		var ramp:=part(ramps,"EntranceRamp",Vector3(b.door_width,.08,1.2),Vector3(0,-.10,ed/2+.6),floor_mat);ramp.rotation.x=atan2(.12,1.2)
@@ -337,17 +357,72 @@ func furnish(parent:Node3D,w:float,back:float,front:float,door_width:float,h:flo
 	var furniture:=category(parent,"Furniture")
 	var wood:=material("furniture_wood",Color("957451"),"wood",1.0)
 	var metal:=material("furniture_metal",Color("474f50"),"plaster")
+	var fabric:=material("fabric_"+str(int(style.get("palette",0))),Color("718478").lerp(WALL_COLORS[int(style.get("palette",0))%8],.32),"plaster",2.4)
+	var cream:=material("interior_cream",Color("ded6bb"),"plaster",1.5)
+	var dark:=material("interior_screen",Color("172a30"))
 	var side:float=-1 if int(style.get("furniture_side",0))%2 else 1
-	var x:float=side*(w/2-.65)
-	# A wall bench leaves the entire central measured route clear.
-	part(furniture,"Worktop" if workshop else "Table",Vector3(.8,.12,1.4),Vector3(x,.84,back+1.05),wood)
-	for z in [back+.55,back+1.55]:detail(furniture,Vector3(.10,.80,.10),Vector3(x,.40,z),metal)
-	if shop:
-		part(furniture,"Counter",Vector3(.75,1.0,1.35),Vector3(-x,.5,front-1.1),wood)
-	if not workshop:
-		plant(furniture,Vector3(-x,0,back+.65),int(style.get("palette",0)))
-		var beams:=category(parent,"CeilingBeams")
-		for z in [back+1.0,front-1.0]:detail(beams,Vector3(w-.5,.10,.13),Vector3(0,h-.05,z),wood)
+	# Wall strips contain every solid furnishing. The complete measured corridor stays open.
+	var depth:float=minf(.86,maxf(.48,(w-door_width)/2-.40))
+	var x:float=side*(w/2-.3-depth/2)
+	var z:float=back+1.3
+	part(furniture,"Workbench" if workshop else ("KitchenBase" if not shop else "ShopShelf"),Vector3(depth,.88,1.7),Vector3(x,.44,z),wood)
+	detail(furniture,Vector3(depth+.04,.08,1.8),Vector3(x,.92,z),cream)
+	for offset in [-.54,0,.54]:
+		detail(furniture,Vector3(.025,.5,.46),Vector3(x-side*(depth/2+.015),.52,z+offset),cream)
+		detail(furniture,Vector3(.045,.04,.18),Vector3(x-side*(depth/2+.04),.7,z+offset),metal)
+	if workshop:
+		for offset in [-.5,-.15,.2,.55]:detail(furniture,Vector3(.12,.36,.07),Vector3(x,1.13,z+offset),metal)
+		part(furniture,"ToolLocker",Vector3(depth,1.5,.8),Vector3(-x,.75,back+.85),metal)
+	elif shop:
+		part(furniture,"CheckoutCounter",Vector3(depth,1.02,1.5),Vector3(-x,.51,front-1.0),wood)
+		detail(furniture,Vector3(.30,.25,.28),Vector3(-x,1.16,front-1.0),dark)
+		for shelf in [.35,.8,1.25,1.70]:
+			detail(furniture,Vector3(depth,.06,1.7),Vector3(x,shelf,z),cream)
+			for item in range(5):detail(furniture,Vector3(depth*.55,.24,.18),Vector3(x,shelf+.15,z-.65+item*.32),fabric if item%2 else metal)
+	else:
+		# Sink, hob, hood, tiled splashback and cupboards form a readable kitchen.
+		detail(furniture,Vector3(depth*.7,.025,.48),Vector3(x,.967,z-.4),metal)
+		detail(furniture,Vector3(.035,.23,.035),Vector3(x+side*depth*.25,1.06,z-.4),metal)
+		for zz in [.26,.61]:detail(furniture,Vector3(depth*.60,.03,.22),Vector3(x,.98,z+zz),dark)
+		detail(furniture,Vector3(.05,.65,1.75),Vector3(side*(w/2-.26),1.27,z),cream)
+		part(furniture,"UpperCupboard",Vector3(depth*.58,.52,.70),Vector3(x+side*depth*.2,1.84,z+.50),wood)
+		# Seating in the front room and a bed at the opposite rear wall.
+		part(furniture,"SofaSeat",Vector3(depth,.36,1.75),Vector3(x,.40,front-1.25),fabric)
+		part(furniture,"SofaBack",Vector3(.18,.7,1.8),Vector3(x+side*(depth/2-.09),.65,front-1.25),fabric)
+		for zz in [front-2.08,front-.42]:detail(furniture,Vector3(depth,.36,.13),Vector3(x,.67,zz),fabric)
+		part(furniture,"BedFrame",Vector3(depth,.27,1.95),Vector3(-x,.18,back+1.40),wood)
+		detail(furniture,Vector3(depth-.04,.20,1.87),Vector3(-x,.415,back+1.40),cream)
+		detail(furniture,Vector3(depth-.06,.06,1.1),Vector3(-x,.545,back+1.75),fabric)
+		detail(furniture,Vector3(depth*.8,.14,.38),Vector3(-x,.57,back+.70),cream)
+		part(furniture,"BedHeadboard",Vector3(depth,.75,.12),Vector3(-x,.40,back+.4),wood)
+		part(furniture,"Bookcase",Vector3(.35,1.55,1.25),Vector3(-side*(w/2-.48),.775,front-1.3),wood)
+		for yy in [.28,.66,1.04,1.42]:
+			for zz in range(5):detail(furniture,Vector3(.28,.24,.12),Vector3(-side*(w/2-.47),yy,front-1.8+zz*.21),fabric if zz%2 else cream)
+	if door_width<1.5 and not shop and not workshop:
+		# Human homes use the side rooms as living spaces, rather than furnishing only the perimeter.
+		var seating_x:float=-side*(door_width/2+1.25)
+		part(furniture,"LivingSofa",Vector3(.85,.40,1.85),Vector3(seating_x,.42,front-2.2),fabric)
+		part(furniture,"LivingSofaBack",Vector3(.16,.70,1.9),Vector3(seating_x-side*.36,.68,front-2.2),fabric)
+		part(furniture,"CoffeeTable",Vector3(.65,.10,1.05),Vector3(seating_x+side*.85,.48,front-2.2),wood)
+		for zz in [front-2.6,front-1.8]:detail(furniture,Vector3(.06,.42,.06),Vector3(seating_x+side*.85,.21,zz),metal)
+		detail(furniture,Vector3(2.2,.012,2.5),Vector3(seating_x+side*.40,.016,front-2.2),cream)
+		var bed_x:float=side*(door_width/2+1.15)
+		part(furniture,"DoubleBedBase",Vector3(1.5,.35,2.0),Vector3(bed_x,.25,back+1.65),wood)
+		detail(furniture,Vector3(1.46,.20,1.94),Vector3(bed_x,.525,back+1.65),cream)
+		detail(furniture,Vector3(1.44,.06,1.2),Vector3(bed_x,.655,back+1.95),fabric)
+		for xx in [-.35,.35]:detail(furniture,Vector3(.52,.12,.38),Vector3(bed_x+xx,.68,back+.97),cream)
+		part(furniture,"BedroomHeadboard",Vector3(1.6,1.0,.10),Vector3(bed_x,.5,back+.6),wood)
+	for zz in [back+1.6,front-1.8]:
+		var light:=OmniLight3D.new();light.name="WarmInteriorFixture";light.position=Vector3(0,minf(2.9,h-.35),zz);light.light_color=Color("ffddb0");light.light_energy=.8;light.omni_range=5.0
+		light.distance_fade_enabled=true;light.distance_fade_begin=24;light.distance_fade_length=10;light.shadow_enabled=false;furniture.add_child(light)
+	# Flush rugs, framed artwork and ceiling fixtures add detail without invisible obstacles.
+	detail(furniture,Vector3(maxf(.7,door_width-.45),.014,minf(2.1,(front-back)*.30)),Vector3(0,.012,front-1.65),fabric)
+	for zz in [back+1.1,front-1.1]:
+		detail(furniture,Vector3(.05,.65,.82),Vector3(side*(w/2-.27),1.65,zz),wood)
+		detail(furniture,Vector3(.06,.52,.68),Vector3(side*(w/2-.30),1.65,zz),fabric)
+		detail(furniture,Vector3(.65,.10,.4),Vector3(0,h-.12,zz),cream)
+	var beams:=category(parent,"CeilingBeams")
+	for zz in [back+1.0,front-1.0]:detail(beams,Vector3(w-.5,.10,.13),Vector3(0,h-.05,zz),wood)
 
 func set_roof_visible(building:Node3D,show_roof:bool)->void:
 	for child in building.get_node("Roof").find_children("*","GeometryInstance3D",true,false):child.visible=show_roof
