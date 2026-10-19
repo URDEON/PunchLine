@@ -1,6 +1,6 @@
 # Mundo configurable y cabeza Rustcrawler
 
-Abrir `game/project.godot` con Godot 4.4.1. Pulsar **DEMO**, introducir una semilla numérica
+Abrir `game/project.godot` con Godot 4.4.1. Desde 0.9.27 el proyecto usa Forward+ / Vulkan. Pulsar **DEMO**, introducir una semilla numérica
 o de texto, elegir densidad y día/noche, y confirmar **CREAR MUNDO Y JUGAR**. El botón
 ALEATORIA propone otra semilla. Se recuerda la última configuración en `user://world.cfg`.
 

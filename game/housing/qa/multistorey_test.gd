@@ -47,7 +47,7 @@ func run() -> void:
 	game=load("res://main.tscn").instantiate();root.add_child(game);await frames(30)
 	for enemy in game.enemies:game.set_dummy_mode(enemy,0)
 	var version: String=str(ProjectSettings.get_setting("application/config/version"))
-	check(version=="0.9.26" and game.interface.metric.text.contains(version),"running HUD uses current project version")
+	check(version=="0.9.27" and game.interface.metric.text.contains(version),"running HUD uses current project version")
 	var extra: Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/multistorey_plan.json"))
 	var three: Dictionary={};var four: Dictionary={};var valid:=true;var floors_ok:=true;var holes_ok:=true
 	var world: PhysicsDirectSpaceState3D=game.get_world_3d().direct_space_state

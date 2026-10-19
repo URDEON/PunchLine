@@ -60,6 +60,7 @@ func _ready() -> void:
 	sky_material.filter = true; sky.sky_material = sky_material; world.environment.sky = sky
 	world.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR
 	world.environment.ambient_light_color = Color("a7bbd4"); world.environment.ambient_light_energy = .42; add_child(world)
+	map.ambience.configure_environment(world.environment,false)
 	camera = Camera3D.new(); camera.current = true; camera.near = .12; camera.fov = preferences.values.fov
 	camera.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF; add_child(camera)
 	camera.position = Vector3(0,20,36); camera.look_at(Vector3.ZERO)

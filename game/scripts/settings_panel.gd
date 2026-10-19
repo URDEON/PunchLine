@@ -44,6 +44,12 @@ func show_category(id:String)->void:
    for title in ["Rendimiento / sin MSAA","Equilibrado / MSAA 2×","Calidad / MSAA 4×"]:quality.add_item(title)
    quality.selected=int(preferences.values.quality);quality.item_selected.connect(func(value:int)->void:preferences.set_value("quality",value))
    toggle("effects","Partículas y estelas")
+   caption("Pasto en zonas verdes")
+   var grass:=OptionButton.new();grass.name="grass_quality";fields.add_child(grass)
+   for title in ["Desactivado","Bajo / 36 m","Medio / 58 m","Alto / 78 m"]:grass.add_item(title)
+   grass.selected=int(preferences.values.grass_quality);grass.item_selected.connect(func(value:int)->void:preferences.set_value("grass_quality",value))
+   slider("grass_wind","Viento en el pasto",0,1,.05)
+   slider("fog_amount","Niebla volumétrica",0,1,.05)
   "audio":
    for pair in [["master","Volumen general"],["combat","Impactos de combate"],["sfx","Efectos"],["music","Música"],["ambient","Ambiente del dominio"]]:slider(pair[0],pair[1],0,1,.01)
    toggle("reference_audio","Sonidos de tus referencias")

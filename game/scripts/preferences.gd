@@ -7,6 +7,7 @@ var values := {
 	"master": 0.85, "sfx": 0.85, "music": 0.55, "sensitivity": 1.0,
 	"fov": 75.0, "shake": 0.35, "effects": true, "hints": true,
 	"hold_attack": true, "fps": false, "quality": 1, "hud_scale": 0.8,
+	"grass_quality":2, "grass_wind":.55, "fog_amount":.35,
 	"camera_distance": 5.5, "kogane_comments": true, "ambient": 0.35,
 	"procedural_gait": true, "human_grounding": true, "robot_grounding": true, "body_lens": .14, "combat": 1.0, "reference_audio": true, "legacy_map": false
 }
@@ -89,6 +90,7 @@ func apply() -> void:
 		AudioServer.set_bus_mute(AudioServer.get_bus_index(pair[0]), level <= 0.001)
 	var quality: int = clampi(int(values.quality), 0, 2)
 	get_viewport().msaa_3d = [Viewport.MSAA_DISABLED, Viewport.MSAA_2X, Viewport.MSAA_4X][quality]
+	get_tree().call_group("district_ambience","apply_settings",values)
 	values.hud_scale = clampf(float(values.hud_scale),0.5,1.0)
 	values.camera_distance = clampf(float(values.camera_distance),0.0,10.0)
 	game.zoom = float(values.camera_distance)

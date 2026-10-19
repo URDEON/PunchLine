@@ -6,6 +6,7 @@ const SCENE: PackedScene = preload("res://housing/scenes/District500.tscn")
 var game: Node3D
 var scene: Node3D
 var housing: Node3D
+var ambience: Node3D
 var collision_count := 0
 var height_adjustments := 0
 var player_spawns: Array[Marker3D] = []
@@ -15,6 +16,9 @@ var spawn_index := 0
 
 func setup(host: Node3D) -> void:
     game = host
+    var config=preload("res://scripts/world_config.gd")
+    var settings:Dictionary=config.DEFAULTS.duplicate() if "session" in game else config.current()
+    var plan:Dictionary=config.make_plan(settings)
     rng.seed = 923
     scene = SCENE.instantiate()
     add_child(scene)
@@ -23,11 +27,11 @@ func setup(host: Node3D) -> void:
         housing.free(); housing = null
     else:
         add_child(housing)
-        var config=preload("res://scripts/world_config.gd")
-        var settings:Dictionary=config.DEFAULTS.duplicate() if "session" in game else config.current()
         if String(settings.seed)!="923" or int(settings.density)!=2:
-            housing.generate_plan(preload("res://scripts/world_config.gd").make_plan(settings))
+            housing.generate_plan(plan)
         housing.set_meta("world_settings",settings)
+    ambience=preload("res://scripts/district_ambience.gd").new();add_child(ambience)
+    ambience.setup(plan if housing!=null else {"buildings":[]},settings,game.preferences.values)
     var data: Dictionary = JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/vector_meshes.json"))
     for point in data.spawns.slice(0,3):
         player_spawns.append(marker("Jugador",Vector3(point[0],.1,point[1])))

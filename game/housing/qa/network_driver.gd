@@ -9,6 +9,7 @@ var axis:=Vector2.ZERO
 var yaw:=0.0
 var timer:=0.0
 var ended:=false
+var timeout_seconds:=100.0
 func check(ok:bool,label:String)->void:
 	checks+=1
 	if not ok:failures+=1
@@ -28,7 +29,7 @@ func _ready()->void:
 		if error!=OK:push_error("ENet client join failed");get_tree().quit(1)
 func _physics_process(delta:float)->void:
 	if ended:return
-	if Time.get_ticks_msec()/1000.0-started>100:
+	if Time.get_ticks_msec()/1000.0-started>timeout_seconds:
 		print("FAIL housing network timeout");get_tree().quit(1);return
 	if arena==null or not arena.session.active:return
 	timer+=delta

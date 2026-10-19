@@ -1,0 +1,24 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_10/Building_01/Interiors/@MultiMeshInstance3D@2614" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+GREENERY_STATS total=138623 chunks=690 banks=38 generation_ms=18155
+PASS project selects Forward+ for native volumetric fog
+PASS real gameplay environment enables native volumetrics
+PASS playable district receives grass across its green lots
+PASS mist uses actual FogVolume nodes with fog shaders
+PASS decoration adds no colliders to movement or climbing
+PASS grass is instanced in bounded chunks without per-blade Nodes
+PASS grass drawing distance and chunk bounds stay limited
+AUDIT_INPUT /workspace/.local/share/godot/app_userdata/PunchLine/greenery_qa.json
+PASS same seed reproduces the complete grass placement
+PASS different seed changes grass distribution
+PASS live quality controls change actual instance density
+PASS grass can be disabled during gameplay
+PASS zero intensity disables global and local fog together
+PASS fog can be reenabled without restarting
+PASS night gets a distinct fog colour
+PASS actual image settings expose grass quality and fog intensity
+PASS test locates an open walking route in a planted lot
+PASS actual player walks through planted grass on original lot collision
+RESULT 17/17 greenery, settings and real gameplay checks

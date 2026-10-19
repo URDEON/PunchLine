@@ -2,8 +2,8 @@
 
 La ciudad anterior fue retirada de la copia editable por indicación del usuario.
 El juego individual y el multijugador cargan el mismo District500 y los mismos edificios.
-La configuración original del juego conserva sus controles y render, con versión y arranque
-actualizados en 0.9.25. No se exportó ni modificó un ejecutable.
+Los controles y el motor físico se conservan. Desde **0.9.27** se usa **Forward+ / Vulkan**
+por elección del usuario para niebla volumétrica nativa. No se exportó un ejecutable.
 
 ## Abrir y jugar
 
@@ -78,6 +78,11 @@ Se eliminaron `assets/environment/ruined_city` y `assets/environment/punchline_v
 esta copia, además de los props de ejercicios de la ciudad retirada. Los ZIP y la copia original
 están preservados fuera del checkout en `/workspace/punchline-source`. El manifiesto
 `docs/integration_changes.json` identifica los scripts originales editados y la procedencia de los archivos.
+
+## Niebla y zonas verdes
+
+[Configuración, generación y pruebas de niebla y pasto](docs/greenery.md).
+Se conservan el mapa vectorial, los edificios y sus colisiones.
 
 ## Semillas y cabeza araña
 

@@ -1,0 +1,14 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/GreeneryNetworkTest/OnlineArena/PunchLine/DistrictHousing/GeneratedBuildings/lot_10/Building_01/FacadeDetails/Planter/@MeshInstance3D@2593" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PASS host opens actual ENet greenery session
+PASS both real clients finish loading the complete map
+PASS host and client generate exactly the same common-district grass
+PASS both online environments use native volumetric fog
+PASS decoration preserves authoritative player movement
+PASS movement still reaches the client through real snapshots
+PASS client can disable fog and grass locally
+PASS client graphics settings do not alter host graphics
+PASS local quality changes preserve health and seeded world data
+RESULT 9/9 host/client real ENet

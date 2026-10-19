@@ -1,5 +1,13 @@
 # Cambios de PunchLine
 
+## 0.9.27
+
+- Renderizado Forward+ para niebla volumétrica nativa, por elección del usuario.
+- Niebla ambiental y 38 bancos volumétricos animados en los espacios verdes libres.
+- Pasto procedural por semilla, agrupado en MultiMesh, con viento y distancia limitada.
+- Exclusiones de edificios, accesos, senderos, calles, veredas y estacionamiento.
+- Ajustes de calidad, viento e intensidad de niebla en IMAGEN.
+
 ## 0.9.26
 
 - Cámara de la araña sin superposición con su modelo al caminar.

@@ -735,6 +735,7 @@ func _ready() -> void:
 	world.environment.ambient_light_energy = 0.42
 	add_child(world)
 	arena.urban.expansion.set_sky(bool(preload("res://scripts/world_config.gd").current().night))
+	arena.punchline.ambience.configure_environment(world.environment,bool(preload("res://scripts/world_config.gd").current().night))
 
 	player = body(Vector3(0,0.1,5))
 	var player_parts := mannequin(player, Color("ebe5d7"), true)
