@@ -1,0 +1,13 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+WARNING: Could not set V-Sync mode, as changing V-Sync mode is not supported by the graphics driver.
+     at: set_use_vsync (platform/linuxbsd/x11/gl_manager_x11.cpp:360)
+OpenGL API 4.5 (Core Profile) Mesa 25.0.7-2+deb13u1 - Compatibility - Using Device: Mesa - llvmpipe (LLVM 19.1.7, 256 bits)
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_05/Building_02/FacadeDetails/@StaticBody3D@1016/@MeshInstance3D@1018" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+CAPTURE first_person_walking
+CAPTURE third_person_near
+CAPTURE third_person_far
+CAPTURE third_person_jump
+RENDER_RESULT eye view masked; third-person model restored; adjustable distance; actual jump

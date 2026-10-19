@@ -25,6 +25,9 @@ var cloak_time:=0.0
 var cloak_cd:=0.0
 var return_cd:=0.0
 var fall_speed:=0.0
+var airborne:=false
+var air_velocity:=Vector3.ZERO
+var detach_time:=0.0
 var markers:Array[Label3D]=[]
 var scan_targets:Array[Node3D]=[]
 var pulse:MeshInstance3D
@@ -74,6 +77,7 @@ func eject()->bool:
 	make_visual();make_parked()
 	prepare_energy()
 	game.hp=MAX_HP;game.max_hp=MAX_HP;mode="ejecting";elapsed=0;dormant=0
+	airborne=false;air_velocity=Vector3.ZERO;detach_time=0;fall_speed=0
 	update_portrait()
 	game.player.global_position=start_position;game.player.velocity=forward*2.0+Vector3.UP*1.4
 	use_spider_collider();game.player.reset_physics_interpolation()
@@ -93,14 +97,43 @@ func ray(from:Vector3,to:Vector3,extra:Array[RID]=[])->Dictionary:
 func turn_surface(wanted:Vector3)->void:
 	if wanted.length()<.9:return
 	var next:Vector3=wanted.normalized()
-	if normal.dot(next)<-.95:return
-	forward=Quaternion(normal,next)*forward;normal=next
+	var rotation:Quaternion=Quaternion(forward,PI) if normal.dot(next)<-.95 else Quaternion(normal,next)
+	forward=rotation*forward;normal=next
 	forward=(forward-normal*forward.dot(normal)).normalized()
 	game.player.up_direction=normal
 func axis()->Vector2:
 	if "input_state" in game:
 		return game.input_state.axis if game.clock-float(game.input_state.time)<=.35 else Vector2.ZERO
 	return Input.get_vector("left","right","forward","back")
+func request_jump()->void:
+	if mode=="spider" and game.stun<=0 and game.moves.player_freeze<=0:game.jump_buffer=.12
+
+func move_airborne(delta:float,direction:Vector3)->void:
+	detach_time=maxf(0,detach_time-delta)
+	air_velocity+=Vector3.DOWN*24*delta+direction.slide(Vector3.UP)*SPEED*2*delta
+	var horizontal:Vector3=air_velocity.slide(Vector3.UP).limit_length(7)
+	air_velocity=horizontal+Vector3.UP*maxf(-35,air_velocity.y)
+	game.player.velocity=air_velocity
+	game.player.move_and_slide()
+	for i in range(game.player.get_slide_collision_count()):
+		var hit:KinematicCollision3D=game.player.get_slide_collision(i)
+		var surface:Vector3=hit.get_normal()
+		if air_velocity.dot(surface)<-.1 and (detach_time<=0 or (surface.y>.7 and air_velocity.y<0)):
+			var rotation:Quaternion=Quaternion(forward,PI) if normal.dot(surface)<-.95 else Quaternion(normal,surface)
+			var heading:Vector3=rotation*forward
+			var basis:=Basis(heading.cross(surface).normalized(),surface,-heading).orthonormalized()
+			var point:Vector3=hit.get_position()+surface*.025
+			var query:=PhysicsShapeQueryParameters3D.new();query.shape=collider
+			query.transform=Transform3D(basis,point)*game.robots.naoya.collision.transform
+			query.collision_mask=1;query.exclude=[game.player.get_rid()]
+			# Pivot around the actual contact only if the reoriented capsule fits.
+			if game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():
+				airborne=false;air_velocity=Vector3.ZERO;fall_speed=0
+				turn_surface(surface);game.player.global_position=point
+				return
+		air_velocity=air_velocity.slide(surface)
+	game.player.velocity=air_velocity
+
 func walk_surface(delta:float)->void:
 	var change:float=wrapf(game.yaw-previous_yaw,-PI,PI);previous_yaw=game.yaw
 	forward=forward.rotated(normal,change).normalized()
@@ -109,6 +142,17 @@ func walk_surface(delta:float)->void:
 	if game.stun>0:direction=Vector3.ZERO
 	if direction.length()>.01:direction=direction.normalized()
 	var origin:Vector3=game.player.global_position
+	if not airborne and game.jump_buffer>0 and game.stun<=0:
+		var support:Dictionary=ray(origin+normal*.12,origin-normal*.16)
+		if not support.is_empty():
+			airborne=true;detach_time=.18;game.jump_buffer=0
+			air_velocity=direction*SPEED+normal*6
+			if absf(normal.y)<.5:air_velocity+=Vector3.UP*3
+			game.feedback.sound("jump",origin,-15)
+	if airborne:
+		move_airborne(delta,direction)
+		game.player.global_basis=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
+		return
 	if direction.length()>.1:
 		var front:Dictionary={}
 		# The inner probe sees narrow roof overhangs before the capsule wedges under them.
@@ -134,6 +178,7 @@ func walk_surface(delta:float)->void:
 		if not edge.is_empty():turn_surface(edge.normal);game.player.global_position=edge.position+normal*.025
 		else:lose_support(delta)
 	else:lose_support(delta)
+	game.player.global_basis=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
 
 func lose_support(delta:float)->void:
 	# Once an edge has no supporting surface, ordinary world gravity takes over.
@@ -147,7 +192,8 @@ func tick(delta:float)->void:
 	elapsed+=delta;scan_cd=maxf(0,scan_cd-delta);cloak_cd=maxf(0,cloak_cd-delta)
 	game.stun=maxf(0,game.stun-delta);game.player_wakeup_protection=maxf(0,game.player_wakeup_protection-delta);game.ult_msg_time=maxf(0,game.ult_msg_time-delta)
 	scan_time=maxf(0,scan_time-delta);cloak_time=maxf(0,cloak_time-delta)
-	game.attack_buffer=0;game.ability_buffer=0;game.jump_buffer=0;game.block=false
+	game.attack_buffer=0;game.ability_buffer=0;game.block=false
+	game.jump_buffer=maxf(0,game.jump_buffer-delta)
 	if game.moves.tick_player_freeze(delta):pose_chassis(delta);update_scan(delta);return
 	if mode=="ejecting":
 		game.player.velocity+=Vector3.DOWN*16*delta;game.player.move_and_slide()
@@ -168,6 +214,8 @@ func pose_chassis(delta:float)->void:
 	if not is_instance_valid(fusion.sequence):return
 	fusion.sequence.global_position=mecha_origin;fusion.sequence.rotation.y=mecha_yaw
 	var art:Node3D=fusion.sequence.articulation
+	# Contacts measured for the walking mecha must not pull a dormant arm toward old walls.
+	art.confinement_state={}
 	art.gait_enabled=false;art.gait.initialized=false;art.procedural_blend=0;art.crouch_weight=0;art.tracking_view=false;art.action={};art.guarding=false;art.boosting=false
 	var pose:Dictionary=art.angles();var k:float=smoothstep(0,1,dormant)
 	for side in ["Der","Izq"]:
@@ -199,7 +247,7 @@ func update_visual(delta:float)->void:
 	if not is_instance_valid(rig):return
 	rig.global_position=game.player.global_position
 	rig.global_basis=game.player.global_basis*Basis(Vector3.UP,PI).scaled(Vector3.ONE*1.6)
-	rig.tick(delta,game.player,normal,game.player.velocity.length()>.2,smoothstep(0,.65,elapsed) if mode=="ejecting" else (1-smoothstep(.3,.8,elapsed) if mode=="returning" else 1.0))
+	rig.tick(delta,game.player,normal,game.player.velocity.length()>.2,smoothstep(0,.65,elapsed) if mode=="ejecting" else (1-smoothstep(.3,.8,elapsed) if mode=="returning" else 1.0),airborne)
 	rig.camouflage(cloak_time>0)
 
 func request_return()->bool:
@@ -277,13 +325,32 @@ func destroy()->void:
 	tell("RUSTCRAWLER DESTRUIDO / SEÑAL PERDIDA")
 	game.on_player_death() # Original death timer, destruction and respawn flow, also on the host.
 func camera_update(camera:Camera3D,delta:float)->void:
-	view_manager().spider_overlay(game,camera)
-	var eye:Vector3=game.player.global_position+normal*.55+forward*.35
-	var view:Vector3=forward*cos(game.pitch)+normal*sin(game.pitch)
-	camera.global_position=camera.global_position.lerp(eye,1-exp(-delta*18))
-	if camera.global_position.distance_to(eye)>2:camera.global_position=eye
-	camera.quaternion=camera.quaternion.slerp(Basis.looking_at(view,normal).get_rotation_quaternion(),1-exp(-delta*10))
-	camera.near=.035;camera.fov=float(game.preferences.values.fov)
+	var controls:Node3D=game.session.arena if "session" in game else game
+	var distance:float=controls.zoom
+	var heading:Vector3=forward.rotated(normal,wrapf(controls.yaw-previous_yaw,-PI,PI))
+	var pitch:float=clampf(controls.pitch,-1.35,1.35)
+	var view:Vector3=heading*cos(pitch)+normal*sin(pitch)
+	var origin:Vector3=game.player.get_global_transform_interpolated().origin
+	var first_person:bool=distance<=.55
+	var eye:Vector3=origin+normal*.48+heading*.20
+	if not first_person:
+		var target:Vector3=origin+normal*.38
+		var motion:Vector3=-view*distance
+		# Sweep the camera volume, including its near plane, against walls/ceilings.
+		var sphere:=SphereShape3D.new();sphere.radius=.20
+		var query:=PhysicsShapeQueryParameters3D.new();query.shape=sphere
+		query.transform.origin=target;query.motion=motion;query.collision_mask=1
+		query.exclude=[game.player.get_rid()]
+		var safe:PackedFloat32Array=game.get_world_3d().direct_space_state.cast_motion(query)
+		eye=target+motion*safe[0]
+		# Tight spaces use the protected eye view until there is room for the orbit.
+		first_person=eye.distance_to(target)<.6
+		if first_person:eye=origin+normal*.48+heading*.20
+	view_manager().spider_overlay(game,camera,first_person)
+	# Follow the interpolated body directly: lag previously left the eye inside its skin.
+	camera.global_position=eye
+	camera.global_basis=Basis.looking_at(view,normal)
+	camera.near=.035 if first_person else .08;camera.fov=float(game.preferences.values.fov)
 func cleanup()->void:
 	restore_energy()
 	clear_scan()
@@ -301,8 +368,9 @@ func reset()->void:
 		game.player.up_direction=Vector3.UP;game.player.global_basis=Basis.IDENTITY;game.player.motion_mode=CharacterBody3D.MOTION_MODE_GROUNDED
 		view_manager().restore()
 	cleanup();mode="attached";cloak_time=0;scan_time=0;dormant=0;fall_speed=0;scan_cd=0;cloak_cd=0;return_cd=0
+	airborne=false;air_velocity=Vector3.ZERO;detach_time=0;game.jump_buffer=0
 func snapshot()->Dictionary:
-	return {"mode":mode,"elapsed":elapsed,"origin":mecha_origin,"yaw":mecha_yaw,"mecha_hp":mecha_hp,"mecha_height":mecha_height,"normal":normal,"forward":forward,"dormant":dormant,"scan_time":scan_time,"scan_cd":scan_cd,"scan_revision":scan_revision,"cloak_time":cloak_time,"cloak_cd":cloak_cd}
+	return {"mode":mode,"elapsed":elapsed,"origin":mecha_origin,"yaw":mecha_yaw,"mecha_hp":mecha_hp,"mecha_height":mecha_height,"normal":normal,"forward":forward,"heading_yaw":previous_yaw,"airborne":airborne,"dormant":dormant,"scan_time":scan_time,"scan_cd":scan_cd,"scan_revision":scan_revision,"cloak_time":cloak_time,"cloak_cd":cloak_cd}
 func accept(data:Dictionary,delta:float)->void:
 	var incoming:String=data.get("mode","attached")
 	if incoming=="attached":
@@ -310,8 +378,9 @@ func accept(data:Dictionary,delta:float)->void:
 		return
 	is_replica=true
 	var new_head:bool=not active()
-	for key in ["mode","elapsed","mecha_hp","mecha_height","normal","forward","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
+	for key in ["mode","elapsed","mecha_hp","mecha_height","normal","forward","airborne","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
 		if data.has(key):set(key,data[key])
+	previous_yaw=float(data.get("heading_yaw",0))
 	mecha_origin=data.get("origin",Vector3.ZERO);mecha_yaw=float(data.get("yaw",0))
 	make_visual();make_parked();prepare_energy();use_spider_collider()
 	if new_head:update_portrait()

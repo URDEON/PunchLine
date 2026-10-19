@@ -947,7 +947,7 @@ func create_dash_frame() -> void:
 	dash_frame.setup()
 	dash_frame.visible = false
 
-func first_person_enabled() -> bool: return zoom <= .55 or (fusion.spider!=null and fusion.spider.active())
+func first_person_enabled() -> bool: return zoom <= .55
 
 func camera_aim_locked() -> bool: return camera_lock or first_person_enabled()
 
@@ -1046,6 +1046,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			if fusion.spider.interact():return
 			arena.urban.interact(); return
 		if fusion.spider.active():
+			if event.is_action_pressed("jump"):fusion.spider.request_jump()
 			for slot in range(1,3):
 				if event.is_action_pressed("ability"+str(slot)):fusion.spider.ability(slot)
 			return

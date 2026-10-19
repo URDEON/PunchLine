@@ -1,5 +1,12 @@
 # Cambios de PunchLine
 
+## 0.9.26
+
+- Cámara de la araña sin superposición con su modelo al caminar.
+- Primera/tercera persona con V, distancia con rueda y protección contra paredes.
+- Salto desde suelo, paredes y techos, con aterrizaje y patas recogidas en el aire.
+- Controles, estado aéreo y orientación sincronizados en multijugador.
+
 ## 0.9.25
 
 - Edificios procedurales de tres y cuatro plantas con interiores y escaleras.

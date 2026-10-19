@@ -99,7 +99,6 @@ func input_pressed(action: String) -> bool:
 	if clock-float(input_state.time) > .35: return false
 	return int(input_state.flags) & int({"block":1,"walk":2,"attack":4,"ability1":8}.get(action,0)) != 0
 func first_person_enabled() -> bool:
-	if fusion.spider!=null and fusion.spider.active():return true
 	return clock-float(input_state.time) <= .35 and int(input_state.flags) & 16 != 0
 
 func movement() -> Vector3:
@@ -115,6 +114,7 @@ func simulate(delta: float) -> void:
 		if hp <= 0: break
 		if action=="interact":fusion.spider.interact();continue
 		if fusion.spider.active():
+			if action=="jump":fusion.spider.request_jump()
 			if action in ["ability1","ability2"]:fusion.spider.ability(int(action.trim_prefix("ability")))
 			continue
 		if action == "attack": attack_buffer = .14

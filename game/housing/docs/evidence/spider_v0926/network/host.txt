@@ -1,0 +1,31 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player1/@CanvasLayer@261/@Control@262/@Control@263/@SubViewport@364/model/RobotArmature/Skeleton3D/Leela" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS host opens real ENet spider session
+PASS host and client finish actual model loading
+PunchLine · módulos de fusión cargados: 112
+PASS host performs actual robot fusion
+PASS E ejection is authoritative and replicated
+PASS client receives separate 50 HP spider pool
+PASS client collider keeps spider size instead of mecha clearance height
+PASS client hides parked mecha head
+PASS camouflage state replicates from host
+PASS scanner state and cloak cancellation replicate
+PASS client position and HP tampering overwritten by authoritative snapshots
+PASS nearby reconnection restores mecha on both peers
+PASS mecha health pool and full collider restored on client
+PASS spider destruction enters original authoritative player death flow
+PASS normal respawn completes after spider death
+PunchLine · módulos de fusión cargados: 112
+PASS remote player's actual robot can also fuse
+WARNING: [Physics interpolation] Interpolated instance triggered from outside physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player62780617/FusionController/@Node3D@1254/Fusion_Final_2x/SentinelArticulation/@Node3D@1301/@Node3D@1302/@Node3D@1303/@Node3D@1305/ARM_RIGHT_shoulder_corrected_forward_axis/ARM_RIGHT_elbow/Rustwing_SINGLE_Cannon_Coaxial_WristMount/Original_Rustwing56_Mesh38/ParentNode/tripo_part_37" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:1032)
+PASS remote client E input creates its own authoritative spider
+PASS remote spider camera supports the full first-person pitch range
+PASS remote owner's eye camera excludes only its own spider mesh
+PASS remote owner switches to third person and adjusts camera distance
+PASS remote jump input is simulated on host and replicated to owner
+PASS authoritative remote spider lands and reattaches
+PASS remote client E input reconnects through host validation
+RESULT 22/22 host/client real ENet

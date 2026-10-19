@@ -71,8 +71,15 @@ func solve_leg(index:int,end:Vector3)->void:
 	skeleton.set_bone_pose_rotation(1+index*2,q)
 	skeleton.set_bone_pose_rotation(2+index*2,(q.inverse()*q_lower).normalized())
 
-func tick(delta:float,body:CharacterBody3D,normal:Vector3,moving:bool,unfold:=1.0)->void:
+func tick(delta:float,body:CharacterBody3D,normal:Vector3,moving:bool,unfold:=1.0,airborne:=false)->void:
 	if skeleton==null:return
+	if airborne:
+		# Release world contacts in flight and replant the six feet on landing.
+		for i in range(6):
+			solve_leg(i,FEET[i]*Vector3(.78,1,.78)+Vector3.UP*.08)
+			progress[i]=1.0
+		initialized=false
+		return
 	var stepping:=false
 	for p in progress:
 		if p<1:stepping=true

@@ -17,12 +17,30 @@ func inspect(tag:String,tamper:=false)->void:
 @rpc("authority","call_remote","reliable")
 func owner_action(action:String)->void:
 	arena.session.local_action(action)
+func await_spider(actor:Node3D)->void:
+	var deadline:=Time.get_ticks_msec()+10000
+	while actor.fusion.spider.mode!="spider" and Time.get_ticks_msec()<deadline:await pause(.05)
+	# Allow the next snapshot to reach the observing peer after the state transition.
+	await pause(.25)
 @rpc("authority","call_remote","reliable")
 func owner_camera_probe()->void:
+	arena.zoom=0
 	var event:=InputEventMouseMotion.new();event.relative=Vector2(0,-320)
 	arena._unhandled_input(event)
 	var actor:Node3D=arena.session.actors[arena.session.local_id()]
-	observation.rpc_id(1,"owner_camera",{"pitch":arena.pitch,"mode":actor.fusion.spider.mode,"hp":actor.hp})
+	var spider:Node3D=actor.fusion.spider;spider.camera_update(arena.camera,1.0/60)
+	var eye_masked:bool=(spider.rig.mesh.layers & arena.camera.cull_mask)==0
+	var full_pitch:float=arena.pitch
+	var toggle:=InputEventKey.new();toggle.keycode=KEY_V;toggle.pressed=true;arena._unhandled_input(toggle)
+	arena.pitch=0;spider.camera_update(arena.camera,1.0/60)
+	var third:bool=not arena.camera_view.active and spider.rig.mesh.layers==1
+	var distance:float=arena.zoom
+	var wheel:=InputEventMouseButton.new();wheel.pressed=true;wheel.button_index=MOUSE_BUTTON_WHEEL_DOWN;arena._unhandled_input(wheel)
+	spider.camera_update(arena.camera,1.0/60)
+	var start:Vector3=actor.player.global_position
+	var jump:=InputEventKey.new();jump.keycode=arena.preferences.bindings.jump;jump.pressed=true;arena._unhandled_input(jump)
+	await pause(.20)
+	observation.rpc_id(1,"owner_camera",{"pitch":full_pitch,"mode":spider.mode,"hp":actor.hp,"eye_masked":eye_masked,"third":third,"zoom_adjusted":arena.zoom>distance,"airborne":spider.airborne,"rise":actor.player.global_position.y-start.y})
 func run_host()->void:
 	var deadline:=Time.get_ticks_msec()+50000
 	while (arena.session.actors.size()<2 or arena.session.ready_peers.size()<1) and Time.get_ticks_msec()<deadline:await pause(.1)
@@ -35,7 +53,7 @@ func run_host()->void:
 	check(actor.fusion.request(),"host performs actual robot fusion")
 	if not actor.fusion.cinematic:finish();return
 	actor.fusion.sequence.advance(11.5);await pause(.6)
-	arena.session.local_action("interact");await pause(2.5)
+	arena.session.local_action("interact");await await_spider(actor)
 	var report:Dictionary=await ask(peer,"eject")
 	check(actor.fusion.spider.mode=="spider" and report.get("mode","")=="spider","E ejection is authoritative and replicated")
 	check(report.get("hp",0)==50 and report.get("max_hp",0)==50,"client receives separate 50 HP spider pool")
@@ -67,6 +85,12 @@ func run_host()->void:
 		var camera_deadline:=Time.get_ticks_msec()+5000
 		while not reports.has("owner_camera") and Time.get_ticks_msec()<camera_deadline:await pause(.05)
 		check(float(reports.get("owner_camera",{}).get("pitch",0))>.25 and reports.get("owner_camera",{}).get("mode","")=="spider","remote spider camera supports the full first-person pitch range")
+		var camera:Dictionary=reports.get("owner_camera",{})
+		check(camera.get("eye_masked",false),"remote owner's eye camera excludes only its own spider mesh")
+		check(camera.get("third",false) and camera.get("zoom_adjusted",false),"remote owner switches to third person and adjusts camera distance")
+		check(camera.get("airborne",false) and float(camera.get("rise",0))>.1 and actor.fusion.spider.airborne,"remote jump input is simulated on host and replicated to owner")
+		await pause(.9)
+		check(not actor.fusion.spider.airborne and actor.fusion.spider.normal.y>.9,"authoritative remote spider lands and reattaches")
 		actor.player.global_position=actor.fusion.spider.mecha_origin+Vector3(0,.025,2.2);actor.player.velocity=Vector3.ZERO
 		owner_action.rpc_id(peer,"interact");await pause(1.5)
 		check(not actor.fusion.spider.active() and actor.fusion.fused,"remote client E input reconnects through host validation")

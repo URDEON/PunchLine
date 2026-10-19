@@ -1,6 +1,9 @@
-import os,subprocess,time,pathlib,sys
+import os,subprocess,time,pathlib,sys,argparse
 root=pathlib.Path(__file__).resolve().parents[2]
-output=root/'housing/docs/evidence/rustcrawler/network'
+parser=argparse.ArgumentParser()
+parser.add_argument('--output',default='housing/docs/evidence/spider_v0926/network')
+args=parser.parse_args()
+output=root/args.output
 output.mkdir(parents=True,exist_ok=True)
 cmd=['/workspace/godot441/Godot_v4.4.1-stable_linux.x86_64','--headless','--path',str(root),'--script','qa/rustcrawler/network_run.gd','--']
 env=dict(os.environ,XDG_CONFIG_HOME='/workspace/.config',XDG_DATA_HOME='/workspace/.local/share',XDG_CACHE_HOME='/workspace/.cache')

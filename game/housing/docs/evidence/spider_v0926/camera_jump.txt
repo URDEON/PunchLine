@@ -1,0 +1,33 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/Laboratorio/@Node3D@6/@Node3D@7/DistrictHousing/GeneratedBuildings/lot_05/Building_02/FacadeDetails/@StaticBody3D@1016/@MeshInstance3D@1018" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+PunchLine · módulos de fusión cargados: 112
+PASS actual Sentinel fusion starts
+PASS head ejects using actual game collider
+PASS eye view enables cockpit and lens
+PASS owner eye camera cannot render its own animated skin
+PASS spider stays available to other cameras and portraits
+PASS walking eye follows interpolated body without positional lag or self overlap
+PASS V restores full model for third person
+PASS mouse wheel adjusts actual orbit distance
+PASS third-person camera sweep shortens orbit before an actual blocking wall
+PASS cramped orbit falls back to protected eye view
+PASS return to eye view restores postprocessing
+PASS bound jump key produces a real floor jump
+PASS airborne legs release planted world contacts
+PASS pressing jump again cannot double-jump
+PASS jump has bounded ballistic height
+PASS floor landing restores surface adhesion
+LOW_ROOF peak=0.23999996483326 position=(610.0, 0.025, 5.000001) up=(0.0, 1.0, 0.0) airborne=false
+PASS low roof blocks jump or accepts underside adhesion without capsule penetration
+PASS real movement reaches wall before jumping
+PASS wall jump detaches away from masonry
+PASS wall jump falls and reattaches to ground
+PASS real movement reaches ceiling before jumping
+PASS orbit camera follows ceiling orientation
+PASS ceiling jump releases adhesion downward
+PASS opposite ceiling-to-floor landing restores upright basis
+PASS reconnection remains available after jumping and camera changes
+PASS reconnection cleans spider camera and restores third-person mecha
+RESULT 26/26 camera and jump checks

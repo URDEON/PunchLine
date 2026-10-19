@@ -44,7 +44,7 @@
   "rustcrawler_source_notice": "User-provided GLB; original bytes preserved. Its skin is rebuilt in rustcrawler_rig.gd because original joint rests/weights do not provide usable animation.",
   "project_godot_changes": [
     "config/name stable as PunchLine",
-    "config/version 0.9.25",
+    "config/version 0.9.26",
     "BuildInfo autoload for version and legacy settings",
     "physics layer 10 named for stair foot contacts; original engine/render/input settings retained"
   ]
