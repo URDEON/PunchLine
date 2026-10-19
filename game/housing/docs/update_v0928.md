@@ -80,7 +80,7 @@ y huellas de los vídeos están en `assets/audio/mecha_v0928/sources.json`.
 
 Pruebas y capturas de esta entrega: [evidence/update_v0928](evidence/update_v0928).
 Los scripts vigentes están en `game/qa/v0928`; las evidencias anteriores son históricas.
-Se aprobaron 329 comprobaciones de juego, 30 de red ENet, diez planos reproducibles
+Se aprobaron 330 comprobaciones de juego, 30 de red ENet, diez planos reproducibles
 con auditoría independiente de accesos y 193.397 posiciones de pasto sin invasiones.
 El ZIP extraído pasó 17 comprobaciones de menú y juego tras importar sin caché inicial.
 Las capturas nativas verificaron la térmica con objetivo visible/oculto (105/0 píxeles

@@ -32,6 +32,10 @@
     "clean_zip_frontend": {
       "passed": 17,
       "total": 17
+    },
+    "thermal_surface_test": {
+      "passed": 1,
+      "total": 1
     }
   },
   "enet": {

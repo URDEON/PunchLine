@@ -43,7 +43,7 @@ func gather()->void:
   for actor in host.session.actors.values():
    if actor==host or actor.hp<=0:continue
    var visual:Node3D=actor.fusion.spider.rig if actor.fusion.spider.active() else (actor.fusion.visual() if actor.fusion.fused else actor.rig_holder)
-   actors.append({"body":actor.player,"visual":visual,"warm":true})
+   actors.append({"body":actor.player,"visual":visual,"warm":true,"spider":actor.fusion.spider if actor.fusion.spider.active() else null})
    if actor.fusion.spider.active():actors.append({"body":actor.fusion.spider.parked,"visual":actor.fusion.sequence._fusion_root,"warm":false})
  else:
   for enemy in host.enemies:
@@ -97,7 +97,7 @@ func update(value:int,delta:float)->void:
  var visible:Array[bool]=[]
  for actor in roots:
   if not is_instance_valid(actor.body):visible.append(false);continue
-  var point:Vector3=actor.body.global_position+Vector3.UP*(1.0 if actor.warm else 1.5)
+  var point:Vector3=target_point(actor)
   var shown:bool=camera.global_position.distance_to(point)<=40
   if shown and mode==2:
    var ray:=PhysicsRayQueryParameters3D.create(camera.global_position,point,1)
@@ -110,6 +110,10 @@ func update(value:int,delta:float)->void:
   if not is_instance_valid(entry.source) or not is_instance_valid(entry.copy):continue
   entry.copy.visible=visible[entry.actor] and entry.source.is_visible_in_tree()
   entry.copy.global_transform=entry.source.get_global_transform_interpolated()
+func target_point(actor:Dictionary)->Vector3:
+ var spider:Node=actor.get("spider")
+ var offset:Vector3=spider.normal*.35 if is_instance_valid(spider) else Vector3.UP*(1.0 if actor.warm else 1.5)
+ return actor.body.global_position+offset
 func release()->void:
  for entry in copies:
   if is_instance_valid(entry.copy):entry.copy.queue_free()
