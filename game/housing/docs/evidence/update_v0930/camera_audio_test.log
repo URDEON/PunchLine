@@ -1,0 +1,17 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PunchLine · módulos de fusión cargados: 112
+PASS walking emits short one-shot contact samples with no looping movement intro
+PASS footstep audio count follows real IK foot plants
+PASS standing still does not repeat mechanical footsteps
+PASS shield reference is reduced by twelve decibels at the mixer
+PASS spider ejects for unlocked camera and gait checks
+PASS C disables spider camera lock through the actual input handler
+PASS free camera rotates without dragging the idle spider body
+PASS slower alternating tripods maintain rigid leg lengths without rapid cycling
+PASS rendered head follows the same interpolated body as the camera
+PASS armour corners fit inside the physical body collision volume
+AUDIO_GAIT_STATS steps=11 tripod_groups=15 max_ik_error=0.00000014901161 required_radius=0.34654518961906 collider=0.36455988883972
+RESULT 10/10 gait, camera unlock and mechanical audio checks

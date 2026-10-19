@@ -1,0 +1,51 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS host opens real ENet spider session
+PASS starting a new server clears previous world destruction
+PASS host and client finish actual model loading
+PASS host seed, density, night and destructibility replace different client settings
+PASS real ENet damage removes the same wall and collider on both peers
+PASS fracture cells and localized damage match over real ENet
+PASS client cannot apply authoritative building damage
+PASS new session config clears stale client damage even with the same seed
+PASS late-join full state restores previously destroyed geometry and collision
+PASS persistent walkable rubble uses identical collision geometry on host and client
+PASS late-join reconstruction restores persistent physical rubble
+PunchLine · módulos de fusión cargados: 112
+PASS host performs actual robot fusion
+WARNING: [Physics interpolation] Non-interpolated instance triggered from physics process: "/root/SpiderNetworkTest/OnlineArena/Players/Player1/Controller/@Label3D@15859" (possibly benign).
+     at: instance_set_transform (servers/rendering/renderer_scene_cull.cpp:966)
+NETWORK_MOTION { "angle": 0.05680196732283, "speed": 8.23694421734721, "distance": 0.03644669055939, "frames": 704, "wall": true, "ceiling": true }
+PASS host traverses floor, wall and ceiling without armour overlap over ENet
+PASS receiving peer sees the complete gradual surface traversal
+PASS replica surface orientation interpolates between 20 Hz snapshots without a 90 degree snap
+PASS replica position remains continuous through both corners
+PASS E ejection is authoritative and replicated
+PASS client receives separate 50 HP spider pool
+PASS client collider keeps spider size instead of mecha clearance height
+PASS client hides parked mecha head
+PASS vision input and camera mode replicate authoritatively
+PASS spider camera lock toggles on authority and receiving peer
+PASS camouflage state replicates from host
+PASS scanner state and cloak cancellation replicate
+PASS client position and HP tampering overwritten by authoritative snapshots
+PASS nearby reconnection restores mecha on both peers
+PASS mecha health pool and full collider restored on client
+PASS spider destruction enters original authoritative player death flow
+PASS normal respawn completes after spider death
+PunchLine · módulos de fusión cargados: 112
+PASS remote player's actual robot can also fuse
+PASS remote client E input creates its own authoritative spider
+PASS remote spider camera supports the full first-person pitch range
+PASS remote owner cycles all three vision modes through server input
+PASS remote owner's eye camera excludes only its own spider mesh
+PASS remote owner switches to third person and adjusts camera distance
+PASS remote jump input is simulated on host and replicated to owner
+PASS authoritative remote spider lands and reattaches
+PASS remote client E input reconnects through host validation
+PASS remote release before three seconds cancels arming
+PASS remote G hold is timed and armed by the host
+PASS remote owner receives shutdown countdown and an alarm positioned on its own robot
+PASS remote overload detonates once through authoritative damage and death
+PASS remote overload completes normal network respawn
+RESULT 43/43 host/client real ENet

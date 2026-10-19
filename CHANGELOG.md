@@ -1,5 +1,12 @@
 # Cambios de PunchLine
 
+## 0.9.30
+
+- La araña recorre los arcos comprobados entre suelo, paredes y techos a lo largo de varios pasos de física, con aceleración y frenado suaves y velocidades limitadas. Se elimina el salto instantáneo al final del recorrido.
+- Bordillos, salientes y losas usan el mismo recorrido gradual; las transiciones vuelven a comprobar las colisiones mientras avanzan.
+- Cámara y cuerpo comparten la orientación interpolada, también al girar el horizonte en primera persona. Las réplicas online interpolan la orientación entre paquetes.
+- Aterrizaje centrado sobre la superficie y margen para girar sin penetrar el suelo. Los saltos pedidos durante un cambio de superficie se conservan hasta completarlo.
+
 ## 0.9.29
 
 - Araña: colisión cilíndrica que contiene la armadura, barridos al cambiar de superficie, subida de bordes, aterrizaje desde techos y cámara libre con C/clic central en DEMO y online.

@@ -3,6 +3,8 @@ extends Node3D
 const MAX_HP:=50.0
 const SPEED:=2.4
 const RETURN_RANGE:=3.0
+const TURN_SPEED:=3.0
+const TURN_ANGULAR_SPEED:=3.6
 var fusion:Node3D
 var game:Node3D
 var mode:="attached"
@@ -17,6 +19,12 @@ var previous_yaw:=0.0
 var view_forward:=Vector3.FORWARD
 var last_safe:=Transform3D.IDENTITY
 var blocked_transitions:=0
+var surface_path:Array[Transform3D]=[]
+var surface_times:Array[float]=[]
+var surface_elapsed:=0.0
+var surface_duration:=0.0
+var camera_arm:=-1.0
+var camera_zoom:=-1.0
 var dormant:=0.0
 var rig:Node3D
 var parked:StaticBody3D
@@ -94,6 +102,7 @@ func eject()->bool:
 	prepare_energy()
 	game.hp=MAX_HP;game.max_hp=MAX_HP;mode="ejecting";elapsed=0;dormant=0
 	airborne=false;air_velocity=Vector3.ZERO;detach_time=0;fall_speed=0
+	clear_surface_path()
 	update_portrait()
 	game.player.global_position=start_position;game.player.velocity=forward*2.0+Vector3.UP*1.4
 	use_spider_collider();last_safe=game.player.global_transform;game.player.reset_physics_interpolation()
@@ -118,6 +127,7 @@ func pose_fits(pose:Transform3D)->bool:
 
 func try_surface(point:Vector3,wanted:Vector3)->bool:
 	if wanted.length()<.9 or collider==null:return false
+	if not surface_path.is_empty():return true
 	var next:Vector3=wanted.normalized()
 	var rotation:=Quaternion(forward,PI) if normal.dot(next)<-.95 else Quaternion(normal,next)
 	var heading:Vector3=(rotation*forward).slide(next).normalized()
@@ -132,6 +142,8 @@ func try_surface(point:Vector3,wanted:Vector3)->bool:
 	var offset:Vector3=game.robots.naoya.collision.position
 	var start_center:Vector3=start*offset;var end_center:Vector3=end*offset
 	var previous:Transform3D=start
+	var path:Array[Transform3D]=[start]
+	var times:Array[float]=[0.0]
 	for i in range(1,steps+1):
 		var t:float=float(i)/steps
 		var basis:Basis=Basis(start.basis.get_rotation_quaternion().slerp(end.basis.get_rotation_quaternion(),t))
@@ -146,18 +158,77 @@ func try_surface(point:Vector3,wanted:Vector3)->bool:
 			elif t<.80:center=start_center+outward+tangent*((t-.35)/.45)
 			else:center=end_center+normal*.06*(1-(t-.80)/.20)
 		var candidate:=Transform3D(basis,center-basis*offset)
-		if not pose_fits(candidate):
-			set_meta("blocked_turn",{"stage":"overlap","pose":candidate,"normal":next});blocked_transitions+=1;return false
-		var sweep:=PhysicsShapeQueryParameters3D.new();sweep.shape=collider;sweep.transform=previous*game.robots.naoya.collision.transform
-		sweep.motion=(candidate*offset)-(previous*offset);sweep.collision_mask=1;sweep.margin=.004;sweep.exclude=[game.player.get_rid()]
-		var safe:PackedFloat32Array=game.get_world_3d().direct_space_state.cast_motion(sweep)
-		if safe[0]<.999:
-			set_meta("blocked_turn",{"stage":"sweep","pose":candidate,"normal":next,"fraction":safe[0]});blocked_transitions+=1;return false
+		if not clear_surface_motion(previous,candidate):return false
+		var distance:float=(candidate*offset).distance_to(previous*offset)
+		var turn:float=previous.basis.get_rotation_quaternion().angle_to(candidate.basis.get_rotation_quaternion())
+		times.append(times[-1]+maxf(distance/TURN_SPEED,turn/TURN_ANGULAR_SPEED))
+		path.append(candidate)
 		previous=candidate
-	forward=heading;view_forward=(rotation*view_forward).slide(next).normalized();normal=next
-	game.player.up_direction=normal;game.player.global_transform=end
-	last_safe=end
+	# Only tiny support corrections are immediate. Corners and ledges must actually
+	# traverse the checked centre path, rather than teleporting to its final pose.
+	if angle<.01 and start.origin.distance_to(end.origin)<.04:
+		apply_surface_pose(end)
+	else:
+		surface_path=path;surface_times=times;surface_elapsed=0
+		# Smoothstep has a peak derivative of 1.5; retain the speed limits at its peak.
+		surface_duration=maxf(.16,times[-1]*1.5)
+		game.player.velocity=Vector3.ZERO
 	return true
+
+func clear_surface_motion(start:Transform3D,end:Transform3D)->bool:
+	if not pose_fits(end):
+		set_meta("blocked_turn",{"stage":"overlap","pose":end});blocked_transitions+=1;return false
+	var sweep:=PhysicsShapeQueryParameters3D.new();sweep.shape=collider
+	sweep.transform=start*game.robots.naoya.collision.transform
+	var offset:Vector3=game.robots.naoya.collision.position
+	sweep.motion=(end*offset)-(start*offset);sweep.collision_mask=1;sweep.margin=.004;sweep.exclude=[game.player.get_rid()]
+	var safe:PackedFloat32Array=game.get_world_3d().direct_space_state.cast_motion(sweep)
+	if safe[0]<.999:
+		set_meta("blocked_turn",{"stage":"sweep","pose":end,"fraction":safe[0]});blocked_transitions+=1;return false
+	return true
+
+func apply_surface_pose(pose:Transform3D)->void:
+	var next:Vector3=pose.basis.y.normalized()
+	var rotation:=Quaternion(forward,PI) if normal.dot(next)<-.95 else Quaternion(normal,next)
+	forward=(rotation*forward).slide(next).normalized()
+	view_forward=(rotation*view_forward).slide(next).normalized();normal=next
+	game.player.up_direction=normal
+	game.player.global_transform=Transform3D(Basis(forward.cross(normal),normal,-forward).orthonormalized(),pose.origin)
+	last_safe=game.player.global_transform
+
+func clear_surface_path()->void:
+	surface_path.clear();surface_times.clear();surface_elapsed=0;surface_duration=0
+
+func surface_pose_at(elapsed_time:float)->Transform3D:
+	var time:float=smoothstep(0,1,elapsed_time/surface_duration)*surface_times[-1]
+	var index:=1
+	while index<surface_times.size()-1 and surface_times[index]<time:index+=1
+	var weight:float=clampf((time-surface_times[index-1])/maxf(.00001,surface_times[index]-surface_times[index-1]),0,1)
+	var a:Transform3D=surface_path[index-1];var b:Transform3D=surface_path[index]
+	var basis:Basis=a.basis.slerp(b.basis,weight).orthonormalized()
+	var offset:Vector3=game.robots.naoya.collision.position
+	var center:Vector3=(a*offset).lerp(b*offset,weight)
+	return Transform3D(basis,center-basis*offset)
+
+func advance_surface(delta:float)->void:
+	surface_elapsed=minf(surface_duration,surface_elapsed+delta)
+	var candidate:Transform3D=surface_pose_at(surface_elapsed)
+	var basis:Basis=candidate.basis
+	var offset:Vector3=game.robots.naoya.collision.position
+	var center:Vector3=candidate*offset
+	var start:Transform3D=game.player.global_transform
+	# Recheck during movement as destructible geometry may change after planning.
+	# Substeps also bound the swept volume when a physics frame takes longer.
+	var steps:int=maxi(1,maxi(ceili((start*offset).distance_to(center)/.04),ceili(start.basis.y.angle_to(basis.y)/.06)))
+	for i in range(1,steps+1):
+		var t:float=float(i)/steps
+		var part_basis:Basis=start.basis.slerp(basis,t).orthonormalized()
+		var part:=Transform3D(part_basis,(start*offset).lerp(center,t)-part_basis*offset)
+		if not clear_surface_motion(game.player.global_transform,part):
+			clear_surface_path();game.player.velocity=Vector3.ZERO;return
+		apply_surface_pose(part)
+	game.player.velocity=(candidate.origin-start.origin)/maxf(.00001,delta)
+	if surface_elapsed>=surface_duration:clear_surface_path()
 
 func turn_surface(wanted:Vector3)->void:
 	try_surface(game.player.global_position-wanted.normalized()*.035,wanted)
@@ -166,8 +237,15 @@ func axis()->Vector2:
 	if "input_state" in game:
 		return game.input_state.axis if game.clock-float(game.input_state.time)<=.35 else Vector2.ZERO
 	return Input.get_vector("left","right","forward","back")
+func steer_heading(start:Vector3,target:Vector3,up:Vector3,weight:float)->Vector3:
+	var a:Vector3=start.slide(up).normalized();var b:Vector3=target.slide(up).normalized()
+	if a.length()<.01:return b
+	# Rotate about the known unit surface axis. Vector3.slerp can normalize a
+	# subnormal cross product when replicated headings become nearly identical.
+	return a.rotated(up,a.signed_angle_to(b,up)*weight).normalized()
 func request_jump()->void:
-	if mode=="spider" and game.stun<=0 and game.moves.player_freeze<=0:game.jump_buffer=.12
+	if mode=="spider" and game.stun<=0 and game.moves.player_freeze<=0:
+		game.jump_buffer=maxf(.12,surface_duration-surface_elapsed+.12)
 
 func move_airborne(delta:float,direction:Vector3)->void:
 	detach_time=maxf(0,detach_time-delta)
@@ -180,13 +258,20 @@ func move_airborne(delta:float,direction:Vector3)->void:
 		var hit:KinematicCollision3D=game.player.get_slide_collision(i)
 		var surface:Vector3=hit.get_normal()
 		if air_velocity.dot(surface)<-.1 and (detach_time<=0 or (surface.y>.7 and air_velocity.y<0)):
-			if try_surface(hit.get_position(),surface):
+			# Leave the solver's contact margin before gradually rotating a landed
+			# cylinder. Its first few degrees need the same clearance as later poses.
+			game.player.move_and_collide(surface*.025)
+			# A contact manifold point may lie on the rim of the cylinder. Project
+			# its centre onto the plane to avoid a sideways snap on landing.
+			var center:Vector3=game.player.global_transform*game.robots.naoya.collision.position
+			var point:Vector3=center-surface*(center-hit.get_position()).dot(surface)
+			if try_surface(point,surface):
 				airborne=false;air_velocity=Vector3.ZERO;fall_speed=0
 				return
 		air_velocity=air_velocity.slide(surface)
 	game.player.velocity=air_velocity
 
-func step_over_lip(direction:Vector3,delta:float)->void:
+func step_over_lip(direction:Vector3)->void:
 	# Slabs, curbs and stair lips are below the wall probes; lift by their measured
 	# height only after a vertical shape sweep proves the armour can clear them.
 	if normal.dot(Vector3.UP)<.9 or direction.length()<.1:return
@@ -196,11 +281,10 @@ func step_over_lip(direction:Vector3,delta:float)->void:
 	if top.is_empty() or top.normal.dot(normal)<.9:return
 	var rise:float=(top.position-origin).dot(normal)+.035
 	if rise<.06 or rise>.27:return
-	var pose:Transform3D=game.player.global_transform;pose.origin+=normal*rise
-	if not pose_fits(pose):return
-	var sweep:=PhysicsShapeQueryParameters3D.new();sweep.shape=collider;sweep.transform=game.player.global_transform*game.robots.naoya.collision.transform;sweep.motion=normal*rise;sweep.collision_mask=1;sweep.exclude=[game.player.get_rid()]
-	if game.get_world_3d().direct_space_state.cast_motion(sweep)[0]<.999:return
-	game.player.global_transform=pose
+	if not try_surface(top.position,top.normal):
+		# At a house slab the destination may already be behind the wall. Rise
+		# outside it first; the ordinary wall probe can then plan the corner.
+		try_surface(origin+normal*(rise-.035),normal)
 
 func climb_lip(direction:Vector3)->bool:
 	if normal.dot(Vector3.UP)>.9:return false
@@ -222,7 +306,9 @@ func walk_surface(delta:float)->void:
 	if game.stun>0:direction=Vector3.ZERO
 	if direction.length()>.01:
 		direction=direction.normalized()
-		if not game.camera_lock:forward=forward.slerp(direction,1-exp(-delta*12)).normalized()
+		if not game.camera_lock:forward=steer_heading(forward,direction,normal,1-exp(-delta*12))
+	if not surface_path.is_empty():
+		advance_surface(delta);return
 	var origin:Vector3=game.player.global_position
 	if not airborne and game.jump_buffer>0 and game.stun<=0:
 		var support:Dictionary=ray(origin+normal*.12,origin-normal*.16)
@@ -236,7 +322,9 @@ func walk_surface(delta:float)->void:
 		game.player.global_basis=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
 		return
 	if direction.length()>.1:
-		step_over_lip(direction,delta);origin=game.player.global_position
+		step_over_lip(direction)
+		if not surface_path.is_empty():advance_surface(delta);return
+		origin=game.player.global_position
 		var front:Dictionary={}
 		# The inner probe sees narrow roof overhangs before the capsule wedges under them.
 		for offset in [.48,.36,.08]:
@@ -244,6 +332,7 @@ func walk_surface(delta:float)->void:
 			if not front.is_empty():break
 		if not front.is_empty() and front.normal.dot(direction)<-.3 and front.normal.dot(normal)<.95:
 			if try_surface(front.position,front.normal):
+				if not surface_path.is_empty():advance_surface(delta);return
 				right=view_forward.cross(normal).normalized();direction=(right*input.x-view_forward*input.y).normalized()
 	var basis:=Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized()
 	game.player.global_basis=basis
@@ -251,6 +340,7 @@ func walk_surface(delta:float)->void:
 	var before_move:Vector3=game.player.global_position
 	game.player.move_and_slide()
 	if direction.length()>.1 and game.player.global_position.distance_to(before_move)<SPEED*delta*.4:climb_lip(direction)
+	if not surface_path.is_empty():advance_surface(delta);return
 	var support:Dictionary=ray(game.player.global_position+normal*.45,game.player.global_position-normal*.75)
 	if not support.is_empty():
 		fall_speed=0
@@ -263,6 +353,7 @@ func walk_surface(delta:float)->void:
 			if not try_surface(edge.position,edge.normal):lose_support(delta)
 		else:lose_support(delta)
 	else:lose_support(delta)
+	if not surface_path.is_empty():return
 	var pose:=Transform3D(Basis(forward.cross(normal).normalized(),normal,-forward).orthonormalized(),game.player.global_position)
 	if pose_fits(pose):game.player.global_transform=pose;last_safe=pose
 	elif pose_fits(last_safe):
@@ -351,6 +442,7 @@ func request_return()->bool:
 	var volume_exclude:Array[RID]=[game.player.get_rid()];volume_exclude.append_array(exclude);query.exclude=volume_exclude
 	if not game.get_world_3d().direct_space_state.intersect_shape(query,1).is_empty():tell("RECONEXIÓN / no hay espacio para reactivar el mecha");return false
 	mode="returning";elapsed=0;cloak_time=0;return_start=game.player.global_position
+	clear_surface_path()
 	tell("RECONEXIÓN / restableciendo el núcleo del Sentinel")
 	game.player.collision_layer=0;game.player.collision_mask=0
 	game.feedback.sound("mecha_servo_1",mecha_origin,-3);return true
@@ -412,37 +504,64 @@ func destroy()->void:
 func camera_update(camera:Camera3D,delta:float)->void:
 	var controls:Node3D=game.session.arena if "session" in game else game
 	var distance:float=controls.zoom
-	var heading:Vector3=view_forward.rotated(normal,wrapf(controls.yaw-previous_yaw,-PI,PI)).slide(normal).normalized()
-	if heading.length()<.01:heading=forward.slide(normal).normalized()
-	if heading.length()<.01:heading=Vector3.FORWARD.slide(normal).normalized()
-	if heading.length()<.01:heading=Vector3.RIGHT.slide(normal).normalized()
+	# Body, eye and horizon share the same interpolated orientation. Using the
+	# latest physics normal here used to turn the camera before the visible head.
+	var pose:Transform3D=game.player.global_transform if is_replica else game.player.get_global_transform_interpolated()
+	var up:Vector3=pose.basis.y.normalized()
+	var transport:=Quaternion(normal,up)
+	var heading:Vector3=(transport*view_forward).rotated(up,wrapf(controls.yaw-previous_yaw,-PI,PI)).slide(up).normalized()
+	if heading.length()<.01:heading=(transport*forward).slide(up).normalized()
+	if heading.length()<.01:heading=Vector3.FORWARD.slide(up).normalized()
+	if heading.length()<.01:heading=Vector3.RIGHT.slide(up).normalized()
 	var pitch:float=clampf(controls.pitch,-1.35,1.35)
-	var view:Vector3=heading*cos(pitch)+normal*sin(pitch)
-	var origin:Vector3=game.player.get_global_transform_interpolated().origin
+	var view:Vector3=heading*cos(pitch)+up*sin(pitch)
+	var origin:Vector3=pose.origin
 	var first_person:bool=distance<=.55
-	var eye:Vector3=origin+normal*.48+heading*.20
+	var eye:Vector3=origin+up*.48+heading*.20
 	if not first_person:
-		var target:Vector3=origin+normal*.38
-		var motion:Vector3=-view*distance
+		var target:Vector3=origin+up*.38
+		# Sweep from the protected eye. A tight orbit can then approach that same
+		# position continuously instead of jumping between two camera anchors.
+		var motion:Vector3=target-view*distance-eye
 		# Sweep the camera volume, including its near plane, against walls/ceilings.
 		var sphere:=SphereShape3D.new();sphere.radius=.20
 		var query:=PhysicsShapeQueryParameters3D.new();query.shape=sphere
-		query.transform.origin=target;query.motion=motion;query.collision_mask=1
+		query.margin=.01
+		query.transform.origin=eye;query.motion=motion;query.collision_mask=1
 		query.exclude=[game.player.get_rid()]
 		var safe:PackedFloat32Array=game.get_world_3d().direct_space_state.cast_motion(query)
-		eye=target+motion*safe[0]
-		# Tight spaces use the protected eye view until there is room for the orbit.
-		first_person=eye.distance_to(target)<.6
-		if first_person:eye=origin+normal*.48+heading*.20
+		var length:float=motion.length()*safe[0]
+		var anticipated:float=length
+		if not surface_path.is_empty():
+			# Retract before the corner brings the orbit near a wall/floor. The
+			# current sweep still provides the hard collision limit each frame.
+			var future:Transform3D=surface_pose_at(minf(surface_duration,surface_elapsed+.18))
+			var future_up:Vector3=future.basis.y.normalized()
+			var future_heading:Vector3=Quaternion(up,future_up)*heading
+			var future_eye:Vector3=future.origin+future_up*.48+future_heading*.20
+			var future_view:Vector3=future_heading*cos(pitch)+future_up*sin(pitch)
+			var future_motion:Vector3=future.origin+future_up*.38-future_view*distance-future_eye
+			query.transform.origin=future_eye;query.motion=future_motion
+			var future_safe:PackedFloat32Array=game.get_world_3d().direct_space_state.cast_motion(query)
+			anticipated=minf(length,future_motion.length()*future_safe[0])
+		if camera_arm<0 or not is_equal_approx(distance,camera_zoom):camera_arm=length
+		else:camera_arm=minf(length,lerpf(camera_arm,anticipated,1-exp(-delta*12)))
+		eye+=motion.normalized()*camera_arm
+		# Retract immediately for safety; ease back out when an obstacle clears.
+		first_person=camera_arm<.6
+	else:camera_arm=-1
+	camera_zoom=distance
 	view_manager().spider_overlay(game,camera,first_person)
 	# Follow the interpolated body directly: lag previously left the eye inside its skin.
 	camera.global_position=eye
-	camera.global_basis=Basis.looking_at(view,normal)
+	camera.global_basis=Basis.looking_at(view,up)
 	camera.near=.035 if first_person else .08;camera.fov=float(game.preferences.values.fov)
 	if not is_instance_valid(vision):
 		vision=preload("res://scripts/spider_vision.gd").new();add_child(vision);vision.setup(game,camera)
 	vision.update(vision_mode,delta)
 func cleanup()->void:
+	clear_surface_path()
+	camera_arm=-1;camera_zoom=-1
 	if is_instance_valid(vision):vision.release();vision.queue_free()
 	vision=null
 	restore_energy()
@@ -472,9 +591,15 @@ func accept(data:Dictionary,delta:float)->void:
 		return
 	is_replica=true
 	var new_head:bool=not active()
-	for key in ["mode","elapsed","mecha_hp","mecha_height","normal","forward","airborne","vision_mode","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
+	for key in ["mode","elapsed","mecha_hp","mecha_height","airborne","vision_mode","dormant","scan_time","scan_cd","scan_revision","cloak_time","cloak_cd"]:
 		if data.has(key):set(key,data[key])
-	previous_yaw=float(data.get("heading_yaw",0));view_forward=data.get("view_forward",forward)
+	var next:Vector3=data.get("normal",Vector3.UP);var heading:Vector3=data.get("forward",Vector3.FORWARD)
+	var target:=Basis(heading.cross(next),next,-heading).orthonormalized()
+	var basis:Basis=target if new_head else Basis(forward.cross(normal),normal,-forward).orthonormalized().slerp(target,1-exp(-delta*25)).orthonormalized()
+	normal=basis.y;forward=-basis.z
+	var target_view:Vector3=Quaternion(next,normal)*Vector3(data.get("view_forward",heading))
+	view_forward=target_view if new_head else steer_heading(view_forward,target_view,normal,1-exp(-delta*25))
+	previous_yaw=float(data.get("heading_yaw",0))
 	mecha_origin=data.get("origin",Vector3.ZERO);mecha_yaw=float(data.get("yaw",0))
 	make_visual();make_parked();prepare_energy();use_spider_collider()
 	if new_head:update_portrait()
