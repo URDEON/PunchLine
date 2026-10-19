@@ -1,0 +1,15 @@
+{
+  "godot": "4.4.1-stable",
+  "version": "0.9.31",
+  "archive_tested_tree": "d374273ab28a6c7eb07e15db8f1d189344ee6850",
+  "matching_source_files": 1276,
+  "source_sha256": "6a8b0b2f273037db22ee9623041a97706759b1e0a1d1fdb0ab4d39ac214fb64b",
+  "first_import_exit": 0,
+  "first_import_dummy_texture_diagnostics": 55,
+  "first_import_other_errors": 0,
+  "second_import_exit": 0,
+  "second_import_errors": 0,
+  "frontend_exit": 0,
+  "frontend_checks": "19/19",
+  "note": "Freshly extracted source archive; generated Godot cache and .import metadata excluded from source comparison. Final evidence/documentation added after validation."
+}

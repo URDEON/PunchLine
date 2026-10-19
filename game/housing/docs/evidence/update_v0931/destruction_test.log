@@ -1,0 +1,28 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PASS real generated masonry wall selected
+PASS first impact fractures only the struck wall into deterministic cells
+PASS weak local hit creates cracks while neighbouring masonry remains intact
+PASS strong hit opens a local hole rather than erasing the whole wall
+PASS broken cell removes actual wall collision
+PASS fracture creates a bounded physical debris pool
+PASS solid convex rubble retains source material and collides with world and other rubble
+PASS duplicate damage packets cannot replay fracture
+PASS reset removes fracture cells and restores original physical wall
+PASS late-join state reconstructs the identical fracture IDs and holes
+SUPPORT_RUNTIME_MS 10628 bearing=77 detached=815
+PASS removing bearing masonry drops the supported roof through the support graph
+PASS collapse evaluates support and respects debris and persistent rubble budgets
+RETAINED_ROOFS 8 dynamic=64 settled=6
+PASS unsupported roofs retain source geometry and collision through falling and settling
+PASS unsupported glass panes do not remain floating after structural collapse
+PASS single-player pause freezes physical demolition debris
+PASS collapse leaves deterministic walkable rubble independent of visual debris quality
+PASS late-join state includes persistent physical rubble locations
+PASS falling structural pieces cause authoritative environmental damage and ragdoll
+PASS gameplay collapse hazards exist even when cosmetic debris is disabled
+PASS world restart clears cracks, rubble and temporary geometry
+PASS indestructible-world option prevents all fracture
+RESULT 21/21 fracture, physical rubble, support and late-join checks

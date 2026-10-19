@@ -1,0 +1,24 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS original launcher menu loads with four entries
+PASS launcher and window show the current project version
+PASS settings button opens original settings panel
+PASS launcher exposes graphics presets
+PASS extras button loads original browser
+PASS closing extras restores original home menu
+PASS model gallery renders continuously at full viewport size
+PASS transparent artwork cannot expose the stale model texture
+PASS DEMO opens editable world settings before starting
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PASS DEMO button enters complete game with player rig
+PASS in-game menu uses the same release version
+PASS selected text seed and density create the chosen runtime layout
+PASS DEMO destructibility checkbox reaches actual physics manager
+PASS selected night setting reaches the actual game environment
+PASS original character selector exposes player and Robot
+PASS original movement controls move player in District500
+PASS Robot selector button loads original animated robot
+PASS original robot combat starts real attack animation
+PASS original selector restores The Proyected character
+RESULT 19/19 launcher, menu navigation, character selector and gameplay

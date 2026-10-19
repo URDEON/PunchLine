@@ -8,6 +8,7 @@ var scene: Node3D
 var housing: Node3D
 var ambience: Node3D
 var destruction: Node3D
+var cargo:Node3D
 var collision_count := 0
 var height_adjustments := 0
 var player_spawns: Array[Marker3D] = []
@@ -28,6 +29,7 @@ func setup(host: Node3D) -> void:
     rng.seed = 923
     scene = SCENE.instantiate()
     add_child(scene)
+    cargo=preload("res://scripts/cargo_yard.gd").new();add_child(cargo);cargo.setup(self)
     housing = preload("res://housing/scripts/DistrictHousingGenerator.gd").new();housing.name="DistrictHousing"
     if OS.get_environment("PUNCHLINE_HOUSING_MODE") == "none":
         housing.free(); housing = null
@@ -63,6 +65,7 @@ func setup_async(host:Node3D,loading:CanvasLayer)->void:
     rng.seed = 923
     scene = SCENE.instantiate()
     add_child(scene)
+    cargo=preload("res://scripts/cargo_yard.gd").new();add_child(cargo);cargo.setup(self)
     housing = preload("res://housing/scripts/DistrictHousingGenerator.gd").new();housing.name="DistrictHousing"
     if OS.get_environment("PUNCHLINE_HOUSING_MODE") == "none":
         housing.free(); housing = null

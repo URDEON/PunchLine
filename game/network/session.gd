@@ -1,5 +1,6 @@
 extends Node
 var pending_district:Array[Dictionary]=[]
+var pending_cargo:Dictionary={}
 var world_configuring:=false
 var world_config_queue:Array[Dictionary]=[]
 # Todos los RPC usan esta ruta estable; ningún cliente puede transmitir daño o posiciones.
@@ -49,6 +50,7 @@ func host_game(name_text: String, selected: int, port: int = DEFAULT_PORT) -> Er
 	if port < 1024 or port > 65535: return ERR_INVALID_PARAMETER
 	arena.configure_world(preload("res://scripts/world_config.gd").current())
 	if arena.map.destruction.revision>0:arena.map.destruction.reset_world()
+	arena.map.cargo.reset_world()
 	var peer := ENetMultiplayerPeer.new()
 	var error := peer.create_server(port,MAX_PLAYERS-1,3)
 	if error != OK: message.emit("No se pudo abrir UDP %d: %s" % [port,error_string(error)]); return error
@@ -163,6 +165,7 @@ func roster_ready(generations: Dictionary) -> void:
 		if not generations.has(id) or int(generations[id]) != int(roster[id].generation): return
 	ready_peers[sender] = true
 	district_state.rpc_id(sender,arena.map.destruction.state())
+	cargo_state.rpc_id(sender,arena.map.cargo.state())
 	if OS.get_environment("NAOYA_NET_QA") == "1": print("ROSTER_READY ",sender," / ",roster.size())
 
 func peer_disconnected(id: int) -> void:
@@ -393,6 +396,30 @@ func district_state(data:Dictionary)->void:
 		else:arena.map.destruction.accept_state(data)
 
 @rpc("authority","call_remote","reliable",0)
+func district_settled(data:Dictionary)->void:
+	if active and not server:
+		if arena.loading or world_configuring:pending_district.append({"state":false,"settled":true,"data":data})
+		else:arena.map.destruction.accept_settled(data)
+
+func local_cargo_command(action:String)->void:
+	if is_host():arena.map.cargo.command(local_id(),action)
+	else:request_cargo_command.rpc_id(1,action)
+func local_cargo_input(axis:Vector3)->void:
+	if is_host():arena.map.cargo.input_control(local_id(),axis)
+	else:request_cargo_input.rpc_id(1,axis)
+@rpc("any_peer","call_remote","reliable",0)
+func request_cargo_command(action:String)->void:
+	if is_host() and action in ["toggle","grab"]:arena.map.cargo.command(multiplayer.get_remote_sender_id(),action)
+@rpc("any_peer","call_remote","unreliable_ordered",0)
+func request_cargo_input(axis:Vector3)->void:
+	if is_host():arena.map.cargo.input_control(multiplayer.get_remote_sender_id(),axis)
+@rpc("authority","call_remote","unreliable_ordered",0)
+func cargo_state(data:Dictionary)->void:
+	if not active or server:return
+	if arena.loading or world_configuring:pending_cargo=data.duplicate(true)
+	else:arena.map.cargo.accept(data)
+
+@rpc("authority","call_remote","reliable",0)
 func configure_world(settings:Dictionary)->void:
 	if not active or server:return
 	world_config_queue.append(settings.duplicate(true))
@@ -405,7 +432,9 @@ func configure_world(settings:Dictionary)->void:
 		await arena.configure_world_async(next)
 		if arena.map.destruction.revision>0:arena.map.destruction.reset_world()
 	for packet in pending_district:
-		if packet.state:arena.map.destruction.accept_state(packet.data)
+		if packet.get("settled",false):arena.map.destruction.accept_settled(packet.data)
+		elif packet.state:arena.map.destruction.accept_state(packet.data)
 		else:arena.map.destruction.apply_packet(packet.data,true)
 	pending_district.clear();world_configuring=false
+	if not pending_cargo.is_empty():arena.map.cargo.accept(pending_cargo);pending_cargo.clear()
 	if rebuilt:acknowledge_roster()

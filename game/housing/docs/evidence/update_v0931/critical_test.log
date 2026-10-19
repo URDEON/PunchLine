@@ -1,0 +1,19 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PunchLine · módulos de fusión cargados: 112
+PASS holding G at healthy HP cannot arm autodestruction
+PASS 20 percent HP unlocks the explicit G / 3-second HUD prompt
+PASS releasing G before three seconds cancels arming
+PASS a complete three-second hold starts the separate three-second fuse
+PASS activation positions the audible alarm on the robot and stops the engine
+PASS shutdown prevents ejecting the head to bypass autodestruction
+PASS robot remains powered down while the fuse counts down
+PASS shutdown visibly bends the mecha knees
+PASS one detonation destroys the actor through its normal death path
+PASS super-explosion applies lethal nearby damage and ragdoll
+PASS blast does not damage actors outside its radius
+PASS detonation creates the real physical mecha wreck
+PASS normal respawn clears the armed state and alarm
+RESULT 13/13 critical hold, shutdown, explosion and respawn checks

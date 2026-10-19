@@ -120,10 +120,15 @@ func configure_environment(value:Environment,is_night:bool)->void:
 		sun.rotation_degrees=Vector3(-38,-30,0) if night else Vector3(-46,-32,0)
 		sun.directional_shadow_max_distance=160;sun.directional_shadow_mode=DirectionalLight3D.SHADOW_PARALLEL_4_SPLITS
 	if night:
-		var sky:=Sky.new();var panorama:=PanoramaSkyMaterial.new();panorama.panorama=preload("res://assets/environment/v098/sky/skybox-night.png");sky.sky_material=panorama;environment.sky=sky
+		var sky:=Sky.new();var nocturnal:=ProceduralSkyMaterial.new()
+		nocturnal.sky_top_color=Color("080f20");nocturnal.sky_horizon_color=Color("384d68")
+		nocturnal.ground_bottom_color=Color("0b111b");nocturnal.ground_horizon_color=Color("384d68")
+		nocturnal.sun_angle_max=1.0;nocturnal.sun_curve=.10;nocturnal.use_debanding=true
+		sky.radiance_size=Sky.RADIANCE_SIZE_256;sky.sky_material=nocturnal;environment.sky=sky
 	else:
 		var sky:=Sky.new();var physical:=PhysicalSkyMaterial.new();physical.rayleigh_coefficient=2.2;physical.mie_coefficient=.004
-		physical.ground_color=Color("556044");physical.energy_multiplier=.85;sky.sky_material=physical;environment.sky=sky
+		physical.ground_color=Color("556044");physical.energy_multiplier=.85;physical.use_debanding=true
+		sky.radiance_size=Sky.RADIANCE_SIZE_256;sky.sky_material=physical;environment.sky=sky
 	apply_settings(settings)
 func apply_settings(values:Dictionary)->void:
 	settings=values.duplicate()

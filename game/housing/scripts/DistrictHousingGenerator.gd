@@ -2,7 +2,7 @@
 extends Node3D
 ## Editable geometric architecture. All detail stays in the validated building envelope.
 @export_file("*.json") var plan_path:="res://housing/data/generated_plan.json"
-const REVISION:="architecture-2.5-furnished-human-doors"
+const REVISION:="architecture-3.0-building-facilities"
 const WALL_COLORS:=[Color("e5d7b7"),Color("d2ae88"),Color("b9c6b1"),Color("c2cfce"),Color("cba28e"),Color("d8d0bc"),Color("b5c4ca"),Color("eadfcb")]
 const ROOF_COLORS:=[Color("b56b4d"),Color("925247"),Color("676d70"),Color("a37451"),Color("7c8b85")]
 var materials:Dictionary={}
@@ -273,14 +273,14 @@ func window(parent:Node3D,hole:Dictionary,trim:Material,dark:Material,shutters:b
 	var x:float=hole.x;var bottom:float=hole.bottom;var ww:float=hole.width;var hh:float=hole.height
 	var glass:=material("clear_glass",Color(.68,.85,.87,.17));glass.transparency=BaseMaterial3D.TRANSPARENCY_ALPHA;glass.cull_mode=BaseMaterial3D.CULL_DISABLED;glass.roughness=.12
 	# Glass occupies the actual hole. There is no wall behind it; physics still blocks climbing through.
-	part(parent,"Glass",Vector3(ww-.09,hh-.09,.025),Vector3(x,bottom+hh/2,0),glass)
+	part(parent,"Glass",Vector3(ww-.09,hh-.09,.035),Vector3(x,bottom+hh/2,.14),glass)
 	for sx in [-1.0,1.0]:
-		detail(parent,Vector3(.09,hh+.14,.13),Vector3(x+sx*(ww/2+.035),bottom+hh/2,.18),trim)
+		part(parent,"WindowJamb",Vector3(.09,hh+.14,.13),Vector3(x+sx*(ww/2+.035),bottom+hh/2,.18),trim)
 		if shutters:detail(parent,Vector3(.23,hh+.09,.07),Vector3(x+sx*(ww/2+.19),bottom+hh/2,.16),dark)
-	for sy in [bottom-.035,bottom+hh+.035]:detail(parent,Vector3(ww+.16,.09,.15),Vector3(x,sy,.18),trim)
+	for sy in [bottom-.035,bottom+hh+.035]:part(parent,"WindowHorizontalFrame",Vector3(ww+.16,.09,.15),Vector3(x,sy,.18),trim)
 	detail(parent,Vector3(.045,hh,.055),Vector3(x,bottom+hh/2,.16),dark)
 	detail(parent,Vector3(ww,.045,.055),Vector3(x,bottom+hh*.52,.13),dark)
-	detail(parent,Vector3(ww+.28,.10,.24),Vector3(x,bottom-.10,.18),trim)
+	part(parent,"WindowSill",Vector3(ww+.28,.10,.24),Vector3(x,bottom-.10,.18),trim)
 
 func triangle(st:SurfaceTool,a:Vector3,b:Vector3,c:Vector3,center:Vector3)->void:
 	var normal:Vector3=(c-a).cross(b-a)
@@ -302,7 +302,7 @@ func prism(parent:Node3D,label:String,face:Array[Vector3],extrusion:Vector3,mat:
 		triangle(st,a,b,b+extrusion,center);triangle(st,a,b+extrusion,a+extrusion,center)
 	var body:=StaticBody3D.new();body.name=label;parent.add_child(body)
 	var mesh:=MeshInstance3D.new();mesh.mesh=st.commit();mesh.material_override=mat;mesh.visibility_range_end=360;body.add_child(mesh)
-	var col:=CollisionShape3D.new();col.shape=mesh.mesh.create_trimesh_shape();body.add_child(col)
+	var col:=CollisionShape3D.new();col.shape=mesh.mesh.create_trimesh_shape();col.shape.backface_collision=true;body.add_child(col)
 
 func build_roof(parent:Node3D,w:float,d:float,h:float,style:Dictionary,color_index:int,wall:Material,trim:Material,workshop:bool)->void:
 	var roof_kind:String=style.get("roof","gable")
@@ -322,8 +322,9 @@ func build_roof(parent:Node3D,w:float,d:float,h:float,style:Dictionary,color_ind
 		prism(parent,"BackGable",[roof_corners[0],roof_corners[1],a],Vector3(0,0,.16),wall)
 		prism(parent,"FrontGable",[roof_corners[3],b,roof_corners[2]],Vector3(0,0,-.16),wall)
 	var roof_trim:=category(parent,"FasciaAndRidge")
-	detail(roof_trim,Vector3(.11,.18,d-.10),Vector3(x0,y-.04,0),trim)
-	detail(roof_trim,Vector3(.11,.18,d-.10),Vector3(x1,y-.04,0),trim)
+	part(roof_trim,"LeftFascia",Vector3(.11,.18,d-.10),Vector3(x0,y-.04,0),trim)
+	part(roof_trim,"RightFascia",Vector3(.11,.18,d-.10),Vector3(x1,y-.04,0),trim)
+	part(roof_trim,"RidgeContact",Vector3(.18,.20,maxf(.20,b.z-a.z-.28)),Vector3(0,y+rise+.04,(a.z+b.z)/2),roof_mat)
 	var ridge_mesh:=CylinderMesh.new();ridge_mesh.top_radius=.13;ridge_mesh.bottom_radius=.13;ridge_mesh.height=.36;ridge_mesh.radial_segments=8
 	var ridge:=MultiMeshInstance3D.new();ridge.name="RidgeTiles";ridge.physics_interpolation_mode=Node.PHYSICS_INTERPOLATION_MODE_OFF;ridge.multimesh=load(get_script().resource_path.get_base_dir()+"/BakedMultiMesh.gd").new();ridge.multimesh.transform_format=MultiMesh.TRANSFORM_3D;ridge.multimesh.mesh=ridge_mesh
 	var count:int=maxi(1,int((b.z-a.z)/.33));ridge.multimesh.instance_count=count;ridge.material_override=roof_mat

@@ -11,11 +11,13 @@ var refresh_time:=0.0
 var cards:Array[MeshInstance3D]=[]
 
 func _ready() -> void:
-	mouse_filter = Control.MOUSE_FILTER_IGNORE; stretch = true; stretch_shrink = 2
+	mouse_filter = Control.MOUSE_FILTER_IGNORE; stretch = true; stretch_shrink = 1
+	texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	viewport = SubViewport.new(); viewport.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF; viewport.own_world_3d = true; viewport.transparent_bg = true
 	viewport.size = Vector2i(960,540); viewport.render_target_update_mode = SubViewport.UPDATE_WHEN_VISIBLE
 	viewport.gui_disable_input = true; add_child(viewport)
+	viewport.msaa_3d=Viewport.MSAA_2X
 	rig = Node3D.new(); viewport.add_child(rig)
 	for i in range(5):
 		var slab := MeshInstance3D.new(); var box := BoxMesh.new()
@@ -43,8 +45,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	if viewport == null:return
 	if not is_visible_in_tree():viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED;return
-	refresh_time+=delta
-	if refresh_time>=.05:refresh_time=0;viewport.render_target_update_mode=SubViewport.UPDATE_ONCE
+	viewport.render_target_update_mode=SubViewport.UPDATE_ALWAYS
 	var motion: float = float(ui.game.preferences.values.get("ui_motion",1.0))
 	time += delta*motion
 	var cursor := get_local_mouse_position()/size.max(Vector2.ONE)*2-Vector2.ONE

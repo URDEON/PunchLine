@@ -1,0 +1,18 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PunchLine · módulos de fusión cargados: 112
+PASS real Sentinel fusion starts
+PASS real fitted head ejects
+WINDOW_TRACE 0 position=(600.0, 0.035, -1.04) up=(0.0, 1.0, 0.0) blocked={  }
+WINDOW_TRACE 40 position=(600.0, 0.09195, -2.392406) up=(0.0, 0.995123, 0.098643) blocked={  }
+WINDOW_TRACE 80 position=(600.0, 0.515, -2.70645) up=(0.0, 0.0, 1.0) blocked={  }
+WINDOW_TRACE 120 position=(600.0, 1.495, -2.71) up=(0.0, 0.0, 1.0) blocked={ "stage": "overlap", "pose": [X: (1.0, 0.0, 0.0), Y: (0.0, 0.0, 1.0), Z: (0.0, -1.0, 0.0), O: (600.0, 1.455, -2.8075)] }
+WINDOW_TRACE 160 position=(600.0, 2.467747, -2.65) up=(0.0, 0.0, 1.0) blocked={ "stage": "overlap", "pose": [X: (1.0, 0.0, 0.0), Y: (0.0, 0.0, 1.0), Z: (0.0, -1.0, 0.0), O: (600.0, 2.124999, -2.8075)] }
+PASS continuous movement climbs over a real generated window, sill, frame and glass
+PASS complete armour stays clear of all physical window and wall surfaces
+PASS window sill is crossed as a facade lip without attaching upside down underneath it
+PASS window crossing preserves smooth translation without a teleport
+WINDOW_METRICS max_step=0.0498771071434 reached=true position=(600.0, 3.234998, -2.84)
+RESULT 6/6 real generated window climb checks

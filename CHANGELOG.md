@@ -1,5 +1,16 @@
 # Cambios de PunchLine
 
+## 0.9.31
+
+- Distribución más densa: 139 construcciones y 29 edificios de varias plantas con la semilla 923 en densidad alta; nuevos ramales peatonales e infill sin invadir calles, veredas, estacionamiento ni accesos medidos.
+- Edificios equipados con conserjería, sillas ergonómicas, sofás, mesas, correspondencia, espejos, residuos/reciclaje, CCTV, monitores, torniquete y gabinetes de extintores. Baños con lavamanos ahuecado, jabón, toallas, secador, espejo, WC y lockers; plantas, bancas, luminarias y alfombras de acceso.
+- Patio de carga vallado sobre la explanada existente: 29 contenedores metálicos de colores, huecos y con colisiones por paredes/suelo/techo, puertas abiertas o cerradas y algunas cargas interiores.
+- Grúa sobre rieles manejable desde la consola con H; I/K avanza, J/L mueve el carro, U/O sube/baja y Enter engancha o suelta al llegar al suelo. Controles, operador y posiciones compartidos por el host.
+- Techos con colisión por ambos lados, fascia y cumbrera físicas. Los restos estructurales conservan colisión sólida al asentarse, apoyados sobre geometría duradera y sincronizados para clientes actuales y nuevos. Molduras y detalles pierden su soporte junto con la estructura.
+- Araña: cristal alineado con la fachada, marcos y alféizares físicos, sondeo de la huella para salvar juntas y cruce de salientes sin pegarse invertida a la ventana.
+- Veredas con losas a escala de 60 × 40 cm, juntas suavizadas y acabado corregido; pisos comerciales con baldosas y cara inferior pintada.
+- Cielo nocturno procedural y gradientes con reducción de bandas. Menús con filtrado lineal, vistas 3D a resolución completa y actualización continua; se evita mostrar el modelo anterior detrás de imágenes transparentes.
+
 ## 0.9.30
 
 - La araña recorre los arcos comprobados entre suelo, paredes y techos a lo largo de varios pasos de física, con aceleración y frenado suaves y velocidades limitadas. Se elimina el salto instantáneo al final del recorrido.

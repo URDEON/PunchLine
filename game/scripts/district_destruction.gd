@@ -20,6 +20,8 @@ var support_checks:=0
 var fall_hazards:Array[Dictionary]=[]
 var fall_hits:Dictionary={}
 var physical_rubble:Dictionary={}
+var settled_structures:Dictionary={}
+var settled_nodes:Dictionary={}
 const FRACTURE_SIZE:=.85
 const MAX_DYNAMIC:=64
 const MAX_RESTING:=192
@@ -72,6 +74,34 @@ func register_building(id:String,house:Node3D)->void:
    var transform:Transform3D=batch.multimesh.source_transform(i)
    decor.append({"batch":batch,"index":i,"transform":transform,"point":batch.global_transform*transform.origin,"hidden":false})
  buildings[id]={"support_reference":{},"node":house,"parts":list,"decor":decor,"hp":240.0*sqrt(float(house.get_meta("storeys",1))),"max_hp":240.0*sqrt(float(house.get_meta("storeys",1)))}
+ # Unbatched ridge caps, lenses and fixtures also need a support owner.
+ for visual in house.find_children("*","GeometryInstance3D",true,false):
+  if visual is MultiMeshInstance3D and "source_transforms" in visual.multimesh:continue
+  var ancestor:Node=visual.get_parent();var physical:=false
+  while ancestor!=house:
+   if ancestor is StaticBody3D:physical=true;break
+   ancestor=ancestor.get_parent()
+  if not physical:
+   var point:Vector3=visual.global_position
+   if visual is MultiMeshInstance3D and visual.multimesh.instance_count>0:point=visual.global_transform*(visual.multimesh.get_instance_transform(0)*visual.multimesh.mesh.get_aabb().get_center())
+   elif visual is MeshInstance3D:point=visual.global_transform*visual.get_aabb().get_center()
+   decor.append({"node":visual,"point":point,"hidden":false})
+ for entry in decor:
+  var nearest_id:="";var distance:=INF
+  var parent:Node=entry.node if entry.has("node") else entry.batch
+  var category:Node=parent
+  while category.get_parent()!=house:category=category.get_parent()
+  var category_name:=String(category.name)
+  for key in list:
+   var p:Dictionary=parts[key]
+   var allowed:bool=p.category==category_name
+   if category_name=="FacadeDetails":allowed=p.category in ["Walls","Floors"]
+   if category_name=="Interiors":allowed=p.category in ["Interiors","Walls"] or (p.category=="Floors" and p.box.get_center().y<entry.point.y+.10)
+   if not allowed:continue
+   var candidate:Vector3=nearest(p.box,entry.point)
+   var gap:float=candidate.distance_to(entry.point)
+   if gap<distance:distance=gap;nearest_id=key;entry["support_point"]=candidate
+  entry["support"]=nearest_id
  # Load capacity at each storey's bearing band is measured before damage.
  for key in list:
   var p:Dictionary=parts[key]
@@ -82,6 +112,7 @@ func register_building(id:String,house:Node3D)->void:
    p["bearing_level"]=level;p["bearing_area"]=p.local_box.size.x*p.local_box.size.z
    buildings[id].support_reference[level]=float(buildings[id].support_reference.get(level,0))+p.bearing_area
 func material_kind(mat:Material,category:String)->String:
+ if category=="Floors":return "concrete"
  if category=="Windows":return "glass"
  if mat is StandardMaterial3D:
   if mat.metallic>.5:return "steel"
@@ -231,12 +262,38 @@ func remove_part(id:String,animate:bool,point:Vector3,direction:Vector3,falling:
  # Remove non-colliding trim in the opening; unbroken physical parts remain intact.
  for entry in buildings[p.building].decor:
   if entry.hidden or not p.box.grow(.30).has_point(entry.point):continue
-  entry.hidden=true;removed_details.append(entry)
-  var hidden:Transform3D=entry.transform;hidden.basis=Basis().scaled(Vector3.ZERO)
-  entry.batch.multimesh.source_transforms[entry.index]=hidden;entry.batch.multimesh.set_instance_transform(entry.index,hidden)
- if animate:
+  hide_detail(entry)
+ # Settling can be broadcast during a saturated collapse before its damage
+ # packet. A receiving peer must not spawn a second moving copy afterwards.
+ if animate and not settled_nodes.has(id):
   if event_falling<8 and (p.category=="Roof" or (falling and p.category in ["Floors","Stairs","Interiors"])):spawn_falling(p,direction)
   elif event_fragments<20:spawn_debris(p,point,direction)
+func hide_detail(entry:Dictionary)->void:
+ if entry.hidden:return
+ entry.hidden=true;removed_details.append(entry)
+ if entry.has("node"):
+  if is_instance_valid(entry.node):entry.node.hide()
+ else:
+  var hidden:Transform3D=entry.transform;hidden.basis=Basis().scaled(Vector3.ZERO)
+  entry.batch.multimesh.source_transforms[entry.index]=hidden;entry.batch.multimesh.set_instance_transform(entry.index,hidden)
+func update_decor_support()->void:
+ for building in buildings.values():
+  for entry in building.decor:
+   if entry.hidden or not parts.has(entry.get("support","")):continue
+   var source:Dictionary=parts[entry.support]
+   if not source.broken:continue
+   var supported:=false
+   for key in fractures.get(entry.support,[]):
+    if not parts[key].broken and parts[key].box.grow(.16).has_point(entry.support_point):supported=true;break
+   if not supported:hide_detail(entry)
+func structural_order(a:String,b:String)->bool:
+ if not parts.has(a) or not parts.has(b):return a<b
+ var priority:Dictionary={"Roof":0,"Floors":1,"Stairs":2,"Interiors":3}
+ var pa:int=priority.get(parts[a].category,4);var pb:int=priority.get(parts[b].category,4)
+ if pa!=pb:return pa<pb
+ var aa:float=parts[a].box.size.x*parts[a].box.size.z
+ var ab:float=parts[b].box.size.x*parts[b].box.size.z
+ return a<b if is_equal_approx(aa,ab) else aa>ab
 func apply_packet(packet:Dictionary,animate:=false)->void:
  var incoming:int=int(packet.get("revision",0))
  if incoming<=revision:return
@@ -246,7 +303,10 @@ func apply_packet(packet:Dictionary,animate:=false)->void:
  if authoritative() and animate:schedule_falls(packet)
  for id in packet.get("fractured",[]):
   if parts.has(id):fracture(id)
- for id in packet.get("damaged",{}):
+ # Large roofs must enter the bounded body pool before small falling fixtures.
+ # Network dictionaries and furniture count must not decide which roof survives.
+ var removal_order:Array=packet.get("damaged",{}).keys();removal_order.sort_custom(structural_order)
+ for id in removal_order:
   if not parts.has(id):continue
   var hp:float=float(packet.damaged[id]);parts[id].hp=hp;damaged[id]=hp
   if hp<=0:remove_part(id,animate,packet.get("point",Vector3.ZERO),packet.get("direction",Vector3.UP),detached.has(id))
@@ -256,8 +316,10 @@ func apply_packet(packet:Dictionary,animate:=false)->void:
   collapsed[id]=true;buildings[id].node.visible=false
   for key in buildings[id].parts:remove_part(key,animate and event_fragments<20,packet.get("point",Vector3.ZERO),packet.get("direction",Vector3.UP))
  for id in packet.get("rubble_buildings",[]):create_physical_rubble(id)
+ update_decor_support()
+ for settled in packet.get("settled",[]):accept_settled(settled)
 func state()->Dictionary:
- return {"revision":revision,"damaged":damaged.duplicate(),"collapsed":collapsed.keys(),"fractured":fractures.keys(),"rubble_buildings":physical_rubble.keys()}
+ return {"revision":revision,"damaged":damaged.duplicate(),"collapsed":collapsed.keys(),"fractured":fractures.keys(),"rubble_buildings":physical_rubble.keys(),"settled":settled_structures.values()}
 func accept_state(data:Dictionary)->void:
  if int(data.get("revision",0))==0:return
  revision=-1;apply_packet(data,false)
@@ -356,6 +418,7 @@ func schedule_falls(packet:Dictionary)->void:
  var candidates:Array=packet.get("detached",[]).duplicate()
  for key in packet.get("damaged",{}):
   if float(packet.damaged[key])<=0 and parts.has(key) and parts[key].category=="Roof" and not key in candidates:candidates.append(key)
+ candidates.sort_custom(structural_order)
  for key in candidates:
   if selected>=8 or fall_hazards.size()>=24:break
   var p:Dictionary=parts[key]
@@ -408,8 +471,9 @@ func spawn_falling(part:Dictionary,direction:Vector3)->void:
  event_falling+=1
  if debris.size()>=MAX_DYNAMIC:
   var old:RigidBody3D=debris.pop_front()
-  if is_instance_valid(old):old.queue_free()
+  if is_instance_valid(old):rest_piece(old);old.queue_free()
  var body:=RigidBody3D.new();body.name="FallingStructure";body.collision_layer=64;body.collision_mask=1|64;body.mass=300;body.continuous_cd=true;body.linear_damp=.22;body.angular_damp=.6
+ body.set_meta("structural_source",String(part.body.get_meta("destructible_id","")))
  var geometry:=MeshInstance3D.new();var shape:Shape3D
  if part.collision.shape is BoxShape3D:
   var mesh:=BoxMesh.new();mesh.size=part.size;geometry.mesh=mesh;shape=part.collision.shape.duplicate()
@@ -426,6 +490,28 @@ func spawn_falling(part:Dictionary,direction:Vector3)->void:
 
 func rest_piece(body:RigidBody3D)->void:
  if not is_instance_valid(body) or not body.get_child(0) is MeshInstance3D:return
+ if body.has_meta("structural_source"):
+  if authoritative():
+   var source:MeshInstance3D=body.get_child(0)
+   # Small cosmetic shards can disappear later. Settle the complete original
+   # convex shape onto durable world geometry rather than freezing above them.
+   var collision:CollisionShape3D=body.get_child(1)
+   var query:=PhysicsShapeQueryParameters3D.new();query.shape=collision.shape
+   query.transform=collision.global_transform;query.transform.origin+=Vector3.UP*.04
+   query.motion=Vector3.DOWN*80;query.collision_mask=1
+   var exclude:Array[RID]=[body.get_rid()]
+   var source_id:String=body.get_meta("structural_source")
+   if parts.has(source_id):
+    for key in buildings[parts[source_id].building].parts:
+     if parts[key].broken:exclude.append(parts[key].body.get_rid())
+   query.exclude=exclude
+   var safe:PackedFloat32Array=get_world_3d().direct_space_state.cast_motion(query)
+   if safe[0]<1:body.global_position.y-=maxf(0,safe[0]*80-.04)
+   var packet:Dictionary={"id":body.get_meta("structural_source"),"pose":source.global_transform}
+   accept_settled(packet)
+   if "session" in map.game:
+    for peer in map.game.session.ready_peers:map.game.session.district_settled.rpc_id(peer,packet)
+  return
  var copy:=MeshInstance3D.new();var source:MeshInstance3D=body.get_child(0)
  copy.mesh=source.mesh;copy.material_override=source.material_override;copy.visibility_range_end=90;add_child(copy);copy.global_transform=source.global_transform
  if not body.sleeping:
@@ -437,6 +523,27 @@ func rest_piece(body:RigidBody3D)->void:
  if rubble.size()>MAX_RESTING:
   var oldest:Node3D=rubble.pop_front()
   if is_instance_valid(oldest):oldest.queue_free()
+func accept_settled(packet:Dictionary)->void:
+ var id:String=packet.get("id","")
+ if not parts.has(id) or settled_nodes.has(id):return
+ var p:Dictionary=parts[id]
+ var body:=StaticBody3D.new();body.name="SettledStructure";body.collision_layer=1|64;body.collision_mask=1|64
+ var geometry:=MeshInstance3D.new();geometry.material_override=p.material
+ var shape:Shape3D
+ if p.collision.shape is BoxShape3D:
+  var mesh:=BoxMesh.new();mesh.size=p.size;geometry.mesh=mesh;shape=p.collision.shape.duplicate()
+ else:
+  var meshes:Array=p.body.find_children("*","MeshInstance3D",true,false)
+  if meshes.is_empty():body.free();geometry.free();return
+  geometry.mesh=meshes[0].mesh;shape=geometry.mesh.create_convex_shape()
+ body.add_child(geometry);var col:=CollisionShape3D.new();col.shape=shape;body.add_child(col)
+ add_child(body);body.global_transform=packet.pose
+ settled_nodes[id]=body;settled_structures[id]=packet.duplicate(true)
+ for moving in debris:
+  if is_instance_valid(moving) and moving.get_meta("structural_source","")==id:moving.queue_free()
+ # Keep the same bounded, host-selected set on every peer and late join.
+ if settled_nodes.size()>64:
+  var oldest:String=settled_nodes.keys()[0];settled_nodes[oldest].queue_free();settled_nodes.erase(oldest);settled_structures.erase(oldest)
 func _process(delta:float)->void:
  if "paused" in map.game and map.game.paused:return
  for i in range(debris.size()-1,-1,-1):
@@ -448,6 +555,9 @@ func reset_world()->void:
  for body in debris:
   if is_instance_valid(body):body.queue_free()
  debris.clear();damaged.clear();collapsed.clear();revision=0;fall_hazards.clear();fall_hits.clear()
+ for node in settled_nodes.values():
+  if is_instance_valid(node):node.queue_free()
+ settled_nodes.clear();settled_structures.clear()
  for node in physical_rubble.values():
   if is_instance_valid(node):remove_child(node);node.queue_free()
  physical_rubble.clear()
@@ -464,7 +574,10 @@ func reset_world()->void:
   if is_instance_valid(node):node.get_parent().remove_child(node);node.queue_free()
  fracture_nodes.clear();fractures.clear()
  for entry in removed_details:
-  entry.batch.multimesh.source_transforms[entry.index]=entry.transform;entry.batch.multimesh.set_instance_transform(entry.index,entry.transform);entry.hidden=false
+  if entry.has("node"):
+   if is_instance_valid(entry.node):entry.node.show()
+  else:entry.batch.multimesh.source_transforms[entry.index]=entry.transform;entry.batch.multimesh.set_instance_transform(entry.index,entry.transform)
+  entry.hidden=false
  removed_details.clear()
  for b in buildings.values():
   b.node.show();b.hp=b.max_hp

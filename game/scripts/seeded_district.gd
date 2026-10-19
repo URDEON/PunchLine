@@ -10,6 +10,7 @@ var sidewalk_regions:Array=[]
 var road_masks:Array=[]
 var parking_masks:Array=[]
 var ids:Dictionary={}
+var path_connections:Array=[]
 func poly(points:Array)->PackedVector2Array:
  var p:=PackedVector2Array()
  for v in points:p.append(Vector2(v[0],v[1]))
@@ -45,6 +46,8 @@ func world_point(b:Dictionary,p:Vector2)->Array:
  return [b.center[0]+cos(b.rotation)*p.x+sin(b.rotation)*p.y,b.center[1]-sin(b.rotation)*p.x+cos(b.rotation)*p.y]
 func nearest_sidewalk(point:Vector2,lot:Dictionary,width:float)->Vector2:
  var candidates:Array=[]
+ for connection in path_connections:
+  if connection.lot==lot.id:candidates.append({"point":connection.point,"distance":point.distance_squared_to(connection.point)})
  for ring in sidewalks:
   for i in range(ring.size()-1):
    var q:Vector2=Geometry2D.get_closest_point_to_segment(point,ring[i],ring[i+1])
@@ -57,6 +60,7 @@ func nearest_sidewalk(point:Vector2,lot:Dictionary,width:float)->Vector2:
   seen[key]=true;tested+=1
   if tested>50 or candidate.distance>6400:break
   var route:PackedVector2Array=path_polygon(point,candidate.point,width)
+  if hits(route,occupied):continue
   if hits(route,parking_masks):continue
   var foreign:=false
   for other in lots:
@@ -87,7 +91,7 @@ func path_polygon(a:Vector2,b:Vector2,width:float)->PackedVector2Array:
  var side:Vector2=(b-a).normalized().orthogonal()*width*.5
  return PackedVector2Array([a+side,a-side,b-side,b+side])
 func prepare(base:Dictionary)->void:
- lots.clear();sidewalks.clear();occupied.clear();access_routes.clear();terrain_masks.clear();sidewalk_regions.clear();road_masks.clear();parking_masks.clear();ids.clear()
+ lots.clear();sidewalks.clear();occupied.clear();access_routes.clear();terrain_masks.clear();sidewalk_regions.clear();road_masks.clear();parking_masks.clear();ids.clear();path_connections.clear()
  var vector:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/vector_meshes.json"))
  var lot_ids:Dictionary={}
  var geo:Dictionary=JSON.parse_string(FileAccess.get_file_as_string("res://housing/data/district_lots.json"))
@@ -119,7 +123,7 @@ func new_building(lot:Dictionary,point:Vector2)->Dictionary:
  if roll<.20:type="corner_shop"
  elif roll<.39:type="courtyard_home"
  elif roll<.55:type="terrace_home"
- elif roll>.79:storeys=rng.randi_range(2,4);type="apartment_"+str(storeys)
+ elif roll>.70:storeys=rng.randi_range(3,4);type="apartment_"+str(storeys)
  var width:float=14.0 if storeys>1 else rng.randf_range(8.8,12.8)
  var depth:float=14.0 if storeys>1 else rng.randf_range(8.6,12.2)
  var walk:Vector2=nearest_sidewalk(point,lot,4.08 if storeys>1 else 3.95)
@@ -135,7 +139,7 @@ func make(settings:Dictionary,source:Dictionary)->Dictionary:
  prepare(plan)
  var density:int=clampi(int(settings.get("density",2)),0,2)
  for lot in lots:
-  var points:Array[Vector2]=[];var cell:=14.5
+  var points:Array[Vector2]=[];var cell:=11.5
   var phase:=Vector2(rng.randf_range(0,cell),rng.randf_range(0,cell))
   var box:Rect2=lot.bounds
   for x in range(floori(box.position.x/cell),ceili(box.end.x/cell)):
@@ -143,14 +147,18 @@ func make(settings:Dictionary,source:Dictionary)->Dictionary:
     points.append(Vector2(x*cell,z*cell)+phase+Vector2(rng.randf_range(-3,3),rng.randf_range(-3,3)))
   for i in range(points.size()-1,0,-1):
    var j:int=rng.randi_range(0,i);var swap:Vector2=points[i];points[i]=points[j];points[j]=swap
-  var budget:int=maxi(2,mini(22,int(lot.area/600.0)*[.48,.76,1.0][density]))
+  # A second offset pass fills viable pockets left between the first parcels.
+  for x in range(floori(box.position.x/cell),ceili(box.end.x/cell)):
+   for z in range(floori(box.position.y/cell),ceili(box.end.y/cell)):
+    points.append(Vector2(x*cell,z*cell)+phase+Vector2.ONE*cell*.5+Vector2(rng.randf_range(-1,1),rng.randf_range(-1,1)))
+  var budget:int=maxi(2,mini(38,int(lot.area/390.0)*[.18,.55,1.0][density]))
   var placed:=0
   for point in points:
    if placed>=budget:break
    if not Geometry2D.is_point_in_polygon(point,lot.polygon):continue
    var b:Dictionary=new_building(lot,point)
    if b.is_empty():continue
-   var envelope:PackedVector2Array=shape(b,2.5,b.yard_depth)
+   var envelope:PackedVector2Array=shape(b,1.8,b.yard_depth)
    if not clear_site(envelope,lot):continue
    var entry:Array=world_point(b,Vector2(0,b.depth/2));var end:=Vector2(b.sidewalk[0],b.sidewalk[1])
    var route:PackedVector2Array=path_polygon(Vector2(entry[0],entry[1]),end,b.route_width)
@@ -180,5 +188,8 @@ func make(settings:Dictionary,source:Dictionary)->Dictionary:
    b.validated_envelope=b.support_footprint.duplicate(true);b.plot_footprint=arrays(shape(b,.7,b.yard_depth))
    plan.buildings.append(b);occupied.append(item(shape(b,.7,b.yard_depth)))
    for triangle in paths:access_routes.append(item(poly(triangle)))
- plan.seed=seed_text;plan.seed_text=seed_text;plan.density=density;plan.revision="seeded-neighbourhood-2-furnished"
+   for weight in [.45,.75]:
+    var connection:Vector2=Vector2(entry[0],entry[1]).lerp(end,weight)
+    if connection.distance_to(Vector2(entry[0],entry[1]))>2.5:path_connections.append({"lot":lot.id,"point":connection})
+ plan.seed=seed_text;plan.seed_text=seed_text;plan.density=density;plan.revision="seeded-neighbourhood-3-infill"
  return plan

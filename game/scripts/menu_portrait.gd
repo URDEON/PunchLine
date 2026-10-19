@@ -36,7 +36,6 @@ var caption: Label
 var artwork: TextureRect
 var index := 0
 var shot_time := 0.0
-var render_time := 0.0
 var transition: Tween
 var changing := false
 var auto_cycle:=true
@@ -45,8 +44,10 @@ var dragging:=false
 var manual_yaw:=0.0
 func _ready() -> void:
     mouse_filter = Control.MOUSE_FILTER_IGNORE; stretch = true
+    texture_filter=CanvasItem.TEXTURE_FILTER_LINEAR
     viewport = SubViewport.new(); viewport.physics_interpolation_mode = Node.PHYSICS_INTERPOLATION_MODE_OFF; viewport.size = Vector2i(540,640); viewport.transparent_bg = true; viewport.world_3d = World3D.new(); viewport.handle_input_locally = false; add_child(viewport)
     pivot = Node3D.new(); viewport.add_child(pivot)
+    viewport.msaa_3d=Viewport.MSAA_2X
     var light := DirectionalLight3D.new(); light.rotation_degrees = Vector3(-30,-40,0); light.light_color = Color("c6e1df"); light.light_energy = 1.5; viewport.add_child(light)
     var rim := OmniLight3D.new(); rim.position = Vector3(2,3,-2); rim.light_color = Color("eaa568"); rim.light_energy = 2.0; rim.omni_range = 12; viewport.add_child(rim)
     var env := WorldEnvironment.new(); env.environment = Environment.new(); env.environment.background_mode = Environment.BG_CLEAR_COLOR; env.environment.ambient_light_source = Environment.AMBIENT_SOURCE_COLOR; env.environment.ambient_light_color = Color("5d767b"); env.environment.ambient_light_energy = .55; viewport.add_child(env)
@@ -60,6 +61,9 @@ func show_subject(value: int) -> void:
     model = null; articulation = null
     var subject: Array = SUBJECTS[index]; caption.text = "%02d / %02d    %s" % [index+1,SUBJECTS.size(),subject[0]]
     artwork.visible = subject[2] == "art"
+    # An art image can have transparent pixels: hide the viewport texture itself
+    # so it never exposes the stale 3D subject from the previous gallery page.
+    self_modulate.a=0.0 if artwork.visible else 1.0
     if artwork.visible:
         var path: String = subject[1]
         if not ResourceLoader.exists(path): path = "res://assets/ui/skill_renders/naoya_base1.png"
@@ -92,12 +96,11 @@ func _process(delta: float) -> void:
     if viewport == null: return
     if not is_visible_in_tree(): viewport.render_target_update_mode = SubViewport.UPDATE_DISABLED; return
     var motion: float = float(Engine.get_meta("punchline_ui_motion",1.0))
-    clock += delta*motion; shot_time += delta*motion; render_time += delta
+    clock += delta*motion; shot_time += delta*motion
     if auto_cycle and shot_time > 7 and not changing: next_subject()
-    # La galería no necesita renderizar a la frecuencia completa del juego.
+    # Keep moving models continuous; artwork and hidden galleries need no 3D pass.
     if artwork.visible:viewport.render_target_update_mode=SubViewport.UPDATE_DISABLED
-    elif render_time >= .05:
-        render_time = 0; viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
+    else:viewport.render_target_update_mode = SubViewport.UPDATE_ALWAYS
     if is_instance_valid(articulation): articulation.locomotion(delta*motion,0,true,0,0,true)
     var heading := PI-.35 if SUBJECTS[index][2] == "naoya" else -.35
     pivot.rotation.y = heading+sin(clock*.12)*.10+manual_yaw

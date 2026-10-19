@@ -1,0 +1,27 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PunchLine · módulos de fusión cargados: 112
+PASS real Sentinel fusion starts
+PASS real head ejects
+MOTION max_translation=0.04000008106232 max_rotation_deg=3.43691832006504 camera_rotation_deg=3.43683934600276 camera_translation=0.04065443575382 transition_frames=78 position=(600.0, 3.815, -2.335)
+PASS continuous input reaches both wall and ceiling
+PASS corners traverse the checked arc over multiple physics frames
+PASS no physical position jump over 10.5 cm at 60 Hz
+PASS surface rotation remains below 6 degrees per physics frame
+PASS eye camera moves and turns continuously through both corners
+PASS eye horizon uses the exact visible body's interpolated up axis
+PASS full armour volume stays outside floor, wall and ceiling throughout turns
+ORBIT max_translation=0.3073822259903
+PASS third-person corner orbit approaches the protected eye without switching anchors
+PASS third-person camera volume remains outside wall, floor and ceiling during turns
+CURB max_translation=0.0499449968338 position=(610.0, 0.235, -0.92456)
+PASS raised curb is traversed smoothly without a vertical teleport or overlap
+PASS a gradual turn can accept a jump request
+PASS jump pressed during a corner executes after the checked turn completes
+PASS wall transition can be planned
+PASS a newly blocked path cancels before moving into the obstacle
+PASS normal reconnection remains available
+PASS reconnection clears surface transition state
+RESULT 18/18 surface motion checks

@@ -286,6 +286,18 @@ func step_over_lip(direction:Vector3)->void:
 		# outside it first; the ordinary wall probe can then plan the corner.
 		try_surface(origin+normal*(rise-.035),normal)
 
+func surface_support(origin:Vector3)->Dictionary:
+	# A single ray falls through the small joints between sill, glass and frame.
+	# Sample the actual footprint, then project its contact back to the body axis
+	# so neighbouring probes never drag the head sideways along the wall.
+	var right:Vector3=forward.cross(normal).normalized()
+	for offset in [Vector3.ZERO,forward*.20,-forward*.20,right*.20,-right*.20]:
+		var hit:Dictionary=ray(origin+offset+normal*.45,origin+offset-normal*.75)
+		if hit.is_empty():continue
+		if hit.normal.dot(normal)>.8:hit.position=origin-hit.normal*(origin-hit.position).dot(hit.normal)
+		return hit
+	return {}
+
 func climb_lip(direction:Vector3)->bool:
 	if normal.dot(Vector3.UP)>.9:return false
 	var origin:Vector3=game.player.global_position
@@ -311,7 +323,7 @@ func walk_surface(delta:float)->void:
 		advance_surface(delta);return
 	var origin:Vector3=game.player.global_position
 	if not airborne and game.jump_buffer>0 and game.stun<=0:
-		var support:Dictionary=ray(origin+normal*.12,origin-normal*.16)
+		var support:Dictionary=surface_support(origin)
 		if not support.is_empty():
 			airborne=true;detach_time=.18;game.jump_buffer=0
 			air_velocity=direction*SPEED+normal*6
@@ -331,6 +343,9 @@ func walk_surface(delta:float)->void:
 			front=ray(origin+normal*offset,origin+normal*offset+direction*(collider.radius+.14))
 			if not front.is_empty():break
 		if not front.is_empty() and front.normal.dot(direction)<-.3 and front.normal.dot(normal)<.95:
+			# A window sill/overhang is a short step out along the same facade,
+			# rather than a new ceiling to turn onto underneath the trim.
+			if climb_lip(direction) and not surface_path.is_empty():advance_surface(delta);return
 			if try_surface(front.position,front.normal):
 				if not surface_path.is_empty():advance_surface(delta);return
 				right=view_forward.cross(normal).normalized();direction=(right*input.x-view_forward*input.y).normalized()
@@ -341,7 +356,7 @@ func walk_surface(delta:float)->void:
 	game.player.move_and_slide()
 	if direction.length()>.1 and game.player.global_position.distance_to(before_move)<SPEED*delta*.4:climb_lip(direction)
 	if not surface_path.is_empty():advance_surface(delta);return
-	var support:Dictionary=ray(game.player.global_position+normal*.45,game.player.global_position-normal*.75)
+	var support:Dictionary=surface_support(game.player.global_position)
 	if not support.is_empty():
 		fall_speed=0
 		try_surface(support.position,support.normal)

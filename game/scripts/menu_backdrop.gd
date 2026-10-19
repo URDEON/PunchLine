@@ -9,7 +9,7 @@ func _ready() -> void:
 uniform float clock = 0.0;
 float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
 float noise(vec2 p){vec2 a=floor(p);vec2 f=fract(p);f=f*f*(3.0-2.0*f);return mix(mix(hash(a),hash(a+vec2(1,0)),f.x),mix(hash(a+vec2(0,1)),hash(a+vec2(1,1)),f.x),f.y);}
-void fragment(){vec2 uv=UV;float fog=noise(uv*5.0+vec2(clock*.025,-clock*.013))*.65+noise(uv*13.0-vec2(clock*.009,0.0))*.25;float vignette=smoothstep(.8,.15,length(uv-vec2(.5)));vec3 c=mix(vec3(.018,.03,.039),vec3(.09,.15,.17),fog*vignette);float grain=hash(FRAGCOORD.xy+fract(clock)*71.0)*.012;COLOR=vec4(c+grain,.90);}"""
+void fragment(){vec2 uv=UV;float fog=noise(uv*5.0+vec2(clock*.025,-clock*.013))*.65+noise(uv*13.0-vec2(clock*.009,0.0))*.25;float vignette=1.0-smoothstep(.15,.8,length(uv-vec2(.5)));vec3 c=mix(vec3(.018,.03,.039),vec3(.09,.15,.17),fog*vignette);COLOR=vec4(c,.90);}"""
 	mist = ShaderMaterial.new(); mist.shader = shader
 	var fog := ColorRect.new(); add_child(fog); fog.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); fog.mouse_filter = Control.MOUSE_FILTER_IGNORE; fog.material = mist
 func _process(delta: float) -> void:

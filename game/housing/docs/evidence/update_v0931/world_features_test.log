@@ -1,0 +1,28 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+WARNING: Jolt Physics job system exceeded the maximum number of jobs. This should not happen. Please report this. Waiting for jobs to become available...
+     at: CreateJob (modules/jolt_physics/spaces/jolt_job_system.cpp:125)
+PASS multistorey buildings include the complete requested reception, security, bathroom and corridor equipment
+PASS editable baked sidewalks use world-sized antialiased paving slabs
+PASS day sky is generated analytically rather than upscaling a panorama
+PASS large concrete polygon contains a fenced cargo yard and many colored containers
+PASS container interior has usable hollow collision volume
+PASS container roof has actual collision
+PASS open container doors leave the entrance physically passable
+PASS H at the actual console enters the operable crane with its own camera
+PASS a different operator cannot manipulate the cargo
+PASS spreader attaches to a real container under the gantry
+PASS crane raises and translates the entire hollow container with its collisions
+PASS suspended loads cannot be released in mid-air
+PASS lowering the hoist releases the moved container onto the ground
+PASS network crane state includes every persistent container position
+PASS H leaves the console and restores the player's camera
+PASS restarting the world restores a moved container and releases the crane operator
+PASS pitched roofs collide from both sides
+PASS fallen structural roofs settle as solid collision bodies, rather than decorative floating meshes
+PASS late-join destruction state includes the host-selected settled roof poses
+PASS trim and ridge geometry disappear when their roof support is destroyed
+PASS world restart removes settled roof fragments and restores the roof
+PASS settling received before damage cannot spawn a duplicate moving roof
+WORLD_COUNTS buildings=139 multistorey=29 containers=29 facilities=["reception_desk", "control_monitor", "ergonomic_chair", "waiting_sofa", "coffee_table", "mailboxes", "security_mirror", "decorative_planter", "pedestrian_turnstile", "cctv", "extinguisher_cabinet", "waste_bin", "recycling_bin", "bathroom", "washbasin", "bathroom_mirror", "soap_dispenser", "paper_towel_dispenser", "hand_dryer", "toilet", "staff_lockers", "entrance_mat", "wall_luminaire", "rest_bench"]
+RESULT 22/22 buildings, cargo, rendering and solid roofs

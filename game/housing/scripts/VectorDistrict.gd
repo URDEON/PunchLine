@@ -3,6 +3,14 @@ extends Node3D
 var colors := {"Roads":Color("8f9699"),"Parking":Color("9ba0a3"),"Lots":Color("a5b87c"),"Sidewalks":Color("9e9c92")}
 var levels := {"Roads":0.0,"Parking":0.012,"Lots":0.026,"Sidewalks":0.16}
 
+func _ready()->void:
+	# Apply to the editable baked district too, without replacing its source meshes.
+	var sidewalks:Node3D=get_node_or_null("Sidewalks")
+	if sidewalks!=null:
+		var finish:=ShaderMaterial.new();finish.shader=preload("res://shaders/sidewalk_pavers.gdshader")
+		for surface in sidewalks.get_children():
+			if surface is MeshInstance3D:surface.material_override=finish
+
 func point(v: Array,y: float) -> Vector3:
 	return Vector3(v[0],y,v[1])
 func triangle(st: SurfaceTool,a: Vector3,b: Vector3,c: Vector3,up := false) -> void:
