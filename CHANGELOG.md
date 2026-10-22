@@ -1,5 +1,18 @@
 # Cambios de PunchLine
 
+## 0.9.28 — Warfare:District500, Fase 0 / primera parte de Fase 1
+
+- Base 0.9.27 protegida con etiqueta Git y bundle completo verificado mediante restauración.
+- Nuevo arranque, menú, práctica y opciones independientes del juego de lucha.
+- District500 y sus 77 edificios cargados desde las escenas existentes, sin regeneración.
+- Soldado provisional original: entrada, movimiento, representación, cámara y salud separados.
+- Movimiento configurable, caminata/carrera, salto, agachado con comprobación de techo y escaleras.
+- FPS/TPS con un mismo esqueleto y cuerpo, cambio de hombro y protección TPS ante paredes.
+- Base bodycam configurable, accesibilidad y lente opcional, apagada por defecto.
+- Salud, observación al incapacitarse, reaparición, pausa y registrador desacoplado.
+- Sentinel y recursos compartidos conservados; fusión y luchadores fuera del arranque activo.
+- Evidencia y límites en `docs/warfare/phase0-phase1.md`; no se declara alcanzado un objetivo de FPS.
+
 ## 0.9.27
 
 - Renderizado Forward+ para niebla volumétrica nativa, por elección del usuario.

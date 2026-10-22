@@ -1,0 +1,9 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+Vulkan 1.4.305 - Forward+ - Using Device #0: Unknown - llvmpipe (LLVM 19.1.7, 256 bits)
+
+CAPTURE menu
+CAPTURE tps_district500
+CAPTURE fps_visible_body
+CAPTURE bodycam
+CAPTURE camera_options
+RENDER_WARFARE_DONE forward_plus / llvmpipe (LLVM 19.1.7, 256 bits)

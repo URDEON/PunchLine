@@ -1,11 +1,12 @@
 config_version=5
 [application]
 config/name="PunchLine"
-config/version="0.9.27"
-run/main_scene="res://launcher.tscn"
+config/version="0.9.28"
+run/main_scene="res://ui/warfare_menu.tscn"
 config/features=PackedStringArray("4.4", "Forward Plus")
 [autoload]
 BuildInfo="*res://scripts/build_info.gd"
+WarfareSettings="*res://core/warfare_settings.gd"
 [display]
 window/size/viewport_width=1280
 window/size/viewport_height=720

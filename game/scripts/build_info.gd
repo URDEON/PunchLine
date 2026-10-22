@@ -3,7 +3,7 @@ extends Node
 var version: String = str(ProjectSettings.get_setting("application/config/version","dev"))
 
 func _enter_tree() -> void:
-	get_window().title = "PunchLine " + version
+	get_window().title = "Warfare:District500 " + version
 	# Earlier builds included their version in config/name and therefore user://.
 	# Move to a stable name while retaining saved settings from that directory.
 	var legacy: String = OS.get_user_data_dir().get_base_dir().path_join("PunchLine - Laboratorio de combate 0.9.24")
