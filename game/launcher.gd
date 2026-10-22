@@ -1,4 +1,5 @@
 extends Control
+@export var warfare_mode := false
 var content: VBoxContainer
 var buttons: Array[Button] = []
 var portrait: SubViewportContainer
@@ -18,8 +19,8 @@ var power_button:Button
 var world_setup:VBoxContainer
 func _ready() -> void:
     var args := OS.get_cmdline_user_args()
-    if args.has("--online"): get_tree().change_scene_to_file.call_deferred("res://network/online.tscn"); return
-    if args.has("--individual"): get_tree().change_scene_to_file.call_deferred("res://main.tscn"); return
+    if not warfare_mode and args.has("--online"): get_tree().change_scene_to_file.call_deferred("res://network/online.tscn"); return
+    if not warfare_mode and args.has("--individual"): get_tree().change_scene_to_file.call_deferred("res://main.tscn"); return
     profile=preload("res://scripts/frontend_settings_host.gd").new();add_child(profile)
     get_tree().auto_accept_quit=false
     var config := ConfigFile.new()
@@ -29,7 +30,11 @@ func _ready() -> void:
     Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
     set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
     var background := preload("res://scripts/menu_backdrop.gd").new(); add_child(background); background.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
-    portrait = preload("res://scripts/menu_portrait.gd").new(); add_child(portrait); portrait.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); portrait.anchor_left = .43
+    portrait = preload("res://scripts/menu_portrait.gd").new()
+    if warfare_mode:
+        portrait.subjects=[["SOLDADO / INFANTERÍA AURORA","res://units/soldiers/soldier_preview.tscn","soldier"],["JUNKYARD SENTINEL / ACERO PESADO","res://assets/fusion/optimized/Junkyard_Sentinel.glb","mecha"]]
+        portrait.auto_cycle=false
+    add_child(portrait); portrait.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT); portrait.anchor_left = .43
     column = VBoxContainer.new(); add_child(column); column.add_theme_constant_override("separation",14)
     title = Label.new(); title.text = "PUNCHLINE"; title.add_theme_font_size_override("font_size",52); title.modulate = Color("dbe5df"); column.add_child(title)
     subtitle = Label.new(); subtitle.text = "THE PROYECTED / PROYECCIÓN Y ACERO"; subtitle.add_theme_font_size_override("font_size",13); subtitle.modulate = Color("9db4b3"); column.add_child(subtitle)
@@ -38,8 +43,11 @@ func _ready() -> void:
     power_button=Button.new();power_button.text="⏻";power_button.tooltip_text="Cerrar PunchLine";power_button.position=Vector2(18,14);power_button.size=Vector2(42,42);power_button.add_theme_font_size_override("font_size",27);add_child(power_button);power_button.pressed.connect(request_quit)
     quit_dialog=ConfirmationDialog.new();quit_dialog.title="Cerrar PunchLine";quit_dialog.dialog_text="¿Estás seguro de que quieres cerrar el juego?";quit_dialog.ok_button_text="Cerrar juego";quit_dialog.cancel_button_text="Seguir jugando";quit_dialog.confirmed.connect(func()->void:get_tree().quit());add_child(quit_dialog)
     get_viewport().size_changed.connect(resize_menu); page("home"); resize_menu()
-func choice(text: String,callback: Callable) -> void:
-    var button: Button = preload("res://scripts/ink_button.gd").new(); content.add_child(button); button.text = text; button.tooltip_text = text; button.custom_minimum_size.y = 49; button.add_theme_font_size_override("font_size",17); button.alignment = HORIZONTAL_ALIGNMENT_LEFT
+    if warfare_mode:
+        title.text="WARFARE:DISTRICT500";subtitle.text="INFANTERÍA / JUNKYARD SENTINEL"
+        power_button.tooltip_text="Cerrar Warfare:District500";quit_dialog.title="Cerrar Warfare:District500"
+func choice(text: String,callback: Callable,parent: Node = null) -> void:
+    var button: Button = preload("res://scripts/ink_button.gd").new(); (parent if parent!=null else content).add_child(button); button.text = text; button.tooltip_text = text; button.custom_minimum_size.y = 49; button.add_theme_font_size_override("font_size",17); button.alignment = HORIZONTAL_ALIGNMENT_LEFT
     button.pressed.connect(func() -> void:
         ui_voice.stream = preload("res://assets/audio/v098/ui/click1.ogg"); ui_voice.play(); callback.call())
     button.mouse_entered.connect(func() -> void: ui_voice.stream = preload("res://assets/audio/v098/ui/rollover1.ogg"); ui_voice.play())

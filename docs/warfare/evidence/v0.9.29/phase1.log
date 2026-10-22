@@ -1,0 +1,36 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS Warfare is the default entry point
+PASS window and BuildInfo identify the current Warfare version
+PASS real menu enters practice with grounded soldier
+PASS legacy fighters, HUD and fusion are absent from active scene
+PASS Sentinel asset remains available
+PASS all 77 existing buildings are preserved
+PASS one full-body skeleton exposes torso, limbs, neck and head
+PASS rig rest transforms keep anatomical parts separated
+PASS diagonal human movement is normalized
+MOVEMENT_SPEEDS walk=2.09999990463257 run=4.59999990463257 sprint=6.5
+PASS walk, run and sprint have distinct configured speeds
+PASS jump leaves the ground and lands under gravity
+PASS crouch changes capsule height
+PASS standing is blocked by a real low ceiling
+PASS standing recovers after ceiling clears
+PASS 80 view changes reuse the same body without node accumulation
+PASS FPS hides only local head and preserves torso
+PASS FPS masks the evaluated skinned head while the full-body rig remains active
+PASS TPS restores head visibility
+PASS mouse rotates independent camera aim
+PASS accessibility disables bodycam sway and lens pass
+PASS TPS spring arm retracts against a real interior wall
+PASS FPS look-down lean stops before an actual wall
+PASS soldier enters, climbs three storeys, descends and exits
+PASS soldier enters, climbs four storeys, descends and exits
+PASS pause freezes physical simulation
+PASS resume restores simulation (cursor capture checked only with display)
+PASS health damage is independent of movement
+PASS incapacitation switches to observation
+PASS practice timer respawns with restored health
+PASS idle/view-switch soak has no node growth
+PASS idle/view-switch soak has no persistent resource growth
+PASS three menu/practice cycles release previous worlds
+RESULT 32/32 Warfare phase 1 checks

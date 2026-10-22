@@ -1,0 +1,19 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://combat/weapon_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = "m4a1"
+display_name = "M4A1"
+ammo_type = "AR"
+shots_per_second = 7.0
+magazine_size = 30
+reserve_ammo = 150
+reload_seconds = 2.3
+damage = 24.0
+range_limit = 180.0
+falloff_start = 60.0
+minimum_damage_factor = 0.65
+spread_degrees = 0.65
+recoil = 0.009
+model_path = "res://assets/weapons/m4a1/M4A1.fbx"
+model_length = 0.82

@@ -1,0 +1,21 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://combat/weapon_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = "mp5a5"
+display_name = "MP5A5"
+ammo_type = "SMG"
+shots_per_second = 11.0
+magazine_size = 30
+reserve_ammo = 180
+reload_seconds = 1.85
+damage = 16.0
+range_limit = 75.0
+falloff_start = 12.0
+minimum_damage_factor = 0.35
+spread_degrees = 1.1
+recoil = 0.006
+model_path = "res://assets/weapons/mp5a5/mp5a5.fbx"
+model_length = 0.55
+model_forward = Vector3(0,0,-1)
+model_up = Vector3(0,1,0)

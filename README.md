@@ -1,3 +1,62 @@
+# Warfare:District500 — 0.9.29
+
+[**Descargar el proyecto completo**](https://github.com/URDEON/PunchLine/archive/refs/heads/feat/warfare-district500.zip)
+
+Extraer todo el ZIP en una carpeta nueva. En **Godot 4.4.1**, importar **`game/project.godot`**,
+esperar la importación de los FBX y ejecutar con **F5 → JUGAR**. Se conservan Forward+ y Jolt;
+no es un ejecutable Windows. No abrir el proyecto inspector `district_housing/project.godot`.
+
+## Qué se recupera y qué se incorpora
+
+- Menú original: fondo animado, botones Ink, sonidos, galería, selección y Extras de animación.
+- **Soldado** con el rig skinned X Bot aportado en los paquetes, equipo militar provisional y
+  24 clips de Basic/Slim Shooter más el paso atrás adicional. FPS/TPS comparten el mismo cuerpo.
+- **M4A1** principal: modelo aportado, munición AR, cadencia media y alcance de juego mayor.
+- **MP5A5** secundaria: modelo y texturas aportados, munición SMG, cadencia rápida y eficacia cercana.
+- Disparo automático, apuntado, recarga, reservas separadas, daño, reacción, retroceso y efectos acotados.
+- HUD militar según la distribución de la referencia: equipos/objetivo arriba, minimapa real abajo
+  a la izquierda y arma/munición abajo a la derecha. Muestra valores de juego, no una imagen superpuesta.
+- **Junkyard Sentinel seleccionable directamente**, con modelo, articulación, brazo cañón,
+  locomoción/sonidos originales, salud y reaparición. Recupera su HUD Sci-Holo independiente.
+- District500 y sus 77 edificios originales; balizas de tiro y un objetivo A de captura en práctica.
+
+El modelo humano sigue siendo provisional; los paquetes aportan X Bot, no un soldado militar
+terminado. No hay todavía combate contra bots, vehículos ni despliegue con camión/contenedor.
+Los cuatro robots y la fusión antiguos no se ejecutan.
+
+| Control | Acción |
+| --- | --- |
+| WASD / mouse | Movimiento / vista |
+| Shift / Alt / Espacio / Ctrl | Carrera / caminar / salto / agacharse |
+| V / B | FPS–TPS / hombro TPS (Sentinel usa su cámara TPS) |
+| Botón izquierdo mantenido / derecho | Disparo automático / apuntar |
+| R / 1 / 2 | Recargar / M4A1 / MP5A5 |
+| P | Selección de unidad |
+| Esc | Pausa y ajustes |
+| F3 / F9 | Métricas / registro acotado de 60 s |
+
+En Sentinel, apuntar o disparar despliega su brazo cañón. La energía tiene carga y recarga de
+videojuego. En **AJUSTES** se puede elegir Basic o Slim para los clips alternativos disponibles;
+**EXTRAS / ANIMACIONES** permite previsualizar clips en el soldado.
+
+[Informe técnico, evidencia y límites](docs/warfare/release-0.9.29.md).
+Los parámetros de armas son Resources editables bajo `game/combat/`; son valores abstractos de
+jugabilidad, no una simulación ni estadísticas reales del armamento.
+
+## Validación reproducible
+
+```sh
+python3 -B game/tests/run_warfare.py --godot /ruta/a/Godot --suite shooter --evidence /ruta/a/work/shooter-qa
+python3 -B game/tests/run_warfare.py --godot /ruta/a/Godot --suite phase1 --evidence /ruta/a/work/movement-qa
+python3 -B game/tests/run_warfare.py --godot /ruta/a/Godot --suite shooter --render --evidence /ruta/a/work/render-qa
+```
+
+La última orden requiere pantalla y Vulkan. El runner rechaza errores de scripts, fallos de
+comprobaciones y ejecuciones incompletas. Los FPS objetivo del portátil siguen sin validación.
+
+<details>
+<summary>Documentación histórica de la entrega 0.9.28</summary>
+
 # Warfare:District500 — 0.9.28
 
 ## Descargar y probar en Windows
@@ -83,5 +142,7 @@ La ciudad anterior fue retirada.
 
 District500 se reconstruyó desde las cuatro capas del GeoJSON adjunto. Las tres capas
 originales de bordillos/marcas no estaban en los archivos suministrados. No se exportó un ejecutable.
+
+</details>
 
 </details>

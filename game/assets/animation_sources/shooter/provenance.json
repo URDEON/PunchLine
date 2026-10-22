@@ -1,0 +1,146 @@
+{
+  "notice": "User-supplied FBX assets; no external license or authorship asserted.",
+  "packs": [
+    {
+      "name": "Basic Shooter Pack.zip",
+      "sha256": "50660e439c338f7748db9bd21c1eadabee91e9307a5d611805e36bcbf2ddd727",
+      "files": [
+        {
+          "path": "fbx/x_bot.fbx",
+          "sha256": "d8601a7dbef5d94f3cf7332034e98df8794f7eb9bc6d75eb60c59c4eed713e6c",
+          "bytes": 5148033
+        },
+        {
+          "path": "fbx/rifle_run.fbx",
+          "sha256": "3e66f19545306047b35e6e75646073a5ab0c813d620f979309ef2a236d418c22",
+          "bytes": 395537
+        },
+        {
+          "path": "fbx/toss_grenade.fbx",
+          "sha256": "feefa49404573a7ef930f766192ecd263e6dd9820f371aaac84f0918205186ab",
+          "bytes": 732225
+        },
+        {
+          "path": "fbx/strafe.fbx",
+          "sha256": "5a2832dc52d20a38534240610b7ae28760b5a851238737727611ca3ba3af3646",
+          "bytes": 369009
+        },
+        {
+          "path": "fbx/rifle_aiming_idle.fbx",
+          "sha256": "2649a01fde0ccffc4caa86182f2fe7fd63ffe36b5291fc52014a38b41007ccb9",
+          "bytes": 645281
+        },
+        {
+          "path": "fbx/walking.fbx",
+          "sha256": "8387eb98dffd2d168377b83fa20b93b1083e159abdc44716ac69aa729281c881",
+          "bytes": 457713
+        },
+        {
+          "path": "fbx/strafe_2.fbx",
+          "sha256": "ef0689cf921c7fd115302f94f4579041dba5d2864017ad0fca68a5d56f1d7f76",
+          "bytes": 360657
+        },
+        {
+          "path": "fbx/strafe_right.fbx",
+          "sha256": "e3e5b2d7904c0cb3fa5688b46c282c62759d08a300c228aa71a48de8047384af",
+          "bytes": 493713
+        },
+        {
+          "path": "fbx/run_backwards.fbx",
+          "sha256": "463f63e1b5e9bacb5f6ccdd6382e7953501391bdbde4f9ef437105c4585668ae",
+          "bytes": 368065
+        },
+        {
+          "path": "fbx/walking_backwards.fbx",
+          "sha256": "a5d629647b7c4929c00d68e02578ba7b2bb68f428862bfb7a04a76ca13c808ef",
+          "bytes": 488097
+        },
+        {
+          "path": "fbx/strafe_left.fbx",
+          "sha256": "7f5c3e35c3a0bbada3ad38fc3aa00a3051e03481c90b72abb19fd66b6e7f960d",
+          "bytes": 451873
+        },
+        {
+          "path": "fbx/reloading.fbx",
+          "sha256": "0e2dcb09e712ab5d9bcb0deeba925c1a3207094d98d870bf050c6a2f33be090e",
+          "bytes": 710881
+        },
+        {
+          "path": "fbx/rifle_jump.fbx",
+          "sha256": "bc163c47b31835049d3850f98c0d0d3e7758b56e3434db3539a66a47f4bfb8aa",
+          "bytes": 365265
+        },
+        {
+          "path": "fbx/turning_right_45_degrees.fbx",
+          "sha256": "fdbfb2a1261c8cce14a9236fffff85e49a25a52375d7fdfebc23014496b65cb7",
+          "bytes": 425457
+        },
+        {
+          "path": "fbx/hit_reaction.fbx",
+          "sha256": "1a1a03c413699fec9e97c237347ba3021ff6dfd00641378f3fbef8750d1d11ba",
+          "bytes": 341857
+        },
+        {
+          "path": "fbx/turn_left.fbx",
+          "sha256": "da75e8d10bf85377773114c136d76a02e59b5cd8d1c0f8e49a1d2e4c7f0fda8d",
+          "bytes": 414513
+        },
+        {
+          "path": "fbx/firing_rifle.fbx",
+          "sha256": "373f2d6a54cd7c3349bd70fafc1279786f1c45aa9df76831c523bd0c21094b23",
+          "bytes": 371169
+        }
+      ]
+    },
+    {
+      "name": "Slim Shooter Pack.zip",
+      "sha256": "3142b2111bc72de3658d56c965239675b55bc4b4b3cef0b309c582bf91f16ac8",
+      "files": [
+        {
+          "path": "fbx/x_bot.fbx",
+          "sha256": "d8601a7dbef5d94f3cf7332034e98df8794f7eb9bc6d75eb60c59c4eed713e6c",
+          "bytes": 5148033
+        },
+        {
+          "path": "fbx/slim/rifle_run.fbx",
+          "sha256": "c343f7f0c0b00b50e292e63c36e30e00ed45684f8ae8040cf9cb2211b46ce713",
+          "bytes": 395537
+        },
+        {
+          "path": "fbx/slim/strafe.fbx",
+          "sha256": "6ba456d6fd04bbf053d14a723fa9a11c725190a6b12d1135146c51e4457f8292",
+          "bytes": 369009
+        },
+        {
+          "path": "fbx/slim/rifle_aiming_idle.fbx",
+          "sha256": "44cd240cc2bd65f9f98930a9702c55723f3460d186d459c20fb84df30d3ae37f",
+          "bytes": 645281
+        },
+        {
+          "path": "fbx/slim/walking.fbx",
+          "sha256": "dee290d42a32a23930f5154160bd4f24f9db93cab039d7c6f895376dd56e92ee",
+          "bytes": 457713
+        },
+        {
+          "path": "fbx/slim/strafe_2.fbx",
+          "sha256": "5ccd47a30ea09abe50c0616592ff9c9ae941818fededaf24b794f88cd6972768",
+          "bytes": 360657
+        },
+        {
+          "path": "fbx/slim/reloading.fbx",
+          "sha256": "fe26112d6d26e5b234f81ebad42ddfc0533e9075f00288cbf413276849f9c6bf",
+          "bytes": 710881
+        },
+        {
+          "path": "fbx/slim/firing_rifle.fbx",
+          "sha256": "f896c82275ca3f9f1494386a98592ea07231cdd11f99d4fae5f0fc05d03c141a",
+          "bytes": 371169
+        }
+      ]
+    }
+  ],
+  "additional": {
+    "path": "fbx/stepping_backward.fbx",
+    "sha256": "739cbb7ca6c81e66dc7bb08bf3b476e30cca1b2f0039e40d3ff2be4c6ac0f86f"
+  }
+}

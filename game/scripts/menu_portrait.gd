@@ -25,6 +25,7 @@ const SUBJECTS := [
  ["FOTOGRAMA / MODELO","res://assets/projection/GlassPane.glb","model"],
  ["FORMA 1 / MODELO","res://assets/forms/worm_rig.tscn","model"],
  ["FORMA 2 / MODELO","res://assets/forms/evolved_rig.tscn","model"],["KOGANE / MODELO","res://assets/companions/SkullWispRig.glb","model"]]
+var subjects: Array = SUBJECTS.duplicate(true)
 var viewport: SubViewport
 var pivot: Node3D
 var camera: Camera3D
@@ -55,10 +56,10 @@ func _ready() -> void:
     caption = Label.new(); add_child(caption); caption.anchor_top = .88; caption.anchor_bottom = .88; caption.anchor_left = .15; caption.anchor_right = .95; caption.add_theme_font_size_override("font_size",15); caption.modulate = Color("b3c8c7"); caption.mouse_filter = Control.MOUSE_FILTER_IGNORE
     show_subject(3 if auto_cycle else 0)
 func show_subject(value: int) -> void:
-    index = posmod(value,SUBJECTS.size()); shot_time = 0;manual_yaw=0
+    index = posmod(value,subjects.size()); shot_time = 0;manual_yaw=0
     if is_instance_valid(model): model.free()
     model = null; articulation = null
-    var subject: Array = SUBJECTS[index]; caption.text = "%02d / %02d    %s" % [index+1,SUBJECTS.size(),subject[0]]
+    var subject: Array = subjects[index]; caption.text = "%02d / %02d    %s" % [index+1,subjects.size(),subject[0]]
     artwork.visible = subject[2] == "art"
     if artwork.visible:
         var path: String = subject[1]
@@ -74,12 +75,16 @@ func show_subject(value: int) -> void:
         var pieces: Dictionary = {}
         for module in model.find_children("*","MeshInstance3D",true,false): pieces[String(module.name)] = module
         articulation = preload("res://scripts/sentinel_articulation.gd").new(); model.add_child(articulation); articulation.setup(pieces); articulation.activation(2.8)
+    elif subject[2]=="soldier":
+        model.animations.tree.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE
+        model.animations.player.callback_mode_process=AnimationMixer.ANIMATION_CALLBACK_MODE_PROCESS_IDLE
+        model.skeleton.modifier_callback_mode_process=Skeleton3D.MODIFIER_CALLBACK_MODE_PROCESS_IDLE
     else:
         for player in model.find_children("*","AnimationPlayer",true,false):
             for clip in player.get_animation_list():
                 if "idle" in String(clip).to_lower():
                     player.get_animation(clip).loop_mode = Animation.LOOP_LINEAR; player.play(clip); break
-    pivot.rotation.y = PI-.35 if subject[2] == "naoya" else -.35
+    pivot.rotation.y = PI-.35 if subject[2] in ["naoya","soldier"] else -.35
 func next_subject() -> void:
     if changing: return
     changing = true
@@ -99,7 +104,7 @@ func _process(delta: float) -> void:
     elif render_time >= .05:
         render_time = 0; viewport.render_target_update_mode = SubViewport.UPDATE_ONCE
     if is_instance_valid(articulation): articulation.locomotion(delta*motion,0,true,0,0,true)
-    var heading := PI-.35 if SUBJECTS[index][2] == "naoya" else -.35
+    var heading := PI-.35 if subjects[index][2] in ["naoya","soldier"] else -.35
     pivot.rotation.y = heading+sin(clock*.12)*.10+manual_yaw
     var pointer := (get_local_mouse_position()/size.clamp(Vector2.ONE,Vector2(10000,10000))-Vector2(.5,.5))*motion
     camera.position = camera.position.lerp(camera_position+Vector3(pointer.x*.12,pointer.y*.08,sin(shot_time*.20)*.16),1-exp(-delta*3)); camera.look_at(Vector3(0,1.85,0))

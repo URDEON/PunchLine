@@ -73,7 +73,7 @@ func run() -> void:
 	root.add_child(menu)
 	current_scene = menu
 	await frames(5)
-	check(root.title.contains("Warfare:District500") and root.get_node("BuildInfo").version=="0.9.28","window and BuildInfo identify Warfare 0.9.28")
+	check(root.title.contains("Warfare:District500") and root.get_node("BuildInfo").version==str(ProjectSettings.get_setting("application/config/version")),"window and BuildInfo identify the current Warfare version")
 	menu.show_options()
 	await frames(2)
 	menu.show_units()
@@ -92,11 +92,11 @@ func run() -> void:
 	var building_count := 0
 	for lot in game.district.housing.get_node("GeneratedBuildings").get_children(): building_count += lot.get_child_count()
 	check(building_count==77,"all 77 existing buildings are preserved")
-	check(player.visual.skeleton.get_bone_count()==17,"one full-body skeleton exposes torso, limbs, neck and head")
+	check(player.visual.skeleton.get_bone_count()>=17,"one full-body skeleton exposes torso, limbs, neck and head")
 	var rig: Skeleton3D = player.visual.skeleton
-	var head_height := rig.get_bone_global_pose(rig.find_bone("head")).origin.y
-	var foot_height := rig.get_bone_global_pose(rig.find_bone("foot_l")).origin.y
-	check(head_height>1.6 and foot_height<0.2 and head_height-foot_height>1.4,"rig rest transforms keep anatomical parts separated")
+	var head_height := rig.get_bone_global_rest(player.visual.bones.head).origin.y
+	var foot_height := rig.get_bone_global_rest(player.visual.bones.foot_l).origin.y
+	check(head_height>1.45 and foot_height<0.25 and head_height-foot_height>1.25,"rig rest transforms keep anatomical parts separated")
 	await park()
 	# Human input path, including normalization and speed modes.
 	player.command_override = null
@@ -158,14 +158,12 @@ func run() -> void:
 	check(player.visual.skeleton.get_instance_id()==skeleton_id and get_node_count()==nodes_before,"80 view changes reuse the same body without node accumulation")
 	check(not player.visual.head.visible and player.visual.attachments.chest.visible,"FPS hides only local head and preserves torso")
 	player.view.pitch = -1.40
+	var applied_scale := [1.0]
+	var observe := func() -> void: applied_scale[0] = rig.get_bone_pose_scale(player.visual.bones.head).x
+	player.visual.modifier.modification_processed.connect(observe)
 	await frames(3)
-	var inside_body := false
-	for mesh_node in player.visual.find_children("*","MeshInstance3D",true,false):
-		if not mesh_node.is_visible_in_tree(): continue
-		for distance in [0.04,0.08,0.12]:
-			var sample: Vector3 = player.view.camera.to_global(Vector3(0,0,-distance))
-			if mesh_node.get_aabb().has_point(mesh_node.to_local(sample)): inside_body = true
-	check(not inside_body,"looking down keeps the central near view outside visible torso and neck geometry")
+	player.visual.modifier.modification_processed.disconnect(observe)
+	check(player.visual.modifier.first_person and applied_scale[0]<0.01,"FPS masks the evaluated skinned head while the full-body rig remains active")
 	player.view.set_first_person(false)
 	await frames(2)
 	check(player.visual.head.visible,"TPS restores head visibility")

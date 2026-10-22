@@ -6,3 +6,7 @@ var sprint := false
 var walk := false
 var crouch := false
 var jump := false
+var fire := false
+var aim := false
+var reload := false
+var weapon_slot := -1

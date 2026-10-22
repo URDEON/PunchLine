@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3]
+[gd_scene load_steps=10 format=3]
 [ext_resource type="Script" path="res://units/soldiers/soldier.gd" id="1"]
 [ext_resource type="Script" path="res://units/soldiers/soldier_movement.gd" id="2"]
 [ext_resource type="Script" path="res://units/soldiers/soldier_input.gd" id="3"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://units/soldiers/soldier_camera.gd" id="5"]
 [ext_resource type="Script" path="res://core/unit_health.gd" id="6"]
 [ext_resource type="Resource" path="res://units/soldiers/default_soldier.tres" id="7"]
+[ext_resource type="Script" path="res://combat/soldier_equipment.gd" id="8"]
 [sub_resource type="CapsuleShape3D" id="capsule"]
 radius = 0.3
 height = 1.82
@@ -29,3 +30,5 @@ script = ExtResource("4")
 script = ExtResource("5")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("6")
+[node name="Equipment" type="Node" parent="."]
+script = ExtResource("8")

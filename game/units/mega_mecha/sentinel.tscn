@@ -1,0 +1,8 @@
+[gd_scene load_steps=4 format=3]
+[ext_resource type="PackedScene" path="res://units/soldiers/soldier.tscn" id="1"]
+[ext_resource type="Script" path="res://units/mega_mecha/sentinel.gd" id="2"]
+[ext_resource type="Script" path="res://units/mega_mecha/sentinel_visual.gd" id="3"]
+[node name="Sentinel" instance=ExtResource("1")]
+script = ExtResource("2")
+[node name="Visual" parent="." index="3"]
+script = ExtResource("3")

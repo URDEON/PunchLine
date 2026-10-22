@@ -33,6 +33,7 @@ func step(body: CharacterBody3D,command: RefCounted,delta: float) -> void:
 	if command.sprint and command.move.y < -0.1: speed = tuning.sprint_speed
 	if command.walk: speed = tuning.walk_speed
 	if crouched: speed = tuning.crouch_speed
+	if body.impact_time>0: speed *= 0.75
 	var acceleration: float = tuning.acceleration if direction.length_squared()>0.001 else tuning.braking
 	if not was_grounded: acceleration *= 0.35
 	body.velocity.x = move_toward(body.velocity.x,direction.x*speed,acceleration*delta)

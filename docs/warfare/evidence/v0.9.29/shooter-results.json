@@ -1,0 +1,177 @@
+{
+	"ar_shots_2s": 14,
+	"checks": 42,
+	"failures": 0,
+	"results": [
+		{
+			"check": "menu reuses original launcher and Ink controls",
+			"passed": true
+		},
+		{
+			"check": "portrait gallery exposes soldier and original Sentinel",
+			"passed": true
+		},
+		{
+			"check": "restored Extras plays uploaded clips on the same soldier preview",
+			"passed": true
+		},
+		{
+			"check": "soldier deploys from the actual restored menu",
+			"passed": true
+		},
+		{
+			"check": "uploaded skinned rig runs an active AnimationTree",
+			"passed": true
+		},
+		{
+			"check": "24 clips include Basic, Slim and the additional backward step",
+			"passed": true
+		},
+		{
+			"check": "animation root motion cannot drag the physical controller",
+			"passed": true
+		},
+		{
+			"check": "Slim style selects the actual alternate pack clips",
+			"passed": true
+		},
+		{
+			"check": "movement selects an actual rifle locomotion clip",
+			"passed": true
+		},
+		{
+			"check": "stopping blends back to rifle aiming idle",
+			"passed": true
+		},
+		{
+			"check": "short backward movement uses the separately supplied stepping clip",
+			"passed": true
+		},
+		{
+			"check": "aim input narrows the real camera FOV",
+			"passed": true
+		},
+		{
+			"check": "both original uploaded weapon models are instantiated",
+			"passed": true
+		},
+		{
+			"check": "weapon and muzzle remain attached to the animated soldier",
+			"passed": true
+		},
+		{
+			"check": "idle weapon grip is calibrated to the soldier's actual aiming direction",
+			"passed": true
+		},
+		{
+			"check": "M4A1 fires at a bounded medium game cadence",
+			"passed": true
+		},
+		{
+			"check": "actual hitscan shots damage a physical training target",
+			"passed": true
+		},
+		{
+			"check": "fire triggers the supplied upper-body action",
+			"passed": true
+		},
+		{
+			"check": "reload starts the supplied animation and ammunition timer",
+			"passed": true
+		},
+		{
+			"check": "reload transfers ammunition without creating extra rounds",
+			"passed": true
+		},
+		{
+			"check": "weapon selection changes ammo family and visible model together",
+			"passed": true
+		},
+		{
+			"check": "MP5A5 cadence is faster than M4A1",
+			"passed": true
+		},
+		{
+			"check": "AR and SMG reserves are independent",
+			"passed": true
+		},
+		{
+			"check": "SMG loses effectiveness earlier than the long-range AR",
+			"passed": true
+		},
+		{
+			"check": "a wall blocks damage to a target behind it",
+			"passed": true
+		},
+		{
+			"check": "pause freezes reload and combat simulation",
+			"passed": true
+		},
+		{
+			"check": "resuming with held fire requires releasing the trigger",
+			"passed": true
+		},
+		{
+			"check": "damage triggers the supplied reaction and a bounded temporary state",
+			"passed": true
+		},
+		{
+			"check": "temporary impact effects expire",
+			"passed": true
+		},
+		{
+			"check": "the displayed capture objective has real progress and score",
+			"passed": true
+		},
+		{
+			"check": "sustained fire, reload and tracer cleanup do not accumulate nodes",
+			"passed": true
+		},
+		{
+			"check": "combat pool resources remain bounded",
+			"passed": true
+		},
+		{
+			"check": "Sentinel deploys directly from unit selection with its own health",
+			"passed": true
+		},
+		{
+			"check": "Sentinel uses its own heavy-unit camera configuration",
+			"passed": true
+		},
+		{
+			"check": "Sentinel reuses original articulation and Rustwing cannon pieces",
+			"passed": true
+		},
+		{
+			"check": "direct Sentinel control does not instantiate fusion or the four robots",
+			"passed": true
+		},
+		{
+			"check": "Sentinel recovers the original Sci-Holo identity HUD",
+			"passed": true
+		},
+		{
+			"check": "Sentinel movement drives original mechanical locomotion",
+			"passed": true
+		},
+		{
+			"check": "aim deploys the actual arm cannon",
+			"passed": true
+		},
+		{
+			"check": "deployed Sentinel cannon fires with bounded energy ammunition",
+			"passed": true
+		},
+		{
+			"check": "Sentinel respawns without a fusion sequence",
+			"passed": true
+		},
+		{
+			"check": "unit selector returns to the restored unit-selection menu",
+			"passed": true
+		}
+	],
+	"smg_shots_2s": 20,
+	"version": "0.9.29"
+}

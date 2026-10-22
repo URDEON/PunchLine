@@ -1,0 +1,17 @@
+[gd_resource type="Resource" load_steps=2 format=3]
+[ext_resource type="Script" path="res://combat/weapon_data.gd" id="1"]
+[resource]
+script = ExtResource("1")
+id = "sentinel_cannon"
+display_name = "CAÑÓN SENTINEL"
+ammo_type = "ENERGÍA"
+shots_per_second = 1.5
+magazine_size = 8
+reserve_ammo = 64
+reload_seconds = 3.0
+damage = 65.0
+range_limit = 180.0
+falloff_start = 100.0
+minimum_damage_factor = 0.8
+spread_degrees = 0.1
+recoil = 0.016

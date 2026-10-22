@@ -3,7 +3,7 @@ extends Node
 signal changed
 const DEFAULTS := {"fov":85.0,"sensitivity":0.0025,"invert_y":false,
 	"bodycam":true,"bob":true,"shake":0.35,"lens":false,"distance":3.4,
-	"fullscreen":false,"grass_quality":1,"fog_amount":0.15}
+	"fullscreen":false,"grass_quality":1,"fog_amount":0.15,"animation_style":0}
 var values: Dictionary = DEFAULTS.duplicate()
 
 func _ready() -> void:
@@ -18,6 +18,7 @@ func _ready() -> void:
 	values.distance = clampf(values.distance,1.8,5.0)
 	values.grass_quality = clampi(values.grass_quality,0,3)
 	values.fog_amount = clampf(values.fog_amount,0,1)
+	values.animation_style = clampi(values.animation_style,0,1)
 	apply_display()
 
 func set_value(key: String,value: Variant) -> void:

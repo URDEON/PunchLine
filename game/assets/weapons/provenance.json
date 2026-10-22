@@ -1,0 +1,52 @@
+{
+  "notice": "Models and textures supplied by the user. Original asset bytes retained; runtime transforms/material assignments do not modify source geometry. No external authorship/license is asserted. Original Blender/OBJ alternatives remain in the uploaded RAR and were not required for FBX runtime import.",
+  "sources": [
+    {
+      "archive": "mp5a5.rar",
+      "archive_sha256": "2d9e60199a7fe5c441ee8973ebde1752f1e5eac25f4ba2ba002d41333906d216",
+      "files": [
+        {
+          "path": "mp5a5/mp5a5.fbx",
+          "sha256": "b3e38ec1b22f6d1d7c740188a42eb1e8e83e5ba7e91e87c24b9f6fc500e73b51",
+          "bytes": 1727820
+        },
+        {
+          "path": "mp5a5/texture/ammo_normal map.jpg",
+          "sha256": "c1c9e43b43c1d2ef397ec6ea9e65d317deb234b4f040efae8479986fb4ccc865",
+          "bytes": 201000
+        },
+        {
+          "path": "mp5a5/texture/ammo_texture.jpg",
+          "sha256": "159b3c5065702de8ffd7e8d8bdc08f9943052d644475cd775631bb343b5aa6a9",
+          "bytes": 212600
+        },
+        {
+          "path": "mp5a5/texture/mp5a5_normal map.jpg",
+          "sha256": "050334be1e20c4267839a3037ccc524cccd5d4c3a3f0d42e7419dc74be0052cf",
+          "bytes": 3925375
+        },
+        {
+          "path": "mp5a5/texture/mp5a5_texture.jpg",
+          "sha256": "ced8bbdb582a5c46fe1a2ae6fb6962443df931cb39a0a5ef117f0f5bc552ea8e",
+          "bytes": 4285287
+        }
+      ]
+    },
+    {
+      "archive": "M4A1.rar",
+      "archive_sha256": "90ab9b6a98f5882ad97298164f2ce4a3ffb06569762dc881d4a83204582901ba",
+      "files": [
+        {
+          "path": "m4a1/M4A1.fbx",
+          "sha256": "3af5ce27bc0d22c3e0172d8e5e8cd4b41de0f050642dfde100eee19c8cd7ed5b",
+          "bytes": 283676
+        },
+        {
+          "path": "m4a1/PichuliruPalette.png",
+          "sha256": "f098c71c896e1dd4fb544b76b4d1ee93187972d64224f969f77c495a9aaeab74",
+          "bytes": 314
+        }
+      ]
+    }
+  ]
+}

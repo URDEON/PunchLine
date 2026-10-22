@@ -8,6 +8,12 @@ func _ready() -> void:
 	var title := Label.new()
 	title.text = "CÁMARA Y PANTALLA"
 	rows.add_child(title)
+	var style := OptionButton.new()
+	style.add_item("Animaciones · Basic Shooter")
+	style.add_item("Animaciones · Slim Shooter")
+	style.selected = int(WarfareSettings.values.animation_style)
+	style.item_selected.connect(func(value: int) -> void: WarfareSettings.set_value("animation_style",value))
+	rows.add_child(style)
 	for field in [["fov","Campo de visión",65.0,110.0,1.0],
 		["sensitivity","Sensibilidad",0.0005,0.008,0.0001],
 		["distance","Distancia TPS",1.8,5.0,0.1],

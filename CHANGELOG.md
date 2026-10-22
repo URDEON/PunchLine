@@ -1,5 +1,18 @@
 # Cambios de PunchLine
 
+## 0.9.29 — Menú recuperado, animaciones, armamento y Sentinel directo
+
+- Reutiliza el lanzador original, su fondo, botones Ink, audio y galería; recupera selección y Extras.
+- Integra el rig skinned X Bot y 24 clips de los dos paquetes FBX aportados, incluido Stepping Backward.
+- AnimationTree con locomoción y acciones filtradas; selección Basic/Slim y cuerpo compartido FPS/TPS.
+- Modelos originales aportados de M4A1 y MP5A5, con texturas, reservas AR/SMG separadas y Resources editables.
+- Apuntado, cadencia automática media/rápida, recarga, caída de daño abstracta y bloqueo por obstáculos.
+- Reacciones de impacto temporales y pools acotados de trazas/audio; balizas físicas y captura de práctica.
+- HUD militar con distribución de la referencia, minimapa vectorial real, salud, puntuación y munición.
+- Sentinel aparece directamente desde selección; reutiliza modelo, articulación, cañón y sonidos originales.
+- Recupera el HUD Sci-Holo del Sentinel; no se instancian la fusión ni los cuatro robots anteriores.
+- Conserva District500 y los recursos anteriores. Informe y evidencia en `docs/warfare/release-0.9.29.md`.
+
 ## 0.9.28 — Warfare:District500, Fase 0 / primera parte de Fase 1
 
 - Base 0.9.27 protegida con etiqueta Git y bundle completo verificado mediante restauración.

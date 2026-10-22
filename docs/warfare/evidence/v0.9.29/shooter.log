@@ -1,0 +1,45 @@
+Godot Engine v4.4.1.stable.official.49a5bc7b6 - https://godotengine.org
+
+PASS menu reuses original launcher and Ink controls
+PASS portrait gallery exposes soldier and original Sentinel
+PASS restored Extras plays uploaded clips on the same soldier preview
+PASS soldier deploys from the actual restored menu
+PASS uploaded skinned rig runs an active AnimationTree
+PASS 24 clips include Basic, Slim and the additional backward step
+PASS animation root motion cannot drag the physical controller
+PASS Slim style selects the actual alternate pack clips
+PASS movement selects an actual rifle locomotion clip
+PASS stopping blends back to rifle aiming idle
+PASS short backward movement uses the separately supplied stepping clip
+PASS aim input narrows the real camera FOV
+PASS both original uploaded weapon models are instantiated
+PASS weapon and muzzle remain attached to the animated soldier
+PASS idle weapon grip is calibrated to the soldier's actual aiming direction
+PASS M4A1 fires at a bounded medium game cadence
+PASS actual hitscan shots damage a physical training target
+PASS fire triggers the supplied upper-body action
+PASS reload starts the supplied animation and ammunition timer
+PASS reload transfers ammunition without creating extra rounds
+PASS weapon selection changes ammo family and visible model together
+PASS MP5A5 cadence is faster than M4A1
+PASS AR and SMG reserves are independent
+PASS SMG loses effectiveness earlier than the long-range AR
+PASS a wall blocks damage to a target behind it
+PASS pause freezes reload and combat simulation
+PASS resuming with held fire requires releasing the trigger
+PASS damage triggers the supplied reaction and a bounded temporary state
+PASS temporary impact effects expire
+PASS the displayed capture objective has real progress and score
+PASS sustained fire, reload and tracer cleanup do not accumulate nodes
+PASS combat pool resources remain bounded
+PASS Sentinel deploys directly from unit selection with its own health
+PASS Sentinel uses its own heavy-unit camera configuration
+PASS Sentinel reuses original articulation and Rustwing cannon pieces
+PASS direct Sentinel control does not instantiate fusion or the four robots
+PASS Sentinel recovers the original Sci-Holo identity HUD
+PASS Sentinel movement drives original mechanical locomotion
+PASS aim deploys the actual arm cannon
+PASS deployed Sentinel cannon fires with bounded energy ammunition
+PASS Sentinel respawns without a fusion sequence
+PASS unit selector returns to the restored unit-selection menu
+RESULT 42/42 Warfare shooter checks

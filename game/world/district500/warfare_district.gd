@@ -5,7 +5,7 @@ const Buildings = preload("res://housing/scenes/GeneratedHousing.tscn")
 const Ambience = preload("res://scripts/district_ambience.gd")
 var housing: Node3D
 var ambience: Node3D
-var spawn := Vector3(-113,0.35,-129)
+var spawn := Vector3(-85,0.35,-40)
 
 func _ready() -> void:
 	var ground := Ground.instantiate()
